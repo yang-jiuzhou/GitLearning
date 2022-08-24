@@ -1,0 +1,1408 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:HBBio">
+    <!--常用按钮-->
+    <s:String x:Key="btnOK">OK</s:String>
+    <s:String x:Key="btnCancel">Cancel</s:String>
+    <s:String x:Key="btnYes">Yes</s:String>
+    <s:String x:Key="btnNo">No</s:String>
+    <s:String x:Key="btnApply">Apply</s:String>
+    <s:String x:Key="btnClose">Close</s:String>
+    <s:String x:Key="btnNew">New</s:String>
+    <s:String x:Key="btnAdd">Add</s:String>
+    <s:String x:Key="btnInsert">Insert</s:String>
+    <s:String x:Key="btnEdit">Edit</s:String>
+    <s:String x:Key="btnModify">Modify</s:String>
+    <s:String x:Key="btnReplace">Replace</s:String>
+    <s:String x:Key="btnDel">Delete</s:String>
+    <s:String x:Key="btnSave">Save</s:String>
+    <s:String x:Key="btnSaveAs">Save As</s:String>
+    <s:String x:Key="btnPrev">Prev</s:String>
+    <s:String x:Key="btnNext">Next</s:String>
+    <s:String x:Key="btnEnabled">Activate</s:String>
+    <s:String x:Key="btnCopy">Copy</s:String>
+    <s:String x:Key="btnPaste">Paste</s:String>
+    <s:String x:Key="btnUp">Move Up</s:String>
+    <s:String x:Key="btnDown">Move Down</s:String>
+    <s:String x:Key="btnRename">Rename</s:String>
+    <s:String x:Key="btnSelectAll">Select All</s:String>
+    <s:String x:Key="btnClear">Clear</s:String>
+    <s:String x:Key="btnSend">Send</s:String>
+    <s:String x:Key="btnPrint">Print</s:String>
+    <s:String x:Key="btnExport">Export</s:String>
+    <s:String x:Key="btnImport">Import</s:String>
+    <s:String x:Key="btnRefresh">Refresh</s:String>
+    <s:String x:Key="btnAttribute">Attribute</s:String>
+    <s:String x:Key="btnSet">Set</s:String>
+    <s:String x:Key="btnOpen">Open</s:String>
+    <s:String x:Key="btnCompare">Compare</s:String>
+    <s:String x:Key="btnAuto">Auto</s:String>
+    <s:String x:Key="btnIconSelect">Icon Select</s:String>
+    <s:String x:Key="btnIconClear">Icon Clear</s:String>
+    <s:String x:Key="btnCommun">Commun Alarm</s:String>
+
+
+
+    <!--常用标签-->
+    <s:String x:Key="labUser">User</s:String>
+    <s:String x:Key="labUser1" xml:space="preserve">User : </s:String>
+    <s:String x:Key="labName">Name</s:String>
+    <s:String x:Key="labName1" xml:space="preserve">Name : </s:String>
+    <s:String x:Key="labValue">Value</s:String>
+    <s:String x:Key="labNote">Note</s:String>
+    <s:String x:Key="labNote1" xml:space="preserve">Note : </s:String>
+    <s:String x:Key="labScreen1" xml:space="preserve">Screen : </s:String>
+    <s:String x:Key="labStatus">Status</s:String>
+    <s:String x:Key="labStatus1" xml:space="preserve">Status : </s:String>
+    <s:String x:Key="labSet">Set</s:String>
+    <s:String x:Key="labReset">Reset</s:String>
+    <s:String x:Key="labMore">More</s:String>
+    <s:String x:Key="labSelectAll">Select All</s:String>
+    <s:String x:Key="labSelectNull">Select None</s:String>
+    <s:String x:Key="labEnable">Enable</s:String>
+    <s:String x:Key="labDisable">Disable</s:String>
+    <s:String x:Key="labStart">Start</s:String>
+    <s:String x:Key="labEnd">End</s:String>
+    <s:String x:Key="labDescription">Description</s:String>
+    <s:String x:Key="labCreationDate1">Create Time :</s:String>
+    <s:String x:Key="labModificationDate1">Modify Time :</s:String>
+    <s:String x:Key="labStartTime1">Start Time :</s:String>
+    <s:String x:Key="labEndTime1">End Time :</s:String>
+    <s:String x:Key="labOn">On</s:String>
+    <s:String x:Key="labOff">Off</s:String>
+    <s:String x:Key="labYes">Yes</s:String>
+    <s:String x:Key="labNo">No</s:String>
+    <s:String x:Key="labMin">Min</s:String>
+    <s:String x:Key="labMax">Max</s:String>
+    <s:String x:Key="labCheck">Check</s:String>
+    <s:String x:Key="labHeader">Header</s:String>
+    <s:String x:Key="labFooter">Footer</s:String>
+    <s:String x:Key="labTitle1">Title :</s:String>
+    <s:String x:Key="labIcon1">Icon : </s:String>
+    <s:String x:Key="labMainText">Main Text</s:String>
+    <s:String x:Key="labMargin1">Margin :</s:String>
+    <s:String x:Key="labWidth1">Width :</s:String>
+    <s:String x:Key="labHeight1">Height :</s:String>
+    <s:String x:Key="labLeft1">Left :</s:String>
+    <s:String x:Key="labRight1">Right :</s:String>
+    <s:String x:Key="labTop1">Up :</s:String>
+    <s:String x:Key="labBottom1">Down :</s:String>
+    <s:String x:Key="labFont1">Font Size :</s:String>
+    <s:String x:Key="labFamily1">Font Family :</s:String>
+    <s:String x:Key="labForeground1">Foreground :</s:String>
+    <s:String x:Key="labBackground1">Background :</s:String>
+    <s:String x:Key="labOutputTime">Output Time</s:String>
+    <s:String x:Key="labOther">Other</s:String>
+    <s:String x:Key="T">Time</s:String>
+    <s:String x:Key="V">Volume</s:String>
+    <s:String x:Key="CV">Column Volume</s:String>
+    <s:String x:Key="TVCV">T/V/CV</s:String>
+    <s:String x:Key="labT">Time(min)</s:String>
+    <s:String x:Key="labV">Volume(ml)</s:String>
+    <s:String x:Key="labCV">Column Volume(cv)</s:String>
+    <s:String x:Key="labFlowVol">Volume Velocity(ml/min)</s:String>
+    <s:String x:Key="labFlowLine">Line Velocity(cm/h)</s:String>
+    <s:String x:Key="labPumpS">Pump S</s:String>
+    <s:String x:Key="labPumpA">Pump A</s:String>
+    <s:String x:Key="labPumpB">Pump B</s:String>
+    <s:String x:Key="labPumpC">Pump C</s:String>
+    <s:String x:Key="labPumpD">Pump D</s:String>
+    <s:String x:Key="labInS">Loading Valve</s:String>
+    <s:String x:Key="labInS1" xml:space="preserve">Loading Valve :</s:String>
+    <s:String x:Key="labInA">Inlet ValveA</s:String>
+    <s:String x:Key="labInA1" xml:space="preserve">Inlet ValveA :</s:String>
+    <s:String x:Key="labInB">Inlet ValveB</s:String>
+    <s:String x:Key="labInB1" xml:space="preserve">Inlet ValveB :</s:String>
+    <s:String x:Key="labInC">Inlet ValveC</s:String>
+    <s:String x:Key="labInC1" xml:space="preserve">Inlet ValveC :</s:String>
+    <s:String x:Key="labInD">Inlet ValveD</s:String>
+    <s:String x:Key="labInD1" xml:space="preserve">Inlet ValveD :</s:String>
+    <s:String x:Key="labIJV">Injection Valve</s:String>
+    <s:String x:Key="labIJV1" xml:space="preserve">Injection Valve :</s:String>
+    <s:String x:Key="labBPV">Bypass Valve</s:String>
+    <s:String x:Key="labBPV1" xml:space="preserve">Bypass Valve :</s:String>
+    <s:String x:Key="labCPV">Column Position Valve</s:String>
+    <s:String x:Key="labCPV1" xml:space="preserve">Column Position Valve:</s:String>
+    <s:String x:Key="labOut">Outlet Valve</s:String>
+    <s:String x:Key="labOut1" xml:space="preserve">Outlet Valve :</s:String>
+    <s:String x:Key="labMixer">Mixer</s:String>
+    <s:String x:Key="labMixer1" xml:space="preserve">Mixer: </s:String>
+    <s:String x:Key="labAS01" xml:space="preserve">AS01</s:String>
+    <s:String x:Key="labAS02" xml:space="preserve">AS02</s:String>
+    <s:String x:Key="labAS011" xml:space="preserve">AS01 : </s:String>
+    <s:String x:Key="labAS021" xml:space="preserve">AS02 : </s:String>
+    <s:String x:Key="LabLength1" xml:space="preserve">Duration Value : </s:String>
+    <s:String x:Key="LabUnit1" xml:space="preserve">Unit : </s:String>
+    <s:String x:Key="LabPer">Percent</s:String>
+    <s:String x:Key="LabBS" xml:space="preserve"> %B_S(0-100) </s:String>
+    <s:String x:Key="LabBE" xml:space="preserve"> %B_E(0-100) </s:String>
+    <s:String x:Key="LabCS" xml:space="preserve"> %C_S(0-100) </s:String>
+    <s:String x:Key="LabCE" xml:space="preserve"> %C_E(0-100) </s:String>
+    <s:String x:Key="LabDS" xml:space="preserve"> %D_S(0-100) </s:String>
+    <s:String x:Key="LabDE" xml:space="preserve"> %D_E(0-100) </s:String>
+    <s:String x:Key="LabBS1" xml:space="preserve">%B_S(0-100) : </s:String>
+    <s:String x:Key="LabBE1" xml:space="preserve">%B_E(0-100) : </s:String>
+    <s:String x:Key="LabCS1" xml:space="preserve">%C_S(0-100) : </s:String>
+    <s:String x:Key="LabCE1" xml:space="preserve">%C_E(0-100) : </s:String>
+    <s:String x:Key="LabDS1" xml:space="preserve">%D_S(0-100) : </s:String>
+    <s:String x:Key="LabDE1" xml:space="preserve">%D_E(0-100) : </s:String>
+    <s:String x:Key="labFillSystem">Flush System</s:String>
+    <s:String x:Key="labFlowRate">Flow Rate</s:String>
+    <s:String x:Key="labFlowRate1">Flow Rate :</s:String>
+    <s:String x:Key="labUV">UV Detector</s:String>
+    <s:String x:Key="labUVLamp1">UV Lamp :</s:String>
+    <s:String x:Key="labUVTime1" xml:space="preserve">UV Time(h) : </s:String>
+    <s:String x:Key="labUVRef1" xml:space="preserve">Ref : </s:String>
+    <s:String x:Key="labUVSig1" xml:space="preserve">Sig : </s:String>
+    <s:String x:Key="labUVOn">UV On</s:String>
+    <s:String x:Key="labUVOff">UV off</s:String>
+    <s:String x:Key="labUVReset">Reset</s:String>
+    <s:String x:Key="labUVWaveLength1">UV Wave Length:</s:String>
+    <s:String x:Key="labUV11" xml:space="preserve">UV1 : </s:String>
+    <s:String x:Key="labUV21" xml:space="preserve">UV2 : </s:String>
+    <s:String x:Key="labUV31" xml:space="preserve">UV3 : </s:String>
+    <s:String x:Key="labUV41" xml:space="preserve">UV4 : </s:String>
+    <s:String x:Key="labRI">RI</s:String>
+    <s:String x:Key="labRIPurge1" xml:space="preserve">Purge : </s:String>
+    <s:String x:Key="labRIPurgeOn">On</s:String>
+    <s:String x:Key="labRIPurgeOff">Off</s:String>
+    <s:String x:Key="labRIAutoZero">Auto Zero</s:String>
+    <s:String x:Key="labRITemperature1" xml:space="preserve">Temp(℃)[30-55] : </s:String>
+    <s:String x:Key="labHH">High-High Alarm</s:String>
+    <s:String x:Key="labLL">Low-Low Alarm</s:String>
+    <s:String x:Key="labH">High Warning</s:String>
+    <s:String x:Key="labL">Low Warning</s:String>
+    <s:String x:Key="labHH1">Hight-High Alarm :</s:String>
+    <s:String x:Key="labLL1">Low-Low Alarm :</s:String>
+    <s:String x:Key="labH1">High Warning :</s:String>
+    <s:String x:Key="labL1">Low Warning :</s:String>
+    <s:String x:Key="labASAction1">Trigger Action :</s:String>
+    <s:String x:Key="labASDelay1">Trigger Delay Setting :</s:String>
+    <s:String x:Key="labMsgAlarm">Alarm Pop-ups</s:String>
+    <s:String x:Key="labMsgWarning">Warning Pop-ups</s:String>
+    <s:String x:Key="labColor">Color</s:String>
+    <s:String x:Key="labCatalog">Catalog</s:String>
+    <s:String x:Key="labFilePath1">File Path : </s:String>
+    <s:String x:Key="labVisibility">Visibility</s:String>
+    <s:String x:Key="labShow">Show</s:String>
+    <s:String x:Key="labHide">Hide</s:String>
+    <s:String x:Key="labColumnVol">Column Volume(ml)</s:String>
+    <s:String x:Key="labColumnVol1" xml:space="preserve">Column Volume(ml) :</s:String>
+    <s:String x:Key="labColumnDiameter">Column Diameter(cm)</s:String>
+    <s:String x:Key="labColumnDiameter1" xml:space="preserve">Column Diameter(cm) : </s:String>
+    <s:String x:Key="labColumnHeight">Column Height(cm)</s:String>
+    <s:String x:Key="labColumnHeight1" xml:space="preserve">Column Height(cm) : </s:String>
+    <s:String x:Key="labColumnArea">Column Area(cm²)</s:String>
+    <s:String x:Key="labColumnArea1" xml:space="preserve">Column Area(cm²) : </s:String>
+    <s:String x:Key="labAction">Action</s:String>
+    <s:String x:Key="labReal">Real</s:String>
+    <s:String x:Key="labDelay">Delay</s:String>
+    <s:String x:Key="labFilter">Filter</s:String>
+    <s:String x:Key="labFilter1" xml:space="preserve">Filter : </s:String>
+    
+    
+    
+
+    <!--常用提示-->
+    <s:String x:Key="txtSuccess">Success</s:String>
+    <s:String x:Key="txtFailure">Failure</s:String>
+    <s:String x:Key="labSuccess">Success!</s:String>
+    <s:String x:Key="labFailure">Failure!</s:String>
+    <s:String x:Key="labErrorNoData">No data!</s:String>
+    <s:String x:Key="labIllegalName">Illegal name!</s:String>
+    <s:String x:Key="labSameName">The same name already exists!</s:String>
+    <s:String x:Key="labContinue">Want to continue?</s:String>
+    <s:String x:Key="labCannot">The current system cannot continue to run !</s:String>
+    <s:String x:Key="labOnlyFree">This operation can only be performed when the system is idle !</s:String>
+    <s:String x:Key="labOnlyNotFree">This operation can only be performed when the system is not idle !</s:String>
+    <s:String x:Key="labWaitCurrOper">Please wait for the current operation to complete !</s:String>
+    <s:String x:Key="labClose">Are you sure you want to exit the software ?</s:String>
+    <s:String x:Key="labStopRunning">Please end the run first !</s:String>
+    <s:String x:Key="labDel">Are you sure to perform the deletion ?</s:String>
+    <s:String x:Key="labTips">Tips</s:String>
+    <s:String x:Key="labInfo">Tips and instructions</s:String>
+    <s:String x:Key="labPermissionDelFailed">This permission cannot be deleted. Existing users have this permission !</s:String>
+    <s:String x:Key="infoIllegalData">Illegal data !</s:String>
+    
+
+
+    <!--常用文本-->
+    <s:String x:Key="infoASYes">Bubbles detected</s:String>
+    <s:String x:Key="infoASNo">No bubbles detected</s:String>
+    <s:String x:Key="labLogIn">System Login</s:String>
+    <s:String x:Key="labLogOut">System Logout</s:String>
+    <s:String x:Key="labRecover">System Recover</s:String>
+    
+    
+    
+
+
+    <!--常用枚举-->
+    <s:String x:Key="Stable">Stable</s:String>
+    <s:String x:Key="MoreThan">More Than</s:String>
+    <s:String x:Key="LessThan">Less Than</s:String>
+    <s:String x:Key="EnumMonitorAction_Ignore">Ignore</s:String>
+    <s:String x:Key="EnumMonitorAction_Bypass">Bypass</s:String>
+    <s:String x:Key="EnumMonitorAction_Next">Next</s:String>
+    <s:String x:Key="EnumMonitorAction_Pause">Pause</s:String>
+    <s:String x:Key="EnumMonitorAction_Stop">Stop</s:String>
+
+
+
+
+    <!--具体权限枚举-->
+    <s:String x:Key="RunDataSet">Run Data</s:String>
+    <s:String x:Key="ChromatogramSet">Chromatogram</s:String>
+    <s:String x:Key="ProcessPictureSet">Process Picture</s:String>
+    <s:String x:Key="SoftExit">Exit</s:String>
+    <s:String x:Key="MonitorSet">Monitor</s:String>
+    <s:String x:Key="Communication">Communication</s:String>
+    <s:String x:Key="Communication_Add">Communication_Add</s:String>
+    <s:String x:Key="Communication_Edit">Communication_Edit</s:String>
+    <s:String x:Key="Communication_Del">Communication_Del</s:String>
+    <s:String x:Key="Communication_Activate">Communication_Activate</s:String>
+    <s:String x:Key="InstrumentParameters">Instrument Parameters</s:String>
+    <s:String x:Key="InstrumentParameters_Edit">Instrument Parameters_Edit</s:String>
+    <s:String x:Key="Administration">Administration</s:String>
+    <s:String x:Key="Administration_User">Administration_User</s:String>
+    <s:String x:Key="Administration_User_Add">Administration_User_Add</s:String>
+    <s:String x:Key="Administration_User_Edit">Administration_User_Edit</s:String>
+    <s:String x:Key="Administration_User_Del">Administration_User_Del</s:String>
+    <s:String x:Key="Administration_Permission">Administration_Permission</s:String>
+    <s:String x:Key="Administration_Permission_Add">Administration_Permission_Add</s:String>
+    <s:String x:Key="Administration_Permission_Edit">Administration_Permission_Edit</s:String>
+    <s:String x:Key="Administration_Permission_Del">Administration_Permission_Del</s:String>
+    <s:String x:Key="Administration_Tactics">Administration_Security Policy</s:String>
+    <s:String x:Key="Administration_Tactics_Edit">Administration_Security Policy_Edit</s:String>
+    <s:String x:Key="Administration_SignerReviewer">Administration_Signature Review</s:String>
+    <s:String x:Key="Administration_SignerReviewer_Edit">Administration_Signature Review_Edit</s:String>
+    <s:String x:Key="ColumnHandling">Column Handling</s:String>
+    <s:String x:Key="ColumnHandling_Edit">Column Handling_Edit</s:String>
+    <s:String x:Key="ColumnHandling_ImportExport">Column Handling_Import Export</s:String>
+    <s:String x:Key="ColumnHandling_Print">Column Handling_Print</s:String>
+    <s:String x:Key="TubeStand">Tube Stand</s:String>
+    <s:String x:Key="TubeStand_Edit">Tube Stand_Edit</s:String>
+    <s:String x:Key="Manual">Manual</s:String>
+    <s:String x:Key="Project">Project</s:String>
+    <s:String x:Key="Project_Method">Project_Method</s:String>
+    <s:String x:Key="Project_Method_Watch">Project_Method_Watch</s:String>
+    <s:String x:Key="Project_Method_Watch_Edit">Project_Method_Watch_Edit</s:String>
+    <s:String x:Key="Project_Method_Watch_ImportExport">Project_Method_Watch_Import Export</s:String>
+    <s:String x:Key="Project_Method_Watch_Print">Project_Method_Watch_Print</s:String>
+    <s:String x:Key="Project_Method_Watch_Other">Project_Method_Watch_Other</s:String>
+    <s:String x:Key="Project_Method_Run">Project_Method_Run</s:String>
+    <s:String x:Key="Project_Method_Intervene">Project_Method_Intervene</s:String>
+    <s:String x:Key="Project_Evaluation">Project_Evaluation</s:String>
+    <s:String x:Key="Project_Evaluation_Watch">Project_Evaluation_Watch</s:String>
+    <s:String x:Key="Project_Evaluation_Watch_Print">Project_Evaluation_Watch_Print</s:String>
+    <s:String x:Key="Project_Evaluation_Watch_IntegrationAuto">Project_Evaluation_Watch_IntegrationAuto</s:String>
+    <s:String x:Key="Project_Evaluation_Watch_IntegrationManual">Project_Evaluation_Watch_IntegrationManual</s:String>
+    <s:String x:Key="Project_Evaluation_Watch_Other">Project_Evaluation_Watch_Other</s:String>
+    <s:String x:Key="Project_Evaluation_Rename">Project_Evaluation_Rename</s:String>
+    <s:String x:Key="AuditTrails">Audit Trails</s:String>
+    <s:String x:Key="AuditTrails_Print">Audit Trails_Print</s:String>
+    <s:String x:Key="Databases">Database</s:String>
+    <s:String x:Key="Databases_Backup">Database-Backup</s:String>
+    <s:String x:Key="Databases_Restore">Database-Restore</s:String>
+
+    
+    
+    
+    
+    <!--系统控制-->
+    <s:String x:Key="SC_SystemControlWin">System Control</s:String>
+    <s:String x:Key="menuSystem">System</s:String>
+        <s:String x:Key="menuLanguage">Language</s:String>
+            <s:String x:Key="menuChinese">Chinese</s:String>
+            <s:String x:Key="menuEnglish">English</s:String>
+        <s:String x:Key="menuWindowSize">Window Size</s:String>
+            <s:String x:Key="menuRemember">Remember</s:String>
+        <s:String x:Key="menuUserSwitch">User Switch</s:String>
+        <s:String x:Key="menuUserPwd">User Password</s:String>
+    <s:String x:Key="menuLockScreen">Lock Screen</s:String>
+    <s:String x:Key="menuView">View</s:String>
+        <s:String x:Key="menuToolBar">Tool Bar</s:String>
+        <s:String x:Key="menuRunData">Run Data</s:String>
+        <s:String x:Key="menuChromatogram">Chromatogram</s:String>
+        <s:String x:Key="menuProcessPicture">Process Picture</s:String>
+        <s:String x:Key="menuMonitor">Monitor</s:String>
+        <s:String x:Key="menuStatusBar">Status Bar</s:String>
+    <s:String x:Key="menuSet">Settings</s:String>
+        <s:String x:Key="menuAuditTrails">Audit Trails</s:String>
+        <s:String x:Key="menuRunStatus">Run Status</s:String>
+    <s:String x:Key="menuTool">Tool</s:String>
+        <s:String x:Key="menuCommunication">Communication</s:String>
+        <s:String x:Key="menuInstrumentParameters">Instrument Parameters</s:String>
+        <s:String x:Key="menuAdministration">Administration</s:String>
+        <s:String x:Key="menuColumnHandling">Column Handling</s:String>
+        <s:String x:Key="menuTubeStand">Tube Stand</s:String>
+        <s:String x:Key="menuManual">Manual Edit</s:String>
+        <s:String x:Key="menuProject">Project Management</s:String>
+        <s:String x:Key="menuSystemMonitor">System Monitor</s:String>
+        <s:String x:Key="menuDB">Database</s:String>
+    <s:String x:Key="menuHelp">Help</s:String>
+        <s:String x:Key="menuAbout">About</s:String>
+
+    <!--主界面-菜单栏-->
+    <s:String x:Key="toolRun">Run</s:String>
+    <s:String x:Key="toolHold">Hold</s:String>
+    <s:String x:Key="toolHoldUntil">Hold_Until</s:String>
+    <s:String x:Key="toolNext">Next</s:String>
+    <s:String x:Key="toolPause">Pause</s:String>
+    <s:String x:Key="toolContinue">Continue</s:String>
+    <s:String x:Key="toolStop">Stop</s:String>
+    <s:String x:Key="toolAlarm">Eliminate Alarm</s:String>
+
+    <!--谱图画图界面-->
+    <s:String x:Key="labD_UndoZoom">Undo Zoom</s:String>
+    <s:String x:Key="labD_ResetZoom">Reset Zoom</s:String>
+    <s:String x:Key="labD_Drag">Drag</s:String>
+    <s:String x:Key="labD_Grid">Grid</s:String>
+    <s:String x:Key="labD_Ruler">Ruler</s:String>
+    <s:String x:Key="labD_RulerOddO">Single(S)</s:String>
+    <s:String x:Key="labD_RulerOddM">Single(M)</s:String>
+    <s:String x:Key="labD_RulerEven">Double</s:String>
+    <s:String x:Key="labD_Marker">Marker</s:String>
+    <s:String x:Key="labD_Coll">Coll</s:String>
+    <s:String x:Key="labD_CollM">Coll(M)</s:String>
+    <s:String x:Key="labD_CollA">Coll(A)</s:String>
+    <s:String x:Key="labD_Valve">Valve</s:String>
+    <s:String x:Key="labD_Phase">Phase</s:String>
+    <s:String x:Key="labD_MultiY">Multi-Y</s:String>
+    <s:String x:Key="labD_XAxis">X-Axis</s:String>
+    <s:String x:Key="labD_YAxis">Y-Axis</s:String>
+    <s:String x:Key="labD_AxisScale">Automatic Axis</s:String>
+    <s:String x:Key="Enum_Auto">Auto</s:String>
+    <s:String x:Key="Enum_Fixed">Fixed</s:String>
+    <s:String x:Key="D_BG">Bcakground</s:String>
+    <s:String x:Key="D_BGMsg">Please select from the Project Management module !</s:String>
+    <s:String x:Key="D_PNG">Snapshot</s:String>
+    <s:String x:Key="D_Curve">Curve</s:String>
+    <s:String x:Key="D_Signal">Signal</s:String>
+    <!--色谱图-标记添加-->
+    <s:String x:Key="D_MA_Position">Position</s:String>
+    <s:String x:Key="D_MA_Now">Real Time Point</s:String>
+    <s:String x:Key="D_MA_Past">Historical Point</s:String>
+
+    <!--运行状态-->
+    <s:String x:Key="ME_MethodQueueName">Method Queue Name</s:String>
+    <s:String x:Key="ME_MethodCount">Method Count</s:String>
+    <s:String x:Key="ME_MethodName">Method Name</s:String>
+    <s:String x:Key="ME_LoopCount">Loop Count</s:String>
+    <s:String x:Key="ME_LoopIndex">Loop Index</s:String>
+    <s:String x:Key="ME_PhaseCount">Phase Count</s:String>
+    <s:String x:Key="ME_PhaseName">Phase Name(No)</s:String>
+    <s:String x:Key="ME_PhaseRunning">Phase Running</s:String>
+    
+    <!--实时监控-->
+    <s:String x:Key="SC_RunParameters">Running Parameters</s:String>
+    <s:String x:Key="SC_ResultPath">Result Path</s:String>
+
+    <!--警报警告-->
+    <s:String x:Key="SC_AlarmWarning">Alarm&amp;Warning</s:String>
+    <s:String x:Key="SC_Alarm">Alarm</s:String>
+    <s:String x:Key="SC_Warning">Warning</s:String>
+    <s:String x:Key="SC_Value">Value</s:String>
+
+    <!--状态栏-->
+    <s:String x:Key="SC_SystemRunTime1">System Running Time :</s:String>
+    <s:String x:Key="SC_UserName1">User Name :</s:String>
+    <s:String x:Key="SC_ChromatogramTime1">Chromatogram Running Time :</s:String>
+    <s:String x:Key="SC_SystemTime1">System Time :</s:String>
+
+    <!--关于-->
+    <s:String x:Key="SC_AboutWin">About</s:String>
+    <s:String x:Key="SC_ProductionInformation">Product Information</s:String>
+    <s:String x:Key="SC_Production">Product : Hanbon Bio-LabChrom</s:String>
+    <s:String x:Key="SC_Version">Version : 2.0.0</s:String>
+    <s:String x:Key="SC_Website">Website : www.hanbon.com.cn</s:String>
+
+    <!--倒计时-->
+    <s:String x:Key="SC_CountdownWin">Countdown</s:String>
+    
+    <!--系统监控-->
+    <s:String x:Key="SC_SystemMonitorWin">System Monitor</s:String>
+
+
+    <!--Administration 用户权限-->
+    <s:String x:Key="A_AdministrationWin">Administration</s:String>
+    <s:String x:Key="A_User">User Management</s:String>
+    <s:String x:Key="A_Permission">Permission Management</s:String>
+    <s:String x:Key="A_Tactics">Security Policy</s:String>
+    <s:String x:Key="A_SignerReviewer">Signature Review</s:String>
+    <s:String x:Key="A_UserName">User Name</s:String>
+    <s:String x:Key="A_UserName1">User Name :</s:String>
+    <s:String x:Key="A_PermissionName">Permission Name</s:String>
+    <s:String x:Key="A_PermissionName1">Permission Name :</s:String>
+    <s:String x:Key="A_Validity">Validity(day)</s:String>
+    <s:String x:Key="A_Status">Status</s:String>
+    <s:String x:Key="A_TacticsName">Security Policy Name</s:String>
+    <s:String x:Key="A_T_NameReg">The user name must meet the complexity requirements</s:String>
+    <s:String x:Key="A_T_NameLock">User Name lockout threshold</s:String>
+    <s:String x:Key="A_T_NameLockUnit">Invalid logins</s:String>
+    <s:String x:Key="A_T_PwdReg">The password must meet the complexity requirements</s:String>
+    <s:String x:Key="A_T_PwdLength">Minimum password length</s:String>
+    <s:String x:Key="A_T_PwdLengthUnit">Character</s:String>
+    <s:String x:Key="A_T_PwdMaxTime">Maximum password expiration period</s:String>
+    <s:String x:Key="A_T_PwdMaxTimeUnit">days</s:String>
+    <s:String x:Key="A_T_ScreenLock">Screen locking time</s:String>
+    <s:String x:Key="A_T_ScreenLockUnit">Minute</s:String>
+    <s:String x:Key="A_SignerReviewerName">Signature Review Name</s:String>
+    <s:String x:Key="A_Signature">Signature</s:String>
+    <s:String x:Key="A_Reviewer">Review</s:String>
+
+    <s:String x:Key="A_LoginWin">Login</s:String>
+    <s:String x:Key="A_Version">Bio-Lab system V2.0.0</s:String>
+    <s:String x:Key="A_PwdLogin">Login Password</s:String>
+    <s:String x:Key="A_PwdLogin1" xml:space="preserve">Login Password :</s:String>
+    <s:String x:Key="A_Register">Register</s:String>
+    <s:String x:Key="A_Check">Self-checking </s:String>
+
+    <s:String x:Key="A_PermissionAddWin">Add Permission</s:String>
+    <s:String x:Key="A_PermissionAdmin">Admin</s:String>
+    <s:String x:Key="A_PermissionIT">IT</s:String>
+    <s:String x:Key="A_PermissionOPER">OPER</s:String>
+    <s:String x:Key="A_PermissionQA">QA</s:String>
+    <s:String x:Key="A_DefaultPermission">Default Permission</s:String>
+
+    <s:String x:Key="A_PermissionEditWin">Edit Permission</s:String>
+
+    <s:String x:Key="A_RegisteWin">Register</s:String>
+    <s:String x:Key="A_PwdConfirm1" xml:space="preserve">Confirm login password :</s:String>
+    <s:String x:Key="A_PwdSign">Signature password</s:String>
+    <s:String x:Key="A_PwdSign1" xml:space="preserve">Signature password :</s:String>
+    <s:String x:Key="A_PwdSignConfirm1" xml:space="preserve">Confirm signature password :</s:String>
+
+    <s:String x:Key="A_ReviewerWin">Reviewer</s:String>
+    <s:String x:Key="A_SignerName">Signer Name</s:String>
+    <s:String x:Key="A_ReviewerName">Reviewer Name</s:String>
+    <s:String x:Key="A_SignerName1" xml:space="preserve">Signer Name:</s:String>
+    <s:String x:Key="A_ReviewerName1" xml:space="preserve">Reviewer Name:</s:String>
+
+    <s:String x:Key="A_SignerWin">User Signature</s:String>
+
+    <s:String x:Key="A_TacticsEditWin">Attribute</s:String>
+    <s:String x:Key="A_T_NameRegInfo">
+        &#160;&#160;&#160;&#160;The user name must meet the complexity requirements.\n
+    \n
+    This setting will enable user name complexity requirements\n
+    \n
+    At least 1 character\n
+    Up to 32 characters\n
+    \n
+    Can only be the following four types of characters\n
+    Capital letters (A to Z)\n
+    Lower case letters (a to z)\n
+    Numbers (0 to 9)\n
+    Chinese Characters\n
+    \n
+     Force Values: Enable.\n
+    </s:String>
+    <s:String x:Key="A_T_NameLockTitle1">Do not lock account</s:String>
+    <s:String x:Key="A_T_NameLockTitle2">Lock the account after it happens</s:String>
+    <s:String x:Key="A_T_NameLockInfo">
+        &#160;&#160;&#160;&#160;Account lock threshold\n
+    \n
+    This setting will enable locking account after the number of login failures reached\n
+    \n
+    The account cannot be used until the administrator reset or the account lockout time expires.\n 
+    The number of login failures ranges is 0 to 999 \n
+    If you set the value to 0, the account will never be locked.\n
+    \n
+    Default value: 0.\n
+    </s:String>
+    <s:String x:Key="A_T_PwdRegInfo">
+        &#160;&#160;&#160;&#160;The password must meet the complexity requirements.\n
+    \n
+    This setting will enable password complexity determination. \n   
+    \n
+    If you enable this policy, The passwords must meet the following minimum requirements:\n
+    Cannot contain the account name\n         
+    At least 6 characters long\n
+    At least two different characters:\n            
+    Capital letters (A to Z) \n           
+    Lower case letters (a to z)\n           
+    Numbers (0 to 9)\n
+    Special characters (e.g.!, $, #,%)\n
+    Perform complexity requirements when changing or creating passwords.\n
+    \n
+    Default value: Disabled.\n
+    </s:String>
+    <s:String x:Key="A_T_PwdLengthTitle1">No password required</s:String>
+    <s:String x:Key="A_T_PwdLengthTitle2">The password is at least</s:String>
+    <s:String x:Key="A_T_PwdLengthInfo">
+        &#160;&#160;&#160;&#160;Minimum password length\n
+    \n
+    This setting defines the minimum number of characters to be included in the user password.\n
+    The number of characters ranges is 1 to 32.\n
+    \n
+    Default value: 1.\n
+    </s:String>
+    <s:String x:Key="A_T_PwdMaxTimeTitle1">Password has no expiration limit</s:String>
+    <s:String x:Key="A_T_PwdMaxTimeTitle2">Password expiration time</s:String>
+    <s:String x:Key="A_T_PwdMaxTimeInfo">
+        &#160;&#160;&#160;&#160;Maximum password expiration time\n
+    \n
+    This security setting defines the user passwords expire time.(In days) \n
+    Password expiration time range (1-999). If the value is set to 0, the password will never expire. \n
+    \n
+    Note: it is best to set the password to expire in 30 - 90 days, depending on your environment.\n
+    \n
+    Default value: 90.\n
+    </s:String>
+    <s:String x:Key="A_T_ScreenLockTitle1">Do not lock the screen</s:String>
+    <s:String x:Key="A_T_ScreenLockTitle2">Lock screen</s:String>
+    <s:String x:Key="A_T_ScreenLockInfo">
+        &#160;&#160;&#160;&#160;Lock screen time\n
+    \n
+    This security setting defines that the system will automatically lock screen after a period of time without operation (in minutes) \n
+    When the system is not operated, the screen will be locked after the set time (1-1440min).\n
+	If the screen locking time is set to 0, the screen will never be locked.\n
+    \n
+    Note: The optimal screen lock time of the system depends on your use environment.\n
+    \n
+    Default value: 60.\n
+    </s:String>
+
+    <s:String x:Key="A_UserAddWin">Create User</s:String>
+
+    <s:String x:Key="A_UserEditWin">User Edit</s:String>
+    <s:String x:Key="A_Active">Active</s:String>
+    <s:String x:Key="A_DisActive">Disactive</s:String>
+    <s:String x:Key="A_Lock">Lock</s:String>
+    <s:String x:Key="A_Unlock">Unlock</s:String>
+
+    <s:String x:Key="A_UserLockWin">System Unlock</s:String>
+    <s:String x:Key="A_AutoLock">Auto Lock</s:String>
+    <s:String x:Key="A_ManualLock">Manual Lock</s:String>
+    <s:String x:Key="A_ExitLock">Exit Lock Screen</s:String>
+
+    <s:String x:Key="A_UserPwdWin">Revise Password</s:String>
+    <s:String x:Key="A_PwdOld1" xml:space="preserve">Old Password :</s:String>
+
+    <s:String x:Key="A_UserSwitchWin">User Switch</s:String>
+    <s:String x:Key="A_UserNameCurr1" xml:space="preserve">Current User Name :</s:String>
+    <s:String x:Key="A_UserNameSwitch1" xml:space="preserve">Switch User Name :</s:String>
+
+    <s:String x:Key="A_ErrorPwd">Wrong login password!</s:String>
+    <s:String x:Key="A_ErrorPwdSign">Wrong Signature password!</s:String>
+    <s:String x:Key="A_ErrorSamePwd">The current login password is duplicate with the historical password!</s:String>
+    <s:String x:Key="A_ErrorSamePwdSign">The current Signature password is duplicate with the historical password!</s:String>
+    <s:String x:Key="A_ErrorPwdConfirm">Inconsistent login password!</s:String>
+    <s:String x:Key="A_ErrorPwdSignConfirm">Inconsistent signature password!</s:String>
+    <s:String x:Key="A_ErrorOldPwd">Wrong old login password!</s:String>
+    <s:String x:Key="A_ErrorOldPwdSign">Wrong old signature password!</s:String>
+    <s:String x:Key="A_ErrorIllegalPwd">The login password is unreasonable!</s:String>
+    <s:String x:Key="A_ErrorIllegalPwdSign">The Signature password is unreasonable!</s:String>
+    <s:String x:Key="A_ErrorCurrPwd">Wrong password of current user!</s:String>
+    <s:String x:Key="A_ErrorSwitchPwd">Wrong password of switch user!</s:String>
+    <s:String x:Key="A_ErrorInitialPwd">Wrong Initial password!</s:String>
+    <s:String x:Key="A_ErrorFirstModifyPwd">For the first time login, please revise your password!</s:String>
+    <s:String x:Key="A_ErrorFirstResetPwd">Please revise the password after it is reset by the administrator!</s:String>
+    <s:String x:Key="A_ErrorTimePwd">The password has expired. Please revise the password!</s:String>
+    <s:String x:Key="A_ErrorDayPwd">Password expiration days remaining:</s:String>
+    <s:String x:Key="A_ErrorDisUser">User is disabled! Please contact the administrator!</s:String>
+    <s:String x:Key="A_ErrorLockUser">User is locked! Please contact the administrator!</s:String>
+    <s:String x:Key="A_ErrorNumPwd">Number of password entries remaining:</s:String>
+    <s:String x:Key="A_ErrorPermission">Insufficient Permissions!</s:String>
+
+    <s:String x:Key="A_UserDelNot">The user cannot be deleted!</s:String>
+    <s:String x:Key="A_UserCurrDelNot">The currently logged in user cannot be deleted!</s:String>
+    <s:String x:Key="A_PermissionDelNot">The permission cannot be deleted!</s:String>
+
+
+
+
+    <!--AuditTrails 审计跟踪-->
+    <s:String x:Key="AT_Info1" xml:space="preserve">Lines per page</s:String>
+    <s:String x:Key="AT_Info2">Display</s:String>
+    <s:String x:Key="AT_Info3">Lines, total</s:String>
+    <s:String x:Key="AT_Info4">Pages, total</s:String>
+    <s:String x:Key="AT_Info5">Lines</s:String>
+
+    <s:String x:Key="AT_Type">Type</s:String>
+    <s:String x:Key="AT_Date">Date</s:String>
+    <s:String x:Key="AT_BatchT">Batch(T)</s:String>
+    <s:String x:Key="AT_BatchV">Batch(V)</s:String>
+    <s:String x:Key="AT_BatchCV">Batch(CV)</s:String>
+    <s:String x:Key="AT_UserName">User Name</s:String>
+    <s:String x:Key="AT_Description">Description</s:String>
+    <s:String x:Key="AT_Operation">Operation</s:String>
+
+    <s:String x:Key="AT_AuditTrailWin">Audit Trail</s:String>
+    <s:String x:Key="AT_Search">Search</s:String>
+    <s:String x:Key="AT_Out">Export</s:String>
+    <s:String x:Key="AT_BeginTime">Start Time :</s:String>
+    <s:String x:Key="AT_EndTime">End Time :</s:String>
+    <s:String x:Key="AT_Type1">Type :</s:String>
+    <s:String x:Key="AT_UserName1">User Name :</s:String>
+
+    <s:String x:Key="AT_OutputWin">Export Edit</s:String>
+
+
+
+
+    <!--Chromatogram 画图-->
+    <s:String x:Key="Ch_CurveColorWin">Attribute comparison settings</s:String>
+    
+    <s:String x:Key="Ch_CurveSetStyleWin">Chromatogram attribute settings</s:String>
+    <s:String x:Key="Ch_MarkerAddWin">Add Marker</s:String>
+    <s:String x:Key="Ch_MarkerDelWin">Delete Marker</s:String>
+
+
+
+
+
+    <!--Collection 组分收集-->
+    <!--enum-EnumCollectionType-->
+    <s:String x:Key="Coll_EnumCollectionType_Waste">Waste</s:String>
+    <s:String x:Key="Coll_EnumCollectionType_Valve">Valve</s:String>
+    <s:String x:Key="Coll_EnumCollectionType_Collector">Collector</s:String>
+    
+    <s:String x:Key="Coll_CollectionItemWin">Collection Settings</s:String>
+    <s:String x:Key="Coll_Type1" xml:space="preserve">Type :</s:String>
+    <s:String x:Key="Coll_Length1" xml:space="preserve">Duration :</s:String>
+    <s:String x:Key="Coll_ThresholdSlope1" xml:space="preserve">Threshold/Slope :</s:String>
+    <s:String x:Key="Coll_ThresholdBegin1" xml:space="preserve">Start (threshold) value :</s:String>
+    <s:String x:Key="Coll_ThresholdEnd1" xml:space="preserve">End (threshold) value :</s:String>
+    <s:String x:Key="Coll_SlopeJudge1" xml:space="preserve">Slope comparison :</s:String>
+    <s:String x:Key="Coll_Slope1" xml:space="preserve">Slope :</s:String>
+    <s:String x:Key="Coll_ObjOne1" xml:space="preserve">Judgment condition 1 :</s:String>
+    <s:String x:Key="Coll_ObjTwo1" xml:space="preserve">Judgment condition 2 :</s:String>
+    <s:String x:Key="Coll_ObjSelect1" xml:space="preserve">Judgment condition selection :</s:String>
+    <s:String x:Key="Coll_ObjRelation1" xml:space="preserve">Logical Relationship:</s:String>
+    <s:String x:Key="Coll_PositionStart1" xml:space="preserve">Collection Start :</s:String>
+    <s:String x:Key="Coll_PositionType1" xml:space="preserve">Collection Method :</s:String>
+    <s:String x:Key="Coll_PositionFixed1" xml:space="preserve">Fixed Position :</s:String>
+    <s:String x:Key="Coll_PositionLoop1" xml:space="preserve">Starting Position :</s:String>
+    <s:String x:Key="Coll_PositionDirection1" xml:space="preserve">Cycle Direction :</s:String>
+
+    <s:String x:Key="Coll_ThresholdSlope_Threshold">Threshold</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Slope">Slope</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_ThresholdSlope">Threshold/Slope</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Greater">Greater than</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Less">Less than</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Threshold_M">Threshold(Multi)</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Slope_M">Slope(Multi)</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_ThresholdSlope_M">Threshold/Slope(Multi)</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Greater_M">Greater than(Multi)</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Less_M">Less than(Multi)</s:String>
+
+    <s:String x:Key="Coll_GreaterLess_Greater">Greater than</s:String>
+    <s:String x:Key="Coll_GreaterLess_Less">Less than</s:String>
+
+    <s:String x:Key="Coll_Obj_Single">Single</s:String>
+    <s:String x:Key="Coll_Obj_Double">Double</s:String>
+    
+    <s:String x:Key="Coll_Relation_Only">Only</s:String>
+    <s:String x:Key="Coll_Relation_With">With</s:String>
+    <s:String x:Key="Coll_Relation_Or">Or</s:String>
+    <s:String x:Key="Coll_Relation_ContainOnly">Contain(Only)</s:String>
+    <s:String x:Key="Coll_Relation_ContainMulti">Contain(Multi)</s:String>
+    <s:String x:Key="Coll_Relation_FirstWith">Meet condition 1, then With</s:String>
+    <s:String x:Key="Coll_Relation_FirstOr">Meet condition 1, then Or</s:String>
+
+    <s:String x:Key="Coll_PositionStart_Appoint">Appoint</s:String>
+    <s:String x:Key="Coll_PositionStart_Default">Default</s:String>
+    
+    <s:String x:Key="Coll_PositionType_Fixed">Fixed</s:String>
+    <s:String x:Key="Coll_PositionType_Loop">Loop</s:String>
+
+    <s:String x:Key="Coll_Direction_Cond">Fixed</s:String>
+    <s:String x:Key="Coll_Direction_Up">Ascending order</s:String>	
+    <s:String x:Key="Coll_Direction_Down">Descending order</s:String>
+
+    <s:String x:Key="Coll_Position_Default">Default</s:String>
+
+    <s:String x:Key="Coll_Coll">Coll</s:String>
+    <s:String x:Key="Coll_Waste">Waste</s:String>
+
+    <s:String x:Key="Coll_Mark_M">Mark_Manual Coll</s:String>
+    <s:String x:Key="Coll_Mark_A">Mark_Auto Coll</s:String>
+
+    <s:String x:Key="Coll_Over">Coll Over</s:String>
+
+
+
+
+    <!--ColumnList 色谱柱管理-->
+    <s:String x:Key="C_ColumnHandlingWin">Column Handling</s:String>
+    <s:String x:Key="C_RunParameters">Run Parameters</s:String>
+    <s:String x:Key="C_Details">Details</s:String>
+    <s:String x:Key="C_Parameters">Parameters</s:String>
+    <s:String x:Key="C_Value">Value</s:String>
+    <s:String x:Key="C_Unit">Unit</s:String>
+
+    <s:String x:Key="C_Any">Any</s:String>
+    <s:String x:Key="C_Affinity">Affinity</s:String>
+    <s:String x:Key="C_AnionExchange">Anion Exchange</s:String>
+    <s:String x:Key="C_CationExchange">Cation Exchange</s:String>
+    <s:String x:Key="C_Chromatofocusing">Chromatofocusing</s:String>
+    <s:String x:Key="C_Desalting">Desalt</s:String>
+    <s:String x:Key="C_GelFiltration">Gel Filtration</s:String>
+    <s:String x:Key="C_HIC">HIC</s:String>
+    <s:String x:Key="C_RPC">RPC</s:String>
+
+    <s:String x:Key="C_RPTec">Technique</s:String>
+    <s:String x:Key="C_RPCVU">Column Volume unit</s:String>
+    <s:String x:Key="C_RPCV">Column Volume</s:String>
+    <s:String x:Key="C_RPPTU">Pressure unit</s:String>
+    <s:String x:Key="C_RPPPT">*Max pre-column pressure</s:String>
+    <s:String x:Key="C_RPDPT">*Max delta column pressure</s:String>
+    <s:String x:Key="C_RPDFIT">*Default flow rate</s:String>
+    <s:String x:Key="C_RPFIT">*Max flow rate</s:String>
+    <s:String x:Key="C_RPDLFIT">Default linear flow rate</s:String>
+    <s:String x:Key="C_RPLFIT">Max linear flow rate</s:String>
+    <s:String x:Key="C_RPMINPHS">Min pH value(short term)</s:String>
+    <s:String x:Key="C_RPMAXPHS">Max pH value(short term)</s:String>
+    <s:String x:Key="C_RPMINPHL">Min pH value(long term)</s:String>
+    <s:String x:Key="C_RPMAXPHL">Max pH value(long term)</s:String>
+
+    <s:String x:Key="C_DHD">*Hardware Diameter</s:String>
+    <s:String x:Key="C_DBH">*Bed Height</s:String>
+    <s:String x:Key="C_DTLR">Typical loading range</s:String>
+    <s:String x:Key="C_DTLV">Total liquid volume(Vt)</s:String>
+    <s:String x:Key="C_DVV">Void volume(Vo)</s:String>
+    <s:String x:Key="C_DTPWAB">Typical peak width at base</s:String>
+    <s:String x:Key="C_DAPD">Average particle diameter</s:String>
+    <s:String x:Key="C_DMWR">Molecular weight range</s:String>
+
+    <s:String x:Key="C_ColumnItemWin">Column Item</s:String>
+
+    <s:String x:Key="C_OutputWin">Column Handling Export</s:String>
+
+
+
+
+
+    <!--Communication 通信配置-->
+    <s:String x:Key="Com_Monitor_Judge1" xml:space="preserve">Logical judgment :</s:String>
+    <s:String x:Key="Com_Monitor_MoreThan1" xml:space="preserve">More than :</s:String>
+    <s:String x:Key="Com_Monitor_LessThan1" xml:space="preserve">Less than :</s:String>
+    <s:String x:Key="Com_Monitor_Stability1" xml:space="preserve">Stable :</s:String>
+    
+    <s:String x:Key="Com_AddressPortWin">Address Port</s:String>
+
+    <s:String x:Key="Com_AlarmWarningWin">Alarm&amp;Warning</s:String>
+
+    <s:String x:Key="Com_CalOEMCDWin">Calibration Cd</s:String>
+    <s:String x:Key="Com_CalOEMCDInfo" xml:space="preserve"> Conductivity electrode calibration steps:
+        1. Prepare four kinds of calibration solutions, and the conductivity values of the calibration solutions are 0, 1.413, 12.880 and 80.000 (MS / cm) respectively;
+        2. Click "start calibration" button;
+        3. Immerse the electrode in standard solution 1, and click "calibration point 1" when the conductivity value is stable;
+        4. Immerse the electrode in standard solution 2, and click "calibration point 2" when the conductivity value is stable;
+        5. Immerse the electrode in standard solution 3, and click "calibration point 3" when the conductivity value is stable;
+        6. Immerse the electrode in the standard solution 4, and after the conductivity value is stable, the electrode "calibration point 4" is set;
+        7. Click the "exit" button to exit the calibration.
+    </s:String>
+    <s:String x:Key="Com_CalCD">Real-time Cd Value</s:String>
+    <s:String x:Key="Com_CalTemp">Temperature(℃)</s:String>
+    <s:String x:Key="Com_StandardSolutions1">Solution 1</s:String>
+    <s:String x:Key="Com_Standard1">Calibration point 1</s:String>
+    <s:String x:Key="Com_StandardSolutions2">Solution 2</s:String>
+    <s:String x:Key="Com_Standard2">Calibration point 2</s:String>
+    <s:String x:Key="Com_StandardSolutions3">Solution 3</s:String>
+    <s:String x:Key="Com_Standard3">Calibration point 3</s:String>
+    <s:String x:Key="Com_StandardSolutions4">Solution 4</s:String>
+    <s:String x:Key="Com_Standard4">Calibration point 4</s:String>
+    <s:String x:Key="Com_CalStart">Start</s:String>
+    <s:String x:Key="Com_CalStop">End</s:String>
+    
+    <s:String x:Key="Com_CalOEMPHWin">pH Calibration</s:String>
+    <s:String x:Key="Com_CalOEMPHInfo" xml:space="preserve">    pH electrode calibration steps:
+        1. Prepare three calibration solutions with pH values of 4.0, 7.0 and 10.0 ;
+        2. Click "start calibration" button;
+        3. Immerse the electrode in the standard solution 1, input the pH value and click the "calibration point 1" button;
+        4. Immerse the electrode in the standard solution 2, input the pH value and click the "calibration point 2" button;
+        5. Immerse the electrode in the standard solution 3, input the pH value and click the "calibration point 3" button;
+        6. Click the "exit" button to exit the calibration.
+    </s:String>
+    <s:String x:Key="Com_CalPH">Real-time pH value</s:String>
+
+    <s:String x:Key="Com_CollectorQBHModeWin">Fraction Collector mode setting</s:String>
+    <s:String x:Key="Com_TrayLeftCount1">Number of tubes in left tray: </s:String>
+    <s:String x:Key="Com_TrayRightCount1">Number of tubes in right tray : </s:String>
+    <s:String x:Key="Com_TrayLeftMode1">Left tray mode:</s:String>
+    <s:String x:Key="Com_TrayRightMode1">Right tray mode:</s:String>
+
+    <s:String x:Key="Com_CollectorHBModeWin">Fraction Collector mode setting</s:String>
+    <s:String x:Key="Com_FindMode">Mode search</s:String>
+
+    <s:String x:Key="Com_CommunSetsWin">Communication Configuration</s:String>
+    <s:String x:Key="Com_CommunicationList1">Communication List :</s:String>
+    <s:String x:Key="Com_SystemName">System Name</s:String>
+    <s:String x:Key="Com_SystemMode">System Mode</s:String>
+    <s:String x:Key="Com_SystemNote">System Note</s:String>
+    <s:String x:Key="Com_CreationDate">Creation Date</s:String>
+    <s:String x:Key="Com_Status">Status</s:String>
+
+    <s:String x:Key="Com_ConfAlarmWarningWin">Alarm&amp;Warning configuration</s:String>
+    
+    <s:String x:Key="Com_EditCommunWin">Edit Communication</s:String>
+    <s:String x:Key="Com_SystemName1" xml:space="preserve">System Name :</s:String>
+    <s:String x:Key="Com_SystemNote1" xml:space="preserve">System Note :</s:String>
+    <s:String x:Key="Com_CommunList1" xml:space="preserve">Configuration List:</s:String>
+    <s:String x:Key="Com_Check">Check</s:String>
+    <s:String x:Key="Com_ComconfList1" xml:space="preserve">Instrument List:</s:String>
+    <s:String x:Key="Com_Name">Name</s:String>
+    <s:String x:Key="Com_Model">Model</s:String>
+    <s:String x:Key="Com_PortName">Serial Port Name</s:String>
+    <s:String x:Key="Com_Address">IP Address</s:String>
+    <s:String x:Key="Com_Port">Port</s:String>
+    <s:String x:Key="Com_ConstName">Marker Name</s:String>
+    <s:String x:Key="Com_DlyName">Custom Name</s:String>
+    <s:String x:Key="Com_SetTime">Set Time</s:String>
+    <s:String x:Key="Com_RunTime">Run Time</s:String>
+    <s:String x:Key="Com_Calibration Date">Calibration Date</s:String>
+    <s:String x:Key="Com_Enable">Enable</s:String>
+    <s:String x:Key="Com_Del">Delete</s:String>
+    <s:String x:Key="Com_Version">Version No.</s:String>
+    <s:String x:Key="Com_Serial">Serial No.</s:String>
+    <s:String x:Key="Com_Result">Result</s:String>
+    <s:String x:Key="Com_ID">Marker Number</s:String>
+    <s:String x:Key="Com_SignalName">Signal Name</s:String>
+    <s:String x:Key="Com_Unit">Unit</s:String>
+    <s:String x:Key="Com_Color">Color</s:String>
+    <s:String x:Key="Com_Show">Conceal/Invisible</s:String>
+
+
+    <s:String x:Key="Com_EditProcessPictureWin">Edit Process Picture</s:String>
+    <s:String x:Key="Com_HVAdd">Horizontal Vertical Add</s:String>
+    <s:String x:Key="Com_VHAdd">Vertical Horizontal Add</s:String>
+    <s:String x:Key="Com_AdjustPt1" xml:space="preserve">Coordinate Adjustment :</s:String>
+    <s:String x:Key="Com_AdjustPath1" xml:space="preserve">Path Adjustment :</s:String>
+    <s:String x:Key="Com_Circle1" xml:space="preserve">Circle : </s:String>
+    <s:String x:Key="Com_ProcessPictureSize1" xml:space="preserve">Process Picture Size :</s:String>
+
+
+    <s:String x:Key="Com_NewCommunWin">New Communications</s:String>
+    <s:String x:Key="Com_ListAccess">Available List</s:String>
+    <s:String x:Key="Com_ListSelect">Selected List</s:String>
+    <s:String x:Key="Com_IPPort">IP Address Selection</s:String>
+    <s:String x:Key="Com_AutoSearch">Auto Search</s:String>
+    <s:String x:Key="Com_StopSearch">Stop Search</s:String>
+    <s:String x:Key="Com_WaitSearch">Searching...</s:String>
+    <s:String x:Key="Com_Msg_ConfigIllegal">Wrong Configuration ! </s:String>
+
+
+    <s:String x:Key="Com_Sampler">Sampler</s:String>
+    <s:String x:Key="Com_Valve">Valve</s:String>
+    <s:String x:Key="Com_Pump">Pump</s:String>
+    <s:String x:Key="Com_Detector">Detector</s:String>
+    <s:String x:Key="Com_Collector">Fraction Collector</s:String>
+    <s:String x:Key="Com_Other">Other</s:String>
+
+    
+    <s:String x:Key="Com_AW_Disabled">Disable</s:String>
+    <s:String x:Key="Com_AW_Enabled">Enable</s:String>
+    <s:String x:Key="Com_AW_Dly">Custom</s:String>
+
+    <s:String x:Key="Com_SystemConfigWin">Instrument Parameters</s:String>
+    <s:String x:Key="Com_Column">Column Parameters</s:String>
+    <s:String x:Key="Com_Wash">Purge Parameters</s:String>
+    <s:String x:Key="Com_WashTime1" xml:space="preserve">Purge Time(min) :</s:String>
+    <s:String x:Key="Com_WashFlowPer1" xml:space="preserve">Purge Flow Rate ratio(%) :</s:String>
+    <s:String x:Key="Com_ASJudge1" xml:space="preserve">Logical Judgment:</s:String>
+    <s:String x:Key="Com_ASMin1" xml:space="preserve">Minimum Setting[0~255] :</s:String>
+    <s:String x:Key="Com_ASDelayLength1" xml:space="preserve">Delay Time :</s:String>
+    <s:String x:Key="Com_ASDelayUnit1" xml:space="preserve">Delay Time units :</s:String>
+    <s:String x:Key="Com_pHCdUVDelayVol" xml:space="preserve">Flow Cell volume</s:String>
+    <s:String x:Key="Com_DefaultDelayVol1">Default Delay Volume : </s:String>
+    <s:String x:Key="Com_AlarmWarning">Alarm&amp;Warning parameters</s:String>
+    <s:String x:Key="Com_Coll">Collector</s:String>
+    <s:String x:Key="Com_CollBottleVol">Bottle Vol</s:String>
+    <s:String x:Key="Com_CollPallet">Pallet</s:String>
+    <s:String x:Key="Com_AS">Air Sensor parameters</s:String>
+    <s:String x:Key="Com_Cal">Calibration Settings</s:String>
+    <s:String x:Key="Com_OtherSet">Other</s:String>
+    <s:String x:Key="Com_ResetValve">Reset valve</s:String>
+    <s:String x:Key="Com_CloseUV">Close UV</s:String>
+
+    <s:String x:Key="Com_DelComError">Configure has exist, can not delete!</s:String>
+    <s:String x:Key="Com_ComError">Communication error</s:String>
+
+
+    <!--Database 数据库设置-->
+    <s:String x:Key="DB_DBBackupRestoreWin">Database Backup and Restore setting</s:String>
+    <s:String x:Key="DB_BackupRestore">Backup and Restore</s:String>
+    <s:String x:Key="DB_Backup">Backup </s:String>
+    <s:String x:Key="DB_Restore">Restore</s:String>
+    <s:String x:Key="DB_Local">Local</s:String>
+    <s:String x:Key="DB_Remote">Remote</s:String>
+    <s:String x:Key="DB_Path">Path : </s:String>
+    <s:String x:Key="DB_IP">IP Address : </s:String>
+    <s:String x:Key="DB_UserName">User Name : </s:String>
+    <s:String x:Key="DB_Pwd">Password : </s:String>
+    <s:String x:Key="DB_FileName">File Name : </s:String>
+    <s:String x:Key="DB_BackupSuccess">Backup operation is executed successfully!</s:String>
+    <s:String x:Key="DB_BackupFail">Backup execution is failed! Please contact the software engineer!</s:String>
+    <s:String x:Key="DB_RestoreSuccess">Restore operation is executed successfully! Please log out of the software and log in again!</s:String>
+    <s:String x:Key="DB_RestoreFail">Restore operation execution is failed! Please contact the software engineer!</s:String>
+    <s:String x:Key="DB_PathLocal">Please select local backup path !</s:String>
+    <s:String x:Key="DB_PathRemote">Please select remote backup path !</s:String>
+
+    <s:String x:Key="DB_DBAutoBackupWin">DB Auto Backup Setting</s:String>
+    <s:String x:Key="DB_Parameter">Parameter</s:String>
+    <s:String x:Key="DB_AutoBackup1">Auto Backup: </s:String>
+    <s:String x:Key="DB_Frequency1">Frequency(day) : </s:String>
+    <s:String x:Key="DB_MaxCount1">Max Count : </s:String>
+    <s:String x:Key="DB_PathSelect1">Path Select : </s:String>
+
+    <s:String x:Key="DB_AutoBackupSuccess">Auto backup operation is executed successfully</s:String>
+    <s:String x:Key="DB_AutoBackupFail">Auto backup execution is failed</s:String>
+
+    <s:String x:Key="DB_AutoBackupIng">The auto backup operation is in progress, please wait ! </s:String>
+    
+
+
+
+
+    <!--Evaluation 结果分析-->
+    <s:String x:Key="E_EvaluationWin">Results Analysis</s:String>
+    <s:String x:Key="menuFile">File</s:String>
+    <s:String x:Key="menuFileOpen">Open</s:String>
+    <s:String x:Key="menuFileContrast">Contrast</s:String>
+    <s:String x:Key="menuResult">Result</s:String>
+    <s:String x:Key="menuResultPDF">PDF</s:String>
+    <s:String x:Key="menuResultPDFOut">Export</s:String>
+    <s:String x:Key="menuResultPDFPreview">Preview</s:String>
+    <s:String x:Key="E_IntegralResult">Integral Result</s:String>
+    <s:String x:Key="E_CalsResult">Calculation Result</s:String>
+    <s:String x:Key="E_AuditTrails">Audit Trail</s:String>
+    <s:String x:Key="E_Method">Method Information</s:String>
+    <s:String x:Key="E_Attachment">Attachment</s:String>
+    <s:String x:Key="E_PeakWidth">Peak Width</s:String>
+    <s:String x:Key="E_PeakBegin">Peak start point</s:String>
+    <s:String x:Key="E_PeakEnd">Peak end point</s:String>
+    <s:String x:Key="E_PeakAdd">Add Peak</s:String>
+    <s:String x:Key="E_PeakDel">Delete Peak</s:String>
+    <s:String x:Key="E_PeakFrontCut">Front Cut</s:String>
+    <s:String x:Key="E_PeakBackCut">Back Cut</s:String>
+    <s:String x:Key="E_PeakSeververtical">Vertical Separation</s:String>
+    <s:String x:Key="E_PeakSeverPeakValley">Peak-to-valley Separation</s:String>
+
+    <s:String x:Key="E_Integration">Integration</s:String>
+    <s:String x:Key="E_OutputSelect">Export Select</s:String>
+
+    <s:String x:Key="E_IntegrationSetWin">Integration Setting</s:String>
+    <s:String x:Key="E_IntegrationResult">Integration Result</s:String>
+    <s:String x:Key="E_IntegrationCondition">Integration Condition</s:String>
+    <s:String x:Key="E_Filter1" xml:space="preserve">Filter : </s:String>
+    <s:String x:Key="E_FilterMin">Minimum Filter</s:String>
+    <s:String x:Key="E_FilterCount">Quantity Filter</s:String>
+    <s:String x:Key="E_MinHeight1" xml:space="preserve">Min Height : </s:String>
+    <s:String x:Key="E_MinArea1" xml:space="preserve">Min Area : </s:String>
+    <s:String x:Key="E_MinHalfWidth1" xml:space="preserve">Min Half Width : </s:String>
+    <s:String x:Key="E_PeakCount1" xml:space="preserve">Number of peaks : </s:String>
+    <s:String x:Key="E_Original1" xml:space="preserve">Original : </s:String>
+    <s:String x:Key="E_ColHeight1" xml:space="preserve">Column Height : </s:String>
+
+    <s:String x:Key="E_OutputSelectSetWin">Export Select Setting</s:String>
+    <s:String x:Key="E_OutputIcon1" xml:space="preserve">Icon : </s:String>
+    <s:String x:Key="E_OutputTitle1" xml:space="preserve">Title: </s:String>
+    <s:String x:Key="E_OutputNote1" xml:space="preserve">Note : </s:String>
+    <s:String x:Key="E_OutputUser">User</s:String>
+    <s:String x:Key="E_OutputChromatogramName">Chromatogram Name</s:String>
+    <s:String x:Key="E_OutputChromatogram">Chromatogram</s:String>
+    <s:String x:Key="E_OutputIntegration">Integration</s:String>
+    <s:String x:Key="E_OutputMethod">Method</s:String>
+    <s:String x:Key="E_OutputLog">Log</s:String>
+    <s:String x:Key="E_OutputNull">Null</s:String>
+    <s:String x:Key="E_OutputCurr">Current</s:String>
+    <s:String x:Key="E_OutputAll">All</s:String>
+
+    <s:String x:Key="E_OutputWin">Results Analysis Export</s:String>
+    
+    <s:String x:Key="E_PI_Name">Name</s:String>
+    <s:String x:Key="E_PI_RetentionTime">Retention Time</s:String>
+    <s:String x:Key="E_PI_StartPt">Start Point</s:String>
+    <s:String x:Key="E_PI_EndPt">End Point</s:String>
+    <s:String x:Key="E_PI_TopVal">Top Value</s:String>
+    <s:String x:Key="E_PI_StartVal">Start Value</s:String>
+    <s:String x:Key="E_PI_EndVal">End Value</s:String>
+    <s:String x:Key="E_PI_Height">Height</s:String>
+    <s:String x:Key="E_PI_Area">Area</s:String>
+    <s:String x:Key="E_PI_AreaPer">Area Percent</s:String>
+    <s:String x:Key="E_PI_HalfWidth">Half Width</s:String>
+    <s:String x:Key="E_PI_Tpn">Theoretical Plates Number</s:String>
+    <s:String x:Key="E_PI_TailingFactor">Tailing Factor</s:String>
+    <s:String x:Key="E_PI_SymmetryFactor">Asymmetry Factor</s:String>
+    <s:String x:Key="E_PI_Resolution">Resolution</s:String>
+
+
+
+
+
+    <!--Manual 手动-->
+    <s:String x:Key="M_ASWin">Air Sensor Setting</s:String>
+
+    <s:String x:Key="M_CollectorWin">Fraction Collector Setting</s:String>
+    <s:String x:Key="M_CollIndexStatusShow">Position Status Display</s:String>
+    <s:String x:Key="M_CollIndexStatusSet">Position status setting</s:String>
+    <s:String x:Key="M_CollIndex1">Position :</s:String>
+    <s:String x:Key="M_CollStatus1">Status :</s:String>
+    <s:String x:Key="M_CollShortcutSet">Shortcut Setting</s:String>
+    <s:String x:Key="M_CollInterveneSet">Intervene Setting</s:String>
+    
+    
+    <s:String x:Key="M_ManualWin">Manual Edit</s:String>
+    <s:String x:Key="M_Pump">Pump</s:String>
+    <s:String x:Key="M_PumpSystem">System Pump</s:String>
+    <s:String x:Key="M_PumpSample">Sample Pump</s:String>
+    <s:String x:Key="M_Valve">Valve</s:String>
+    <s:String x:Key="M_AS">Air Sensor</s:String>
+    <s:String x:Key="M_UV">UV Detector</s:String>
+    <s:String x:Key="M_RI">RI Detector</s:String>
+    <s:String x:Key="M_Mixer">Dynamic Mixer</s:String>
+    <s:String x:Key="M_Collection">Collection</s:String>
+    <s:String x:Key="M_CollectionValve">Collection Valve</s:String>
+    <s:String x:Key="M_CollectionCollector">Fraction Collector</s:String>
+    <s:String x:Key="M_Monitors">Monitor</s:String>
+    <s:String x:Key="M_AlarmWarning">Alarm&amp;Warning</s:String>
+    <s:String x:Key="M_Marker">Marker</s:String>
+    <s:String x:Key="M_PauseStop">End Pause</s:String>
+    <s:String x:Key="M_Pause">Pause counting</s:String>
+    <s:String x:Key="M_Stop">End counting</s:String>
+    <s:String x:Key="M_Other">Other</s:String>
+    <s:String x:Key="M_Position1" xml:space="preserve">Position :</s:String>
+    <s:String x:Key="M_CountdownPause1" xml:space="preserve">Pause Countdown :</s:String>
+    <s:String x:Key="M_CountdownStop1" xml:space="preserve">Stop Countdown :</s:String>
+    <s:String x:Key="M_MonitorAction1" xml:space="preserve">Monitor Action :</s:String>
+    <s:String x:Key="M_MonitorSetting1" xml:space="preserve">Monitor Setting :</s:String>
+
+    <s:String x:Key="M_MixerWin">Dynamic Mixer Setting</s:String>
+
+    <s:String x:Key="M_PumpSystemWin">System Pump Setting</s:String>
+    <s:String x:Key="M_SystemFlow">System Flow Rate</s:String>
+    <s:String x:Key="M_SetFlowRate">Flow Rate Setting</s:String>
+    <s:String x:Key="M_SetFlowPer">Concentration Setting</s:String>
+    <s:String x:Key="M_Conc">Concentration%</s:String>
+    <s:String x:Key="M_Set">Set</s:String>
+    <s:String x:Key="M_PumpWash">Pump Purge</s:String>
+    <s:String x:Key="M_SystemWash">System Wash</s:String>
+    <s:String x:Key="M_StartWash">Start Wash</s:String>
+    <s:String x:Key="M_StopWash">Stop Wash</s:String>
+    <s:String x:Key="M_StartWashA">Start A</s:String>
+    <s:String x:Key="M_StopWashA">Stop A</s:String>
+    <s:String x:Key="M_StartWashB">Start B</s:String>
+    <s:String x:Key="M_StopWashB">Stop B</s:String>
+    <s:String x:Key="M_StartWashC">Start C</s:String>
+    <s:String x:Key="M_StopWashC">Stop C</s:String>
+    <s:String x:Key="M_StartWashD">Start D</s:String>
+    <s:String x:Key="M_StopWashD">Stop D</s:String>
+    <s:String x:Key="M_SystemOut">System Outlet(W)</s:String>
+    <s:String x:Key="M_InjectionValve">Injection Valve(W1)</s:String>
+
+    <s:String x:Key="M_PumpSampleWin">Injection Pump Setting</s:String>
+    <s:String x:Key="M_SampleFlow">Injection Flow Rate </s:String>
+
+    <s:String x:Key="M_RIWin">RI Detector Setting</s:String>
+
+    <s:String x:Key="M_UVWin">UV Detector Setting</s:String>
+
+    <s:String x:Key="M_ValveWin">Valve Setting</s:String>
+
+    <s:String x:Key="M_ValveSwitch">Valve Switch</s:String>
+    
+    
+    
+
+
+    <!--MethodEdit 方法编辑-->
+    <!--enum-EnumAnswerType-->
+    <s:String x:Key="ME_EnumAnswerType_TextualInput">Textual Input</s:String>
+    <s:String x:Key="ME_EnumAnswerType_NoAnswer">No answer(the question is a reminder)</s:String>
+    <s:String x:Key="ME_EnumAnswerType_NumericValue">Numeric value</s:String>
+    <s:String x:Key="ME_EnumAnswerType_MultipleChoice">Multiple choice</s:String>
+    <!--enum-EnumGroupType-->
+    <s:String x:Key="ME_EnumGroupType_FlowValveLength">Valve gradient list</s:String>
+    <s:String x:Key="ME_EnumGroupType_FlowRate">Flowrate</s:String>
+    <s:String x:Key="ME_EnumGroupType_Mixer">Mixer</s:String>
+    <s:String x:Key="ME_EnumGroupType_BPV">BPV</s:String>
+    <s:String x:Key="ME_EnumGroupType_UVReset">UV</s:String>
+    <s:String x:Key="ME_EnumGroupType_SampleApplicationTech">Sample application</s:String>
+    <s:String x:Key="ME_EnumGroupType_TVCV">running</s:String>
+    <s:String x:Key="ME_EnumGroupType_FlowRatePer">Gradient list</s:String>
+    <s:String x:Key="ME_EnumGroupType_ValveSelection">Valve selection</s:String>
+    <s:String x:Key="ME_EnumGroupType_PHCDUVUntil">Signal monitoring</s:String>
+    <s:String x:Key="ME_EnumGroupType_CollValveCollector">Collection</s:String>
+    <s:String x:Key="ME_EnumGroupType_CIP">CIP</s:String>
+    <!--enum-EnumMethodMaintenance-->
+    <s:String x:Key="ME_EnumMethodMaintenance_ColumnCIP">Column CIP</s:String>
+    <s:String x:Key="ME_EnumMethodMaintenance_ColumnPerformanceTest">Column Performance Test</s:String>
+    <s:String x:Key="ME_EnumMethodMaintenance_SystemCIP">System CIP</s:String>
+    <!--enum-EnumMethodPurification-->
+    <s:String x:Key="ME_EnumMethodPurification_AC">Affinity Chromatography</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_AIEX">Anion Exchange Chromatography</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_CIEX">Cation Exchange Chromatography</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_CF">Focusing Chromatography</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_DS">Desalination</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_GF">Gel Filtration</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_HIC">Hydrophobic Chromatography</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_MLT">Manual Loop Filling</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_RPC">Reversed Phase Chromatography</s:String>
+    <!--enum-EnumPhaseType-->
+    <s:String x:Key="ME_EnumPhaseType_ColumnCIP">Column CIP</s:String>
+    <s:String x:Key="ME_EnumPhaseType_SampleApplication">Sample Application</s:String>
+    <s:String x:Key="ME_EnumPhaseType_ColumnWash">Column Washing</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Elution">Elution</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Equilibration">Equilibration</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Miscellaneous">Miscellaneous</s:String>
+    <s:String x:Key="ME_EnumPhaseType_SystemCIP">System CIP</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Personal">Personal</s:String>
+    <!--enum-EnumPHCDUVUntil-->
+    <s:String x:Key="ME_EnumPHCDUVUntil_Total">Total</s:String>
+    <s:String x:Key="ME_EnumPHCDUVUntil_Met">Met</s:String>
+    <!--enum-EnumResultType-->
+    <s:String x:Key="ME_EnumResultType_NoName">Not specify</s:String>
+    <s:String x:Key="ME_EnumResultType_DlyName">Specified name</s:String>
+    <s:String x:Key="ME_EnumResultType_MethodName">Method name</s:String>
+    <s:String x:Key="ME_EnumResultType_DateTime">Datetime</s:String>
+    <!--enum-EnumSAT-->
+    <s:String x:Key="ME_EnumSAT_ManualLoopFilling">Manual loop filling</s:String>
+    <s:String x:Key="ME_EnumSAT_SamplePumpLoopFilling">Sample pump loop filling</s:String>
+    <s:String x:Key="ME_EnumSAT_ISDOC">Inject sample directly onto column</s:String>
+
+    <!--UC-Canvas-MethodCanvasUC-->
+    <s:String x:Key="ME_CanvasBase">Baseline</s:String>
+    <s:String x:Key="ME_CanvasGradient">Gradient</s:String>
+    <s:String x:Key="ME_CanvasPhase">Phase</s:String>
+
+    <!--UC-Group-CIPUC-->
+    <s:String x:Key="ME_PTMMAITTSS">Pause to manually move all inlets to the selected solution</s:String>
+    <s:String x:Key="ME_VolumePerPosition1" xml:space="preserve">Volume per position :</s:String>
+    <s:String x:Key="ME_ESVUITP1" xml:space="preserve">Estimated solution volume used in this phase :</s:String>
+    <!--UC-Group-CollValveCollectorUC-->
+    <s:String x:Key="ME_FractionateSettings">Fractionation settings</s:String>
+    <!--UC-Group-FlowRateUC-->
+    <s:String x:Key="ME_SameMSFlowRate">Use the same flow rate as in Method Settings</s:String>
+    <!--UC-Group-FlowValveLengthUC-->
+    <s:String x:Key="ME_IncubationTime">Incubation Time(min)</s:String>
+    <!--UC-Group-PHCDUVUntilUC-->
+    <s:String x:Key="ME_TheTotalIs1" xml:space="preserve">The total is :</s:String>
+    <s:String x:Key="ME_TFCIM1" xml:space="preserve">The following condition is met :</s:String>
+    <s:String x:Key="ME_SignalSelection1" xml:space="preserve">Signal Selection :</s:String>
+    <s:String x:Key="ME_JudgmentLogic1" xml:space="preserve">Logical judgment :</s:String>
+    <s:String x:Key="ME_PHMoreThan1" xml:space="preserve">pH greater than :</s:String>
+    <s:String x:Key="ME_PHLessThan1" xml:space="preserve">pH less than :</s:String>
+    <s:String x:Key="ME_CDMoreThan1" xml:space="preserve">Cd greater than :</s:String>
+    <s:String x:Key="ME_CDLessThan1" xml:space="preserve">Cd less than :</s:String>
+    <s:String x:Key="ME_UVMoreThan1" xml:space="preserve">UV greater than :</s:String>
+    <s:String x:Key="ME_UVLessThan1" xml:space="preserve">UV less than :</s:String>
+    <s:String x:Key="ME_StabilityTime1" xml:space="preserve">Stability time :</s:String>
+    <s:String x:Key="ME_MaximumWash1" xml:space="preserve">Maximum wash :</s:String>
+    <!--UC-Group-SampleApplicationTechUC-->
+    <s:String x:Key="ME_AutoSampleValve">Note! This function needs to be equipped with automatic sampling valve.</s:String>
+    <s:String x:Key="ME_NTSPWBWWSPTSA">Note! The sample pump will be washed with sample prior to sample application.</s:String>
+    <s:String x:Key="ME_Sample">Sample</s:String>
+    <s:String x:Key="ME_Sample1" xml:space="preserve">Sample : </s:String>
+    <s:String x:Key="ME_FillLoopWith1" xml:space="preserve">Fill loop with : </s:String>
+    <s:String x:Key="ME_EmptyLoopWith1" xml:space="preserve">Empty loop with : </s:String>
+    <!--UC-Group-UVResetUC-->
+    <s:String x:Key="ME_ResetUVMonitor">Reset UV monitor(recommended if the equilibration occurs before the purification)</s:String>
+    <!--UC-Group-ValveSelectionUC-->
+    <s:String x:Key="ME_SameMSValve">Use the same inlets as in Method Settings</s:String>
+    <s:String x:Key="ME_FTSWTSB">Fill the system with the selected buffer</s:String>
+
+    <!--DefineQuestionsWin-->
+    <s:String x:Key="ME_DefineQuestionsWin">DefineQuestions</s:String>
+    <s:String x:Key="ME_Question1" xml:space="preserve">Question :</s:String>
+    <s:String x:Key="ME_AnswerType1" xml:space="preserve">Answer Type :</s:String>
+    <s:String x:Key="ME_DefaultAnswer1" xml:space="preserve">Default Answer :</s:String>
+    <s:String x:Key="ME_Choice1" xml:space="preserve">Choice :</s:String>
+
+    <!--MethodEditorWin-->
+    <s:String x:Key="ME_MethodEditorWin">Method Editor</s:String>
+    <s:String x:Key="ME_AddPersonalPhase">Add personal phase</s:String>
+    <s:String x:Key="ME_DelPersonalPhase">Del personal phase</s:String>
+    <s:String x:Key="ME_MethodSettings">Method Setting</s:String>
+    <s:String x:Key="ME_DlyPhase">Personal phase</s:String>
+    <!--MethodEditorWin-Method Settings-Basic information -->
+    <s:String x:Key="ME_BasicInformation">Basic Information</s:String>
+    <s:String x:Key="ME_CreateTime1" xml:space="preserve">Creation Time :</s:String>
+    <s:String x:Key="ME_ModifyTime1" xml:space="preserve">Modification Time :</s:String>
+    <!--MethodEditorWin-Method Settings-Loop settings-->
+    <s:String x:Key="ME_LoopSettings" xml:space="preserve">Loop settings</s:String>
+    <s:String x:Key="ME_LoopSet1" xml:space="preserve">Loop set : </s:String>
+    <!--MethodEditorWin-Method Settings-Column selection-->
+    <s:String x:Key="ME_ColumnSelection">Column Selection</s:String>
+    <s:String x:Key="ME_ColumnName1" xml:space="preserve">Column Name :</s:String>
+    <s:String x:Key="ME_ColumnVolume1" xml:space="preserve">Column Volume :</s:String>
+    <s:String x:Key="ME_PressurelimitPreColumn1" xml:space="preserve">Pre-column pressure limitation :</s:String>
+    <s:String x:Key="ME_PressurelimitDeltaColumn1" xml:space="preserve">Column pressure limit delta :</s:String>
+    <s:String x:Key="ME_UseFlowRestrictor">Enable flow rate limit</s:String>
+    <!--MethodEditorWin-Method Settings-Unit selection-->
+    <s:String x:Key="ME_UnitSelection">Unit Selection</s:String>
+    <s:String x:Key="ME_MethodBaseUnit1" xml:space="preserve">Basic Method Unit :</s:String>
+    <s:String x:Key="ME_FlowRateUnit1" xml:space="preserve">Flow Rate Unit :</s:String>
+    <!--MethodEditorWin-Method Settings-Valve selection-->
+    <s:String x:Key="ME_ValveSelection">Valve Selection</s:String>
+    <!--MethodEditorWin-Method Settings-Monitor settings-->
+    <s:String x:Key="ME_UVSettings">UV Detector Setting</s:String>
+    <!--MethodEditorWin-Method Settings-Air sensor alarm-->
+    <s:String x:Key="ME_AirSensorAlarm">Air Sensor Alarm</s:String>
+    <!--MethodEditorWin-Method Settings-AlarmWarning-->
+    <s:String x:Key="ME_AlarmWarning">Detector Alarm&amp;Warning</s:String>
+    <s:String x:Key="ME_AlarmWarningSetting">Alarm&amp;Warning Parameters</s:String>
+    <!--MethodEditorWin-Method Settings-Other-->
+    <s:String x:Key="ME_ResultName">Result Name</s:String>
+    <s:String x:Key="ME_StartProtocol">Start Protocol</s:String>
+    <s:String x:Key="ME_MethodNotes">Method Notes</s:String>
+    <!--MethodEditorWin-Miscellaneous-->
+    <s:String x:Key="ME_SetMark">Set Mark</s:String>
+    <s:String x:Key="ME_MethodDelay">Method Delay</s:String>
+    <s:String x:Key="ME_Message">Message</s:String>
+    <s:String x:Key="ME_PauseAfterMessage">Pause after message</s:String>
+    <s:String x:Key="ME_PauseTimer">Pause Timer</s:String>
+
+    <!--MethodQueueWin-->
+    <s:String x:Key="ME_MethodQueueWin">Method Queue</s:String>
+
+    <!--NewMethodWin-->
+    <s:String x:Key="ME_NewMethodWin">New Method</s:String>
+    <s:String x:Key="ME_Type1" xml:space="preserve">Method Type :</s:String>
+    <s:String x:Key="ME_Predefined1" xml:space="preserve">Predefined Method :</s:String>
+    <s:String x:Key="ME_Purification1" xml:space="preserve">Purification :</s:String>
+    <s:String x:Key="ME_Maintenance1" xml:space="preserve">Maintenance :</s:String>
+    <s:String x:Key="ME_Empty">Empty Method</s:String>
+    <s:String x:Key="ME_Name1" xml:space="preserve">Method Name :</s:String>
+
+    <!--NotesWin-->
+    <s:String x:Key="ME_NotesWin">Method Notes</s:String>
+    <s:String x:Key="ME_Notes1" xml:space="preserve">Method Notes : </s:String>
+
+    <!--OutputWin-->
+    <s:String x:Key="ME_OutputWin">Method Edit Export</s:String>
+
+    <!--PumpSampleWin-->
+    <s:String x:Key="ME_PumpSampleWin">Sample pump intervene</s:String>
+
+    <!--PumpSystemWin-->
+    <s:String x:Key="ME_PumpSystemWin">System pump intervene</s:String>
+
+    <!--PersonalPhaseWin-->
+    <s:String x:Key="ME_PersonalPhaseWin">Personal Phase</s:String>
+    <s:String x:Key="ME_Attributes">Attributes</s:String>
+    <s:String x:Key="ME_FillSystem">Fill system</s:String>
+
+    <!--RenamePhaseNameWin-->
+    <s:String x:Key="ME_RenamePhaseNameWin">Rename Phase Name</s:String>
+    <s:String x:Key="ME_PhaseOld1" xml:space="preserve">Phase Old Name : </s:String>
+    <s:String x:Key="ME_PhaseNew1" xml:space="preserve">Phase New Name : </s:String>
+
+    <!--ResultWin-->
+    <s:String x:Key="ME_ResultWin">Result Name</s:String>
+    <s:String x:Key="ME_ResultName1" xml:space="preserve">Result Name : </s:String>
+    <s:String x:Key="ME_AddUniqueIdentifier">Add Unique Identifier</s:String>
+
+    <!--Other-->
+    <s:String x:Key="labMECC_CMS">Column Maintenance Step</s:String>
+    <s:String x:Key="labMECPT_DI">Direct injection</s:String>
+    <s:String x:Key="labMECPT_LL">Load loop</s:String>
+    <s:String x:Key="labMECPT_AS">Apply sample</s:String>
+    <s:String x:Key="labMECPT_ES">Elute sample</s:String>
+    <s:String x:Key="labMECW_Wash">Wash</s:String>
+    <s:String x:Key="labMECW_CCW">Conditional column wash</s:String>
+    <s:String x:Key="labMECW_DBCWW">Delay before column wash watch</s:String>
+    <s:String x:Key="labMEE_GS">Gradient segment</s:String>
+    <s:String x:Key="labMEEq_Equilibrate">Equilibrate</s:String>
+    <s:String x:Key="labMEEq_CE">Conditional equilibration</s:String>
+
+
+    <s:String x:Key="ME_Desc_New">New Method</s:String>
+    <s:String x:Key="ME_Desc_Update">Update Method</s:String>
+    <s:String x:Key="ME_Desc_Rename">Rename Method</s:String>
+    <s:String x:Key="ME_Desc_Delete">Delete Method</s:String>
+    <s:String x:Key="ME_Desc_Send">Send Method</s:String>
+    <s:String x:Key="ME_Desc_Run">Method Or Method Sequence Is Running </s:String>
+
+    <s:String x:Key="ME_Desc_Queue_New">New Method Sequence</s:String>
+    <s:String x:Key="ME_Desc_Queue_Update">Update Method Sequence</s:String>
+    <s:String x:Key="ME_Desc_Queue_Rename">Rename Method Sequence</s:String>
+    <s:String x:Key="ME_Desc_Queue_Delete">Delete Method Sequence</s:String>
+    <s:String x:Key="ME_Desc_Queue_Send">Send Method Sequence</s:String>
+
+    <s:String x:Key="ME_Msg_SaveYes">Save method successfully !</s:String>
+    <s:String x:Key="ME_Msg_UpdateYes">Update method successfully !</s:String>
+    <s:String x:Key="ME_Msg_DeleteYes">Delete method successfully !</s:String>
+    <s:String x:Key="ME_Msg_CopyYes">Copy method successfully !</s:String>
+    <s:String x:Key="ME_Msg_SendYes">Send method successfully !</s:String>
+    
+    <s:String x:Key="ME_Msg_Queue_SaveYes">Save method sequence successfully !</s:String>
+    <s:String x:Key="ME_Msg_Queue_UpdateYes">Update method sequence successfully !</s:String>
+    <s:String x:Key="ME_Msg_Queue_DeleteYes">Delete method sequence successfully !</s:String>
+    <s:String x:Key="ME_Msg_Queue_CopyYes">Copy method sequence successfully !</s:String>
+
+    <s:String x:Key="ME_Msg_Stop">End of method run</s:String>
+    <s:String x:Key="ME_Msg_Queue_Stop">End of method sequence run</s:String>
+    <s:String x:Key="ME_Msg_NullPhase">The phase of the method cannot be empty !</s:String>
+    <s:String x:Key="ME_Msg_NullFlowRate">Flow rate cannot be zero !</s:String>
+
+    <s:String x:Key="ME_PhaseTitle">Phase Title</s:String>
+
+    <s:String x:Key="ME_Desc_Phase_New">New personal phase succeeded</s:String>
+    <s:String x:Key="ME_Msg_ErrorConf">Unreasonable phase configure ! </s:String>
+
+
+
+
+    <!--PassDog 加密狗-->
+    <s:String x:Key="PassDog_CheckSNWin">SN Encryption verification</s:String>
+    <s:String x:Key="PassDog_Check">Verification</s:String>
+    
+    
+    
+    <!--Print 打印-->
+    <s:String x:Key="Print_OutputSetWin">Export Setting</s:String>
+    <s:String x:Key="Print_MarkerStyle1" xml:space="preserve">Marker Style :</s:String>
+
+    <s:String x:Key="Print_PrintPreviewWin">Export Preview</s:String>
+    
+    
+    
+    
+    <!--ProjectManager 项目管理-->
+    <s:String x:Key="PM_ProjectTreeUC_Msg_NotNull">Non empty directories cannot be deleted !</s:String>
+    
+    <s:String x:Key="PM_ProjectManagerWin">Project Manager</s:String>
+    <s:String x:Key="PM_MethodEditor">MethodEditor</s:String>
+    <s:String x:Key="PM_AddMethod">Add Method</s:String>
+    <s:String x:Key="PM_AddMethodQueue">Add Method Queue</s:String>
+    <s:String x:Key="PM_Evaluation">Evaluation</s:String>
+
+    <s:String x:Key="PM_RunLocationResultWin">Run result location name</s:String>
+    
+    <s:String x:Key="PM_RunResultWin">Name of running result</s:String>
+
+    <s:String x:Key="PM_TreeNodeInformationWin">Attribute Information</s:String>
+    <s:String x:Key="PM_CountMethod1">Number of methods : </s:String>
+    <s:String x:Key="PM_CountResult1">Number of results : </s:String>
+
+    <s:String x:Key="PM_ResultInformationWin">Attribute Information</s:String>
+
+
+
+
+
+    <!--TubeStand 试管架管理-->
+    <s:String x:Key="TS_TubeStandWin">Tube Stand</s:String>
+    <s:String x:Key="TS_Name">Name</s:String>
+    <s:String x:Key="TS_CollVolume">Collection Volume</s:String>
+    <s:String x:Key="TS_Volume">Volume</s:String>
+    <s:String x:Key="TS_Count">Count</s:String>
+    <s:String x:Key="TS_Diameter">Diameter</s:String>
+    <s:String x:Key="TS_Height">Height</s:String>
+    <s:String x:Key="TS_Row">Row</s:String>
+    <s:String x:Key="TS_Col">Column</s:String>
+
+    <s:String x:Key="TS_TubeStandItemWin">Tube Stand Item</s:String>
+    <s:String x:Key="TS_Name1">Name :</s:String>
+    <s:String x:Key="TS_CollVolume1">Collection Volume :</s:String>
+    <s:String x:Key="TS_Volume1">Volume :</s:String>
+    <s:String x:Key="TS_Count1">Count :</s:String>
+    <s:String x:Key="TS_Diameter1">Diameter :</s:String>
+    <s:String x:Key="TS_Height1">Height :</s:String>
+    <s:String x:Key="TS_Row1">Row :</s:String>
+    <s:String x:Key="TS_Col1">Column :</s:String>
+</ResourceDictionary>

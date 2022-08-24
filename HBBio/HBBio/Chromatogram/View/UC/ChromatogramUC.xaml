@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="HBBio.Chromatogram.ChromatogramUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HBBio.Chromatogram"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded">
+    <Border Style="{StaticResource BorderBaseRead}">
+        <DockPanel x:Name="dockPanel">
+            <WrapPanel x:Name="stackPanel" DockPanel.Dock="Top" Orientation="Horizontal"/>
+            <Canvas x:Name="canvas" Background="White" SizeChanged="canvas_SizeChanged" MouseDown="canvas_MouseDown" MouseMove="canvas_MouseMove" MouseUp="canvas_MouseUp">
+                <Image x:Name="image"/>
+                <Button x:Name="btnMenu" Content=">>" Style="{x:Null}" Width="28" Height="28" Background="#BFEEFF" Initialized="btnMenu_Initialized" Click="btnMenu_Click">
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="menu">
+                            <MenuItem x:Name="menuUndoZoom" Header="{DynamicResource labD_UndoZoom}" Click="menuUndoZoom_Click"/>
+                            <MenuItem x:Name="menuResetZoom" Header="{DynamicResource labD_ResetZoom}" Click="menuResetZoom_Click"/>
+                            <Separator/>
+                            <MenuItem x:Name="menuDrag" Header="{DynamicResource labD_Drag}" IsCheckable="True" IsChecked="False" Click="menuDrag_Click"/>
+                            <Separator/>
+                            <MenuItem x:Name="menuGrid" Header="{DynamicResource labD_Grid}" IsCheckable="True" IsChecked="False" Click="menuGrid_Click"/>
+                            <MenuItem x:Name="menuMultiY" Header="{DynamicResource labD_MultiY}" IsCheckable="True" IsChecked="False" Click="menuGrid_MultiY"/>
+                            <MenuItem Header="{DynamicResource labD_Ruler}">
+                                <MenuItem x:Name="menuRulerOddO" Header="{DynamicResource labD_RulerOddO}" IsCheckable="True" Click="menuRulerOddO_Click"/>
+                                <MenuItem x:Name="menuRulerOddM" Header="{DynamicResource labD_RulerOddM}" IsCheckable="True" Click="menuRulerOddM_Click"/>
+                                <MenuItem x:Name="menuRulerEven" Header="{DynamicResource labD_RulerEven}" IsCheckable="True" Click="menuRulerEven_Click"/>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem x:Name="menuMarker" Header="{DynamicResource labD_Marker}">
+                                <MenuItem x:Name="menuMarkerVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" IsChecked="True" Click="menuMarkerVisibility_Click"/>
+                                <MenuItem x:Name="menuMarkerColor" Header="{DynamicResource labColor}" Click="menuMarkerColor_Click"/>
+                                <MenuItem x:Name="menuMarkerAdd" Header="{DynamicResource btnAdd}" Click="menuMarkerAdd_Click"/>
+                                <MenuItem x:Name="menuMarkerDel" Header="{DynamicResource btnDel}" Click="menuMarkerDel_Click"/>
+                            </MenuItem>
+                            <MenuItem x:Name="menuColl" Header="{DynamicResource labD_Coll}">
+                                <MenuItem x:Name="menuCollVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" IsChecked="True" Click="menuCollVisibility_Click"/>
+                                <MenuItem x:Name="menuCollM" Header="{DynamicResource labD_CollM}">
+                                    <MenuItem x:Name="menuCollColorM" Header="{DynamicResource labColor}" Click="menuCollColorM_Click"/>
+                                </MenuItem>
+                                <MenuItem x:Name="menuCollA" Header="{DynamicResource labD_CollA}">
+                                    <MenuItem x:Name="menuCollColorA" Header="{DynamicResource labColor}" Click="menuCollColorA_Click"/>
+                                </MenuItem>
+                            </MenuItem>
+                            <MenuItem x:Name="menuValve" Header="{DynamicResource labD_Valve}">
+                                <MenuItem x:Name="menuValveVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" IsChecked="True" Click="menuValveVisibility_Click"/>
+                                <MenuItem x:Name="menuValveColor" Header="{DynamicResource labColor}" Click="menuValveColor_Click"/>
+                            </MenuItem>
+                            <MenuItem x:Name="menuPhase" Header="{DynamicResource labD_Phase}">
+                                <MenuItem x:Name="menuPhaseVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" IsChecked="False" Click="menuPhaseVisibility_Click"/>
+                                <MenuItem x:Name="menuPhaseColor" Header="{DynamicResource labColor}" Click="menuPhaseColor_Click"/>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem x:Name="menuCurve" Header="{DynamicResource D_Curve}" Click="menuCurve_Click"/>
+                            <Separator/>
+                            <MenuItem x:Name="menuBG" Header="{DynamicResource D_BG}">
+                                <MenuItem x:Name="menuBGAdd" Header="{DynamicResource btnAdd}" Click="menuBGAdd_Click"/>
+                                <MenuItem x:Name="menuBGDel" Header="{DynamicResource btnDel}" Click="menuBGDel_Click"/>
+                            </MenuItem>
+                            <MenuItem x:Name="menuOutput" Header="{DynamicResource D_PNG}" Click="menuOutput_Click"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Rectangle x:Name="rectZoom" Visibility="Collapsed" Stroke="Black"/>
+                <Line x:Name="lineRulerOdd" Stroke="Black" Visibility="Collapsed" StrokeThickness="1" Y1="40"/>
+                <Line x:Name="lineRulerEven" Stroke="Black" Visibility="Collapsed" StrokeThickness="1" Y1="40"/>
+                <TextBlock x:Name="txtRulerInfo" Visibility="Collapsed" Width="150" Height="Auto" TextWrapping="Wrap"/>
+                <Line x:Name="linePeakStart" Stroke="Blue" Visibility="Collapsed" StrokeDashArray="5,5" StrokeThickness="5" X1="70" X2="70"/>
+                <TextBlock x:Name="txtPeakStart" TextWrapping="Wrap" Canvas.Top="0" Visibility="{Binding ElementName=linePeakStart,Path=Visibility}"/>
+                <Line x:Name="linePeakEnd" Stroke="Blue" Visibility="Collapsed" StrokeDashArray="5,5" StrokeThickness="5" X1="100" X2="100"/>
+                <TextBlock x:Name="txtPeakEnd" TextWrapping="Wrap" Canvas.Top="0" Visibility="{Binding ElementName=linePeakEnd,Path=Visibility}"/>
+            </Canvas>
+        </DockPanel>
+    </Border>
+</UserControl>

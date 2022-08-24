@@ -1,0 +1,31 @@
+﻿<Window x:Class="HBBio.SystemControl.AboutWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.SystemControl"
+        mc:Ignorable="d"
+        Title="{DynamicResource SC_AboutWin}" Window.SizeToContent="Height" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="{DynamicResource SC_ProductionInformation}">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{DynamicResource SC_Production}"/>
+                <TextBlock Grid.Row="2" Text="{DynamicResource SC_Version}"/>
+                <TextBlock Grid.Row="4" Text="{DynamicResource SC_Website}"/>
+            </Grid>
+        </GroupBox>
+        <Button Grid.Row="2" x:Name="btnOK" Content="{DynamicResource btnOK}" HorizontalAlignment="Right" Click="btnOK_Click"/>
+    </Grid>
+</Window>

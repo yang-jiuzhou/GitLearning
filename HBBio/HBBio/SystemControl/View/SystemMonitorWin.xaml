@@ -1,0 +1,23 @@
+﻿<Window x:Class="HBBio.SystemControl.SystemMonitorWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.SystemControl"
+        mc:Ignorable="d"
+        Title="{DynamicResource SC_SystemMonitorWin}" SizeToContent="Height" Width="250" WindowStartupLocation="CenterScreen" Topmost="True">
+    <DataGrid x:Name="dgvRunData" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" LoadingRow="dgvRunData_LoadingRow">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding MName}">
+                <DataGridTextColumn.Header>
+                    <TextBlock Text="{DynamicResource labName}"/>
+                </DataGridTextColumn.Header>
+            </DataGridTextColumn>
+            <DataGridTextColumn Binding="{Binding MValue}" Width="*">
+                <DataGridTextColumn.Header>
+                    <TextBlock Text="{DynamicResource labValue}"/>
+                </DataGridTextColumn.Header>
+            </DataGridTextColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+</Window>

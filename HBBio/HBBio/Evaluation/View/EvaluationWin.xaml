@@ -1,0 +1,175 @@
+﻿<Window x:Class="HBBio.Evaluation.EvaluationWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.Evaluation"
+        xmlns:share="clr-namespace:HBBio.Share"
+        xmlns:AT ="clr-namespace:HBBio.AuditTrails"
+        xmlns:chromatogram="clr-namespace:HBBio.Chromatogram"
+        xmlns:auditTrails="clr-namespace:HBBio.AuditTrails"
+        mc:Ignorable="d"
+        Title="{DynamicResource E_EvaluationWin}" Height="500" Width="750" WindowState="Maximized" Loaded="Window_Loaded">
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBar x:Name="toolBar" Grid.Row="2">
+            <share:IconButton x:Name="btnOutputSelect" ToolTip="{DynamicResource E_OutputSelect}" Click="btnOutputSelect_Click" Margin="5" Image="/Bio-LabChrom;component/image/message.png"/>
+            <share:IconButton x:Name="btnPrint" ToolTip="{DynamicResource btnPrint}" Click="btnPrint_Click" Margin="5" Image="/Bio-LabChrom;component/Image/pdf.png"/>
+            <share:IconButton x:Name="btnPrintExcel" ToolTip="{DynamicResource btnPrint}" Click="btnPrintExcel_Click" Margin="5" Image="/Bio-LabChrom;component/Image/excel.png"/>
+            <share:IconButton x:Name="btnIntegration" ToolTip="{DynamicResource E_Integration}" Click="btnIntegration_Click" Margin="5" Image="/Bio-LabChrom;component/image/ouputSet.png"/>
+            <share:IconToggleButton x:Name="btnPeakWidth" ToolTip="{DynamicResource E_PeakWidth}" Click="btnPeakWidth_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/PeakWidth.png"/>
+            <share:IconToggleButton x:Name="btnPeakBegin" ToolTip="{DynamicResource E_PeakBegin}" Click="btnPeakBegin_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/PeakStart.png"/>
+            <share:IconToggleButton x:Name="btnPeakEnd" ToolTip="{DynamicResource E_PeakEnd}" Click="btnPeakEnd_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/PeakEnd.png"/>
+            <share:IconToggleButton x:Name="btnPeakAdd" ToolTip="{DynamicResource E_PeakAdd}" Click="btnPeakAdd_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/PlusPeak.png"/>
+            <share:IconToggleButton x:Name="btnPeakDel" ToolTip="{DynamicResource E_PeakDel}" Click="btnPeakDel_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/DelPeak.png"/>
+            <share:IconToggleButton x:Name="btnPeakFrontCut" ToolTip="{DynamicResource E_PeakFrontCut}" Click="btnPeakFrontCut_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/PeakFrontCut.png"/>
+            <share:IconToggleButton x:Name="btnPeakBackCut" ToolTip="{DynamicResource E_PeakBackCut}" Click="btnPeakBackCut_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/PeakBackCut.png"/>
+            <share:IconButton x:Name="btnPeakSeververtical" ToolTip="{DynamicResource E_PeakSeververtical}" Click="btnPeakSeververtical_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/Seververtical.png"/>
+            <share:IconButton x:Name="btnPeakSeverPeakValley" ToolTip="{DynamicResource E_PeakSeverPeakValley}" Click="btnPeakSeverPeakValley_Click" Margin="5" Image="/Bio-LabChrom;component/Image/peak/SeverPeakValley.png"/>
+        </ToolBar>
+        <chromatogram:ChromatogramUC x:Name="chromatogramUC" Grid.Row="4"/>
+        <share:LoadingWaitUC x:Name="loadingWaitUC" Grid.Row="4" Visibility="Collapsed"/>
+        <TabControl Grid.Row="6" Height="300">
+            <TabItem Header="{DynamicResource E_AuditTrails}">
+                <auditTrails:AuditTrailsSearchUC x:Name="auditTrailsSearchUC"/>
+            </TabItem>
+            <TabItem Header="{DynamicResource E_IntegralResult}">
+                <DataGrid x:Name="dgvIntegration" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" SelectionChanged="dgvIntegration_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="colName" Binding="{Binding MName}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource E_PI_Name}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colRetentionTime" Binding="{Binding MRetentionTime,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_RetentionTime}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock Text="{x:Static share:DlyBase.SC_TUNIT}"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colStartPt" Binding="{Binding MStartValX,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_StartPt}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock Text="{x:Static share:DlyBase.SC_TUNIT}"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colEndPt" Binding="{Binding MEndValX,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_EndPt}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock Text="{x:Static share:DlyBase.SC_TUNIT}"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colStartVal" Binding="{Binding MStartValY,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_StartVal}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock x:Name="colStartValUnit"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colEndVal" Binding="{Binding MEndValY,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_EndVal}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock x:Name="colEndValUnit"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colHeight" Binding="{Binding MHeight,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_Height}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock x:Name="colHeightUnit"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colArea" Binding="{Binding MArea,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_Area}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock x:Name="colAreaUnit"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colAreaPer" Binding="{Binding MAreaPer,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_AreaPer}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock Text="{x:Static share:DlyBase.SC_FERUNIT}"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colHalfWidth" Binding="{Binding MHalfWidth,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_HalfWidth}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock Text="{x:Static share:DlyBase.SC_TUNIT}"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colTpn" Binding="{Binding MTpn,StringFormat={}{0:F3}}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource E_PI_Tpn}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colTailingFactor" Binding="{Binding MTailingFactor,StringFormat={}{0:F3}}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource E_PI_TailingFactor}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colSymmetryFactor" Binding="{Binding MSymmetryFactor,StringFormat={}{0:F3}}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource E_PI_SymmetryFactor}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colResolution" Binding="{Binding MResolution,StringFormat={}{0:F3}}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource E_PI_Resolution}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem x:Name="tabItemMethod" Header="{DynamicResource E_Method}">
+                <FlowDocumentReader x:Name="docReader" ViewingMode="Scroll"/>
+            </TabItem>
+            <TabItem x:Name="tabItemAttachment" Header="{DynamicResource E_Attachment}">
+                <TextBlock x:Name="txtAttachment" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

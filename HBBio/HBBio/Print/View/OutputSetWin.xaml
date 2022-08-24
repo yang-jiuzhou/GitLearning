@@ -1,0 +1,119 @@
+﻿<Window x:Class="HBBio.Print.OutputSetWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:HBBio.Print"
+        mc:Ignorable="d"
+        Title="{DynamicResource Print_OutputSetWin}" Window.SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <DockPanel Margin="5">
+        <DockPanel DockPanel.Dock="Top">
+            <StackPanel DockPanel.Dock="Left">
+                <GroupBox Header="{DynamicResource labHeader}">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="labIcon" Grid.Row="0" Grid.Column="0" Text="{DynamicResource labIcon1}"/>
+                        <Image x:Name="imageIcon" Grid.Row="0" Grid.Column="2" Width="100" Height="100"/>
+                        <StackPanel Grid.Row="0" Grid.Column="4">
+                            <Button x:Name="btnIcon" Margin="5" Content="{DynamicResource btnIconSelect}" Click="btnIcon_Click"/>
+                            <Button x:Name="btnIconClear" Margin="5" Content="{DynamicResource btnIconClear}" Click="btnIconClear_Click"/>
+                        </StackPanel>
+                        
+                        <TextBlock x:Name="labTitle" Grid.Row="2" Grid.Column="0" Text="{DynamicResource labTitle1}"/>
+                        <TextBox x:Name="txtTitle" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="{DynamicResource labMainText}">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="labMargin" Grid.Row="0" Grid.Column="0" Text="{DynamicResource labMargin1}"/>
+                        <Grid Grid.Row="0" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="labLeft" Grid.Row="0" Grid.Column="0" Text="{DynamicResource labLeft1}"/>
+                            <xctk:IntegerUpDown x:Name="numLeft" Grid.Row="0" Grid.Column="2"/>
+                            <TextBlock x:Name="labRight" Grid.Row="0" Grid.Column="4" Text="{DynamicResource labRight1}"/>
+                            <xctk:IntegerUpDown x:Name="numRight" Grid.Row="0" Grid.Column="6"/>
+                            <TextBlock x:Name="labTop" Grid.Row="2" Grid.Column="0" Text="{DynamicResource labTop1}"/>
+                            <xctk:IntegerUpDown x:Name="numTop" Grid.Row="2" Grid.Column="2"/>
+                            <TextBlock x:Name="labBottom" Grid.Row="2" Grid.Column="4" Text="{DynamicResource labBottom1}"/>
+                            <xctk:IntegerUpDown x:Name="numBottom" Grid.Row="2" Grid.Column="6"/>
+                        </Grid>
+                        <TextBlock x:Name="labMarkerStyle" Grid.Row="2" Grid.Column="0" Text="{DynamicResource Print_MarkerStyle1}"/>
+                        <ComboBox x:Name="cboxMarkerStyle" Grid.Row="2" Grid.Column="2"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="{DynamicResource labFooter}">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="chboxSigner" Margin="5" Content="{DynamicResource A_SignerName}"/>
+                        <CheckBox x:Name="chboxReviewer" Margin="5" Content="{DynamicResource A_ReviewerName}"/>
+                        <CheckBox x:Name="chboxOutputTime" Margin="5" Content="{DynamicResource labOutputTime}"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <GroupBox Header="{DynamicResource labOther}">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="labSize" Grid.Row="0" Grid.Column="0" Text="{DynamicResource labFont1}"/>
+                    <ComboBox x:Name="cboxSize" Grid.Row="0" Grid.Column="2"/>
+                    <TextBlock x:Name="labFamily" Grid.Row="2" Grid.Column="0" Text="{DynamicResource labFamily1}"/>
+                    <ComboBox x:Name="cboxFamily" Grid.Row="2" Grid.Column="2"/>
+                    <TextBlock x:Name="labFore" Grid.Row="4" Grid.Column="0" Text="{DynamicResource labForeground1}"/>
+                    <Button x:Name="btnFore" Grid.Row="4" Grid.Column="2" Style="{x:Null}" Height="25" Click="btnFore_Click"/>
+                    <TextBlock x:Name="labBack" Grid.Row="6" Grid.Column="0" Text="{DynamicResource labBackground1}"/>
+                    <Button x:Name="btnBack" Grid.Row="6" Grid.Column="2" Style="{x:Null}" Height="25" Click="btnBack_Click"/>
+                </Grid>
+            </GroupBox>
+        </DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button x:Name="btnOK" Margin="0,0,10,0" Content="{DynamicResource btnOK}" Click="btnOK_Click"/>
+            <Button x:Name="btnCancel" Content="{DynamicResource btnCancel}" Click="btnCancel_Click"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

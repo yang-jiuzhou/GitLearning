@@ -1,0 +1,155 @@
+﻿<Window x:Class="HBBio.Manual.PumpSystemWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:HBBio.Manual"
+        xmlns:share="clr-namespace:HBBio.Share"
+        mc:Ignorable="d"
+        Title="{DynamicResource M_PumpSystemWin}" Window.SizeToContent="WidthAndHeight" MinWidth="500" Background="#EEF5FD" Opacity="0.9" AllowsTransparency="True" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Window.Resources>
+        <Style TargetType="Slider">
+            <EventSetter Event="ValueChanged" Handler="slider_ValueChanged"/>
+        </Style>
+    </Window.Resources>
+    <Border BorderBrush="#FF268DE4" BorderThickness="2" CornerRadius="5">
+        <Grid x:Name="grid" Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FF9DBBCD">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Width="25" Height="25" Source="/Bio-LabChrom;component/Image/hblog.ico"/>
+                <TextBlock Grid.Column="2" Text="{DynamicResource M_PumpSystemWin}" FontWeight="Bold"/>
+                <Button x:Name="btnClose" Grid.Column="4" Style="{StaticResource closeBtnStyle}" Click="btnClose_Click"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="labFlow" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Text="{DynamicResource M_SystemFlow}"/>
+                <Slider x:Name="sliderFlow" Grid.Row="2" Grid.Column="0" Value="{Binding MFlow}"/>
+                <xctk:DoubleUpDown x:Name="doubleFlow" Grid.Row="2" Grid.Column="2" Value="{Binding ElementName=sliderFlow,Path=Value,Mode=TwoWay}"/>
+                <TextBlock Grid.Row="2" Grid.Column="4" Text=""/>
+                <Button x:Name="btnFlow" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_SetFlowRate}" Click="btnFlow_Click"/>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="labConc" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Text="{DynamicResource M_Conc}"/>
+                <Slider x:Name="sliderB" Grid.Row="2" Grid.Column="0" Visibility="{Binding ElementName=btnStartB,Path=Visibility}" Maximum="100" Value="{Binding MBS}"/>
+                <xctk:DoubleUpDown x:Name="doubleB" Grid.Row="2" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderB,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=btnStartB,Path=Visibility}"/>
+                <TextBlock x:Name="labBPer" Grid.Row="2" Grid.Column="4" Text="%B" Visibility="{Binding ElementName=btnStartB,Path=Visibility}"/>
+                <Button x:Name="btnPer" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_SetFlowPer}" Visibility="{Binding ElementName=btnStartB,Path=Visibility}" Click="btnPer_Click"/>
+                <Slider x:Name="sliderC" Grid.Row="4" Grid.Column="0" Visibility="{Binding ElementName=btnStartC,Path=Visibility}" Maximum="100" Value="{Binding MCS}"/>
+                <xctk:DoubleUpDown x:Name="doubleC" Grid.Row="4" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderC,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=btnStartC,Path=Visibility}"/>
+                <TextBlock x:Name="labCPer" Grid.Row="4" Grid.Column="4" Text="%C" Visibility="{Binding ElementName=btnStartC,Path=Visibility}"/>
+                <Slider x:Name="sliderD" Grid.Row="6" Grid.Column="0" Visibility="{Binding ElementName=btnStartD,Path=Visibility}" Maximum="100" Value="{Binding MDS}"/>
+                <xctk:DoubleUpDown x:Name="doubleD" Grid.Row="6" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderD,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=btnStartD,Path=Visibility}"/>
+                <TextBlock x:Name="labDPer" Grid.Row="26" Grid.Column="4" Text="%D" Visibility="{Binding ElementName=btnStartD,Path=Visibility}"/>
+            </Grid>
+            <Grid Grid.Row="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="15" Text="{DynamicResource M_PumpWash}"/>
+                <ComboBox x:Name="cboxA" Grid.Row="2" Grid.Column="0"/>
+                <Button x:Name="btnStartA" Grid.Row="2" Grid.Column="2" Content="{DynamicResource M_StartWashA}" Click="btnStartA_Click"/>
+                <Button x:Name="btnStopA" Grid.Row="4" Grid.Column="2" Content="{DynamicResource M_StopWashA}" Click="btnStopA_Click"/>
+                <ComboBox x:Name="cboxB" Grid.Row="2" Grid.Column="4"/>
+                <Button x:Name="btnStartB" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_StartWashB}" Click="btnStartB_Click"/>
+                <Button x:Name="btnStopB" Grid.Row="4" Grid.Column="6" Content="{DynamicResource M_StopWashB}" Click="btnStopB_Click"/>
+                <ComboBox x:Name="cboxC" Grid.Row="2" Grid.Column="8"/>
+                <Button x:Name="btnStartC" Grid.Row="2" Grid.Column="10" Content="{DynamicResource M_StartWashC}" Click="btnStartC_Click"/>
+                <Button x:Name="btnStopC" Grid.Row="4" Grid.Column="10" Content="{DynamicResource M_StopWashC}" Click="btnStopC_Click"/>
+                <ComboBox x:Name="cboxD" Grid.Row="2" Grid.Column="12"/>
+                <Button x:Name="btnStartD" Grid.Row="2" Grid.Column="14" Content="{DynamicResource M_StartWashD}" Click="btnStartD_Click"/>
+                <Button x:Name="btnStopD" Grid.Row="4" Grid.Column="14" Content="{DynamicResource M_StopWashD}" Click="btnStopD_Click"/>
+            </Grid>
+            <Grid x:Name="gridSystemWash" Grid.Row="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Text="{DynamicResource M_SystemWash}"/>
+                <RadioButton x:Name="rbtnSystemOut" Grid.Row="2" Grid.Column="0" IsChecked="True" Content="{DynamicResource M_SystemOut}"/>
+                <RadioButton x:Name="rbtnInjectionValve" Grid.Row="2" Grid.Column="2" Content="{DynamicResource M_InjectionValve}"/>
+                <Button x:Name="btnStartSystem" Grid.Row="2" Grid.Column="4" Content="{DynamicResource M_StartWash}" Click="btnStartSystem_Click" HorizontalAlignment="Right" Width="75"/>
+                <Button x:Name="btnStopSystem" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_StopWash}" Click="btnStopSystem_Click"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

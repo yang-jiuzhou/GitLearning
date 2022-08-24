@@ -1,0 +1,121 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:HBBio">
+    <!--Control Colors.-->
+    <Color x:Key="ControlReadLightColor">#DFEEFF</Color>
+    <Color x:Key="ControlReadDarkColor">#BFEEFF</Color>
+
+    <Color x:Key="ControlWriterLightColor">White</Color>
+    <Color x:Key="ControlWriterDarkColor">White</Color>
+
+    <Color x:Key="ControlDisabledLightColor">#eeeef3</Color>
+    <Color x:Key="ControlDisabledDarkColor">#eeeef3</Color>
+
+    <Color x:Key="ControlPressedLightColor">#50e3c2</Color>
+    <Color x:Key="ControlPressedDarkColor">#50e3c2</Color>
+
+    <Color x:Key="ControlMoveLightColor">#b8e986</Color>
+    <Color x:Key="ControlMoveDarkColor">#b8e986</Color>
+
+    <Color x:Key="ControlSelectedLightColor">#50e3c2</Color>
+    <Color x:Key="ControlSelectedDarkColor">#50e3c2</Color>
+    
+    <Color x:Key="ControlDefaultLightColor">#05346b</Color>
+    <Color x:Key="ControlDefaultDarkColor">#05346b</Color>
+
+    
+    <!--Border Colors-->
+    <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
+    <Color x:Key="BorderDarkColor">#FF444444</Color>
+
+    <Color x:Key="BorderDisabledLightColor">#FFAAAAAA</Color>
+    <Color x:Key="BorderDisabledDarkColor">#FF888888</Color>
+
+    <Color x:Key="BorderPressedLightColor">#FF888888</Color>
+    <Color x:Key="BorderPressedDarkColor">#FF666666</Color>
+
+    <Color x:Key="BorderMoveLightColor">Orange</Color>
+    <Color x:Key="BorderMoveDarkColor">Brown</Color>
+
+    <Color x:Key="BorderSelectedLightColor">#50e3c2</Color>
+    <Color x:Key="BorderSelectedDarkColor">#50e3c2</Color>
+    
+    <Color x:Key="BorderDefaultLightColor">Blue</Color>
+    <Color x:Key="BorderDefaultDarkColor">Black</Color>
+
+    
+    <!--Control Brushes-->
+    <LinearGradientBrush x:Key="GradientBackgroundRead" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="{StaticResource ControlReadLightColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource ControlReadDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GradientBackgroundWriter" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="{StaticResource ControlWriterLightColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource ControlWriterDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GradientBackgroundDefault" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource ControlDefaultLightColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource ControlDefaultDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="SolidBackground" Color="#EEF5FD"/>
+    <SolidColorBrush x:Key="SolidBackgroundDisabled" Color="#808080"/>
+    <SolidColorBrush x:Key="SolidBlyph" Color="Black"/>
+    <SolidColorBrush x:Key="SolidLine" Color="#FF99C5E4"/>
+
+
+    <!--Border Brushes-->
+    <LinearGradientBrush x:Key="GradientBorder" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource BorderLightColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BorderDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GradientBorderDefault" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource BorderDefaultLightColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BorderDefaultDarkColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+
+    <!--Other-->
+    <Style x:Key="ControlBase">
+        <Setter Property="Control.FontSize" Value="14"/>
+        <Setter Property="Control.Padding" Value="5"/>
+        <Setter Property="Control.SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Control.OverridesDefaultStyle" Value="True"/>
+    </Style>
+    
+    <Style x:Key="ControlRead" BasedOn="{StaticResource ControlBase}">
+        <Setter Property="Control.MinWidth" Value="75"/>
+    </Style>
+
+    <Style x:Key="ControlReadAlignment" BasedOn="{StaticResource ControlRead}">
+        <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="BorderBaseRead">
+        <Setter Property="Control.SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Control.OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Border.CornerRadius" Value="5"/>
+        <Setter Property="Border.BorderThickness" Value="2"/>
+        <Setter Property="Border.Background" Value="{StaticResource GradientBackgroundRead}"/>
+        <Setter Property="Border.BorderBrush" Value="{StaticResource GradientBorder}"/>
+    </Style>
+
+    <Style x:Key="BorderBaseWriter">
+        <Setter Property="Control.SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Control.OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Border.CornerRadius" Value="2"/>
+        <Setter Property="Border.BorderThickness" Value="1"/>
+        <Setter Property="Border.Background" Value="{StaticResource GradientBackgroundWriter}"/>
+        <Setter Property="Border.BorderBrush" Value="{StaticResource GradientBorder}"/>
+    </Style>
+
+    <Style x:Key="ContentPresenterBase" TargetType="ContentPresenter">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="RecognizesAccessKey" Value="True"/>
+    </Style>
+    
+</ResourceDictionary>

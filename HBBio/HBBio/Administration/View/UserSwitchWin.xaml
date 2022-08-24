@@ -1,0 +1,59 @@
+﻿<Window x:Class="HBBio.Administration.UserSwitchWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.Administration"
+        mc:Ignorable="d"
+        Title="{DynamicResource A_UserSwitchWin}" Window.SizeToContent="WidthAndHeight" MinWidth="350" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="labNameCurr" Grid.Row="0" Grid.Column="0" Text="{DynamicResource A_UserNameCurr1}"/>
+            <TextBox x:Name="txtNameCurr" Grid.Row="0" Grid.Column="2" IsReadOnly="True"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource A_PwdLogin1}"/>
+            <PasswordBox x:Name="pwdPwdCurr" Grid.Row="2" Grid.Column="2"/>
+            <TextBlock x:Name="labNameSwitch" Grid.Row="4" Grid.Column="0" Text="{DynamicResource A_UserNameSwitch1}"/>
+            <TextBox x:Name="txtNameSwitch" Grid.Row="4" Grid.Column="2"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="{DynamicResource A_PwdLogin1}"/>
+            <PasswordBox x:Name="pwdPwdSwitch" Grid.Row="6" Grid.Column="2"/>
+            <TextBlock Grid.Row="6" Grid.Column="4" x:Name="labPwd" Background="Transparent" Text="{DynamicResource labReset}" MouseDown="labPwd_MouseDown">
+                <TextBlock.TextDecorations>
+                    <TextDecorationCollection>
+                        <TextDecoration PenOffset="3" />
+                    </TextDecorationCollection>
+                </TextBlock.TextDecorations>
+            </TextBlock>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnOK" Grid.Column="1" Content="{DynamicResource btnOK}" Click="btnOK_Click"/>
+            <Button x:Name="btnCancel" Grid.Column="3" Content="{DynamicResource btnCancel}" Click="btnCancel_Click"/>
+        </Grid>
+    </Grid>
+</Window>

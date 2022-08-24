@@ -1,0 +1,1412 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:HBBio">
+    <!--常用按钮-->
+    <s:String x:Key="btnOK">确定</s:String>
+    <s:String x:Key="btnCancel">取消</s:String>
+    <s:String x:Key="btnYes">是</s:String>
+    <s:String x:Key="btnNo">否</s:String>
+    <s:String x:Key="btnApply">应用</s:String>
+    <s:String x:Key="btnClose">关闭</s:String>
+    <s:String x:Key="btnNew">新建</s:String>
+    <s:String x:Key="btnAdd">添加</s:String>
+    <s:String x:Key="btnInsert">插入</s:String>
+    <s:String x:Key="btnEdit">编辑</s:String>
+    <s:String x:Key="btnModify">修改</s:String>
+    <s:String x:Key="btnReplace">替换</s:String>
+    <s:String x:Key="btnDel">删除</s:String>
+    <s:String x:Key="btnSave">保存</s:String>
+    <s:String x:Key="btnSaveAs">另存为</s:String>
+    <s:String x:Key="btnPrev">上一步</s:String>
+    <s:String x:Key="btnNext">下一步</s:String>
+    <s:String x:Key="btnEnabled">激活</s:String>
+    <s:String x:Key="btnCopy">复制</s:String>
+    <s:String x:Key="btnPaste">粘贴</s:String>
+    <s:String x:Key="btnUp">上移</s:String>
+    <s:String x:Key="btnDown">下移</s:String>
+    <s:String x:Key="btnRename">重命名</s:String>
+    <s:String x:Key="btnSelectAll">全选</s:String>
+    <s:String x:Key="btnClear">清除</s:String>
+    <s:String x:Key="btnSend">发送</s:String>
+    <s:String x:Key="btnPrint">打印</s:String>
+    <s:String x:Key="btnExport">导出</s:String>
+    <s:String x:Key="btnImport">导入</s:String>
+    <s:String x:Key="btnRefresh">刷新</s:String>
+    <s:String x:Key="btnAttribute">属性</s:String>
+    <s:String x:Key="btnSet">设置</s:String>
+    <s:String x:Key="btnOpen">打开</s:String>
+    <s:String x:Key="btnCompare">对比</s:String>
+    <s:String x:Key="btnAuto">自动</s:String>
+    <s:String x:Key="btnIconSelect">图标选择</s:String>
+    <s:String x:Key="btnIconClear">图标删除</s:String>
+    <s:String x:Key="btnCommun">通讯警报</s:String>
+
+
+
+    <!--常用标签-->
+    <s:String x:Key="labUser">用户</s:String>
+    <s:String x:Key="labUser1" xml:space="preserve">用户 : </s:String>
+    <s:String x:Key="labName">名称</s:String>
+    <s:String x:Key="labName1" xml:space="preserve">名称 : </s:String>
+    <s:String x:Key="labValue">值</s:String>
+    <s:String x:Key="labNote">备注</s:String>
+    <s:String x:Key="labNote1" xml:space="preserve">备注 : </s:String>
+    <s:String x:Key="labScreen1" xml:space="preserve">筛选 : </s:String>
+    <s:String x:Key="labStatus">状态</s:String>
+    <s:String x:Key="labStatus1" xml:space="preserve">状态 : </s:String>
+    <s:String x:Key="labSet">设置</s:String>
+    <s:String x:Key="labReset">重置</s:String>
+    <s:String x:Key="labMore">更多</s:String>
+    <s:String x:Key="labSelectAll">全选</s:String>
+    <s:String x:Key="labSelectNull">全不选</s:String>
+    <s:String x:Key="labEnable">启用</s:String>
+    <s:String x:Key="labDisable">禁用</s:String>
+    <s:String x:Key="labStart">开始</s:String>
+    <s:String x:Key="labEnd">结束</s:String>
+    <s:String x:Key="labDescription">说明</s:String>
+    <s:String x:Key="labCreationDate1" xml:space="preserve">创建时间 : </s:String>
+    <s:String x:Key="labModificationDate1" xml:space="preserve">修改时间 : </s:String>
+    <s:String x:Key="labStartTime1" xml:space="preserve">开始时间 : </s:String>
+    <s:String x:Key="labEndTime1" xml:space="preserve">结束时间 : </s:String>
+    <s:String x:Key="labOn">开</s:String>
+    <s:String x:Key="labOff">关</s:String>
+    <s:String x:Key="labYes">是</s:String>
+    <s:String x:Key="labNo">否</s:String>
+    <s:String x:Key="labMin">最小值</s:String>
+    <s:String x:Key="labMax">最大值</s:String>
+    <s:String x:Key="labCheck">勾选</s:String>
+    <s:String x:Key="labHeader">页眉</s:String>
+    <s:String x:Key="labFooter">页脚</s:String>
+    <s:String x:Key="labTitle1" xml:space="preserve">标题 : </s:String>
+    <s:String x:Key="labIcon1" xml:space="preserve">图标 : </s:String>
+    <s:String x:Key="labMainText">正文</s:String>
+    <s:String x:Key="labMargin1" xml:space="preserve">边距 : </s:String>
+    <s:String x:Key="labWidth1" xml:space="preserve">宽 : </s:String>
+    <s:String x:Key="labHeight1" xml:space="preserve">高 : </s:String>
+    <s:String x:Key="labLeft1" xml:space="preserve">左 : </s:String>
+    <s:String x:Key="labRight1" xml:space="preserve">右 : </s:String>
+    <s:String x:Key="labTop1" xml:space="preserve">上 : </s:String>
+    <s:String x:Key="labBottom1" xml:space="preserve">下 : </s:String>
+    <s:String x:Key="labFont1" xml:space="preserve">字号 : </s:String>
+    <s:String x:Key="labFamily1" xml:space="preserve">字体 : </s:String>
+    <s:String x:Key="labForeground1" xml:space="preserve">前景色 : </s:String>
+    <s:String x:Key="labBackground1" xml:space="preserve">背景色 : </s:String>
+    <s:String x:Key="labOutputTime">打印日期</s:String>
+    <s:String x:Key="labOther">其它</s:String>
+    <s:String x:Key="T">时间</s:String>
+    <s:String x:Key="V">体积</s:String>
+    <s:String x:Key="CV">柱体积</s:String>
+    <s:String x:Key="TVCV">时间/体积/柱体积</s:String>
+    <s:String x:Key="labT">时间(min)</s:String>
+    <s:String x:Key="labV">体积(ml)</s:String>
+    <s:String x:Key="labCV">柱体积(cv)</s:String>
+    <s:String x:Key="labFlowVol">流速(ml/min)</s:String>
+    <s:String x:Key="labFlowLine">流速(cm/h)</s:String>
+    <s:String x:Key="labPumpS">上样泵</s:String>
+    <s:String x:Key="labPumpA">系统泵A</s:String>
+    <s:String x:Key="labPumpB">系统泵B</s:String>
+    <s:String x:Key="labPumpC">系统泵C</s:String>
+    <s:String x:Key="labPumpD">系统泵D</s:String>
+    <s:String x:Key="labInS">上样阀</s:String>
+    <s:String x:Key="labInS1" xml:space="preserve">上样阀 : </s:String>
+    <s:String x:Key="labInA">入口阀A</s:String>
+    <s:String x:Key="labInA1" xml:space="preserve">入口阀A : </s:String>
+    <s:String x:Key="labInB">入口阀B</s:String>
+    <s:String x:Key="labInB1" xml:space="preserve">入口阀B : </s:String>
+    <s:String x:Key="labInC">入口阀C</s:String>
+    <s:String x:Key="labInC1" xml:space="preserve">入口阀C : </s:String>
+    <s:String x:Key="labInD">入口阀D</s:String>
+    <s:String x:Key="labInD1" xml:space="preserve">入口阀D : </s:String>
+    <s:String x:Key="labIJV">进样阀</s:String>
+    <s:String x:Key="labIJV1" xml:space="preserve">进样阀 : </s:String>
+    <s:String x:Key="labBPV">旁通阀</s:String>
+    <s:String x:Key="labBPV1" xml:space="preserve">旁通阀 : </s:String>
+    <s:String x:Key="labCPV">柱位阀</s:String>
+    <s:String x:Key="labCPV1" xml:space="preserve">柱位阀 : </s:String>
+    <s:String x:Key="labOut">出口阀</s:String>
+    <s:String x:Key="labOut1" xml:space="preserve">出口阀 : </s:String>
+    <s:String x:Key="labMixer">动态混合器</s:String>
+    <s:String x:Key="labMixer1" xml:space="preserve">动态混合器 : </s:String>
+    <s:String x:Key="labAS01" xml:space="preserve">AS01</s:String>
+    <s:String x:Key="labAS02" xml:space="preserve">AS02</s:String>
+    <s:String x:Key="labAS011" xml:space="preserve">AS01 : </s:String>
+    <s:String x:Key="labAS021" xml:space="preserve">AS02 : </s:String>
+    <s:String x:Key="LabLength1" xml:space="preserve">持续值 : </s:String>
+    <s:String x:Key="LabUnit1" xml:space="preserve">单位 : </s:String>
+    <s:String x:Key="LabPer">百分比</s:String>
+    <s:String x:Key="LabAS" xml:space="preserve"> %A起始(0-100) </s:String>
+    <s:String x:Key="LabAE" xml:space="preserve"> %A终止(0-100) </s:String>
+    <s:String x:Key="LabBS" xml:space="preserve"> %B起始(0-100) </s:String>
+    <s:String x:Key="LabBE" xml:space="preserve"> %B终止(0-100) </s:String>
+    <s:String x:Key="LabCS" xml:space="preserve"> %C起始(0-100) </s:String>
+    <s:String x:Key="LabCE" xml:space="preserve"> %C终止(0-100) </s:String>
+    <s:String x:Key="LabDS" xml:space="preserve"> %D起始(0-100) </s:String>
+    <s:String x:Key="LabDE" xml:space="preserve"> %D终止(0-100) </s:String>
+    <s:String x:Key="LabAS1" xml:space="preserve">%A起始(0-100) : </s:String>
+    <s:String x:Key="LabAE1" xml:space="preserve">%A终止(0-100) : </s:String>
+    <s:String x:Key="LabBS1" xml:space="preserve">%B起始(0-100) : </s:String>
+    <s:String x:Key="LabBE1" xml:space="preserve">%B终止(0-100) : </s:String>
+    <s:String x:Key="LabCS1" xml:space="preserve">%C起始(0-100) : </s:String>
+    <s:String x:Key="LabCE1" xml:space="preserve">%C终止(0-100) : </s:String>
+    <s:String x:Key="LabDS1" xml:space="preserve">%D起始(0-100) : </s:String>
+    <s:String x:Key="LabDE1" xml:space="preserve">%D终止(0-100) : </s:String>
+    <s:String x:Key="labFillSystem">冲洗系统</s:String>
+    <s:String x:Key="labFlowRate">流速</s:String>
+    <s:String x:Key="labFlowRate1" xml:space="preserve">流速 : </s:String>
+    <s:String x:Key="labUV">紫外检测器</s:String>
+    <s:String x:Key="labUVLamp1" xml:space="preserve">灯状态 : </s:String>
+    <s:String x:Key="labUVTime1" xml:space="preserve">亮灯时间(h) : </s:String>
+    <s:String x:Key="labUVRef1" xml:space="preserve">参比能量 : </s:String>
+    <s:String x:Key="labUVSig1" xml:space="preserve">样比能量 : </s:String>
+    <s:String x:Key="labUVOn">开灯</s:String>
+    <s:String x:Key="labUVOff">关灯</s:String>
+    <s:String x:Key="labUVReset">清零</s:String>
+    <s:String x:Key="labUVWaveLength1" xml:space="preserve">波长(nm) : </s:String>
+    <s:String x:Key="labUV11" xml:space="preserve">UV1 : </s:String>
+    <s:String x:Key="labUV21" xml:space="preserve">UV2 : </s:String>
+    <s:String x:Key="labUV31" xml:space="preserve">UV3 : </s:String>
+    <s:String x:Key="labUV41" xml:space="preserve">UV4 : </s:String>
+    <s:String x:Key="labRI">示差检测器</s:String>
+    <s:String x:Key="labRIPurge1" xml:space="preserve">清洗 : </s:String>
+    <s:String x:Key="labRIPurgeOn">开</s:String>
+    <s:String x:Key="labRIPurgeOff">关</s:String>
+    <s:String x:Key="labRIAutoZero">自动清零</s:String>
+    <s:String x:Key="labRITemperature1" xml:space="preserve">温度(℃)[30-55] : </s:String>
+    <s:String x:Key="labHH">高警报</s:String>
+    <s:String x:Key="labLL">低警报</s:String>
+    <s:String x:Key="labH">高警告</s:String>
+    <s:String x:Key="labL">低警告</s:String>
+    <s:String x:Key="labHH1" xml:space="preserve">高警报 : </s:String>
+    <s:String x:Key="labLL1" xml:space="preserve">低警报 : </s:String>
+    <s:String x:Key="labH1" xml:space="preserve">高警告 : </s:String>
+    <s:String x:Key="labL1" xml:space="preserve">低警告 : </s:String>
+    <s:String x:Key="labASAction1" xml:space="preserve">触发操作 : </s:String>
+    <s:String x:Key="labASDelay1" xml:space="preserve">触发延迟设置 : </s:String>
+    <s:String x:Key="labMsgAlarm">警报弹窗</s:String>
+    <s:String x:Key="labMsgWarning">警告弹窗</s:String>
+    <s:String x:Key="labColor">颜色</s:String>
+    <s:String x:Key="labCatalog">目录</s:String>
+    <s:String x:Key="labFilePath1">文件路径 : </s:String>
+    <s:String x:Key="labVisibility">显示</s:String>
+    <s:String x:Key="labShow">显示</s:String>
+    <s:String x:Key="labHide">隐藏</s:String>
+    <s:String x:Key="labColumnVol">柱体积(ml)</s:String>
+    <s:String x:Key="labColumnVol1" xml:space="preserve">柱体积(ml) : </s:String>
+    <s:String x:Key="labColumnDiameter">柱直径(cm)</s:String>
+    <s:String x:Key="labColumnDiameter1" xml:space="preserve">柱直径(cm) : </s:String>
+    <s:String x:Key="labColumnHeight">柱高(cm)</s:String>
+    <s:String x:Key="labColumnHeight1" xml:space="preserve">柱高(cm) : </s:String>
+    <s:String x:Key="labColumnArea">柱面积(cm²)</s:String>
+    <s:String x:Key="labColumnArea1" xml:space="preserve">柱面积(cm²) : </s:String>
+    <s:String x:Key="labAction">动作</s:String>
+    <s:String x:Key="labReal">实时</s:String>
+    <s:String x:Key="labDelay">延迟</s:String>
+    <s:String x:Key="labFilter">筛选</s:String>
+    <s:String x:Key="labFilter1" xml:space="preserve">筛选 : </s:String>
+    
+    
+    
+
+    <!--常用提示-->
+    <s:String x:Key="txtSuccess">成功</s:String>
+    <s:String x:Key="txtFailure">失败</s:String>
+    <s:String x:Key="labSuccess">成功 !</s:String>
+    <s:String x:Key="labFailure">失败 !</s:String>
+    <s:String x:Key="labErrorNoData">无数据 !</s:String>
+    <s:String x:Key="labIllegalName">名称不合法 !</s:String>
+    <s:String x:Key="labSameName">已存在同名 !</s:String>
+    <s:String x:Key="labContinue">是否继续该操作 ?</s:String>
+    <s:String x:Key="labCannot">当前系统无法继续运行 !</s:String>
+    <s:String x:Key="labOnlyFree">该操作只能在系统空闲状态下执行 !</s:String>
+    <s:String x:Key="labOnlyNotFree">该操作只能在系统非空闲状态下执行 !</s:String>
+    <s:String x:Key="labWaitCurrOper">请等待当前操作执行完成 !</s:String>
+    <s:String x:Key="labClose">是否确定要退出软件 ?</s:String>
+    <s:String x:Key="labStopRunning">请先结束运行 !</s:String>
+    <s:String x:Key="labDel">确定执行该删除操作吗 ?</s:String>
+    <s:String x:Key="labTips">温馨提示</s:String>
+    <s:String x:Key="labInfo">提示说明</s:String>
+    <s:String x:Key="labPermissionDelFailed">该权限不可删除, 存在用户拥有该权限 !</s:String>
+    <s:String x:Key="infoIllegalData">数据超出限制范围 !</s:String>
+    
+
+
+    <!--常用文本-->
+    <s:String x:Key="infoASYes">监测到气泡</s:String>
+    <s:String x:Key="infoASNo">监测无气泡</s:String>
+    <s:String x:Key="labLogIn">系统登录</s:String>
+    <s:String x:Key="labLogOut">系统退出</s:String>
+    <s:String x:Key="labRecover">系统恢复</s:String>
+    
+    
+    
+
+
+    <!--常用枚举-->
+    <s:String x:Key="Stable">稳定</s:String>
+    <s:String x:Key="MoreThan">大于</s:String>
+    <s:String x:Key="LessThan">小于</s:String>
+    <s:String x:Key="EnumMonitorAction_Ignore">忽略</s:String>
+    <s:String x:Key="EnumMonitorAction_Bypass">柱位旁通</s:String>
+    <s:String x:Key="EnumMonitorAction_Next">跳行</s:String>
+    <s:String x:Key="EnumMonitorAction_Pause">暂停</s:String>
+    <s:String x:Key="EnumMonitorAction_Stop">停止</s:String>
+
+
+
+
+    <!--具体权限枚举-->
+    <s:String x:Key="RunDataSet">运行数据</s:String>
+    <s:String x:Key="ChromatogramSet">色谱图曲线</s:String>
+    <s:String x:Key="ProcessPictureSet">流路图</s:String>
+    <s:String x:Key="SoftExit">系统退出</s:String>
+    <s:String x:Key="MonitorSet">实时监控</s:String>
+    <s:String x:Key="Communication">通信配置</s:String>
+    <s:String x:Key="Communication_Add">通信配置-添加</s:String>
+    <s:String x:Key="Communication_Edit">通信配置-编辑</s:String>
+    <s:String x:Key="Communication_Del">通信配置-删除</s:String>
+    <s:String x:Key="Communication_Activate">通信配置-激活</s:String>
+    <s:String x:Key="InstrumentParameters">仪表参数</s:String>
+    <s:String x:Key="InstrumentParameters_Edit">仪表参数-编辑</s:String>
+    <s:String x:Key="Administration">用户权限</s:String>
+    <s:String x:Key="Administration_User">用户权限-用户</s:String>
+    <s:String x:Key="Administration_User_Add">用户权限-用户-添加</s:String>
+    <s:String x:Key="Administration_User_Edit">用户权限-用户-编辑</s:String>
+    <s:String x:Key="Administration_User_Del">用户权限-用户-删除</s:String>
+    <s:String x:Key="Administration_Permission">用户权限-权限</s:String>
+    <s:String x:Key="Administration_Permission_Add">用户权限-权限-添加</s:String>
+    <s:String x:Key="Administration_Permission_Edit">用户权限-权限-编辑</s:String>
+    <s:String x:Key="Administration_Permission_Del">用户权限-权限-删除</s:String>
+    <s:String x:Key="Administration_Tactics">用户权限-安全策略</s:String>
+    <s:String x:Key="Administration_Tactics_Edit">用户权限-安全策略-编辑</s:String>
+    <s:String x:Key="Administration_SignerReviewer">用户权限-签名审核</s:String>
+    <s:String x:Key="Administration_SignerReviewer_Edit">用户权限-签名审核-编辑</s:String>
+    <s:String x:Key="ColumnHandling">色谱柱管理</s:String>
+    <s:String x:Key="ColumnHandling_Edit">色谱柱管理-编辑</s:String>
+    <s:String x:Key="ColumnHandling_ImportExport">色谱柱管理-导入导出</s:String>
+    <s:String x:Key="ColumnHandling_Print">色谱柱管理-打印</s:String>
+    <s:String x:Key="TubeStand">试管架管理</s:String>
+    <s:String x:Key="TubeStand_Edit">试管架管理-编辑</s:String>
+    <s:String x:Key="Manual">手动编辑</s:String>
+    <s:String x:Key="Project">项目管理</s:String>
+    <s:String x:Key="Project_Method">项目管理-方法</s:String>
+    <s:String x:Key="Project_Method_Watch">项目管理-方法-查看</s:String>
+    <s:String x:Key="Project_Method_Watch_Edit">项目管理-方法-查看-编辑</s:String>
+    <s:String x:Key="Project_Method_Watch_ImportExport">项目管理-方法-查看-导入导出</s:String>
+    <s:String x:Key="Project_Method_Watch_Print">项目管理-方法-查看-打印</s:String>
+    <s:String x:Key="Project_Method_Watch_Other">项目管理-方法-查看-查看他人</s:String>
+    <s:String x:Key="Project_Method_Run">项目管理-方法-运行</s:String>
+    <s:String x:Key="Project_Method_Intervene">项目管理-方法-干预</s:String>
+    <s:String x:Key="Project_Evaluation">项目管理-结果分析</s:String>
+    <s:String x:Key="Project_Evaluation_Watch">项目管理-结果分析-查看</s:String>
+    <s:String x:Key="Project_Evaluation_Watch_Print">项目管理-结果分析-查看-打印</s:String>
+    <s:String x:Key="Project_Evaluation_Watch_IntegrationAuto">项目管理-结果分析-查看-自动积分</s:String>
+    <s:String x:Key="Project_Evaluation_Watch_IntegrationManual">项目管理-结果分析-查看-手动积分</s:String>
+    <s:String x:Key="Project_Evaluation_Watch_Other">项目管理-结果分析-查看-查看他人</s:String>
+    <s:String x:Key="Project_Evaluation_Rename">项目管理-结果分析-重命名</s:String>
+    <s:String x:Key="AuditTrails">审计跟踪</s:String>
+    <s:String x:Key="AuditTrails_Print">审计跟踪-打印</s:String>
+    <s:String x:Key="Databases">数据管理</s:String>
+    <s:String x:Key="Databases_Backup">数据管理-备份</s:String>
+    <s:String x:Key="Databases_Restore">数据管理-还原</s:String>
+
+    
+    
+    
+    
+    <!--系统控制-->
+    <s:String x:Key="SC_SystemControlWin">运行控制</s:String>
+    <s:String x:Key="menuSystem">系统</s:String>
+        <s:String x:Key="menuLanguage">语言</s:String>
+            <s:String x:Key="menuChinese">中文</s:String>
+            <s:String x:Key="menuEnglish">英文</s:String>
+        <s:String x:Key="menuWindowSize">窗体尺寸</s:String>
+            <s:String x:Key="menuRemember">记忆</s:String>
+        <s:String x:Key="menuUserSwitch">用户切换</s:String>
+        <s:String x:Key="menuUserPwd">修改密码</s:String>
+        <s:String x:Key="menuLockScreen">锁屏</s:String>
+    <s:String x:Key="menuView">视图</s:String>
+        <s:String x:Key="menuToolBar">菜单栏</s:String>
+        <s:String x:Key="menuRunData">运行数据</s:String>
+        <s:String x:Key="menuChromatogram">色谱图</s:String>
+        <s:String x:Key="menuProcessPicture">流路图</s:String>
+        <s:String x:Key="menuMonitor">实时监控</s:String>
+        <s:String x:Key="menuStatusBar">状态栏</s:String>
+    <s:String x:Key="menuSet">设置</s:String>
+        <s:String x:Key="menuAuditTrails">审计跟踪</s:String>
+        <s:String x:Key="menuRunStatus">运行状态</s:String>
+    <s:String x:Key="menuTool">工具</s:String>
+        <s:String x:Key="menuCommunication">通信配置</s:String>
+        <s:String x:Key="menuInstrumentParameters">仪表参数</s:String>
+        <s:String x:Key="menuAdministration">用户权限</s:String>
+        <s:String x:Key="menuColumnHandling">色谱柱管理</s:String>
+        <s:String x:Key="menuTubeStand">试管架管理</s:String>
+        <s:String x:Key="menuManual">手动编辑</s:String>
+        <s:String x:Key="menuProject">项目管理</s:String>
+        <s:String x:Key="menuSystemMonitor">系统监控</s:String>
+        <s:String x:Key="menuDB">数据管理</s:String>
+    <s:String x:Key="menuHelp">帮助</s:String>
+        <s:String x:Key="menuAbout">关于</s:String>
+
+    <!--主界面-菜单栏-->
+    <s:String x:Key="toolRun">运行</s:String>
+    <s:String x:Key="toolHold">挂起</s:String>
+    <s:String x:Key="toolHoldUntil">挂起_直到</s:String>
+    <s:String x:Key="toolNext">下一阶段</s:String>
+    <s:String x:Key="toolPause">暂停</s:String>
+    <s:String x:Key="toolContinue">继续</s:String>
+    <s:String x:Key="toolStop">停止</s:String>
+    <s:String x:Key="toolAlarm">消警</s:String>
+
+    <!--谱图画图界面-->
+    <s:String x:Key="labD_UndoZoom">撤销缩放</s:String>
+    <s:String x:Key="labD_ResetZoom">重置缩放</s:String>
+    <s:String x:Key="labD_Drag">拖拽</s:String>
+    <s:String x:Key="labD_Grid">网格</s:String>
+    <s:String x:Key="labD_Ruler">标尺</s:String>
+    <s:String x:Key="labD_RulerOddO">单标尺(单)</s:String>
+    <s:String x:Key="labD_RulerOddM">单标尺(多)</s:String>
+    <s:String x:Key="labD_RulerEven">双标尺</s:String>
+    <s:String x:Key="labD_Marker">标记</s:String>
+    <s:String x:Key="labD_Coll">收集</s:String>
+    <s:String x:Key="labD_CollM">手动收集</s:String>
+    <s:String x:Key="labD_CollA">自动收集</s:String>
+    <s:String x:Key="labD_Valve">切阀</s:String>
+    <s:String x:Key="labD_Phase">方法阶段</s:String>
+    <s:String x:Key="labD_MultiY">多Y轴</s:String>
+    <s:String x:Key="labD_XAxis">X坐标</s:String>
+    <s:String x:Key="labD_YAxis">Y坐标</s:String>
+    <s:String x:Key="labD_AxisScale">自动标尺</s:String>
+    <s:String x:Key="Enum_Auto">自动</s:String>
+    <s:String x:Key="Enum_Fixed">固定</s:String>
+    <s:String x:Key="D_BG">背景</s:String>
+    <s:String x:Key="D_BGMsg">请从项目管理模块选择 !</s:String>
+    <s:String x:Key="D_PNG">快照</s:String>
+    <s:String x:Key="D_Curve">曲线</s:String>
+    <s:String x:Key="D_Signal">信号</s:String>
+    <!--色谱图-标记添加-->
+    <s:String x:Key="D_MA_Position">位置</s:String>
+    <s:String x:Key="D_MA_Now">实时点</s:String>
+    <s:String x:Key="D_MA_Past">历史点</s:String>
+
+    <!--运行状态-->
+    <s:String x:Key="ME_MethodQueueName">方法队列名称</s:String>
+    <s:String x:Key="ME_MethodCount">方法总数</s:String>
+    <s:String x:Key="ME_MethodName">方法名称</s:String>
+    <s:String x:Key="ME_LoopCount">循环总数</s:String>
+    <s:String x:Key="ME_LoopIndex">执行循环</s:String>
+    <s:String x:Key="ME_PhaseCount">阶段总数</s:String>
+    <s:String x:Key="ME_PhaseName">执行阶段(序号)</s:String>
+    <s:String x:Key="ME_PhaseRunning">运行时间</s:String>
+    
+    <!--实时监控-->
+    <s:String x:Key="SC_RunParameters">运行参数</s:String>
+    <s:String x:Key="SC_ResultPath">结果路径</s:String>
+
+    <!--警报警告-->
+    <s:String x:Key="SC_AlarmWarning">警报警告</s:String>
+    <s:String x:Key="SC_Alarm">警报</s:String>
+    <s:String x:Key="SC_Warning">警告</s:String>
+    <s:String x:Key="SC_Value">值</s:String>
+
+    <!--状态栏-->
+    <s:String x:Key="SC_SystemRunTime1" xml:space="preserve">系统运行时间 : </s:String>
+    <s:String x:Key="SC_UserName1" xml:space="preserve">登录用户名 : </s:String>
+    <s:String x:Key="SC_ChromatogramTime1" xml:space="preserve">谱图运行时间 : </s:String>
+    <s:String x:Key="SC_SystemTime1" xml:space="preserve">系统时间 : </s:String>
+
+    <!--关于-->
+    <s:String x:Key="SC_AboutWin">关于</s:String>
+    <s:String x:Key="SC_ProductionInformation">产品信息</s:String>
+    <s:String x:Key="SC_Production">产品 : 汉邦 Bio-LabChrom</s:String>
+    <s:String x:Key="SC_Version">版本 : 2.0.0</s:String>
+    <s:String x:Key="SC_Website">网址 : www.hanbon.com.cn</s:String>
+
+    <!--倒计时-->
+    <s:String x:Key="SC_CountdownWin">倒计时</s:String>
+    
+    <!--系统监控-->
+    <s:String x:Key="SC_SystemMonitorWin">系统监控</s:String>
+
+
+    <!--Administration 用户权限-->
+    <s:String x:Key="A_AdministrationWin">用户权限管理</s:String>
+    <s:String x:Key="A_User">用户管理</s:String>
+    <s:String x:Key="A_Permission">权限管理</s:String>
+    <s:String x:Key="A_Tactics">安全策略</s:String>
+    <s:String x:Key="A_SignerReviewer">签名审核</s:String>
+    <s:String x:Key="A_UserName">用户名</s:String>
+    <s:String x:Key="A_UserName1" xml:space="preserve">用户名 : </s:String>
+    <s:String x:Key="A_PermissionName">权限名</s:String>
+    <s:String x:Key="A_PermissionName1" xml:space="preserve">权限名 : </s:String>
+    <s:String x:Key="A_Validity">有效期(天)</s:String>
+    <s:String x:Key="A_Status">状态</s:String>
+    <s:String x:Key="A_TacticsName">安全策略名</s:String>
+    <s:String x:Key="A_T_NameReg">用户必须符合复杂性要求</s:String>
+    <s:String x:Key="A_T_NameLock">用户锁定阈值</s:String>
+    <s:String x:Key="A_T_NameLockUnit">次无效登录</s:String>
+    <s:String x:Key="A_T_PwdReg">登录密码必须符合复杂性要求</s:String>
+    <s:String x:Key="A_T_PwdLength">登录密码长度最小值</s:String>
+    <s:String x:Key="A_T_PwdLengthUnit">个字符</s:String>
+    <s:String x:Key="A_T_PwdMaxTime">登录密码最长使用期限</s:String>
+    <s:String x:Key="A_T_PwdMaxTimeUnit">天</s:String>
+    <s:String x:Key="A_T_ScreenLock">锁屏时间</s:String>
+    <s:String x:Key="A_T_ScreenLockUnit">分钟</s:String>
+    <s:String x:Key="A_SignerReviewerName">签名审核名</s:String>
+    <s:String x:Key="A_Signature">签名</s:String>
+    <s:String x:Key="A_Reviewer">审核</s:String>
+
+    <s:String x:Key="A_LoginWin">用户登录</s:String>
+    <s:String x:Key="A_Version">Bio-LabChrom系统V2.0.0版</s:String>
+    <s:String x:Key="A_PwdLogin">登录密码</s:String>
+    <s:String x:Key="A_PwdLogin1" xml:space="preserve">登录密码 : </s:String>
+    <s:String x:Key="A_Register">注册</s:String>
+    <s:String x:Key="A_Check">自检</s:String>
+
+    <s:String x:Key="A_PermissionAddWin">新建权限</s:String>
+    <s:String x:Key="A_PermissionAdmin">系统管理员</s:String>
+    <s:String x:Key="A_PermissionIT">工程师</s:String>
+    <s:String x:Key="A_PermissionOPER">操作员</s:String>
+    <s:String x:Key="A_PermissionQA">分析员</s:String>
+    <s:String x:Key="A_DefaultPermission">默认权限</s:String>
+
+    <s:String x:Key="A_PermissionEditWin">编辑权限</s:String>
+
+    <s:String x:Key="A_RegisteWin">用户注册</s:String>
+    <s:String x:Key="A_PwdConfirm1" xml:space="preserve">确认登录密码 : </s:String>
+    <s:String x:Key="A_PwdSign">签名密码</s:String>
+    <s:String x:Key="A_PwdSign1" xml:space="preserve">签名密码 : </s:String>
+    <s:String x:Key="A_PwdSignConfirm1" xml:space="preserve">确认签名密码 : </s:String>
+
+    <s:String x:Key="A_ReviewerWin">用户签名审核</s:String>
+    <s:String x:Key="A_SignerName">签名人员</s:String>
+    <s:String x:Key="A_ReviewerName">审核人员</s:String>
+    <s:String x:Key="A_SignerName1" xml:space="preserve">签名人员 : </s:String>
+    <s:String x:Key="A_ReviewerName1" xml:space="preserve">审核人员 : </s:String>
+
+    <s:String x:Key="A_SignerWin">用户签名</s:String>
+
+    <s:String x:Key="A_TacticsEditWin">属性</s:String>
+    <s:String x:Key="A_T_NameRegInfo">
+        &#160;&#160;&#160;&#160;用户名必须符合复杂性要求。\n
+    \n
+    此安全设置确定用户名是否必须符合复杂性要求。\n
+    \n
+    至少有1个字符长\n
+    至多有64个字符长 \n
+    \n
+    只能是以下4类字符:\n
+    英文大写字母(A 到 Z)\n
+    英文小写字母(a 到 z)\n
+    10 个基本数字(0 到 9)\n
+    汉字\n
+    \n
+    强制值: 启用。\n
+    </s:String>
+    <s:String x:Key="A_T_NameLockTitle1">用户不锁定</s:String>
+    <s:String x:Key="A_T_NameLockTitle2">在发生以后情况之后，锁定用户</s:String>
+    <s:String x:Key="A_T_NameLockInfo">
+        &#160;&#160;&#160;&#160;帐户锁定阈值\n
+    \n
+    此安全设置确定导致用户帐户被锁定的登录尝试失败的次数。\n
+    \n
+    在管理员重置锁定帐户或帐户锁定时间期满之前，无法使用该锁定帐户。\n
+    可以将登录尝试失败次数设置为介于 0 和 999 之间的值。\n
+    如果将值设置为 0，则永远不会锁定帐户。\n
+    \n
+    默认值: 0。\n
+    </s:String>
+    <s:String x:Key="A_T_PwdRegInfo">
+        &#160;&#160;&#160;&#160;密码必须符合复杂性要求。\n
+    \n
+    此安全设置确定密码是否必须符合复杂性要求。\n
+    \n
+    如果启用此策略，密码必须符合下列最低要求:\n
+    不能包含用户的帐户名\n
+    至少有6个字符长\n
+    包含以下4类字符中的2类字符:\n
+    英文大写字母(A 到 Z)\n
+    英文小写字母(a 到 z)\n
+    10 个基本数字(0 到 9)\n
+    非字母字符(例如 !、$、#、%)\n
+    在更改或创建密码时执行复杂性要求。\n
+    \n
+    默认值: 禁用。\n
+    </s:String>
+    <s:String x:Key="A_T_PwdLengthTitle1" xml:space="preserve">不要求密码</s:String>
+    <s:String x:Key="A_T_PwdLengthTitle2">密码至少是</s:String>
+    <s:String x:Key="A_T_PwdLengthInfo">
+        &#160;&#160;&#160;&#160;最短密码长度\n
+    \n
+    此安全设置确定用户帐户密码包含的最少字符数。\n
+    可以将值设置为介于 1 和 32 个字符之间。\n
+    \n
+    默认值: 1。\n
+    </s:String>
+    <s:String x:Key="A_T_PwdMaxTimeTitle1" xml:space="preserve">密码不过期</s:String>
+    <s:String x:Key="A_T_PwdMaxTimeTitle2">密码过期时间</s:String>
+    <s:String x:Key="A_T_PwdMaxTimeInfo">
+        &#160;&#160;&#160;&#160;密码最长使用期限\n
+    \n
+    此安全设置确定在系统要求用户更改某个密码之前可以使用该密码的期间(以天为单位)。\n
+    可以将密码设置为在某些天数(介于 1 到 999 之间)后到期，或者将天数设置为 0，指定密码永不过期。\n
+    \n
+    注意: 安全最佳操作是将密码设置为 30 到 90 天后过期，具体取决于您的环境。\n
+    \n
+    默认值: 90。\n
+    </s:String>
+    <s:String x:Key="A_T_ScreenLockTitle1" xml:space="preserve">不锁屏</s:String>
+    <s:String x:Key="A_T_ScreenLockTitle2">锁屏</s:String>
+    <s:String x:Key="A_T_ScreenLockInfo">
+        &#160;&#160;&#160;&#160;锁屏时间\n
+    \n
+    此安全设置确定在系统软件在经过一段时间之后会自动锁屏(以分为单位)。\n
+    可以将系统设置为在某些分钟(介于 1 到 1440 之间)后锁屏。\n
+    或者将锁屏时间设置为 0，指定永不锁屏。\n
+    \n
+    注意: 安全最佳操作是设置系统的锁屏时间，具体取决于您的环境。\n
+    \n
+    默认值: 60。\n
+    </s:String>
+
+    <s:String x:Key="A_UserAddWin">新建用户</s:String>
+
+    <s:String x:Key="A_UserEditWin">编辑用户</s:String>
+    <s:String x:Key="A_Active">活动</s:String>
+    <s:String x:Key="A_DisActive">禁用</s:String>
+    <s:String x:Key="A_Lock">锁定</s:String>
+    <s:String x:Key="A_Unlock">解锁</s:String>
+
+    <s:String x:Key="A_UserLockWin">系统解锁</s:String>
+    <s:String x:Key="A_AutoLock">自动</s:String>
+    <s:String x:Key="A_ManualLock">手动</s:String>
+    <s:String x:Key="A_ExitLock">退出锁屏</s:String>
+
+    <s:String x:Key="A_UserPwdWin">修改密码</s:String>
+    <s:String x:Key="A_PwdOld1" xml:space="preserve">旧密码 : </s:String>
+
+    <s:String x:Key="A_UserSwitchWin">切换用户</s:String>
+    <s:String x:Key="A_UserNameCurr1" xml:space="preserve">当前用户名 : </s:String>
+    <s:String x:Key="A_UserNameSwitch1" xml:space="preserve">切换用户名 : </s:String>
+
+    <s:String x:Key="A_ErrorPwd">登录密码错误!</s:String>
+    <s:String x:Key="A_ErrorPwdSign">签名密码错误!</s:String>
+    <s:String x:Key="A_ErrorSamePwd">新旧登录密码相同!</s:String>
+    <s:String x:Key="A_ErrorSamePwdSign">新旧签名密码相同!</s:String>
+    <s:String x:Key="A_ErrorPwdConfirm">登录密码不一致!</s:String>
+    <s:String x:Key="A_ErrorPwdSignConfirm">签名密码不一致!</s:String>
+    <s:String x:Key="A_ErrorOldPwd">旧登录密码错误!</s:String>
+    <s:String x:Key="A_ErrorOldPwdSign">旧签名密码错误!</s:String>
+    <s:String x:Key="A_ErrorIllegalPwd">登录密码不合理!</s:String>
+    <s:String x:Key="A_ErrorIllegalPwdSign">签名密码不合理!</s:String>
+    <s:String x:Key="A_ErrorCurrPwd">当前用户登录密码错误!</s:String>
+    <s:String x:Key="A_ErrorSwitchPwd">切换用户登录密码错误!</s:String>
+    <s:String x:Key="A_ErrorInitialPwd">初始密码错误!</s:String>
+    <s:String x:Key="A_ErrorFirstModifyPwd">用户第一次登录,请先修改密码!</s:String>
+    <s:String x:Key="A_ErrorFirstResetPwd">用户密码重置后第一次登录,请先修改密码!</s:String>
+    <s:String x:Key="A_ErrorTimePwd">超过密码最大使用期限,请先修改密码!</s:String>
+    <s:String x:Key="A_ErrorDayPwd">密码剩余有效天数:</s:String>
+    <s:String x:Key="A_ErrorDisUser">用户被禁用!请联系管理员!</s:String>
+    <s:String x:Key="A_ErrorLockUser">用户被锁定!请联系管理员!</s:String>
+    <s:String x:Key="A_ErrorNumPwd">密码剩余输入次数:</s:String>
+    <s:String x:Key="A_ErrorPermission">权限不足!</s:String>
+
+    <s:String x:Key="A_UserDelNot">该用户不可删除 !</s:String>
+    <s:String x:Key="A_UserCurrDelNot">当前登录用户不可删除 !</s:String>
+    <s:String x:Key="A_PermissionDelNot">该权限不可删除 !</s:String>
+
+
+
+
+    <!--AuditTrails 审计跟踪-->
+    <s:String x:Key="AT_Info1" xml:space="preserve">每页行数</s:String>
+    <s:String x:Key="AT_Info2">显示</s:String>
+    <s:String x:Key="AT_Info3">行，共</s:String>
+    <s:String x:Key="AT_Info4">页，总计</s:String>
+    <s:String x:Key="AT_Info5">行</s:String>
+
+    <s:String x:Key="AT_Type">类型</s:String>
+    <s:String x:Key="AT_Date">日期</s:String>
+    <s:String x:Key="AT_BatchT">批时间</s:String>
+    <s:String x:Key="AT_BatchV">批体积</s:String>
+    <s:String x:Key="AT_BatchCV">批柱体积</s:String>
+    <s:String x:Key="AT_UserName">用户名</s:String>
+    <s:String x:Key="AT_Description">描述</s:String>
+    <s:String x:Key="AT_Operation">操作</s:String>
+
+    <s:String x:Key="AT_AuditTrailWin">审计跟踪</s:String>
+    <s:String x:Key="AT_Search">查询</s:String>
+    <s:String x:Key="AT_Out">导出</s:String>
+    <s:String x:Key="AT_BeginTime">起始时间 : </s:String>
+    <s:String x:Key="AT_EndTime">终止时间 : </s:String>
+    <s:String x:Key="AT_Type1" xml:space="preserve">类型 : </s:String>
+    <s:String x:Key="AT_UserName1" xml:space="preserve">用户名 : </s:String>
+
+    <s:String x:Key="AT_OutputWin">审计跟踪导出</s:String>
+
+
+
+
+    <!--Chromatogram 画图-->
+    <s:String x:Key="Ch_CurveColorWin">对比属性设置</s:String>
+    
+    <s:String x:Key="Ch_CurveSetStyleWin">图谱属性设置</s:String>
+    <s:String x:Key="Ch_MarkerAddWin">标记添加</s:String>
+    <s:String x:Key="Ch_MarkerDelWin">标记删除</s:String>
+
+
+
+
+
+    <!--Collection 组分收集-->
+    <!--enum-EnumCollectionType-->
+    <s:String x:Key="Coll_EnumCollectionType_Waste">废液口(不收集)</s:String>
+    <s:String x:Key="Coll_EnumCollectionType_Valve">使用收集阀</s:String>
+    <s:String x:Key="Coll_EnumCollectionType_Collector">使用组分收集器</s:String>
+    
+    <s:String x:Key="Coll_CollectionItemWin">收集行设置</s:String>
+    <s:String x:Key="Coll_Type1" xml:space="preserve">类型 : </s:String>
+    <s:String x:Key="Coll_Length1" xml:space="preserve">持续值 : </s:String>
+    <s:String x:Key="Coll_ThresholdSlope1" xml:space="preserve">阈值/斜率 : </s:String>
+    <s:String x:Key="Coll_ThresholdBegin1" xml:space="preserve">起始(阈)值 : </s:String>
+    <s:String x:Key="Coll_ThresholdEnd1" xml:space="preserve">结束(阈)值 : </s:String>
+    <s:String x:Key="Coll_SlopeJudge1" xml:space="preserve">斜率比较 : </s:String>
+    <s:String x:Key="Coll_Slope1" xml:space="preserve">斜率 : </s:String>
+    <s:String x:Key="Coll_ObjOne1" xml:space="preserve">判断项一 : </s:String>
+    <s:String x:Key="Coll_ObjTwo1" xml:space="preserve">判断项二 : </s:String>
+    <s:String x:Key="Coll_ObjSelect1" xml:space="preserve">判断选择 : </s:String>
+    <s:String x:Key="Coll_ObjRelation1" xml:space="preserve">逻辑关系 : </s:String>
+    <s:String x:Key="Coll_PositionStart1" xml:space="preserve">收集起始 : </s:String>
+    <s:String x:Key="Coll_PositionType1" xml:space="preserve">收集方式 : </s:String>
+    <s:String x:Key="Coll_PositionFixed1" xml:space="preserve">固定位置 : </s:String>
+    <s:String x:Key="Coll_PositionLoop1" xml:space="preserve">起始位置 : </s:String>
+    <s:String x:Key="Coll_PositionDirection1" xml:space="preserve">循环方向 : </s:String>
+
+    <s:String x:Key="Coll_ThresholdSlope_Threshold">阈值</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Slope">斜率</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_ThresholdSlope">阈值/斜率</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Greater">大于</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Less">小于</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Threshold_M">阈值(多)</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Slope_M">斜率(多)</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_ThresholdSlope_M">阈值/斜率(多)</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Greater_M">大于(多)</s:String>
+    <s:String x:Key="Coll_ThresholdSlope_Less_M">小于(多)</s:String>
+
+    <s:String x:Key="Coll_GreaterLess_Greater">大于</s:String>
+    <s:String x:Key="Coll_GreaterLess_Less">小于</s:String>
+
+    <s:String x:Key="Coll_Obj_Single">单</s:String>
+    <s:String x:Key="Coll_Obj_Double">双</s:String>
+    
+    <s:String x:Key="Coll_Relation_Only">单</s:String>
+    <s:String x:Key="Coll_Relation_With">与</s:String>
+    <s:String x:Key="Coll_Relation_Or">或</s:String>
+    <s:String x:Key="Coll_Relation_ContainOnly">含(单)</s:String>
+    <s:String x:Key="Coll_Relation_ContainMulti">含(多)</s:String>
+    <s:String x:Key="Coll_Relation_FirstWith">满足对象一，再与</s:String>
+    <s:String x:Key="Coll_Relation_FirstOr">满足对象一，再或</s:String>
+
+    <s:String x:Key="Coll_PositionStart_Appoint">指定</s:String>
+    <s:String x:Key="Coll_PositionStart_Default">默认</s:String>
+    
+    <s:String x:Key="Coll_PositionType_Fixed">固定</s:String>
+    <s:String x:Key="Coll_PositionType_Loop">循环</s:String>
+
+    <s:String x:Key="Coll_Direction_Cond">固定</s:String>
+    <s:String x:Key="Coll_Direction_Up">升序</s:String>
+    <s:String x:Key="Coll_Direction_Down">降序</s:String>
+
+    <s:String x:Key="Coll_Position_Default">默认</s:String>
+
+    <s:String x:Key="Coll_Coll">收集</s:String>
+    <s:String x:Key="Coll_Waste">排废</s:String>
+
+    <s:String x:Key="Coll_Mark_M">手动收集标签</s:String>
+    <s:String x:Key="Coll_Mark_A">自动收集标签</s:String>
+
+    <s:String x:Key="Coll_Over">收集已满</s:String>
+
+
+
+
+    <!--ColumnList 色谱柱管理-->
+    <s:String x:Key="C_ColumnHandlingWin">色谱柱处理</s:String>
+    <s:String x:Key="C_RunParameters">运行参数</s:String>
+    <s:String x:Key="C_Details">详细列举</s:String>
+    <s:String x:Key="C_Parameters">参数</s:String>
+    <s:String x:Key="C_Value">值</s:String>
+    <s:String x:Key="C_Unit">单位</s:String>
+
+    <s:String x:Key="C_Any">通用</s:String>
+    <s:String x:Key="C_Affinity">亲和层析</s:String>
+    <s:String x:Key="C_AnionExchange">阴离子交换层析</s:String>
+    <s:String x:Key="C_CationExchange">阳离子交换层析</s:String>
+    <s:String x:Key="C_Chromatofocusing">层析聚焦</s:String>
+    <s:String x:Key="C_Desalting">脱盐</s:String>
+    <s:String x:Key="C_GelFiltration">凝胶过滤</s:String>
+    <s:String x:Key="C_HIC">疏水作用层析</s:String>
+    <s:String x:Key="C_RPC">反相层析</s:String> 
+
+    <s:String x:Key="C_RPTec">技术</s:String>
+    <s:String x:Key="C_RPCVU">柱体积单位</s:String>
+    <s:String x:Key="C_RPCV">柱体积</s:String>
+    <s:String x:Key="C_RPPTU">压力单位</s:String>
+    <s:String x:Key="C_RPPPT">*最大 pre-column 压力</s:String>
+    <s:String x:Key="C_RPDPT">*最大 delta column 压力</s:String>
+    <s:String x:Key="C_RPDFIT">*默认流速</s:String>
+    <s:String x:Key="C_RPFIT">*最大流速</s:String>
+    <s:String x:Key="C_RPDLFIT">默认线性流速</s:String>
+    <s:String x:Key="C_RPLFIT">最大线性流速</s:String>
+    <s:String x:Key="C_RPMINPHS">最小pH(短期)</s:String>
+    <s:String x:Key="C_RPMAXPHS">最大pH(短期)</s:String>
+    <s:String x:Key="C_RPMINPHL">最小pH(长期)</s:String>
+    <s:String x:Key="C_RPMAXPHL">最大pH(长期)</s:String>
+
+    <s:String x:Key="C_DHD">*柱直径</s:String>
+    <s:String x:Key="C_DBH">*柱高</s:String>
+    <s:String x:Key="C_DTLR">Typical加载范围</s:String>
+    <s:String x:Key="C_DTLV">总液相体积(Vt)</s:String>
+    <s:String x:Key="C_DVV">空体积(Vo)</s:String>
+    <s:String x:Key="C_DTPWAB">Typical峰宽at base</s:String>
+    <s:String x:Key="C_DAPD">平均粒径</s:String>
+    <s:String x:Key="C_DMWR">分子量范围</s:String>
+
+    <s:String x:Key="C_ColumnItemWin">色谱柱信息</s:String>
+
+    <s:String x:Key="C_OutputWin">色谱柱处理导出</s:String>
+
+
+
+
+
+    <!--Communication 通信配置-->
+    <s:String x:Key="Com_Monitor_Judge1" xml:space="preserve">逻辑判断 : </s:String>
+    <s:String x:Key="Com_Monitor_MoreThan1" xml:space="preserve">大于 : </s:String>
+    <s:String x:Key="Com_Monitor_LessThan1" xml:space="preserve">小于 : </s:String>
+    <s:String x:Key="Com_Monitor_Stability1" xml:space="preserve">稳定 : </s:String>
+    
+    <s:String x:Key="Com_AddressPortWin">地址端口配置</s:String>
+
+    <s:String x:Key="Com_AlarmWarningWin">警报警告</s:String>
+
+    <s:String x:Key="Com_CalOEMCDWin">Cd校准设置</s:String>
+    <s:String x:Key="Com_CalOEMCDInfo" xml:space="preserve">    Cd电极校准步骤：
+        1. 准备好四种已知电导的校准液，电导依次为0,1.413,12.880和80.000(mS/cm)；
+        2. 点击“开始校准”按钮；
+        3. 将电极浸入校准液1中，待Cd读值稳定后，输入校准液Cd值，点击“校准点1”；
+        4. 将电极浸入校准液2中，待Cd读值稳定后，输入校准液Cd值，点击“校准点2”；
+        5. 将电极浸入校准液3中，待Cd读值稳定后，输入校准液Cd值，点击“校准点3”；
+        6. 将电极浸入校准液4中，待Cd读值稳定后，输入校准液Cd值，电极“校准点4”；
+        7. 校准完成，点击“退出”按钮，退出校准。
+    </s:String>
+    <s:String x:Key="Com_CalCD">实时Cd值</s:String>
+    <s:String x:Key="Com_CalTemp">实时温度值(℃)</s:String>
+    <s:String x:Key="Com_StandardSolutions1">校准液1</s:String>
+    <s:String x:Key="Com_Standard1">校准点1</s:String>
+    <s:String x:Key="Com_StandardSolutions2">校准液2</s:String>
+    <s:String x:Key="Com_Standard2">校准点2</s:String>
+    <s:String x:Key="Com_StandardSolutions3">校准液3</s:String>
+    <s:String x:Key="Com_Standard3">校准点3</s:String>
+    <s:String x:Key="Com_StandardSolutions4">校准液4</s:String>
+    <s:String x:Key="Com_Standard4">校准点4</s:String>
+    <s:String x:Key="Com_CalStart">校准开始</s:String>
+    <s:String x:Key="Com_CalStop">校准结束</s:String>
+    
+    <s:String x:Key="Com_CalOEMPHWin">pH校准设置</s:String>
+    <s:String x:Key="Com_CalOEMPHInfo" xml:space="preserve">    pH电极校准步骤：
+        1. 准备好校准液1，校准液2,校准液3，PH为4.0,7.0,10.0(±1)；
+        2. 点击“开始校准”按钮；
+        3. 将电极浸入校准液1中，待pH读值稳定后，输入校准液pH值，点击“校准点1”按钮；
+        4. 将电极浸入校准液2中，待pH读值稳定后，输入校准液pH值，点击“校准点2”按钮；
+        5. 将电极浸入校准液3中，待pH读值稳定后，输入校准液pH值，点击“校准点3”按钮；
+        6. 校准完成，点击“退出”按钮，退出校准。
+    </s:String>
+    <s:String x:Key="Com_CalPH">实时pH值</s:String>
+
+    <s:String x:Key="Com_CollectorQBHModeWin">组分收集器模式设置</s:String>
+    <s:String x:Key="Com_TrayLeftCount1">左托盘试管数量 : </s:String>
+    <s:String x:Key="Com_TrayRightCount1">右托盘试管数量 : </s:String>
+    <s:String x:Key="Com_TrayLeftMode1">左托盘模式 :</s:String>
+    <s:String x:Key="Com_TrayRightMode1">右托盘模式 :</s:String>
+
+    <s:String x:Key="Com_CollectorHBModeWin">组分收集器模式设置</s:String>
+    <s:String x:Key="Com_FindMode">模式搜索</s:String>
+
+    <s:String x:Key="Com_CommunSetsWin">通信配置</s:String>
+    <s:String x:Key="Com_CommunicationList1" xml:space="preserve">通讯列表 : </s:String>
+    <s:String x:Key="Com_SystemName">系统名称</s:String>
+    <s:String x:Key="Com_SystemMode">系统类型</s:String>
+    <s:String x:Key="Com_SystemNote">系统备注</s:String>
+    <s:String x:Key="Com_CreationDate">创建日期</s:String>
+    <s:String x:Key="Com_Status">状态</s:String>
+
+    <s:String x:Key="Com_ConfAlarmWarningWin">警报警告配置</s:String>
+    
+    <s:String x:Key="Com_EditCommunWin">编辑通信</s:String>
+    <s:String x:Key="Com_SystemName1" xml:space="preserve">系统名称 : </s:String>
+    <s:String x:Key="Com_SystemNote1" xml:space="preserve">系统备注 : </s:String>
+    <s:String x:Key="Com_CommunList1" xml:space="preserve">配置列表:</s:String>
+    <s:String x:Key="Com_Check">检测</s:String>
+    <s:String x:Key="Com_ComconfList1" xml:space="preserve">仪器列表:</s:String>
+    <s:String x:Key="Com_Name">名称</s:String>
+    <s:String x:Key="Com_Model">型号</s:String>
+    <s:String x:Key="Com_PortName">串口号</s:String>
+    <s:String x:Key="Com_Address">IP地址</s:String>
+    <s:String x:Key="Com_Port">端口号</s:String>
+    <s:String x:Key="Com_ConstName">标识名</s:String>
+    <s:String x:Key="Com_DlyName">自定义名</s:String>
+    <s:String x:Key="Com_SetTime">设定时间</s:String>
+    <s:String x:Key="Com_RunTime">运行时间</s:String>
+    <s:String x:Key="Com_Calibration">校准日期</s:String>
+    <s:String x:Key="Com_Enable">启用</s:String>
+    <s:String x:Key="Com_Del">删除</s:String>
+    <s:String x:Key="Com_Version">版本号</s:String>
+    <s:String x:Key="Com_Serial">序列号</s:String>
+    <s:String x:Key="Com_Result">结果</s:String>
+    <s:String x:Key="Com_ID">标识号</s:String>
+    <s:String x:Key="Com_SignalName">信号名</s:String>
+    <s:String x:Key="Com_Unit">单位</s:String>
+    <s:String x:Key="Com_Color">颜色</s:String>
+    <s:String x:Key="Com_Show">显隐</s:String>
+
+
+    <s:String x:Key="Com_EditProcessPictureWin">编辑流路图</s:String>
+    <s:String x:Key="Com_HVAdd">水平垂直添加</s:String>
+    <s:String x:Key="Com_VHAdd">垂直水平添加</s:String>
+    <s:String x:Key="Com_AdjustPt1" xml:space="preserve">调整坐标 : </s:String>
+    <s:String x:Key="Com_AdjustPath1" xml:space="preserve">调整路径 : </s:String>
+    <s:String x:Key="Com_Circle1" xml:space="preserve">自定义接点 : </s:String>
+    <s:String x:Key="Com_ProcessPictureSize1" xml:space="preserve">流路图边界 : </s:String>
+
+
+    <s:String x:Key="Com_NewCommunWin">新建通信</s:String>
+    <s:String x:Key="Com_ListAccess">可选列表</s:String>
+    <s:String x:Key="Com_ListSelect">已选列表</s:String>
+    <s:String x:Key="Com_IPPort">IP地址选择</s:String>
+    <s:String x:Key="Com_AutoSearch">自动扫描</s:String>
+    <s:String x:Key="Com_StopSearch">停止扫描</s:String>
+    <s:String x:Key="Com_WaitSearch">扫描中...</s:String>
+    <s:String x:Key="Com_Msg_ConfigIllegal">配置不合理 ! </s:String>
+
+
+    <s:String x:Key="Com_Sampler">进样器</s:String>
+    <s:String x:Key="Com_Valve">阀</s:String>
+    <s:String x:Key="Com_Pump">泵</s:String>
+    <s:String x:Key="Com_Detector">检测器</s:String>
+    <s:String x:Key="Com_Collector">收集器</s:String>
+    <s:String x:Key="Com_Other">其它</s:String>
+
+    
+    <s:String x:Key="Com_AW_Disabled">禁用</s:String>
+    <s:String x:Key="Com_AW_Enabled">启用</s:String>
+    <s:String x:Key="Com_AW_Dly">自定义</s:String>
+
+    <s:String x:Key="Com_SystemConfigWin">仪表参数</s:String>
+    <s:String x:Key="Com_Column">色谱柱参数</s:String>
+    <s:String x:Key="Com_Wash">冲洗参数</s:String>
+    <s:String x:Key="Com_WashTime1" xml:space="preserve">冲洗时间(min) : </s:String>
+    <s:String x:Key="Com_WashFlowPer1" xml:space="preserve">冲洗流速比(%) : </s:String>
+    <s:String x:Key="Com_ASJudge1" xml:space="preserve">逻辑判断:</s:String>
+    <s:String x:Key="Com_ASMin1" xml:space="preserve">最小设定[0~100] : </s:String>
+    <s:String x:Key="Com_ASDelayLength1" xml:space="preserve">延迟长度 : </s:String>
+    <s:String x:Key="Com_ASDelayUnit1" xml:space="preserve">延迟单位 : </s:String>
+    <s:String x:Key="Com_pHCdUVDelayVol">检测器延迟体积</s:String>
+    <s:String x:Key="Com_DefaultDelayVol1">默认延迟体积 : </s:String>
+    <s:String x:Key="Com_AlarmWarning">警报警告参数</s:String>
+    <s:String x:Key="Com_Coll">组分收集器</s:String>
+    <s:String x:Key="Com_CollBottleVol">管路体积</s:String>
+    <s:String x:Key="Com_CollPallet">托盘设置</s:String>
+    <s:String x:Key="Com_AS">气泡传感器参数</s:String>
+    <s:String x:Key="Com_Cal">校准设置</s:String>
+    <s:String x:Key="Com_OtherSet">其它</s:String>
+    <s:String x:Key="Com_ResetValve">运行结束阀归位</s:String>
+    <s:String x:Key="Com_CloseUV">运行结束紫外灯关闭</s:String>
+
+    <s:String x:Key="Com_DelComError">该配置存在数据,不可删除!</s:String>
+    <s:String x:Key="Com_ComError">通讯故障</s:String>
+
+
+    <!--Database 数据库设置-->
+    <s:String x:Key="DB_DBBackupRestoreWin">数据库备份还原设置</s:String>
+    <s:String x:Key="DB_BackupRestore">备份还原</s:String>
+    <s:String x:Key="DB_Backup">备份</s:String>
+    <s:String x:Key="DB_Restore">还原</s:String>
+    <s:String x:Key="DB_Local">本地</s:String>
+    <s:String x:Key="DB_Remote">远程</s:String>
+    <s:String x:Key="DB_Path">路    径 : </s:String>
+    <s:String x:Key="DB_IP">地址IP : </s:String>
+    <s:String x:Key="DB_UserName">用户名 : </s:String>
+    <s:String x:Key="DB_Pwd">密    码 : </s:String>
+    <s:String x:Key="DB_FileName">文件名 : </s:String>
+    <s:String x:Key="DB_BackupSuccess">备份操作执行成功!</s:String>
+    <s:String x:Key="DB_BackupFail">备份作执行失败!请联系软件工程师!</s:String>
+    <s:String x:Key="DB_RestoreSuccess">还原操作执行成功!请退出软件重新登录!</s:String>
+    <s:String x:Key="DB_RestoreFail">还原操作执行失败!请联系软件工程师!</s:String>
+    <s:String x:Key="DB_PathLocal">请选择本地备份路径 !</s:String>
+    <s:String x:Key="DB_PathRemote">请选择远程备份路径 !</s:String>
+
+    <s:String x:Key="DB_DBAutoBackupWin">数据库自动备份设置</s:String>
+    <s:String x:Key="DB_Parameter">参数</s:String>
+    <s:String x:Key="DB_AutoBackup1">自动备份 : </s:String>
+    <s:String x:Key="DB_Frequency1">备份频率(天) : </s:String>
+    <s:String x:Key="DB_MaxCount1">最大保留 : </s:String>
+    <s:String x:Key="DB_PathSelect1">位置选择 : </s:String>
+
+    <s:String x:Key="DB_AutoBackupSuccess">自动备份操作执行成功</s:String>
+    <s:String x:Key="DB_AutoBackupFail">自动备份作执行失败</s:String>
+
+    <s:String x:Key="DB_AutoBackupIng">系统正在进行数据自动备份中，请稍后 ! </s:String>
+    
+
+
+
+
+    <!--Evaluation 结果分析-->
+    <s:String x:Key="E_EvaluationWin">结果分析</s:String>
+    <s:String x:Key="menuFile">文件</s:String>
+    <s:String x:Key="menuFileOpen">打开</s:String>
+    <s:String x:Key="menuFileContrast">对比</s:String>
+    <s:String x:Key="menuResult">结果</s:String>
+    <s:String x:Key="menuResultPDF">PDF</s:String>
+    <s:String x:Key="menuResultPDFOut">导出</s:String>
+    <s:String x:Key="menuResultPDFPreview">预览</s:String>
+    <s:String x:Key="E_IntegralResult">积分结果</s:String>
+    <s:String x:Key="E_CalsResult">计算结果</s:String>
+    <s:String x:Key="E_AuditTrails">审计跟踪</s:String>
+    <s:String x:Key="E_Method">方法信息</s:String>
+    <s:String x:Key="E_Attachment">附件信息</s:String>
+    <s:String x:Key="E_PeakWidth">峰宽</s:String>
+    <s:String x:Key="E_PeakBegin">峰起点</s:String>
+    <s:String x:Key="E_PeakEnd">峰终点</s:String>
+    <s:String x:Key="E_PeakAdd">添加正峰</s:String>
+    <s:String x:Key="E_PeakDel">删除峰</s:String>
+    <s:String x:Key="E_PeakFrontCut">前切</s:String>
+    <s:String x:Key="E_PeakBackCut">后切</s:String>
+    <s:String x:Key="E_PeakSeververtical">垂直分离</s:String>
+    <s:String x:Key="E_PeakSeverPeakValley">峰谷分离</s:String>
+
+    <s:String x:Key="E_Integration">积分</s:String>
+    <s:String x:Key="E_OutputSelect">导出选择</s:String>
+
+    <s:String x:Key="E_IntegrationSetWin">自动积分设置</s:String>
+    <s:String x:Key="E_IntegrationResult">积分结果</s:String>
+    <s:String x:Key="E_IntegrationCondition">积分条件</s:String>
+    <s:String x:Key="E_Filter1" xml:space="preserve">筛选 : </s:String>
+    <s:String x:Key="E_FilterMin">最值筛选</s:String>
+    <s:String x:Key="E_FilterCount">数量筛选</s:String>
+    <s:String x:Key="E_MinHeight1" xml:space="preserve">最小峰高 : </s:String>
+    <s:String x:Key="E_MinArea1" xml:space="preserve">最小峰面积 : </s:String>
+    <s:String x:Key="E_MinHalfWidth1" xml:space="preserve">最小半峰宽 : </s:String>
+    <s:String x:Key="E_PeakCount1" xml:space="preserve">峰数量 : </s:String>
+    <s:String x:Key="E_Original1" xml:space="preserve">原点 : </s:String>
+    <s:String x:Key="E_ColHeight1" xml:space="preserve">柱高 : </s:String>
+
+    <s:String x:Key="E_OutputSelectSetWin">导出选项设置</s:String>
+    <s:String x:Key="E_OutputIcon1" xml:space="preserve">图    标 : </s:String>
+    <s:String x:Key="E_OutputTitle1" xml:space="preserve">标    题 : </s:String>
+    <s:String x:Key="E_OutputNote1" xml:space="preserve">附加信息 : </s:String>
+    <s:String x:Key="E_OutputUser">用    户</s:String>
+    <s:String x:Key="E_OutputChromatogramName">色谱信息</s:String>
+    <s:String x:Key="E_OutputChromatogram">色 谱 图</s:String>
+    <s:String x:Key="E_OutputIntegration">积    分</s:String>
+    <s:String x:Key="E_OutputMethod">方    法</s:String>
+    <s:String x:Key="E_OutputLog">日    志</s:String>
+    <s:String x:Key="E_OutputNull">空</s:String>
+    <s:String x:Key="E_OutputCurr">当前</s:String>
+    <s:String x:Key="E_OutputAll">所有</s:String>
+
+    <s:String x:Key="E_OutputWin">结果分析导出</s:String>
+    
+    <s:String x:Key="E_PI_Name">名称</s:String>
+    <s:String x:Key="E_PI_RetentionTime">保留时间</s:String>
+    <s:String x:Key="E_PI_StartPt">起点</s:String>
+    <s:String x:Key="E_PI_EndPt">终点</s:String>
+    <s:String x:Key="E_PI_TopVal">峰值</s:String>
+    <s:String x:Key="E_PI_StartVal">起始值</s:String>
+    <s:String x:Key="E_PI_EndVal">终止值</s:String>
+    <s:String x:Key="E_PI_Height">峰高</s:String>
+    <s:String x:Key="E_PI_Area">峰面积</s:String>
+    <s:String x:Key="E_PI_AreaPer">峰面积百分比</s:String>
+    <s:String x:Key="E_PI_HalfWidth">半峰宽</s:String>
+    <s:String x:Key="E_PI_Tpn">理论塔板数</s:String>
+    <s:String x:Key="E_PI_TailingFactor">拖尾因子</s:String>
+    <s:String x:Key="E_PI_SymmetryFactor">不对称因子</s:String>
+    <s:String x:Key="E_PI_Resolution">分离度</s:String>
+
+
+
+
+
+    <!--Manual 手动-->
+    <s:String x:Key="M_ASWin">气泡传感器设置</s:String>
+
+    <s:String x:Key="M_CollectorWin">组分收集器设置</s:String>
+    <s:String x:Key="M_CollIndexStatusShow">位置状态显示</s:String>
+    <s:String x:Key="M_CollIndexStatusSet">位置状态设置</s:String>
+    <s:String x:Key="M_CollIndex1" xml:space="preserve">位置 : </s:String>
+    <s:String x:Key="M_CollStatus1" xml:space="preserve">状态 : </s:String>
+    <s:String x:Key="M_CollShortcutSet">快捷设置</s:String>
+    <s:String x:Key="M_CollInterveneSet">收集干预</s:String>
+    
+    
+    <s:String x:Key="M_ManualWin">手动编辑</s:String>
+    <s:String x:Key="M_Pump">泵</s:String>
+    <s:String x:Key="M_PumpSystem">系统泵</s:String>
+    <s:String x:Key="M_PumpSample">上样泵</s:String>
+    <s:String x:Key="M_Valve">阀</s:String>
+    <s:String x:Key="M_AS">气泡传感器</s:String>
+    <s:String x:Key="M_UV">紫外检测器</s:String>
+    <s:String x:Key="M_RI">示差检测器</s:String>
+    <s:String x:Key="M_Mixer">动态混合器</s:String>
+    <s:String x:Key="M_Collection">组分收集</s:String>
+    <s:String x:Key="M_CollectionValve">组分收集阀</s:String>
+    <s:String x:Key="M_CollectionCollector">组分收集器</s:String>
+    <s:String x:Key="M_Monitors">监控</s:String>
+    <s:String x:Key="M_AlarmWarning">警报警告</s:String>
+    <s:String x:Key="M_Marker">标记</s:String>
+    <s:String x:Key="M_PauseStop">暂停结束</s:String>
+    <s:String x:Key="M_Pause">暂停计数</s:String>
+    <s:String x:Key="M_Stop">结束计数</s:String>
+    <s:String x:Key="M_Other">其它</s:String>
+    <s:String x:Key="M_Position1" xml:space="preserve">位置 : </s:String>
+    <s:String x:Key="M_CountdownPause1" xml:space="preserve">暂停倒计时 : </s:String>
+    <s:String x:Key="M_CountdownStop1" xml:space="preserve">停止倒计时 : </s:String>
+    <s:String x:Key="M_MonitorAction1" xml:space="preserve">触发操作 : </s:String>
+    <s:String x:Key="M_MonitorSetting1" xml:space="preserve">触发设置 : </s:String>
+
+    <s:String x:Key="M_MixerWin">动态混合器设置</s:String>
+
+    <s:String x:Key="M_PumpSystemWin">系统泵设置</s:String>
+    <s:String x:Key="M_SystemFlow">系统流速</s:String>
+    <s:String x:Key="M_SetFlowRate">设置流速</s:String>
+    <s:String x:Key="M_SetFlowPer">设置比例</s:String>
+    <s:String x:Key="M_Conc">比例%</s:String>
+    <s:String x:Key="M_Set">设置</s:String>
+    <s:String x:Key="M_PumpWash">泵清洗</s:String>
+    <s:String x:Key="M_SystemWash">系统清洗</s:String>
+    <s:String x:Key="M_StartWash">启动</s:String>
+    <s:String x:Key="M_StopWash">结束</s:String>
+    <s:String x:Key="M_StartWashA">启动A</s:String>
+    <s:String x:Key="M_StopWashA">结束A</s:String>
+    <s:String x:Key="M_StartWashB">启动B</s:String>
+    <s:String x:Key="M_StopWashB">结束B</s:String>
+    <s:String x:Key="M_StartWashC">启动C</s:String>
+    <s:String x:Key="M_StopWashC">结束C</s:String>
+    <s:String x:Key="M_StartWashD">启动D</s:String>
+    <s:String x:Key="M_StopWashD">结束D</s:String>
+    <s:String x:Key="M_SystemOut">出口阀</s:String>
+    <s:String x:Key="M_InjectionValve">柱位阀</s:String>
+
+    <s:String x:Key="M_PumpSampleWin">上样泵设置</s:String>
+    <s:String x:Key="M_SampleFlow">上样流速</s:String>
+
+    <s:String x:Key="M_RIWin">示差检测器设置</s:String>
+
+    <s:String x:Key="M_UVWin">紫外检测器设置</s:String>
+
+    <s:String x:Key="M_ValveWin">阀设置</s:String>
+
+    <s:String x:Key="M_ValveSwitch">阀切换</s:String>
+    
+    
+    
+
+
+    <!--MethodEdit 方法编辑-->
+    <!--enum-EnumAnswerType-->
+    <s:String x:Key="ME_EnumAnswerType_TextualInput">文本输入</s:String>
+    <s:String x:Key="ME_EnumAnswerType_NoAnswer">没有回答(问题只是提醒)</s:String>
+    <s:String x:Key="ME_EnumAnswerType_NumericValue">数值</s:String>
+    <s:String x:Key="ME_EnumAnswerType_MultipleChoice">多项选择</s:String>
+    <!--enum-EnumGroupType-->
+    <s:String x:Key="ME_EnumGroupType_FlowValveLength">阀路梯度列表</s:String>
+    <s:String x:Key="ME_EnumGroupType_FlowRate">流速设置</s:String>
+    <s:String x:Key="ME_EnumGroupType_Mixer">动态混合器设置</s:String>
+    <s:String x:Key="ME_EnumGroupType_BPV">旁通阀设置</s:String>
+    <s:String x:Key="ME_EnumGroupType_UVReset">紫外检测器</s:String>
+    <s:String x:Key="ME_EnumGroupType_SampleApplicationTech">上样选择</s:String>
+    <s:String x:Key="ME_EnumGroupType_TVCV">运行持续</s:String>
+    <s:String x:Key="ME_EnumGroupType_FlowRatePer">梯度列表</s:String>
+    <s:String x:Key="ME_EnumGroupType_ValveSelection">阀路选择</s:String>
+    <s:String x:Key="ME_EnumGroupType_PHCDUVUntil">信号监视</s:String>
+    <s:String x:Key="ME_EnumGroupType_CollValveCollector">组分收集</s:String>
+    <s:String x:Key="ME_EnumGroupType_CIP">管路清洗</s:String>
+    <!--enum-EnumMethodMaintenance-->
+    <s:String x:Key="ME_EnumMethodMaintenance_ColumnCIP">柱清洗</s:String>
+    <s:String x:Key="ME_EnumMethodMaintenance_ColumnPerformanceTest">柱效测试</s:String>
+    <s:String x:Key="ME_EnumMethodMaintenance_SystemCIP">系统清洗</s:String>
+    <!--enum-EnumMethodPurification-->
+    <s:String x:Key="ME_EnumMethodPurification_AC">亲和层析</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_AIEX">阴离子交换层析</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_CIEX">阳离子交换层析</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_CF">聚焦层析</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_DS">脱盐</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_GF">凝胶过滤</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_HIC">疏水层析</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_MLT">手动循环填充</s:String>
+    <s:String x:Key="ME_EnumMethodPurification_RPC">反相层析</s:String>
+    <!--enum-EnumPhaseType-->
+    <s:String x:Key="ME_EnumPhaseType_ColumnCIP">柱清洗</s:String>
+    <s:String x:Key="ME_EnumPhaseType_SampleApplication">上样</s:String>
+    <s:String x:Key="ME_EnumPhaseType_ColumnWash">柱洗</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Elution">洗脱</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Equilibration">平衡</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Miscellaneous">其它</s:String>
+    <s:String x:Key="ME_EnumPhaseType_SystemCIP">系统清洗</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Personal">用户自定义</s:String>
+    <!--enum-EnumPHCDUVUntil-->
+    <s:String x:Key="ME_EnumPHCDUVUntil_Total">总共</s:String>
+    <s:String x:Key="ME_EnumPHCDUVUntil_Met">满足</s:String>
+    <!--enum-EnumResultType-->
+    <s:String x:Key="ME_EnumResultType_NoName">无指定</s:String>
+    <s:String x:Key="ME_EnumResultType_DlyName">指定名称</s:String>
+    <s:String x:Key="ME_EnumResultType_MethodName">方法名称</s:String>
+    <s:String x:Key="ME_EnumResultType_DateTime">日期</s:String>
+    <!--enum-EnumSAT-->
+    <s:String x:Key="ME_EnumSAT_ManualLoopFilling">手动填充</s:String>
+    <s:String x:Key="ME_EnumSAT_SamplePumpLoopFilling">上样泵填充</s:String>
+    <s:String x:Key="ME_EnumSAT_ISDOC">直接注入</s:String>
+
+    <!--UC-Canvas-MethodCanvasUC-->
+    <s:String x:Key="ME_CanvasBase">X轴基准值</s:String>
+    <s:String x:Key="ME_CanvasGradient">梯度</s:String>
+    <s:String x:Key="ME_CanvasPhase">阶段(块)</s:String>
+
+    <!--UC-Group-CIPUC-->
+    <s:String x:Key="ME_PTMMAITTSS">暂停以手动将所有入口移动到选定的解决方案</s:String>
+    <s:String x:Key="ME_VolumePerPosition1" xml:space="preserve">每个位置的体积 : </s:String>
+    <s:String x:Key="ME_ESVUITP1" xml:space="preserve">此阶段使用的估计溶液量 : </s:String>
+    <!--UC-Group-CollValveCollectorUC-->
+    <s:String x:Key="ME_FractionateSettings">组分收集设置</s:String>
+    <!--UC-Group-FlowRateUC-->
+    <s:String x:Key="ME_SameMSFlowRate">使用与方法设置相同的流速</s:String>
+    <!--UC-Group-FlowValveLengthUC-->
+    <s:String x:Key="ME_IncubationTime">培养时间(min)</s:String>
+    <!--UC-Group-PHCDUVUntilUC-->
+    <s:String x:Key="ME_TheTotalIs1" xml:space="preserve">总共 : </s:String>
+    <s:String x:Key="ME_TFCIM1" xml:space="preserve">满足以下条件 : </s:String>
+    <s:String x:Key="ME_SignalSelection1" xml:space="preserve">信号选择 : </s:String>
+    <s:String x:Key="ME_JudgmentLogic1" xml:space="preserve">判断逻辑 : </s:String>
+    <s:String x:Key="ME_PHMoreThan1" xml:space="preserve">pH大于 : </s:String>
+    <s:String x:Key="ME_PHLessThan1" xml:space="preserve">pH小于 : </s:String>
+    <s:String x:Key="ME_CDMoreThan1" xml:space="preserve">Cd大于 : </s:String>
+    <s:String x:Key="ME_CDLessThan1" xml:space="preserve">Cd小于 : </s:String>
+    <s:String x:Key="ME_UVMoreThan1" xml:space="preserve">UV大于 : </s:String>
+    <s:String x:Key="ME_UVLessThan1" xml:space="preserve">UV小于 : </s:String>
+    <s:String x:Key="ME_StabilityTime1" xml:space="preserve">稳定时间 : </s:String>
+    <s:String x:Key="ME_MaximumWash1" xml:space="preserve">最大冲洗 : </s:String>
+    <!--UC-Group-SampleApplicationTechUC-->
+    <s:String x:Key="ME_AutoSampleValve">注意!该功能需要搭配自动进样阀.</s:String>
+    <s:String x:Key="ME_NTSPWBWWSPTSA">注意!上样泵将在样品应用前用样品清洗.</s:String>
+    <s:String x:Key="ME_Sample">进样</s:String>
+    <s:String x:Key="ME_Sample1" xml:space="preserve">进样 : </s:String>
+    <s:String x:Key="ME_FillLoopWith1" xml:space="preserve">填充定量环 : </s:String>
+    <s:String x:Key="ME_EmptyLoopWith1" xml:space="preserve">加载定量环 : </s:String>
+    <!--UC-Group-UVResetUC-->
+    <s:String x:Key="ME_ResetUVMonitor">重置紫外线监视器(如果在净化之前平衡，建议使用)</s:String>
+    <!--UC-Group-ValveSelectionUC-->
+    <s:String x:Key="ME_SameMSValve">使用与方法设置相同的阀路</s:String>
+    <s:String x:Key="ME_FTSWTSB">用选定的缓冲液填充系统</s:String>
+
+    <!--DefineQuestionsWin-->
+    <s:String x:Key="ME_DefineQuestionsWin">定义问答</s:String>
+    <s:String x:Key="ME_Question1" xml:space="preserve">问题 : </s:String>
+    <s:String x:Key="ME_AnswerType1" xml:space="preserve">答案类型 : </s:String>
+    <s:String x:Key="ME_DefaultAnswer1" xml:space="preserve">默认答案 : </s:String>
+    <s:String x:Key="ME_Choice1" xml:space="preserve">选择 : </s:String>
+
+    <!--MethodEditorWin-->
+    <s:String x:Key="ME_MethodEditorWin">方法编辑</s:String>
+    <s:String x:Key="ME_AddPersonalPhase">新建用户自定义阶段</s:String>
+    <s:String x:Key="ME_DelPersonalPhase">删除用户自定义阶段</s:String>
+    <s:String x:Key="ME_MethodSettings">方法设置</s:String>
+    <s:String x:Key="ME_DlyPhase">自定义阶段</s:String>
+    <!--MethodEditorWin-Method Settings-Basic information -->
+    <s:String x:Key="ME_BasicInformation">基本信息</s:String>
+    <s:String x:Key="ME_CreateTime1" xml:space="preserve">创建日期 : </s:String>
+    <s:String x:Key="ME_ModifyTime1" xml:space="preserve">修改日期 : </s:String>
+    <!--MethodEditorWin-Method Settings-Loop settings-->
+    <s:String x:Key="ME_LoopSettings" xml:space="preserve">循环设置</s:String>
+    <s:String x:Key="ME_LoopSet1" xml:space="preserve">循环次数 : </s:String>
+    <!--MethodEditorWin-Method Settings-Column selection-->
+    <s:String x:Key="ME_ColumnSelection">色谱柱选择</s:String>
+    <s:String x:Key="ME_ColumnName1" xml:space="preserve">色谱柱名称 : </s:String>
+    <s:String x:Key="ME_ColumnVolume1" xml:space="preserve">柱体积 : </s:String>
+    <s:String x:Key="ME_PressurelimitPreColumn1" xml:space="preserve">柱前压力限制 : </s:String>
+    <s:String x:Key="ME_PressurelimitDeltaColumn1" xml:space="preserve">柱压差限制 : </s:String>
+    <s:String x:Key="ME_UseFlowRestrictor">启用流速限制</s:String>
+    <!--MethodEditorWin-Method Settings-Unit selection-->
+    <s:String x:Key="ME_UnitSelection">单位选择</s:String>
+    <s:String x:Key="ME_MethodBaseUnit1" xml:space="preserve">方法基本单位 : </s:String>
+    <s:String x:Key="ME_FlowRateUnit1" xml:space="preserve">流速单位 : </s:String>
+    <!--MethodEditorWin-Method Settings-Valve selection-->
+    <s:String x:Key="ME_ValveSelection">阀路选择</s:String>
+    <!--MethodEditorWin-Method Settings-Monitor settings-->
+    <s:String x:Key="ME_UVSettings">紫外检测器设置</s:String>
+    <!--MethodEditorWin-Method Settings-Air sensor alarm-->
+    <s:String x:Key="ME_AirSensorAlarm">气泡传感器警报</s:String>
+    <!--MethodEditorWin-Method Settings-AlarmWarning-->
+    <s:String x:Key="ME_AlarmWarning">警报警告</s:String>
+    <s:String x:Key="ME_AlarmWarningSetting">警报警告参数</s:String>
+    <!--MethodEditorWin-Method Settings-Other-->
+    <s:String x:Key="ME_ResultName">结果名称</s:String>
+    <s:String x:Key="ME_StartProtocol">启动协议</s:String>
+    <s:String x:Key="ME_MethodNotes">方法记录</s:String>
+    <!--MethodEditorWin-Miscellaneous-->
+    <s:String x:Key="ME_SetMark">设置标记</s:String>
+    <s:String x:Key="ME_MethodDelay">方法延迟</s:String>
+    <s:String x:Key="ME_Message">信息</s:String>
+    <s:String x:Key="ME_PauseAfterMessage">显示信息后暂停</s:String>
+    <s:String x:Key="ME_PauseTimer">暂停时间</s:String>
+
+    <!--MethodQueueWin-->
+    <s:String x:Key="ME_MethodQueueWin">方法队列</s:String>
+
+    <!--NewMethodWin-->
+    <s:String x:Key="ME_NewMethodWin">新建方法</s:String>
+    <s:String x:Key="ME_Type1" xml:space="preserve">方法类型 : </s:String>
+    <s:String x:Key="ME_Predefined1" xml:space="preserve">预定义方法 : </s:String>
+    <s:String x:Key="ME_Purification1" xml:space="preserve">纯化 : </s:String>
+    <s:String x:Key="ME_Maintenance1" xml:space="preserve">保养 : </s:String>
+    <s:String x:Key="ME_Empty">空方法</s:String>
+    <s:String x:Key="ME_Name1" xml:space="preserve">方法名称 : </s:String>
+
+    <!--NotesWin-->
+    <s:String x:Key="ME_NotesWin">方法记录</s:String>
+    <s:String x:Key="ME_Notes1" xml:space="preserve">方法记录 : </s:String>
+
+    <!--OutputWin-->
+    <s:String x:Key="ME_OutputWin">方法编辑导出</s:String>
+
+    <!--PumpSampleWin-->
+    <s:String x:Key="ME_PumpSampleWin">上样泵干预设置</s:String>
+
+    <!--PumpSystemWin-->
+    <s:String x:Key="ME_PumpSystemWin">系统泵干预设置</s:String>
+
+    <!--PersonalPhaseWin-->
+    <s:String x:Key="ME_PersonalPhaseWin">用户自定义方法阶段设置</s:String>
+    <s:String x:Key="ME_Attributes">属性设置</s:String>
+    <s:String x:Key="ME_FillSystem">填充系统</s:String>
+
+    <!--RenamePhaseNameWin-->
+    <s:String x:Key="ME_RenamePhaseNameWin">方法阶段重命名</s:String>
+    <s:String x:Key="ME_PhaseOld1" xml:space="preserve">阶段原名称 : </s:String>
+    <s:String x:Key="ME_PhaseNew1" xml:space="preserve">阶段新名称 : </s:String>
+
+    <!--ResultWin-->
+    <s:String x:Key="ME_ResultWin">结果名称</s:String>
+    <s:String x:Key="ME_ResultName1" xml:space="preserve">结果名称 : </s:String>
+    <s:String x:Key="ME_AddUniqueIdentifier">增加唯一标识符</s:String>
+
+    <!--Other-->
+    <s:String x:Key="labMECC_CMS">维护步骤</s:String>
+    <s:String x:Key="labMECPT_DI">Direct injection</s:String>
+    <s:String x:Key="labMECPT_LL">Load loop</s:String>
+    <s:String x:Key="labMECPT_AS">Apply sample</s:String>
+    <s:String x:Key="labMECPT_ES">Elute sample</s:String>
+    <s:String x:Key="labMECW_Wash">清洗</s:String>
+    <s:String x:Key="labMECW_CCW">Conditional column wash</s:String>
+    <s:String x:Key="labMECW_DBCWW">Delay before column wash watch</s:String>
+    <s:String x:Key="labMEE_GS">Gradient segment</s:String>
+    <s:String x:Key="labMEEq_Equilibrate">Equilibrate</s:String>
+    <s:String x:Key="labMEEq_CE">Conditional equilibration</s:String>
+
+
+    <s:String x:Key="ME_Desc_New">新建方法</s:String>
+    <s:String x:Key="ME_Desc_Update">更新方法</s:String>
+    <s:String x:Key="ME_Desc_Rename">重命名方法</s:String>
+    <s:String x:Key="ME_Desc_Delete">删除方法</s:String>
+    <s:String x:Key="ME_Desc_Send">发送方法</s:String>
+    <s:String x:Key="ME_Desc_Run">方法或队列正在运行中</s:String>
+
+    <s:String x:Key="ME_Desc_Queue_New">新建方法队列</s:String>
+    <s:String x:Key="ME_Desc_Queue_Update">更新方法队列</s:String>
+    <s:String x:Key="ME_Desc_Queue_Rename">重命名方法队列</s:String>
+    <s:String x:Key="ME_Desc_Queue_Delete">删除方法队列</s:String>
+    <s:String x:Key="ME_Desc_Queue_Send">发送方法队列</s:String>
+
+    <s:String x:Key="ME_Msg_SaveYes">方法保存成功 !</s:String>
+    <s:String x:Key="ME_Msg_UpdateYes">方法更新成功 !</s:String>
+    <s:String x:Key="ME_Msg_DeleteYes">方法删除成功 !</s:String>
+    <s:String x:Key="ME_Msg_CopyYes">方法复制成功 !</s:String>
+    <s:String x:Key="ME_Msg_SendYes">方法发送成功 !</s:String>
+    
+    <s:String x:Key="ME_Msg_Queue_SaveYes">方法队列保存成功 !</s:String>
+    <s:String x:Key="ME_Msg_Queue_UpdateYes">方法队列更新成功 !</s:String>
+    <s:String x:Key="ME_Msg_Queue_DeleteYes">方法队列删除成功 !</s:String>
+    <s:String x:Key="ME_Msg_Queue_CopyYes">方法队列复制成功 !</s:String>
+
+    <s:String x:Key="ME_Msg_Stop">方法运行结束</s:String>
+    <s:String x:Key="ME_Msg_Queue_Stop">序列运行结束</s:String>
+    <s:String x:Key="ME_Msg_NullPhase">方法的阶段不可为空 !</s:String>
+    <s:String x:Key="ME_Msg_NullFlowRate">流速不可为0 !</s:String>
+
+    <s:String x:Key="ME_PhaseTitle">阶段名称</s:String>
+
+    <s:String x:Key="ME_Desc_Phase_New">新建用户自定义阶段成功</s:String>
+    <s:String x:Key="ME_Msg_ErrorConf">阶段配置不合理 ! </s:String>
+
+
+
+
+    <!--PassDog 加密狗-->
+    <s:String x:Key="PassDog_CheckSNWin">SN加密校验</s:String>
+    <s:String x:Key="PassDog_Check">校验</s:String>
+    
+    
+    
+    <!--Print 打印-->
+    <s:String x:Key="Print_OutputSetWin">导出设置</s:String>
+    <s:String x:Key="Print_MarkerStyle1" xml:space="preserve">标记样式 : </s:String>
+
+    <s:String x:Key="Print_PrintPreviewWin">导出预览</s:String>
+    
+    
+    
+    
+    <!--ProjectManager 项目管理-->
+    <s:String x:Key="PM_ProjectTreeUC_Msg_NotNull">不可删除非空目录 !</s:String>
+    
+    <s:String x:Key="PM_ProjectManagerWin">项目管理</s:String>
+    <s:String x:Key="PM_MethodEditor">方法编辑</s:String>
+    <s:String x:Key="PM_AddMethod">添加方法</s:String>
+    <s:String x:Key="PM_AddMethodQueue">添加方法序列</s:String>
+    <s:String x:Key="PM_Evaluation">结果分析</s:String>
+
+    <s:String x:Key="PM_RunLocationResultWin">运行结果位置名称</s:String>
+    
+    <s:String x:Key="PM_RunResultWin">运行结果名称</s:String>
+
+    <s:String x:Key="PM_TreeNodeInformationWin">属性信息</s:String>
+    <s:String x:Key="PM_CountMethod1">方法总数 : </s:String>
+    <s:String x:Key="PM_CountResult1">结果总数 : </s:String>
+
+    <s:String x:Key="PM_ResultInformationWin">属性信息</s:String>
+
+
+
+
+
+    <!--TubeStand 试管架管理-->
+    <s:String x:Key="TS_TubeStandWin">试管架管理</s:String>
+    <s:String x:Key="TS_Name">名称</s:String>
+    <s:String x:Key="TS_CollVolume">收集体积</s:String>
+    <s:String x:Key="TS_Volume">试管体积</s:String>
+    <s:String x:Key="TS_Count">试管数量</s:String>
+    <s:String x:Key="TS_Diameter">直径</s:String>
+    <s:String x:Key="TS_Height">高度</s:String>
+    <s:String x:Key="TS_Row">行</s:String>
+    <s:String x:Key="TS_Col">列</s:String>
+
+    <s:String x:Key="TS_TubeStandItemWin">试管架属性</s:String>
+    <s:String x:Key="TS_Name1">名称 :</s:String>
+    <s:String x:Key="TS_CollVolume1">收集体积 :</s:String>
+    <s:String x:Key="TS_Volume1">试管体积 :</s:String>
+    <s:String x:Key="TS_Count1">试管数量 :</s:String>
+    <s:String x:Key="TS_Diameter1">直径 :</s:String>
+    <s:String x:Key="TS_Height1">高度 :</s:String>
+    <s:String x:Key="TS_Row1">行 :</s:String>
+    <s:String x:Key="TS_Col1">列 :</s:String>
+</ResourceDictionary>

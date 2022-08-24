@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="HBBio.MethodEdit.CollValveCollectorUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HBBio.MethodEdit"
+             xmlns:share="clr-namespace:HBBio.Share"
+             xmlns:collection="clr-namespace:HBBio.Collection"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <share:EnumBoolConverter x:Key="EnumBoolConverter"></share:EnumBoolConverter>
+    </UserControl.Resources>
+    <GroupBox Header="{DynamicResource ME_EnumGroupType_CollValveCollector}" MinHeight="200">
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <RadioButton x:Name="rbtnInWaste" Grid.Row="0" Content="{DynamicResource Coll_EnumCollectionType_Waste}" IsChecked="{Binding Path=MEnum,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static collection:EnumCollectionType.Waste}}"/>
+                <RadioButton x:Name="rbtnValve" Grid.Row="2" Content="{DynamicResource Coll_EnumCollectionType_Valve}" IsChecked="{Binding Path=MEnum,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static collection:EnumCollectionType.Valve}}" Checked="rbtnUOV_Checked"/>
+                <RadioButton x:Name="rbtnCollector" Grid.Row="4" Content="{DynamicResource Coll_EnumCollectionType_Collector}" IsChecked="{Binding Path=MEnum,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static collection:EnumCollectionType.Collector}}" Checked="rbtnUFC_Checked"/>
+            </Grid>
+            <GroupBox Grid.Column="2" Header="{DynamicResource ME_FractionateSettings}">
+                <collection:CollectionUC x:Name="collectionUC" Margin="5" IsEnabled="{Binding MEnabledColl}"/>
+            </GroupBox>
+        </Grid>
+    </GroupBox>
+</UserControl>

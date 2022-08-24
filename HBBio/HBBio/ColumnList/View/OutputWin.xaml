@@ -1,0 +1,30 @@
+﻿<Window x:Class="HBBio.ColumnList.OutputWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.ColumnList"
+        mc:Ignorable="d"
+        Title="{DynamicResource C_OutputWin}" Height="463" Width="750" MinHeight="309" MinWidth="500" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBarTray>
+            <ToolBar>
+                <Button x:Name="btnWeight" Width="30" Height="30" FontWeight="Bold" Content="B" Click="btnWeight_Click"/>
+                <Button x:Name="btnStyle" Width="30" Height="30" FontStyle="Italic" Content="I" Click="btnStyle_Click"/>
+                <Button x:Name="btnUnderline" Width="30" Height="30" Content="U" Click="btnUnderline_Click"/>
+                <ComboBox x:Name="cboxSize" Width="50" SelectionChanged="cboxSize_SelectionChanged"/>
+                <ComboBox x:Name="cboxFamily" Width="100" SelectionChanged="cboxFamily_SelectionChanged"/>
+                <Button x:Name="btnColorFore" Width="30" Height="30" Click="btnColorFore_Click"/>
+                <Button x:Name="btnColorBack" Width="30" Height="30" Click="btnColorBack_Click"/>
+                <Button x:Name="btnMore" Width="30" Height="30" Content="M" Click="btnMore_Click"/>
+            </ToolBar>
+        </ToolBarTray>
+        <FlowDocumentReader x:Name="docReader" Grid.Row="1"/>
+        <Button x:Name="btnPrint" Grid.Row="2" Content="{DynamicResource btnPrint}" Click="btnPrint_Click"/>
+    </Grid>
+</Window>

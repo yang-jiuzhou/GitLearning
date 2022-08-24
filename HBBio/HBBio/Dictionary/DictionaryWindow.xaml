@@ -1,0 +1,263 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:HBBio"
+                    x:Class="HBBio.DicEvent"
+                    xmlns:administration="clr-namespace:HBBio.Administration"
+                    xmlns:auditTrails="clr-namespace:HBBio.AuditTrails"
+                    xmlns:chromatogram="clr-namespace:HBBio.Chromatogram"
+                    xmlns:collection="clr-namespace:HBBio.Collection"
+                    xmlns:columnList="clr-namespace:HBBio.ColumnList"
+                    xmlns:communication="clr-namespace:HBBio.Communication"
+                    xmlns:database="clr-namespace:HBBio.Database"
+                    xmlns:evaluation="clr-namespace:HBBio.Evaluation"
+                    xmlns:manual="clr-namespace:HBBio.Manual"
+                    xmlns:methodEdit="clr-namespace:HBBio.MethodEdit"
+                    xmlns:passDog="clr-namespace:HBBio.PassDog"
+                    xmlns:print="clr-namespace:HBBio.Print"
+                    xmlns:projectManager="clr-namespace:HBBio.ProjectManager"
+                    xmlns:share="clr-namespace:HBBio.Share"
+                    xmlns:systemControl="clr-namespace:HBBio.SystemControl"
+                    xmlns:tubeStand="clr-namespace:HBBio.TubeStand"
+                    >
+    <!--窗体标题样式-->
+    <Style x:Key="titleStyle" TargetType="Border">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Width" Value="Auto"></Setter>
+        <Setter Property="Height" Value="35"></Setter>
+        <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+    </Style>
+
+    <!--最小化按钮样式-->
+    <Style x:Key="minBtnStyle" TargetType="Button">
+        <Setter Property="Margin" Value="2,0,2,0"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Rectangle Width="26" Height="26" Fill="White" RadiusX="4" RadiusY="4" StrokeThickness="2"></Rectangle>
+                        <Rectangle Width="26" Height="26" Fill="#4f535d" StrokeThickness="2" RadiusX="4" RadiusY="4" Stroke="White"></Rectangle>
+                        <!--按钮内容-->
+                        <Grid>
+                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5">
+                                <Line StrokeThickness="2" Stroke="White" X1="0" Y1="8" X2="16" Y2="8"></Line>
+                            </Canvas>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsMouseOver"  Value="True">
+                            <Setter Property="Opacity" Value=".75"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--最大化按钮样式-->
+    <Style x:Key="maxBtnStyle" TargetType="Button">
+        <Setter Property="Margin" Value="2,0,2,0"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Rectangle Width="26" Height="26" Fill="White" RadiusX="4" RadiusY="4" StrokeThickness="2"></Rectangle>
+                        <Rectangle Width="26" Height="26" Fill="#4f535d" StrokeThickness="2" RadiusX="4" RadiusY="4" Stroke="White"></Rectangle>
+                        <!--按钮内容-->
+                        <Grid>
+                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5">
+                                <Rectangle Width="16" Height="16" Fill="#4f535d" StrokeThickness="2" Stroke="White"/>
+                            </Canvas>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsMouseOver"  Value="True">
+                            <Setter Property="Opacity" Value=".75"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--关闭按钮样式-->
+    <Style x:Key="closeBtnStyle" TargetType="Button">
+        <Setter Property="Margin" Value="2,0,2,0"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse x:Name="borderBtn" Width="26" Height="26" StrokeThickness="2" Fill="#4f535d" Stroke="White"></Ellipse>
+                        <!--按钮内容-->
+                        <Grid>
+                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5">
+                                <Line StrokeThickness="2" Stroke="White" X1="0" Y1="0" X2="16" Y2="16"></Line>
+                                <Line StrokeThickness="2" Stroke="White" X1="0" Y1="16" X2="16" Y2="0"></Line>
+                            </Canvas>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsMouseOver"  Value="True">
+                            <Setter Property="Opacity" Value=".75"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--窗口圆角-->
+    <CornerRadius x:Key="winCorner">
+        <CornerRadius.BottomLeft>5</CornerRadius.BottomLeft>
+        <CornerRadius.BottomRight>5</CornerRadius.BottomRight>
+        <CornerRadius.TopLeft>5</CornerRadius.TopLeft>
+        <CornerRadius.TopRight>5</CornerRadius.TopRight>
+    </CornerRadius>
+
+    <!--标题栏圆角-->
+    <CornerRadius x:Key="winTitleCorner">
+        <CornerRadius.BottomLeft>0</CornerRadius.BottomLeft>
+        <CornerRadius.BottomRight>0</CornerRadius.BottomRight>
+        <CornerRadius.TopLeft>3</CornerRadius.TopLeft>
+        <CornerRadius.TopRight>3</CornerRadius.TopRight>
+    </CornerRadius>
+
+    <!--状态栏圆角-->
+    <CornerRadius x:Key="winStatusCorner">
+        <CornerRadius.BottomLeft>5</CornerRadius.BottomLeft>
+        <CornerRadius.BottomRight>5</CornerRadius.BottomRight>
+        <CornerRadius.TopLeft>0</CornerRadius.TopLeft>
+        <CornerRadius.TopRight>0</CornerRadius.TopRight>
+    </CornerRadius>
+
+    <!--基窗口模板-->
+    <ControlTemplate x:Key="BaseWindowControlTemplate" TargetType="{x:Type Window}">
+        <Grid>
+            <Border x:Name="borderBg" Margin="8" Background="#EEF5FD" BorderBrush="#FF268DE4" BorderThickness="2" CornerRadius="{StaticResource winCorner}" Loaded="Window_Loaded" Unloaded="Window_Unloaded">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!--标题栏框-->
+                    <Border x:Name="borderTitle" Grid.Row="0" Background="#FF9DBBCD" CornerRadius="{StaticResource winTitleCorner}" Style="{StaticResource titleStyle}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" MouseDown="Title_MouseDown" MouseMove="Title_MouseMove">
+                        <Grid Background="Transparent">
+                            <DockPanel Background="Transparent">
+                                <Image Margin="3" DockPanel.Dock="Left" Source="/Bio-LabChrom;component/Image/hblog.ico"/>
+                                <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                                    <Button x:Name="btnMin" Style="{StaticResource minBtnStyle}" Click="ButtonMin_Click"/>
+                                    <Button x:Name="btnMax" Style="{StaticResource maxBtnStyle}" Click="ButtonMax_Click"/>
+                                    <Button x:Name="btnClose" Style="{StaticResource closeBtnStyle}" Click="ButtonClose_Click"/>
+                                </StackPanel>
+                                <TextBlock Text="{TemplateBinding Title}" Margin="5,0" Foreground="Black" HorizontalAlignment="Left" FontWeight="Bold"/>
+                            </DockPanel>
+                        </Grid>
+                    </Border>
+                    <!--内容-->
+                    <Grid x:Name="gridContent" Grid.Row="1">
+                        <ContentPresenter/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <!--基窗口样式-->
+    <Style x:Key="BaseWindowStyle" TargetType="Window">
+        <Setter Property="Template" Value="{StaticResource BaseWindowControlTemplate}"/>
+        <Setter Property="WindowStyle" Value="None"/>
+        <!--允许窗体透明-->
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="1" ResizeBorderThickness="15"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--窗口继承-->
+    <Style TargetType="{x:Type administration:AdministrationWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <!--<Style TargetType="{x:Type administration:LoginWin}" BasedOn="{StaticResource BaseWindowStyle}"/>-->
+    <Style TargetType="{x:Type administration:PermissionAddWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:PermissionEditWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:RegisterWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:ReviewerWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:SignerWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:TacticsEditWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:UserAddWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:UserEditWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:UserLockWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:UserPwdWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type administration:UserSwitchWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type auditTrails:AuditTrailWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type auditTrails:OutputWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type chromatogram:CurveColorWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type chromatogram:CurveSetStyleWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type chromatogram:MarkerAddWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type chromatogram:MarkerDelWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type collection:CollectionItemWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type columnList:ColumnHandlingWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type columnList:ColumnItemWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type columnList:OutputWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type communication:AddressPortWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:AlarmWarningWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:CalOEMCDWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:CalOEMPHWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:CollectorHBModeWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:CollectorQBHModeWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:CommunSetsWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:ConfAlarmWarningWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:EditCommunWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:EditProcessPictureWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:NewCommunWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type communication:SystemConfigWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type database:DBBackupRestoreWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type database:DBAutoBackupWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type evaluation:ContrastWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type evaluation:EvaluationWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type evaluation:IntegrationSetWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type evaluation:OutputSelectSetWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type evaluation:OutputWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type manual:ManualWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type methodEdit:DefineQuestionsWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type methodEdit:MethodEditorWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type methodEdit:MethodQueueWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type methodEdit:NewMethodWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type methodEdit:NotesWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type methodEdit:OutputWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type methodEdit:PersonalPhaseWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type methodEdit:RenamePhaseNameWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type methodEdit:ResultNameWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type passDog:CheckSNWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    
+    <Style TargetType="{x:Type print:OutputSetWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type print:PrintPreviewWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type projectManager:ProjectManagerWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type projectManager:RunLocationResultWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type projectManager:RunResultWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type projectManager:TreeNodeInformationWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type share:MessageBoxWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type share:StringBoolWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type systemControl:AboutWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type systemControl:CountdownWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type systemControl:SystemControlWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type systemControl:SystemMonitorWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+
+    <Style TargetType="{x:Type tubeStand:TubeStandWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+    <Style TargetType="{x:Type tubeStand:TubeStandItemWin}" BasedOn="{StaticResource BaseWindowStyle}"/>
+</ResourceDictionary>

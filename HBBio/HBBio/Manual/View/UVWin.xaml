@@ -1,0 +1,69 @@
+﻿<Window x:Class="HBBio.Manual.UVWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:HBBio.Manual"
+        xmlns:share="clr-namespace:HBBio.Share"
+        xmlns:comm="clr-namespace:HBBio.Communication"
+        mc:Ignorable="d"
+        Title="{DynamicResource M_UVWin}" Window.SizeToContent="WidthAndHeight" Background="#EEF5FD" Opacity="0.8" AllowsTransparency="True" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Border BorderBrush="#FF268DE4" BorderThickness="2" CornerRadius="5">
+        <Grid Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#FF9DBBCD">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Width="25" Height="25" Source="/Bio-LabChrom;component/Image/hblog.ico"/>
+                <TextBlock Grid.Column="2" Text="{DynamicResource M_UVWin}" FontWeight="Bold"/>
+                <Button x:Name="btnClose" Grid.Column="4" Style="{StaticResource closeBtnStyle}" Click="btnClose_Click"/>
+            </Grid>
+            <Grid x:Name="gridRead" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource labUVLamp1}"/>
+                <share:SwitchButtonUC Grid.Row="0" Grid.Column="2" IsChecked="{Binding MLamp}" IsEnabled="False"/>
+                <TextBlock Grid.Row="0" Grid.Column="4" Text="{DynamicResource labUVTime1}"/>
+                <xctk:DoubleUpDown Grid.Row="0" Grid.Column="6" Value="{Binding MTime}" IsEnabled="False"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource labUVRef1}"/>
+                <xctk:IntegerUpDown Grid.Row="2" Grid.Column="2" Value="{Binding MRef}" IsEnabled="False"/>
+                <TextBlock Grid.Row="2" Grid.Column="4" Text="{DynamicResource labUVSig1}"/>
+                <xctk:IntegerUpDown Grid.Row="2" Grid.Column="6" Value="{Binding MSig}" IsEnabled="False"/>
+            </Grid>
+            <comm:UVUC x:Name="ucUV" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,0"/>
+            <Button x:Name="btnApply" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"  Margin="10,0" Content="{DynamicResource btnApply}" Click="btnApply_Click"/>
+        </Grid>
+    </Border>
+</Window>

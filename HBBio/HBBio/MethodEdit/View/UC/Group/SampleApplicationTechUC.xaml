@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="HBBio.MethodEdit.SampleApplicationTechUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:HBBio.MethodEdit"
+             xmlns:share="clr-namespace:HBBio.Share"
+             xmlns:comm="clr-namespace:HBBio.Communication"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <share:EnumBoolConverter x:Key="EnumBoolConverter"></share:EnumBoolConverter>
+    </UserControl.Resources>
+    <GroupBox Header="{DynamicResource ME_EnumGroupType_SampleApplicationTech}">
+        <Grid x:Name="grid" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <RadioButton Grid.Row="0" Grid.ColumnSpan="6" Content="{DynamicResource ME_EnumSAT_ManualLoopFilling}" IsChecked="{Binding Path=MEnumSAT,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static local:EnumSAT.ManualLoopFilling}}"/>
+            <RadioButton Grid.Row="2" Grid.ColumnSpan="6" Content="{DynamicResource ME_EnumSAT_SamplePumpLoopFilling}" IsChecked="{Binding Path=MEnumSAT,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static local:EnumSAT.SamplePumpLoopFilling}}"/>
+            <RadioButton Grid.Row="4" Grid.ColumnSpan="6" Content="{DynamicResource ME_EnumSAT_ISDOC}" IsChecked="{Binding Path=MEnumSAT,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static local:EnumSAT.ISDOC}}"/>
+            <TextBlock Grid.Row="6" Grid.ColumnSpan="6" Text="{DynamicResource ME_AutoSampleValve}" TextWrapping="Wrap" Visibility="{Binding MVisibAutoSampleValve}"/>
+            <TextBlock Grid.Row="8" Grid.ColumnSpan="6" Text="{DynamicResource ME_NTSPWBWWSPTSA}" TextWrapping="Wrap" Visibility="{Binding MVisibMENTSPWBWWSPTSA}"/>
+            <TextBlock Grid.Row="10" Text="{DynamicResource labInS1}" Visibility="{Binding MVisibInS}"/>
+            <ComboBox Grid.Row="10" Grid.Column="2" ItemsSource="{x:Static comm:EnumInSInfo.NameList}" SelectedIndex="{Binding Path=MInS,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding MVisibInS}"/>
+            <StackPanel Grid.Row="12" Orientation="Horizontal" Visibility="{Binding MVisibSampleTVCV}">
+                <TextBlock Text="{DynamicResource ME_Sample}"/>
+                <TextBlock Text="{Binding MBaseStr}"/>
+                <TextBlock Text=":"/>
+            </StackPanel>
+            <xctk:DoubleUpDown Grid.Row="12" Grid.Column="2" Value="{Binding MSampleTVCV}" Visibility="{Binding MVisibSampleTVCV}"/>
+            <TextBlock Grid.Row="12" Grid.Column="4" Text="{Binding MBaseUnitStr}" Visibility="{Binding MVisibSampleTVCV}"/>
+            <TextBlock Grid.Row="14" Text="{DynamicResource ME_FillLoopWith1}" Visibility="{Binding MVisibFillLoopWith}"/>
+            <xctk:DoubleUpDown Grid.Row="14" Grid.Column="2" Value="{Binding MFillLoopWith}" Visibility="{Binding MVisibFillLoopWith}"/>
+            <TextBlock Grid.Row="14" Grid.Column="4" Text="{x:Static share:DlyBase.SC_VUNITML}" Visibility="{Binding MVisibFillLoopWith}"/>
+            <TextBlock Grid.Row="16" Text="{DynamicResource ME_EmptyLoopWith1}" Visibility="{Binding MVisibEmptyLoopWith}"/>
+            <xctk:DoubleUpDown Grid.Row="16" Grid.Column="2" Value="{Binding MEmptyLoopWith}" Visibility="{Binding MVisibEmptyLoopWith}"/>
+            <TextBlock Grid.Row="16" Grid.Column="4" Text="{x:Static share:DlyBase.SC_VUNITML}" Visibility="{Binding MVisibEmptyLoopWith}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>
