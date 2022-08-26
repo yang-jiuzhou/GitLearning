@@ -957,32 +957,32 @@ namespace HBBio.MethodEdit
                                 if (m_listRun[it.MIndex])
                                 {
                                     RefreshIngSampleApplicationTech(it, m_listDis, ref m_run);
-                                    if (MRUN.Done == m_run)
-                                    {
-                                        if (it.MIndex < m_listRun.Count - 1)
-                                        {
-                                            m_run = MRUN.Ing;
-                                            m_listRun[it.MIndex] = false;
-                                            m_listRun[it.MIndex + 1] = true;
-                                            m_listDis = m_phaseRunT;
-                                        }
-                                    }
+                                    //if (MRUN.Done == m_run)
+                                    //{
+                                    //    if (it.MIndex < m_listRun.Count - 1)
+                                    //    {
+                                    //        m_run = MRUN.Ing;
+                                    //        m_listRun[it.MIndex] = false;
+                                    //        m_listRun[it.MIndex + 1] = true;
+                                    //        m_listDis = m_phaseRunT;
+                                    //    }
+                                    //}
                                 }
                                 break;
                             case EnumGroupType.TVCV:
                                 if (m_listRun[it.MIndex])
                                 {
                                     RefreshIngTVCV(phase, it, m_listDis, ref m_run);
-                                    if (MRUN.Done == m_run)
-                                    {
-                                        if (it.MIndex < m_listRun.Count - 1)
-                                        {
-                                            m_run = MRUN.Ing;
-                                            m_listRun[it.MIndex] = false;
-                                            m_listRun[it.MIndex + 1] = true;
-                                            m_listDis = m_phaseRunT;
-                                        }
-                                    }
+                                    //if (MRUN.Done == m_run)
+                                    //{
+                                    //    if (it.MIndex < m_listRun.Count - 1)
+                                    //    {
+                                    //        m_run = MRUN.Ing;
+                                    //        m_listRun[it.MIndex] = false;
+                                    //        m_listRun[it.MIndex + 1] = true;
+                                    //        m_listDis = m_phaseRunT;
+                                    //    }
+                                    //}
                                 }
                                 break;
                             case EnumGroupType.FlowValveLength:
@@ -1155,6 +1155,11 @@ namespace HBBio.MethodEdit
                 case EnumSAT.SamplePumpLoopFilling:
                     if ((m_phaseRunT - dis) >= tmp.MFillLoopWith / m_methodTempValue.MFlow + tmp.MEmptyLoopWith / m_methodTempValue.MFlow)
                     {
+                        if (0 == tmp.MEmptyLoopWith)
+                        {
+                            RefreshSample(false, m_methodTempValue.MFlow);
+                        }
+
                         SwitchValve(ENUMValveName.IJV, 0);
                         run = MRUN.Done;
                     }
