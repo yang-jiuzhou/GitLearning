@@ -113,7 +113,7 @@ namespace HBBio.Evaluation
             //半峰宽5%峰高处
             double k = (_Peek.EndBaseY - _Peek.StartBaseY) / (_X[_Peek.EndPoint] - _X[_Peek.StartPoint]);
             double b = _Peek.StartBaseY - k * _X[_Peek.StartPoint];
-            double hh = (_Y[_Peek.PeekPoint] - (k * _X[_Peek.PeekPoint] + b)) * 0.05;
+            double hh = (_Y[_Peek.PeekPoint] - (k * _X[_Peek.PeekPoint] + b)) * 0.05 + (k * _X[_Peek.PeekPoint] + b);
 
             List<double> ALisDistance = new List<double>();
             List<double> BLisDistance = new List<double>();

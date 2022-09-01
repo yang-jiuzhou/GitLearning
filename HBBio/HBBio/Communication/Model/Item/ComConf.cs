@@ -142,7 +142,7 @@ namespace HBBio.Communication
             }
         }
 
-        private bool m_alarm = true;                       //启用报警(数据库) 
+        private bool m_alarm = false;                       //启用报警(数据库) 
         public bool MAlarm
         {
             get

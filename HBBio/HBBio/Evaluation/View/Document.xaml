@@ -66,6 +66,14 @@
                 </TableCell>
                 <TableCell Style="{StaticResource BorderedCell}">
                     <Paragraph>
+                        <Run Text="{DynamicResource E_PI_TopVal}"/>
+                        <Run Text="("/>
+                        <Run Text="{Binding ElementName=labTVCVUnit,Path=Text}"/>
+                        <Run Text=")"/>
+                    </Paragraph>
+                </TableCell>
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>
                         <Run Text="{DynamicResource E_PI_StartVal}"/>
                         <Run Text="("/>
                         <Run x:Name="labValUnit"/>
