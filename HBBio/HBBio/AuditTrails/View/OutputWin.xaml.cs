@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,10 @@ namespace HBBio.AuditTrails
     /// </summary>
     public partial class OutputWin : Window
     {
-        private PDFSet m_data = new PDFSet();
+        private List<string> m_listType = null;
+        private List<string> m_listUser = null;
+        private List<string> m_listDate = null;
+        private List<string> m_listInfo = null;
 
 
         /// <summary>
@@ -39,79 +43,109 @@ namespace HBBio.AuditTrails
 
             //加载字体枚举
             cboxFamily.ItemsSource = Fonts.SystemFontFamilies;
-
-            PrintManager manager = new PrintManager();
-            manager.GetPDFSet(out m_data);
-        }
-
-        /// <summary>
-        /// 加载界面
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            PrintDialog dialog = new PrintDialog();
-            docReader.Document.PageWidth = dialog.PrintableAreaWidth;
-            docReader.Document.PageHeight = dialog.PrintableAreaHeight;
-
-            UpdatePDFSet();
         }
 
         /// <summary>
         /// 设置数据
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="listType"></param>
+        /// <param name="listUser"></param>
+        /// <param name="listDate"></param>
+        /// <param name="listInfo"></param>
         public void SetData(List<string> listType, List<string> listUser, List<string> listDate, List<string> listInfo)
         {
-            FlowDocument doc = (FlowDocument)Application.LoadComponent(new Uri("./../../AuditTrails/View/Document.xaml", UriKind.RelativeOrAbsolute));
-            Style styleCell = doc.Resources["BorderedCell"] as Style;
-            TableRowGroup group = doc.FindName("table") as TableRowGroup;
-            for (int i = 0; i < listType.Count; i++)
+            m_listType = listType;
+            m_listUser = listUser;
+            m_listDate = listDate;
+            m_listInfo = listInfo;
+
+            Task task = new Task(TaskFun);
+            task.Start(TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        /// <summary>
+        /// 处理赋值
+        /// </summary>
+        private void TaskFun()
+        {
+            try
             {
-                TableRow row = new TableRow();
+                //this.loadingWaitUC.Dispatcher.Invoke(new Action(delegate ()
+                //{
+                    loadingWaitUC.Visibility = Visibility.Visible;
+                //}));
 
-                TableCell cell = new TableCell(new Paragraph(new Run(listType[i])));
-                cell.Style = styleCell;
-                row.Cells.Add(cell);
+                //this.Dispatcher.Invoke(new Action(delegate ()
+                //{
+                    FlowDocument doc = (FlowDocument)Application.LoadComponent(new Uri("./../../AuditTrails/View/Document.xaml", UriKind.RelativeOrAbsolute));
+                    PrintDialog dialog = new PrintDialog();
+                    doc.PageWidth = dialog.PrintableAreaWidth;
+                    doc.PageHeight = dialog.PrintableAreaHeight;
+                    Style styleCell = doc.Resources["BorderedCell"] as Style;
+                    TableRowGroup group = doc.FindName("table") as TableRowGroup;
+                    for (int i = 0; i < m_listType.Count; i++)
+                    {
+                        TableRow row = new TableRow();
 
-                cell = new TableCell(new Paragraph(new Run(listUser[i])));
-                cell.Style = styleCell;
-                row.Cells.Add(cell);
+                        TableCell cell = new TableCell(new Paragraph(new Run(m_listType[i])));
+                        cell.Style = styleCell;
+                        row.Cells.Add(cell);
 
-                cell = new TableCell(new Paragraph(new Run(listDate[i])));
-                cell.Style = styleCell;
-                row.Cells.Add(cell);
+                        cell = new TableCell(new Paragraph(new Run(m_listUser[i])));
+                        cell.Style = styleCell;
+                        row.Cells.Add(cell);
 
-                cell = new TableCell(new Paragraph(new Run(listInfo[i])));
-                cell.Style = styleCell;
-                row.Cells.Add(cell);
+                        cell = new TableCell(new Paragraph(new Run(m_listDate[i])));
+                        cell.Style = styleCell;
+                        row.Cells.Add(cell);
 
-                group.Rows.Add(row);
+                        cell = new TableCell(new Paragraph(new Run(m_listInfo[i])));
+                        cell.Style = styleCell;
+                        row.Cells.Add(cell);
+
+                        group.Rows.Add(row);
+                    }
+
+                    docReader.Document = doc;
+
+                    PDFSet pdfSet;
+                    PrintManager manager = new PrintManager();
+                    manager.GetPDFSet(out pdfSet);
+                    UpdatePDFSet(pdfSet);
+                //}));
             }
-
-            docReader.Document = doc;
+            catch (Exception ex)
+            {
+                SystemLog.SystemLogManager.LogWrite(ex);
+            }
+            finally
+            {
+                //this.loadingWaitUC.Dispatcher.Invoke(new Action(delegate ()
+                //{
+                    loadingWaitUC.Visibility = Visibility.Collapsed;
+                //}));
+            }
         }
 
         /// <summary>
         /// 设置导出格式
         /// </summary>
-        public void UpdatePDFSet()
+        public void UpdatePDFSet(PDFSet pdfSet)
         {
             List list = docReader.Document.FindName("list") as List;
-            list.MarkerStyle = (TextMarkerStyle)m_data.m_markerStyle;
+            list.MarkerStyle = (TextMarkerStyle)pdfSet.m_markerStyle;
 
-            docReader.Document.PagePadding = new Thickness(m_data.m_marginLeft, m_data.m_marginTop, m_data.m_marginRight, m_data.m_marginBottom);
+            docReader.Document.PagePadding = new Thickness(pdfSet.m_marginLeft, pdfSet.m_marginTop, pdfSet.m_marginRight, pdfSet.m_marginBottom);
             docReader.Document.ColumnWidth = docReader.Document.PageWidth - docReader.Document.PagePadding.Left - docReader.Document.PagePadding.Right;
-            docReader.Document.FontSize = m_data.MFontSize;
-            docReader.Document.FontFamily = new FontFamily(m_data.MFontFamily);
-            docReader.Document.Foreground = m_data.m_colorFore;
-            docReader.Document.Background = m_data.m_colorBack;
+            docReader.Document.FontSize = pdfSet.MFontSize;
+            docReader.Document.FontFamily = new FontFamily(pdfSet.MFontFamily);
+            docReader.Document.Foreground = pdfSet.m_colorFore;
+            docReader.Document.Background = pdfSet.m_colorBack;
 
-            cboxSize.SelectedIndex = m_data.m_fontSize;
-            cboxFamily.SelectedIndex = m_data.m_fontFamily;
-            btnColorFore.Background = m_data.m_colorFore;
-            btnColorBack.Background = m_data.m_colorBack;
+            cboxSize.SelectedIndex = pdfSet.m_fontSize;
+            cboxFamily.SelectedIndex = pdfSet.m_fontFamily;
+            btnColorFore.Background = pdfSet.m_colorFore;
+            btnColorBack.Background = pdfSet.m_colorBack;
         }
 
         /// <summary>
@@ -260,13 +294,16 @@ namespace HBBio.AuditTrails
         /// <param name="e"></param>
         private void btnMore_Click(object sender, RoutedEventArgs e)
         {
+            PDFSet pdfSet;
+            PrintManager manager = new PrintManager();
+            manager.GetPDFSet(out pdfSet);
+
             OutputSetWin dlg = new OutputSetWin(this);
-            dlg.MData = m_data;
+            dlg.MData = pdfSet;
             if (true == dlg.ShowDialog())
             {
-                PrintManager manager = new PrintManager();
-                manager.SetPDFSet(m_data);
-                UpdatePDFSet();
+                manager.SetPDFSet(pdfSet);
+                UpdatePDFSet(pdfSet);
             }
         }
 
@@ -283,7 +320,11 @@ namespace HBBio.AuditTrails
             docReader.Document = null;
             try
             {
-                PrintPreviewWin previewWnd = new PrintPreviewWin(this, doc, m_data);
+                PDFSet pdfSet;
+                PrintManager manager = new PrintManager();
+                manager.GetPDFSet(out pdfSet);
+
+                PrintPreviewWin previewWnd = new PrintPreviewWin(this, doc, pdfSet);
                 previewWnd.Owner = this;
                 previewWnd.ShowInTaskbar = false;
                 previewWnd.ShowDialog();

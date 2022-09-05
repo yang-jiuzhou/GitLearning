@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HBBio.AuditTrails"
         xmlns:share="clr-namespace:HBBio.Share"
         mc:Ignorable="d"
-        Title="{DynamicResource AT_OutputWin}" Height="463" Width="750" MinHeight="309" MinWidth="500" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+        Title="{DynamicResource AT_OutputWin}" Height="463" Width="750" MinHeight="309" MinWidth="500" WindowStartupLocation="CenterOwner">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,7 +25,10 @@
                 <Button x:Name="btnMore" Width="30" Height="30" Content="M" Click="btnMore_Click"/>
             </ToolBar>
         </ToolBarTray>
-        <FlowDocumentReader x:Name="docReader" Grid.Row="1"/>
+        <Grid Grid.Row="1">
+            <FlowDocumentReader x:Name="docReader"/>
+            <share:LoadingWaitUC x:Name="loadingWaitUC"/>
+        </Grid>
         <Button x:Name="btnPrint" Grid.Row="2" Content="{DynamicResource btnPrint}" Click="btnPrint_Click"/>
     </Grid>
 </Window>

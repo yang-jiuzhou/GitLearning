@@ -168,6 +168,10 @@ namespace HBBio.AuditTrails
 
         public Visibility LoadingWaitVisibility
         {
+            get
+            {
+                return loadingWaitUC.Visibility;
+            }
             set
             {
                 loadingWaitUC.Visibility = value;

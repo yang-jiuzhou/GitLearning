@@ -28,6 +28,10 @@ namespace HBBio.AuditTrails
         /// </summary>
         private Thread m_opendb = null;
         /// <summary>
+        /// 导出PDF的窗体
+        /// </summary>
+        private OutputWin m_pdfDlg = null;
+        /// <summary>
         /// 导出Excel的线程
         /// </summary>
         private Thread m_threadOutputExcel = null;
@@ -47,7 +51,7 @@ namespace HBBio.AuditTrails
             List<MString> nameList = new List<MString>();
             nameList.Add(new MString("All"));
             AdministrationManager manager = new AdministrationManager();
-            List<UserInfo> list = null;
+            List<UserInfo> list;
             if (null == manager.GetUserInfoList(out list))
             {
                 foreach (var it in list)
@@ -127,15 +131,17 @@ namespace HBBio.AuditTrails
                         this.auditTrailsSearchUC.Table = table;
                     }));
                 }
-
-                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Collapsed;
-                }));
             }
             catch (Exception ex)
             {
                 SystemLog.SystemLogManager.LogWrite(ex);
+            }
+            finally
+            {
+                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
+                {
+                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Collapsed;
+                }));
             }
         }
 
@@ -209,11 +215,15 @@ namespace HBBio.AuditTrails
                 return;
             }
 
+            if (null != m_pdfDlg)
+            {
+                return;
+            }
+
             Print.PaginatorHeaderFooter.s_signer = Administration.AdministrationStatic.Instance().MSigner;
             Print.PaginatorHeaderFooter.s_reviewer = Administration.AdministrationStatic.Instance().MReviewer;
 
-            
-            AuditTrailsStatic.Instance().InsertRowOperate(this.Title + "-" + btnPDF.ToolTip);
+            m_pdfDlg = new OutputWin(this);
 
             List<string> listType = new List<string>();
             List<string> listUser = new List<string>();
@@ -239,12 +249,11 @@ namespace HBBio.AuditTrails
                 }
                 listInfo.Add(sb.ToString());
             }
-            OutputWin win = new OutputWin(this);
-            win.SetData(listType, listUser, listDate, listInfo);
-            if (true == win.ShowDialog())
-            {
-                
-            }
+            m_pdfDlg.SetData(listType, listUser, listDate, listInfo);
+            m_pdfDlg.ShowDialog();
+            m_pdfDlg = null;
+
+            AuditTrailsStatic.Instance().InsertRowOperate(this.Title + "-" + btnPDF.ToolTip);
         }
 
         /// <summary>
