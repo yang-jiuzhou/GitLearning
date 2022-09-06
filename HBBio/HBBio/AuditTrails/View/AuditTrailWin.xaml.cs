@@ -26,7 +26,7 @@ namespace HBBio.AuditTrails
         /// <summary>
         /// 读数据库的线程
         /// </summary>
-        private Thread m_opendb = null;
+        private Thread m_threadSearch = null;
         /// <summary>
         /// 导出PDF的窗体
         /// </summary>
@@ -87,93 +87,6 @@ namespace HBBio.AuditTrails
         }
 
         /// <summary>
-        /// 设置各模块是否可用
-        /// </summary>
-        /// <param name="info"></param>
-        public bool SetPermission(PermissionInfo info)
-        {
-            if (info.MList[(int)EnumPermission.AuditTrails])
-            {
-                btnSearch.IsEnabled = info.MList[(int)EnumPermission.AuditTrails];
-
-                btnPDF.IsEnabled = info.MList[(int)EnumPermission.AuditTrails_Print];
-                btnExcel.IsEnabled = info.MList[(int)EnumPermission.AuditTrails_Print];
-
-                return true;
-            }
-            else
-            {
-                this.Close();
-
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 子线程读数据库的操作函数
-        /// </summary>
-        private void ReadData(object val)
-        {
-            try
-            {
-                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Visible;
-                }));
-
-                SearchInfoVM info = (SearchInfoVM)val;
-                AuditTrailsManager manager = new AuditTrailsManager();
-                DataTable table = null;
-                if (null == manager.SearchAllLog(out table, info.MDateTimeStart, info.MDateTimeStop, info.MType, info.MUserName, info.MFilter))
-                {
-                    this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
-                    {
-                        this.auditTrailsSearchUC.Table = table;
-                    }));
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemLog.SystemLogManager.LogWrite(ex);
-            }
-            finally
-            {
-                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Collapsed;
-                }));
-            }
-        }
-
-        /// <summary>
-        /// 导出谱图的子线程处理函数
-        /// </summary>
-        private void OutputExcelFun(object obj)
-        {
-            try
-            {
-                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Visible;
-                }));
-
-                Print.ExcelManager manager = new Print.ExcelManager();
-                manager.SetValue(auditTrailsSearchUC.Table, (string)obj);
-            }
-            catch (Exception ex)
-            {
-                SystemLog.SystemLogManager.LogWrite(ex);
-            }
-            finally
-            {
-                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Collapsed;
-                }));
-            }
-        }
-
-        /// <summary>
         /// 搜索
         /// </summary>
         /// <param name="sender"></param>
@@ -181,7 +94,7 @@ namespace HBBio.AuditTrails
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             //启动子线程
-            if (null == m_opendb || !m_opendb.IsAlive)
+            if (null == m_threadSearch || !m_threadSearch.IsAlive)
             {
                 StringBuilderSplit sb = new StringBuilderSplit();
                 sb.Append(labBeginTime.Text + timeBegin.Text);
@@ -192,9 +105,13 @@ namespace HBBio.AuditTrails
 
                 AuditTrailsStatic.Instance().InsertRowOperate(this.Title + "-" + btnSearch.ToolTip, sb.ToString());
 
-                m_opendb = new Thread(new ParameterizedThreadStart(ReadData));
-                m_opendb.IsBackground = true;
-                m_opendb.Start((SearchInfoVM)timeBegin.DataContext);
+                m_threadSearch = new Thread(new ParameterizedThreadStart(ThreadReadData));
+                m_threadSearch.IsBackground = true;
+                m_threadSearch.Start((SearchInfoVM)timeBegin.DataContext);
+            }
+            else
+            {
+                MessageBoxWin.Show(Share.ReadXaml.S_WaitCurrOper);
             }
         }
 
@@ -281,7 +198,7 @@ namespace HBBio.AuditTrails
                 sfd.RestoreDirectory = true;
                 if (true == sfd.ShowDialog())
                 {
-                    m_threadOutputExcel = new Thread(new ParameterizedThreadStart(OutputExcelFun));
+                    m_threadOutputExcel = new Thread(new ParameterizedThreadStart(ThreadExcel));
                     m_threadOutputExcel.IsBackground = true;
                     m_threadOutputExcel.Start(sfd.FileName);
 
@@ -291,6 +208,93 @@ namespace HBBio.AuditTrails
             else
             {
                 MessageBoxWin.Show(Share.ReadXaml.S_WaitCurrOper);
+            }
+        }
+
+        /// <summary>
+        /// 设置各模块是否可用
+        /// </summary>
+        /// <param name="info"></param>
+        public bool SetPermission(PermissionInfo info)
+        {
+            if (info.MList[(int)EnumPermission.AuditTrails])
+            {
+                btnSearch.IsEnabled = info.MList[(int)EnumPermission.AuditTrails];
+
+                btnPDF.IsEnabled = info.MList[(int)EnumPermission.AuditTrails_Print];
+                btnExcel.IsEnabled = info.MList[(int)EnumPermission.AuditTrails_Print];
+
+                return true;
+            }
+            else
+            {
+                this.Close();
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 子线程读数据库的操作函数
+        /// </summary>
+        private void ThreadReadData(object val)
+        {
+            try
+            {
+                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
+                {
+                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Visible;
+                }));
+
+                SearchInfoVM info = (SearchInfoVM)val;
+                AuditTrailsManager manager = new AuditTrailsManager();
+                DataTable table = null;
+                if (null == manager.SearchAllLog(out table, info.MDateTimeStart, info.MDateTimeStop, info.MType, info.MUserName, info.MFilter))
+                {
+                    this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
+                    {
+                        this.auditTrailsSearchUC.Table = table;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemLog.SystemLogManager.LogWrite(ex);
+            }
+            finally
+            {
+                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
+                {
+                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Collapsed;
+                }));
+            }
+        }
+
+        /// <summary>
+        /// 导出谱图的子线程处理函数
+        /// </summary>
+        private void ThreadExcel(object obj)
+        {
+            try
+            {
+                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
+                {
+                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Visible;
+                }));
+
+                Print.ExcelManager manager = new Print.ExcelManager();
+                manager.SetValue(auditTrailsSearchUC.Table, (string)obj);
+            }
+            catch (Exception ex)
+            {
+                SystemLog.SystemLogManager.LogWrite(ex);
+            }
+            finally
+            {
+                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
+                {
+                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Collapsed;
+                }));
             }
         }
     }

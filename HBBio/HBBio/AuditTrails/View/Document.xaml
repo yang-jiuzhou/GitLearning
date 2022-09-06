@@ -15,7 +15,6 @@
             <Setter Property="Padding" Value="3"></Setter>
         </Style>
     </FlowDocument.Resources>
-    <List x:Name="list" MarkerStyle="None"/>
     <Table Style="{StaticResource BorderedTable}">
         <Table.Columns>
             <TableColumn Width="*"></TableColumn>
@@ -24,7 +23,7 @@
             <TableColumn Width="4*"></TableColumn>
         </Table.Columns>
         <TableRowGroup Name="table">
-            <TableRow FontWeight="Bold" >
+            <TableRow FontWeight="Bold">
                 <TableCell Style="{StaticResource BorderedCell}">
                     <Paragraph>
                         <Run Text="{StaticResource AT_Type}"/>

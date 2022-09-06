@@ -70,13 +70,13 @@ namespace HBBio.AuditTrails
         {
             try
             {
-                //this.loadingWaitUC.Dispatcher.Invoke(new Action(delegate ()
-                //{
+                this.loadingWaitUC.Dispatcher.Invoke(new Action(delegate ()
+                {
                     loadingWaitUC.Visibility = Visibility.Visible;
-                //}));
+                }));
 
-                //this.Dispatcher.Invoke(new Action(delegate ()
-                //{
+                this.Dispatcher.Invoke(new Action(delegate ()
+                {
                     FlowDocument doc = (FlowDocument)Application.LoadComponent(new Uri("./../../AuditTrails/View/Document.xaml", UriKind.RelativeOrAbsolute));
                     PrintDialog dialog = new PrintDialog();
                     doc.PageWidth = dialog.PrintableAreaWidth;
@@ -105,14 +105,13 @@ namespace HBBio.AuditTrails
 
                         group.Rows.Add(row);
                     }
-
                     docReader.Document = doc;
 
                     PDFSet pdfSet;
                     PrintManager manager = new PrintManager();
                     manager.GetPDFSet(out pdfSet);
                     UpdatePDFSet(pdfSet);
-                //}));
+                }));
             }
             catch (Exception ex)
             {
@@ -120,10 +119,10 @@ namespace HBBio.AuditTrails
             }
             finally
             {
-                //this.loadingWaitUC.Dispatcher.Invoke(new Action(delegate ()
-                //{
+                this.loadingWaitUC.Dispatcher.Invoke(new Action(delegate ()
+                {
                     loadingWaitUC.Visibility = Visibility.Collapsed;
-                //}));
+                }));
             }
         }
 
@@ -132,9 +131,6 @@ namespace HBBio.AuditTrails
         /// </summary>
         public void UpdatePDFSet(PDFSet pdfSet)
         {
-            List list = docReader.Document.FindName("list") as List;
-            list.MarkerStyle = (TextMarkerStyle)pdfSet.m_markerStyle;
-
             docReader.Document.PagePadding = new Thickness(pdfSet.m_marginLeft, pdfSet.m_marginTop, pdfSet.m_marginRight, pdfSet.m_marginBottom);
             docReader.Document.ColumnWidth = docReader.Document.PageWidth - docReader.Document.PagePadding.Left - docReader.Document.PagePadding.Right;
             docReader.Document.FontSize = pdfSet.MFontSize;
@@ -334,6 +330,15 @@ namespace HBBio.AuditTrails
             { }
 
             docReader.Document = doc;
+        }
+    }
+
+    public class AAA
+    {
+        public string AA { get; set; }
+        public AAA()
+        {
+            AA = "aaaa";
         }
     }
 }
