@@ -86,7 +86,7 @@ namespace HBBio.Communication
                                     config.MConfCollector.MCountR = ((CollectorItem)itBI).m_countR;
                                 }
                             }
-                            
+
                             if (null == (error = biDB.InitDataList(itCF.MList)))
                             {
                                 foreach (var itBI in itCF.MList)
@@ -96,7 +96,7 @@ namespace HBBio.Communication
                                     {
                                         itSN.MBaseInstrumentId = itBI.MId;
 
-                                        if(itSN.MConstName.Equals("FIT_Total"))
+                                        if (itSN.MConstName.Equals("FIT_Total"))
                                         {
                                             tmp = itSN;
                                         }
@@ -110,7 +110,7 @@ namespace HBBio.Communication
                                         }
                                     }
                                     error = snDB.InitDataList(snList);
-                                } 
+                                }
                             }
                         }
                         scDB.UpdateRow(config.GetDBInfo());
@@ -254,7 +254,7 @@ namespace HBBio.Communication
 
             if (null == (error = ccDB.GetDataList(out cfList)))
             {
-                foreach(var itCC in cfList)
+                foreach (var itCC in cfList)
                 {
                     itCC.MCommunMode = (EnumCommunMode)Enum.Parse(typeof(EnumCommunMode), cs.MCommunMode);
                     if (null == (error = biDB.GetDataListByComConfID(itCC.MId, ref itCC.MList)))
@@ -277,7 +277,7 @@ namespace HBBio.Communication
                             error = snDB.GetDataListByBaseInstrumentID(itBI.MId, out itBI.m_list);
                         }
                     }
-                }  
+                }
             }
 
             ipDB.GetDataList(out ipList);
@@ -413,7 +413,7 @@ namespace HBBio.Communication
                 string version = null;
                 string serial = null;
                 string model = comConf.MModel;
-                if ((item.ReadModel(ref model)|| item.ReadModel(ref model)) && item.ReadVersion(ref version) && item.ReadSerial(ref serial))
+                if ((item.ReadModel(ref model) || item.ReadModel(ref model)) && item.ReadVersion(ref version) && item.ReadSerial(ref serial))
                 {
                     comConf.MModel = model;
                     comConf.MVersion = version;
@@ -431,7 +431,7 @@ namespace HBBio.Communication
             {
                 comConf.MResult = Share.ReadXaml.S_FailureTxt;
             }
-            
+
             return result;
         }
 
@@ -490,7 +490,7 @@ namespace HBBio.Communication
             {
                 case ENUMInstrumentType.Sampler:
                     {
-                        
+
                     }
                     break;
                 case ENUMInstrumentType.Valve:
@@ -572,7 +572,7 @@ namespace HBBio.Communication
                 case ENUMInstrumentType.Collector:
                     {
                         ENUMCollectorID id = (ENUMCollectorID)Enum.Parse(typeof(ENUMCollectorID), cc.MModel);
-                        switch(id)
+                        switch (id)
                         {
                             case ENUMCollectorID.QBH_DLY:
                                 item = new ComCollectorQBH(cc);
@@ -630,7 +630,7 @@ namespace HBBio.Communication
                         {
                             item = new TCPValveVICI2(cc);
                         }
-                        else if(id.ToString().Contains("VICI"))
+                        else if (id.ToString().Contains("VICI"))
                         {
                             item = new TCPValveVICI(cc);
                         }
@@ -691,7 +691,7 @@ namespace HBBio.Communication
                 case ENUMInstrumentType.Collector:
                     {
                         ENUMCollectorID id = (ENUMCollectorID)Enum.Parse(typeof(ENUMCollectorID), cc.MModel);
-                        switch(id)
+                        switch (id)
                         {
                             case ENUMCollectorID.QBH_DLY:
                                 item = new TCPCollectorQBH(cc);

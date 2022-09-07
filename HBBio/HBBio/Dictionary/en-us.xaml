@@ -41,6 +41,7 @@
     <s:String x:Key="btnIconSelect">Icon Select</s:String>
     <s:String x:Key="btnIconClear">Icon Clear</s:String>
     <s:String x:Key="btnCommun">Commun Alarm</s:String>
+    <s:String x:Key="btnMore">More</s:String>
 
 
 

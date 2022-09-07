@@ -697,7 +697,7 @@ namespace HBBio.Communication
                         case EnumLineType.B: running = MRunB; break;
                         case EnumLineType.C: running = MRunC; break;
                         case EnumLineType.D: running = MRunD; break;
-                        case EnumLineType.BPV: running = MBPV; break;
+                        case EnumLineType.BPV: running = (MRunA | MRunB | MRunC | MRunD) & MBPV; break;
                     }
                     if (pt2.X == pt1.X)
                     {

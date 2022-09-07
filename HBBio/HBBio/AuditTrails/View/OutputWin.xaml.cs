@@ -75,9 +75,10 @@ namespace HBBio.AuditTrails
                     cell = new TableCell(new Paragraph(new Run(listInfo[i])));
                     cell.Style = styleCell;
                     row.Cells.Add(cell);
-
+                    
                     group.Rows.Add(row);
                 }
+
                 docReader.Document = doc;
 
                 PDFSet pdfSet;

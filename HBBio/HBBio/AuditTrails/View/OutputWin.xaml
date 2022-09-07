@@ -18,11 +18,11 @@
                 <share:IconButton x:Name="btnWeight" Margin="2,0" Click="btnWeight_Click" Image="/Bio-LabChrom;component/Image/txtBold.png"/>
                 <share:IconButton x:Name="btnStyle" Margin="2,0" Click="btnStyle_Click" Image="/Bio-LabChrom;component/Image/txtItalic.png"/>
                 <share:IconButton x:Name="btnUnderline" Margin="2,0" Click="btnUnderline_Click" Image="/Bio-LabChrom;component/Image/txtUnderline.png"/>
-                <ComboBox x:Name="cboxSize" Width="50" SelectionChanged="cboxSize_SelectionChanged"/>
-                <ComboBox x:Name="cboxFamily" Width="100" SelectionChanged="cboxFamily_SelectionChanged"/>
-                <Button x:Name="btnColorFore" Width="30" Height="30" Click="btnColorFore_Click"/>
-                <Button x:Name="btnColorBack" Width="30" Height="30" Click="btnColorBack_Click"/>
-                <Button x:Name="btnMore" Width="30" Height="30" Content="M" Click="btnMore_Click"/>
+                <ComboBox x:Name="cboxSize" Margin="2,0" Width="50" Height="35" SelectionChanged="cboxSize_SelectionChanged"/>
+                <ComboBox x:Name="cboxFamily" Margin="2,0" Width="100" Height="35" SelectionChanged="cboxFamily_SelectionChanged"/>
+                <Button x:Name="btnColorFore" Margin="2,0" Width="30" Height="30" Click="btnColorFore_Click"/>
+                <Button x:Name="btnColorBack" Margin="2,0" Width="30" Height="30" Click="btnColorBack_Click"/>
+                <Button x:Name="btnMore" Margin="2,0" Height="30" Content="{DynamicResource btnMore}" FontSize="22" Click="btnMore_Click"/>
             </ToolBar>
         </ToolBarTray>
         <FlowDocumentReader x:Name="docReader" Grid.Row="1"/>

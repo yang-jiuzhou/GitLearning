@@ -41,6 +41,7 @@
     <s:String x:Key="btnIconSelect">图标选择</s:String>
     <s:String x:Key="btnIconClear">图标删除</s:String>
     <s:String x:Key="btnCommun">通讯警报</s:String>
+    <s:String x:Key="btnMore">更多</s:String>
 
 
 
