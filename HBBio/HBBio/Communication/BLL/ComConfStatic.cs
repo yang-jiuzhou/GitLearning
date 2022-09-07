@@ -41,7 +41,8 @@ namespace HBBio.Communication
         public List<BaseInstrument> m_biList = new List<BaseInstrument>();
         public List<InstrumentPoint> m_ipList = new List<InstrumentPoint>();
         public InstrumentSize m_size = new InstrumentSize();
-        public List<Point> m_lsitCircle = new List<Point>();
+        public List<Point> m_listCircle = new List<Point>();
+        public List<Point> m_listColumn = new List<Point>();
 
         public double m_totalFlow = 0;
         public double m_pumpSFlow = 0;
@@ -160,7 +161,7 @@ namespace HBBio.Communication
             ItemVisibility.ResetAll(Visibility.Collapsed);
 
             CommunicationSetsManager csManager = new CommunicationSetsManager();
-            if (null == csManager.GetItem(cs, out m_cfList, out m_ipList, out m_size, out m_lsitCircle))
+            if (null == csManager.GetItem(cs, out m_cfList, out m_ipList, out m_size, out m_listCircle, out m_listColumn))
             {
                 foreach (var itCC in m_cfList)
                 {

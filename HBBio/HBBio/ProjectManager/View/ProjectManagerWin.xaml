@@ -7,7 +7,7 @@
         xmlns:share="clr-namespace:HBBio.Share"
         xmlns:methodedit="clr-namespace:HBBio.MethodEdit"
         mc:Ignorable="d"
-        Title="{DynamicResource PM_ProjectManagerWin}" Height="500" Width="800" MinHeight="309" MinWidth="500" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closed="Window_Closed">
+        Title="{DynamicResource PM_ProjectManagerWin}" Height="500" Width="800" MinHeight="461" MinWidth="750" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

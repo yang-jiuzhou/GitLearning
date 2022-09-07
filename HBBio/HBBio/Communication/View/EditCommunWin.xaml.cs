@@ -28,6 +28,7 @@ namespace HBBio.Communication
         private List<InstrumentPoint> m_ipList = new List<InstrumentPoint>();
         private InstrumentSize m_size = null;
         private List<Point> m_listCircle = null;
+        private List<Point> m_listColumn = null;
 
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace HBBio.Communication
             systemNote.Text = cs.MNote;
 
             CommunicationSetsManager csManager = new CommunicationSetsManager();
-            if (null == csManager.GetItem(cs, out m_comconfList, out m_ipList, out m_size, out m_listCircle))
+            if (null == csManager.GetItem(cs, out m_comconfList, out m_ipList, out m_size, out m_listCircle, out m_listColumn))
             {
                 SetComConf(m_comconfList);
 
@@ -170,7 +171,7 @@ namespace HBBio.Communication
         /// <param name="e"></param>
         private void btnProcessPicture_Click(object sender, RoutedEventArgs e)
         {
-            EditProcessPictureWin win = new EditProcessPictureWin(this, m_baseinstrumentList, m_ipList, m_size, m_listCircle);
+            EditProcessPictureWin win = new EditProcessPictureWin(this, m_baseinstrumentList, m_ipList, m_size, m_listCircle, m_listColumn);
             win.ShowDialog();
         }
 
@@ -185,7 +186,7 @@ namespace HBBio.Communication
             m_communicationsets.MNote = systemNote.Text;
 
             CommunicationSetsManager csManager = new CommunicationSetsManager();
-            if (null == csManager.EditItem(m_communicationsets, m_comconfList.ToList(), m_baseinstrumentList.ToList(), m_ipList, m_size, m_listCircle))
+            if (null == csManager.EditItem(m_communicationsets, m_comconfList.ToList(), m_baseinstrumentList.ToList(), m_ipList, m_size, m_listCircle, m_listColumn))
             {
                 StringBuilderSplit sb = new StringBuilderSplit("\n");
                 sb.Append(labSystemName.Text + systemName.Text);

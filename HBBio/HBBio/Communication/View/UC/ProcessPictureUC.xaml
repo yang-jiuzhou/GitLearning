@@ -66,6 +66,18 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <ControlTemplate x:Key="ctColumn" TargetType="{x:Type Thumb}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.Row="0" Fill="#BFBFBF" Stroke="#D8D8D8" StrokeThickness="2"/>
+                <Rectangle x:Name="rectangle" Grid.Row="1" Fill="#ECECEC" Stroke="#D8D8D8" StrokeThickness="2" Margin="7,0"/>
+                <Rectangle Grid.Row="2" Fill="#BFBFBF" Stroke="#D8D8D8" StrokeThickness="2"/>
+            </Grid>
+        </ControlTemplate>
     </UserControl.Resources>
     <Border Style="{StaticResource BorderBaseRead}">
         <Canvas x:Name="canvas" MouseDown="canvas_MouseDown" Background="Transparent"/>

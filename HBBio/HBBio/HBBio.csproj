@@ -372,6 +372,7 @@
     <Compile Include="Communication\BLL\ReadXamlCommunication.cs" />
     <Compile Include="Communication\DAL\BaseInstrumentTable.cs" />
     <Compile Include="Communication\DAL\CirclePointTable.cs" />
+    <Compile Include="Communication\DAL\ColumnPointTable.cs" />
     <Compile Include="Communication\DAL\ComConfTable.cs" />
     <Compile Include="Communication\DAL\CommunicationSetsTable.cs" />
     <Compile Include="Communication\DAL\InstrumentPointTable.cs" />

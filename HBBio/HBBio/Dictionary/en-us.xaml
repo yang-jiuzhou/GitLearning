@@ -873,6 +873,7 @@
     <s:String x:Key="Com_AdjustPt1" xml:space="preserve">Coordinate Adjustment :</s:String>
     <s:String x:Key="Com_AdjustPath1" xml:space="preserve">Path Adjustment :</s:String>
     <s:String x:Key="Com_Circle1" xml:space="preserve">Circle : </s:String>
+    <s:String x:Key="Com_ColumnVisib">Column</s:String>
     <s:String x:Key="Com_ProcessPictureSize1" xml:space="preserve">Process Picture Size :</s:String>
 
 

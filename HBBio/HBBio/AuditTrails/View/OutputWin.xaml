@@ -25,10 +25,7 @@
                 <Button x:Name="btnMore" Width="30" Height="30" Content="M" Click="btnMore_Click"/>
             </ToolBar>
         </ToolBarTray>
-        <Grid Grid.Row="1">
-            <FlowDocumentReader x:Name="docReader"/>
-            <share:LoadingWaitUC x:Name="loadingWaitUC"/>
-        </Grid>
+        <FlowDocumentReader x:Name="docReader" Grid.Row="1"/>
         <Button x:Name="btnPrint" Grid.Row="2" Content="{DynamicResource btnPrint}" Click="btnPrint_Click"/>
     </Grid>
 </Window>

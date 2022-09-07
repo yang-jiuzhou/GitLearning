@@ -22,12 +22,6 @@ namespace HBBio.AuditTrails
     /// </summary>
     public partial class OutputWin : Window
     {
-        private List<string> m_listType = null;
-        private List<string> m_listUser = null;
-        private List<string> m_listDate = null;
-        private List<string> m_listInfo = null;
-
-
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -54,75 +48,46 @@ namespace HBBio.AuditTrails
         /// <param name="listInfo"></param>
         public void SetData(List<string> listType, List<string> listUser, List<string> listDate, List<string> listInfo)
         {
-            m_listType = listType;
-            m_listUser = listUser;
-            m_listDate = listDate;
-            m_listInfo = listInfo;
-
-            Task task = new Task(TaskFun);
-            task.Start(TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
-        /// <summary>
-        /// 处理赋值
-        /// </summary>
-        private void TaskFun()
-        {
             try
             {
-                this.loadingWaitUC.Dispatcher.Invoke(new Action(delegate ()
+                FlowDocument doc = (FlowDocument)Application.LoadComponent(new Uri("./../../AuditTrails/View/Document.xaml", UriKind.RelativeOrAbsolute));
+                PrintDialog dialog = new PrintDialog();
+                doc.PageWidth = dialog.PrintableAreaWidth;
+                doc.PageHeight = dialog.PrintableAreaHeight;
+                Style styleCell = doc.Resources["BorderedCell"] as Style;
+                TableRowGroup group = doc.FindName("table") as TableRowGroup;
+                for (int i = 0; i < listType.Count; i++)
                 {
-                    loadingWaitUC.Visibility = Visibility.Visible;
-                }));
+                    TableRow row = new TableRow();
 
-                this.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    FlowDocument doc = (FlowDocument)Application.LoadComponent(new Uri("./../../AuditTrails/View/Document.xaml", UriKind.RelativeOrAbsolute));
-                    PrintDialog dialog = new PrintDialog();
-                    doc.PageWidth = dialog.PrintableAreaWidth;
-                    doc.PageHeight = dialog.PrintableAreaHeight;
-                    Style styleCell = doc.Resources["BorderedCell"] as Style;
-                    TableRowGroup group = doc.FindName("table") as TableRowGroup;
-                    for (int i = 0; i < m_listType.Count; i++)
-                    {
-                        TableRow row = new TableRow();
+                    TableCell cell = new TableCell(new Paragraph(new Run(listType[i])));
+                    cell.Style = styleCell;
+                    row.Cells.Add(cell);
 
-                        TableCell cell = new TableCell(new Paragraph(new Run(m_listType[i])));
-                        cell.Style = styleCell;
-                        row.Cells.Add(cell);
+                    cell = new TableCell(new Paragraph(new Run(listUser[i])));
+                    cell.Style = styleCell;
+                    row.Cells.Add(cell);
 
-                        cell = new TableCell(new Paragraph(new Run(m_listUser[i])));
-                        cell.Style = styleCell;
-                        row.Cells.Add(cell);
+                    cell = new TableCell(new Paragraph(new Run(listDate[i])));
+                    cell.Style = styleCell;
+                    row.Cells.Add(cell);
 
-                        cell = new TableCell(new Paragraph(new Run(m_listDate[i])));
-                        cell.Style = styleCell;
-                        row.Cells.Add(cell);
+                    cell = new TableCell(new Paragraph(new Run(listInfo[i])));
+                    cell.Style = styleCell;
+                    row.Cells.Add(cell);
 
-                        cell = new TableCell(new Paragraph(new Run(m_listInfo[i])));
-                        cell.Style = styleCell;
-                        row.Cells.Add(cell);
+                    group.Rows.Add(row);
+                }
+                docReader.Document = doc;
 
-                        group.Rows.Add(row);
-                    }
-                    docReader.Document = doc;
-
-                    PDFSet pdfSet;
-                    PrintManager manager = new PrintManager();
-                    manager.GetPDFSet(out pdfSet);
-                    UpdatePDFSet(pdfSet);
-                }));
+                PDFSet pdfSet;
+                PrintManager manager = new PrintManager();
+                manager.GetPDFSet(out pdfSet);
+                UpdatePDFSet(pdfSet);
             }
             catch (Exception ex)
             {
                 SystemLog.SystemLogManager.LogWrite(ex);
-            }
-            finally
-            {
-                this.loadingWaitUC.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    loadingWaitUC.Visibility = Visibility.Collapsed;
-                }));
             }
         }
 
@@ -151,7 +116,7 @@ namespace HBBio.AuditTrails
         /// <param name="e"></param>
         private void btnWeight_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(docReader.Selection.Text))
+            if (null != docReader.Selection && !string.IsNullOrWhiteSpace(docReader.Selection.Text))
             {
                 Object obj = docReader.Selection.GetPropertyValue(TextElement.FontWeightProperty);
                 if (DependencyProperty.UnsetValue == obj)
@@ -178,7 +143,7 @@ namespace HBBio.AuditTrails
         /// <param name="e"></param>
         private void btnStyle_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(docReader.Selection.Text))
+            if (null != docReader.Selection && !string.IsNullOrWhiteSpace(docReader.Selection.Text))
             {
                 Object obj = docReader.Selection.GetPropertyValue(TextElement.FontStyleProperty);
                 if (DependencyProperty.UnsetValue == obj)
@@ -205,7 +170,7 @@ namespace HBBio.AuditTrails
         /// <param name="e"></param>
         private void btnUnderline_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(docReader.Selection.Text))
+            if (null != docReader.Selection && !string.IsNullOrWhiteSpace(docReader.Selection.Text))
             {
                 Object obj = docReader.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
                 if (DependencyProperty.UnsetValue == obj)
@@ -232,7 +197,7 @@ namespace HBBio.AuditTrails
         /// <param name="e"></param>
         private void cboxSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(docReader.Selection.Text))
+            if (null != docReader.Selection && !string.IsNullOrWhiteSpace(docReader.Selection.Text))
             {
                 docReader.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, cboxSize.SelectedItem);
             }
@@ -245,7 +210,7 @@ namespace HBBio.AuditTrails
         /// <param name="e"></param>
         private void cboxFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(docReader.Selection.Text))
+            if (null != docReader.Selection && !string.IsNullOrWhiteSpace(docReader.Selection.Text))
             {
                 docReader.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty, cboxFamily.SelectedItem);
             }
@@ -330,15 +295,6 @@ namespace HBBio.AuditTrails
             { }
 
             docReader.Document = doc;
-        }
-    }
-
-    public class AAA
-    {
-        public string AA { get; set; }
-        public AAA()
-        {
-            AA = "aaaa";
         }
     }
 }

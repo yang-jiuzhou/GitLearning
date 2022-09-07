@@ -335,11 +335,23 @@ namespace HBBio.Communication
                     if (4 == val.Length)
                     {
                         //读pH
-                        ph = Math.Round(double.Parse(val[0]), 2);
+                        double tmp = Math.Round(double.Parse(val[0]), 2);
+                        if (StaticValue.s_minPH <= tmp && tmp <= StaticValue.s_maxPH)
+                        {
+                            ph = tmp;
+                        }
                         //读温度
-                        temp = Math.Round(double.Parse(val[1]), 2);
+                        tmp = Math.Round(double.Parse(val[1]), 2);
+                        if (0 <= tmp && tmp <= 100)
+                        {
+                            temp = tmp;
+                        }
                         //读电导
-                        cd1 = Math.Round(double.Parse(val[2]) / 1000, 4);
+                        tmp = Math.Round(double.Parse(val[2]) / 1000, 4);
+                        if (StaticValue.s_minCD <= tmp && tmp <= StaticValue.s_maxCD)
+                        {
+                            cd1 = tmp;
+                        }
                         //读校准前电导
                         cd2 = Math.Round(double.Parse(val[3]) / 1000, 4);
                     }

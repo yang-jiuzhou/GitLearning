@@ -73,11 +73,13 @@ namespace HBBio.Communication
         }
 
         private List<Point> m_listCircle = new List<Point>();
+        private List<Point> m_listColumn = new List<Point>();
         private List<BaseInstrument> m_baseinstrumentList = null;
         private List<InstrumentPoint> m_listIP = null;
 
         private Dictionary<Thumb, BaseInstrument> m_list = new Dictionary<Thumb, BaseInstrument>();
         private Dictionary<Thumb, int> m_list2 = new Dictionary<Thumb, int>();
+        private Dictionary<Thumb, int> m_list3 = new Dictionary<Thumb, int>();
         private Dictionary<string, Shape> m_dictShape = new Dictionary<string, Shape>();
 
         private bool m_isHV = true;     //添加的线段是否是先水平后垂直
@@ -85,6 +87,10 @@ namespace HBBio.Communication
         private int m_click = -1;
         public bool MConnHVPt
         {
+            get
+            {
+                return m_isHV;
+            }
             set
             {
                 m_click = 0;
@@ -177,15 +183,17 @@ namespace HBBio.Communication
         /// <param name="baseinstrumentList"></param>
         /// <param name="listIP"></param>
         /// <param name="size"></param>
-        public void UpdateItems(List<BaseInstrument> baseinstrumentList, List<InstrumentPoint> listIP, InstrumentSize size, List<Point> listCircle)
+        public void UpdateItems(List<BaseInstrument> baseinstrumentList, List<InstrumentPoint> listIP, InstrumentSize size, List<Point> listCircle, List<Point> listColumn)
         {
             this.canvas.Children.Clear();
             m_list.Clear();
             m_list2.Clear();
+            m_list3.Clear();
             m_dictShape.Clear();
 
             m_listIP = listIP;
             m_listCircle = listCircle;
+            m_listColumn = listColumn;
 
             this.Width = size.MWidth;
             this.Height = size.MHeight;
@@ -276,7 +284,12 @@ namespace HBBio.Communication
 
             for (int i = 0; i < listCircle.Count; i++)
             {
-                AddItemCircle(i, listCircle[i]);
+                AddItemCircle(i, listCircle[i], false);
+            }
+
+            for (int i = 0; i < listColumn.Count; i++)
+            {
+                AddItemColumn(i, listColumn[i], false);
             }
 
             foreach (var it in listIP)
@@ -296,7 +309,7 @@ namespace HBBio.Communication
         /// <param name="bpv"></param>
         public void UpdateLines(bool runS, bool runA, bool runB, bool runC, bool runD, bool bpv)
         {
-            if (null != m_listIP && (MRunS != runS || MRunA != runA || MRunB != runB || MRunC != runC || MRunC != runC || MBPV != bpv))
+            if (null != m_listIP && (MRunS != runS || MRunA != runA || MRunB != runB || MRunC != runC || MRunD != runD || MBPV != bpv))
             {
                 MRunS = runS;
                 MRunA = runA;
@@ -316,11 +329,12 @@ namespace HBBio.Communication
         /// </summary>
         /// <param name="baseinstrumentList"></param>
         /// <param name="listIP"></param>
-        public void UpdateItems(List<BaseInstrument> baseinstrumentList, List<InstrumentPoint> listIP, List<Point> listCircle)
+        public void UpdateItems(List<BaseInstrument> baseinstrumentList, List<InstrumentPoint> listIP, List<Point> listCircle, List<Point> listColumn)
         {
             m_baseinstrumentList = baseinstrumentList;
             m_listIP = listIP;
             m_listCircle = listCircle;
+            m_listColumn = listColumn;
 
             foreach (var it in m_baseinstrumentList)
             {
@@ -405,7 +419,12 @@ namespace HBBio.Communication
 
             for (int i = 0; i < listCircle.Count; i++)
             {
-                AddItemCircle(i, listCircle[i]);
+                AddItemCircle(i, listCircle[i], true);
+            }
+
+            for (int i = 0; i < listColumn.Count; i++)
+            {
+                AddItemColumn(i, listColumn[i], true);
             }
 
             foreach (var it in m_listIP)
@@ -422,7 +441,7 @@ namespace HBBio.Communication
         {
             if (m_listCircle.Count < count)
             {
-                while(m_listCircle.Count < count)
+                while (m_listCircle.Count < count)
                 {
                     AddItemCircle();
                 }
@@ -442,7 +461,7 @@ namespace HBBio.Communication
         private void AddItemCircle()
         {
             Point pt = new Point(0, 0);
-            AddItemCircle(m_listCircle.Count, pt);
+            AddItemCircle(m_listCircle.Count, pt, true);
             m_listCircle.Add(pt);
         }
 
@@ -471,19 +490,101 @@ namespace HBBio.Communication
         /// </summary>
         /// <param name="index"></param>
         /// <param name="pt"></param>
-        protected void AddItemCircle(int index, Point pt)
+        protected void AddItemCircle(int index, Point pt, bool drag)
         {
             Thumb thumb = new Thumb();
             thumb.ToolTip = index.ToString();
             thumb.Width = 25;
             thumb.Height = 25;
             thumb.Template = FindResource("ctCircle") as ControlTemplate;
-            thumb.DragDelta += new DragDeltaEventHandler(this.Thumb_DragDelta);
-            thumb.DragStarted += new DragStartedEventHandler(this.Thumb_DragStarted);
-            thumb.DragCompleted += new DragCompletedEventHandler(this.Thumb_DragCompleted);
+            if (drag)
+            {
+                thumb.DragDelta += new DragDeltaEventHandler(this.Thumb_DragDelta);
+                thumb.DragStarted += new DragStartedEventHandler(this.Thumb_DragStarted);
+                thumb.DragCompleted += new DragCompletedEventHandler(this.Thumb_DragCompleted);
+            }
 
             this.canvas.Children.Add(thumb);
             m_list2.Add(thumb, index);
+
+            Canvas.SetLeft(thumb, pt.X);
+            Canvas.SetTop(thumb, pt.Y);
+            Panel.SetZIndex(thumb, 1);
+        }
+
+        /// <summary>
+         /// 编辑流路图更新自定义圆圈
+         /// </summary>
+         /// <param name="count"></param>
+        public void UpdateItemColumn(int count)
+        {
+            if (m_listColumn.Count < count)
+            {
+                while (m_listColumn.Count < count)
+                {
+                    AddItemColumn();
+                }
+            }
+            else if (m_listColumn.Count > count)
+            {
+                while (m_listColumn.Count > count)
+                {
+                    RemoveItemColumn();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 编辑流路图增加自定义圆圈
+        /// </summary>
+        private void AddItemColumn()
+        {
+            Point pt = new Point(0, 0);
+            AddItemColumn(m_listColumn.Count, pt, true);
+            m_listColumn.Add(pt);
+        }
+
+        /// <summary>
+        /// 编辑流路图删除自定义圆圈
+        /// </summary>
+        private void RemoveItemColumn()
+        {
+            int last = m_listColumn.Count - 1;
+
+            m_listColumn.RemoveAt(last);
+
+            foreach (var it in m_list3)
+            {
+                if (it.Value == last)
+                {
+                    this.canvas.Children.Remove(it.Key);
+                    m_list3.Remove(it.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 编辑流路图增加自定义圆圈
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pt"></param>
+        protected void AddItemColumn(int index, Point pt, bool drag)
+        {
+            Thumb thumb = new Thumb();
+            thumb.ToolTip = index.ToString();
+            thumb.Width = 35;
+            thumb.Height = 50;
+            thumb.Template = FindResource("ctColumn") as ControlTemplate;
+            if (drag)
+            {
+                thumb.DragDelta += new DragDeltaEventHandler(this.Thumb_DragDelta);
+                thumb.DragStarted += new DragStartedEventHandler(this.Thumb_DragStarted);
+                thumb.DragCompleted += new DragCompletedEventHandler(this.Thumb_DragCompleted);
+            }
+
+            this.canvas.Children.Add(thumb);
+            m_list3.Add(thumb, index);
 
             Canvas.SetLeft(thumb, pt.X);
             Canvas.SetTop(thumb, pt.Y);
@@ -520,7 +621,14 @@ namespace HBBio.Communication
                     }
                     else
                     {
-                        m_listCircle[m_list2[myThumb]] = new Point(Canvas.GetLeft(myThumb), Canvas.GetTop(myThumb));
+                        if (m_list2.ContainsKey(myThumb))
+                        {
+                            m_listCircle[m_list2[myThumb]] = new Point(Canvas.GetLeft(myThumb), Canvas.GetTop(myThumb));
+                        }
+                        else
+                        {
+                            m_listColumn[m_list3[myThumb]] = new Point(Canvas.GetLeft(myThumb), Canvas.GetTop(myThumb));
+                        }
                     }
                 }
             }

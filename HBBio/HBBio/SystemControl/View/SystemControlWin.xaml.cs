@@ -1016,7 +1016,7 @@ namespace HBBio.SystemControl
                 chromatogramUC.InitDataFrame(list, listBG, 0 < listAxisScale.Count ? listAxisScale[0] : null);
             }
 
-            this.processPicture.UpdateItems(SystemControlManager.s_comconfStatic.m_biList, SystemControlManager.s_comconfStatic.m_ipList, SystemControlManager.s_comconfStatic.m_size, SystemControlManager.s_comconfStatic.m_lsitCircle);
+            this.processPicture.UpdateItems(SystemControlManager.s_comconfStatic.m_biList, SystemControlManager.s_comconfStatic.m_ipList, SystemControlManager.s_comconfStatic.m_size, SystemControlManager.s_comconfStatic.m_listCircle, SystemControlManager.s_comconfStatic.m_listColumn);
 
             SystemControlManager.s_comconfStatic.ThreadAllStart();
             SystemControlManager.s_comconfStatic.ThreadAllStatus(ENUMThreadStatus.WriteOrRead);

@@ -34,6 +34,8 @@ namespace HBBio.Communication
                     biDB.InitTable();
                     CirclePointTable cpDB = new CirclePointTable(lastId);
                     cpDB.InitTable();
+                    ColumnPointTable columnPointTable = new ColumnPointTable(lastId);
+                    columnPointTable.InitTable();
                     InstrumentPointTable ipDB = new InstrumentPointTable(lastId);
                     ipDB.InitTable();
                     InstrumentSizeTable isDB = new InstrumentSizeTable(lastId);
@@ -132,7 +134,7 @@ namespace HBBio.Communication
         /// <param name="biList"></param>
         /// <param name="snList"></param>
         /// <returns></returns>
-        public string EditItem(CommunicationSets cs, List<ComConf> cfList, List<BaseInstrument> biList, List<InstrumentPoint> ipList, InstrumentSize size, List<Point> listCircle)
+        public string EditItem(CommunicationSets cs, List<ComConf> cfList, List<BaseInstrument> biList, List<InstrumentPoint> ipList, InstrumentSize size, List<Point> listCircle, List<Point> listColumn)
         {
             string result = null;
 
@@ -153,6 +155,9 @@ namespace HBBio.Communication
 
             CirclePointTable cpDB = new CirclePointTable(cs.MId);
             result += cpDB.UpdateList(listCircle);
+
+            ColumnPointTable columnPointTable = new ColumnPointTable(cs.MId);
+            result += columnPointTable.UpdateList(listColumn);
 
             TimeSetTable rtDB = new TimeSetTable();
             foreach (var it in biList)
@@ -234,16 +239,18 @@ namespace HBBio.Communication
         /// <param name="biList"></param>
         /// <param name="snList"></param>
         /// <returns></returns>
-        public string GetItem(CommunicationSets cs, out List<ComConf> cfList, out List<InstrumentPoint> ipList, out InstrumentSize size, out List<Point> listCircle)
+        public string GetItem(CommunicationSets cs, out List<ComConf> cfList, out List<InstrumentPoint> ipList, out InstrumentSize size, out List<Point> listCircle, out List<Point> listColumn)
         {
             string error = null;
             TimeSetTable tsDB = new TimeSetTable();
             ComConfTable ccDB = new ComConfTable(cs.MId);
+
             BaseInstrumentTable biDB = new BaseInstrumentTable(cs.MId);
             SignalTable snDB = new SignalTable(cs.MId);
             InstrumentPointTable ipDB = new InstrumentPointTable(cs.MId);
             InstrumentSizeTable isDB = new InstrumentSizeTable(cs.MId);
             CirclePointTable cpDB = new CirclePointTable(cs.MId);
+            ColumnPointTable columnPointTable = new ColumnPointTable(cs.MId);
 
             if (null == (error = ccDB.GetDataList(out cfList)))
             {
@@ -276,6 +283,7 @@ namespace HBBio.Communication
             ipDB.GetDataList(out ipList);
             isDB.SelectRow(out size);
             cpDB.GetList(out listCircle);
+            columnPointTable.GetList(out listColumn);
 
             return error;
         }

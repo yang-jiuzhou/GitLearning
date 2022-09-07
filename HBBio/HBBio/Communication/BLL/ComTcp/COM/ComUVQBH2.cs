@@ -416,9 +416,19 @@ namespace HBBio.Communication
                 if (!read())
                 {
                     SetSendF(true);
-                    if (!read(DlyBase.c_sleep5))
+                    if (onoff)
                     {
-                        return false;
+                        if (!read(DlyBase.c_sleep5))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        uv1 = 0;
+                        uv2 = 0;
+                        Thread.Sleep(DlyBase.c_sleep50);
+                        return true;
                     }
                 }
 

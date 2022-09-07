@@ -30,13 +30,13 @@ namespace HBBio.Communication
         /// <param name="baseinstrumentList"></param>
         /// <param name="ipList"></param>
         /// <param name="size"></param>
-        public EditProcessPictureWin(Window parent, List<BaseInstrument> baseinstrumentList, List<InstrumentPoint> ipList, InstrumentSize size, List<Point> listCircle)
+        public EditProcessPictureWin(Window parent, List<BaseInstrument> baseinstrumentList, List<InstrumentPoint> ipList, InstrumentSize size, List<Point> listCircle, List<Point> listColumn)
         {
             InitializeComponent();
 
             this.Owner = parent;
 
-            this.processPictureUC.UpdateItems(baseinstrumentList, ipList, listCircle);
+            this.processPictureUC.UpdateItems(baseinstrumentList, ipList, listCircle, listColumn);
 
             cboxType.ItemsSource = Enum.GetNames(typeof(EnumLineType));
             cboxType.SelectedIndex = 0;
@@ -48,6 +48,7 @@ namespace HBBio.Communication
             doubleHeight.Value = m_size.MHeight;
 
             intCircle.Value = listCircle.Count;
+            intColumn.Value = listColumn.Count;
         }
 
         private void txtLeft_TextChanged(object sender, TextChangedEventArgs e)
@@ -103,6 +104,14 @@ namespace HBBio.Communication
             }
         }
 
+        private void intColumn_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (null != this.processPictureUC)
+            {
+                this.processPictureUC.UpdateItemColumn((int)intColumn.Value);
+            }
+        }
+
         private void btnSetSize_Click(object sender, RoutedEventArgs e)
         {
              border.Width = (double)doubleWidth.Value;
@@ -131,6 +140,6 @@ namespace HBBio.Communication
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
-        }  
+        }
     }
 }

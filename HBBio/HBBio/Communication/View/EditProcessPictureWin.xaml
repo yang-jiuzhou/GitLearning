@@ -89,10 +89,16 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="{DynamicResource Com_Circle1}"/>
             <xctk:IntegerUpDown x:Name="intCircle" Grid.Column="2" ValueChanged="intCircle_ValueChanged"/>
+            <TextBlock Grid.Column="4" Text="{DynamicResource Com_ColumnVisib}"/>
+            <xctk:IntegerUpDown x:Name="intColumn" Grid.Column="6" ValueChanged="intColumn_ValueChanged"/>
         </Grid>
         <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>

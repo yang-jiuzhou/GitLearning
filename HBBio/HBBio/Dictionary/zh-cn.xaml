@@ -877,6 +877,7 @@
     <s:String x:Key="Com_AdjustPt1" xml:space="preserve">调整坐标 : </s:String>
     <s:String x:Key="Com_AdjustPath1" xml:space="preserve">调整路径 : </s:String>
     <s:String x:Key="Com_Circle1" xml:space="preserve">自定义接点 : </s:String>
+    <s:String x:Key="Com_ColumnVisib">色谱柱</s:String>
     <s:String x:Key="Com_ProcessPictureSize1" xml:space="preserve">流路图边界 : </s:String>
 
 
