@@ -75,6 +75,11 @@
                 </Grid.RowDefinitions>
                 <Rectangle Grid.Row="0" Fill="#BFBFBF" Stroke="#D8D8D8" StrokeThickness="2"/>
                 <Rectangle x:Name="rectangle" Grid.Row="1" Fill="#ECECEC" Stroke="#D8D8D8" StrokeThickness="2" Margin="7,0"/>
+                <Line Grid.Row="1" X1="17" Y1="10" X2="17" Y2="30" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                <Line Grid.Row="1" X1="17" Y1="30" X2="12" Y2="25" Stroke="{TemplateBinding Foreground}" StrokeThickness="2"/>
+                <Line Grid.Row="1" X1="17" Y1="30" X2="22" Y2="25" Stroke="{TemplateBinding Foreground}" StrokeThickness="2"/>
+                <Line Grid.Row="1" X1="17" Y1="10" X2="12" Y2="15" Stroke="{TemplateBinding Background}" StrokeThickness="2"/>
+                <Line Grid.Row="1" X1="17" Y1="10" X2="22" Y2="15" Stroke="{TemplateBinding Background}" StrokeThickness="2"/>
                 <Rectangle Grid.Row="2" Fill="#BFBFBF" Stroke="#D8D8D8" StrokeThickness="2"/>
             </Grid>
         </ControlTemplate>

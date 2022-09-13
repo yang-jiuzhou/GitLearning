@@ -38,7 +38,15 @@ namespace HBBio.Chromatogram
             int columnCount = Enum.GetNames(typeof(EnumBackground)).GetLength(0);
             for (int i = 0; i < columnCount; i++)
             {
-                sb.Append("[" + ((EnumBackground)i).ToString() + "] [varchar](32) NOT NULL,");
+                sb.Append("[" + ((EnumBackground)i).ToString() + "_C] [varchar](32) NOT NULL,");
+            }
+            for (int i = 0; i < columnCount; i++)
+            {
+                sb.Append("[" + ((EnumBackground)i).ToString() + "_V] [bit] NOT NULL,");
+            }
+            for (int i = 0; i < columnCount; i++)
+            {
+                sb.Append("[" + ((EnumBackground)i).ToString() + "_D] [bit] NOT NULL,");
             }
             sb.Remove(sb.Length - 1, 1);
 
@@ -57,19 +65,51 @@ namespace HBBio.Chromatogram
             sb.Append("'" + Share.ValueTrans.DrawToMedia(item.MCollColorM).ToString() + "',");
             sb.Append("'" + Share.ValueTrans.DrawToMedia(item.MCollColorA).ToString() + "',");
             sb.Append("'" + Share.ValueTrans.DrawToMedia(item.MValveColor).ToString() + "',");
-            sb.Append("'" + Share.ValueTrans.DrawToMedia(item.MPhaseColor).ToString() + "'");
+            sb.Append("'" + Share.ValueTrans.DrawToMedia(item.MPhaseColor).ToString() + "',");
+
+            sb.Append("'" + item.MMarkerVisible + "',");
+            sb.Append("'" + item.MCollMVisible + "',");
+            sb.Append("'" + item.MCollAVisible + "',");
+            sb.Append("'" + item.MValveVisible + "',");
+            sb.Append("'" + item.MPhaseVisible + "',");
+
+            sb.Append("'" + item.MMarkerDirection + "',");
+            sb.Append("'" + item.MCollMDirection + "',");
+            sb.Append("'" + item.MCollADirection + "',");
+            sb.Append("'" + item.MValveDirection + "',");
+            sb.Append("'" + item.MPhaseDirection + "'");
 
             return SqlInsertRow(sb.ToString());
         }
 
         /// <summary>
-        /// 修改行中的某一列
+        /// 修改行中的某一颜色列
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public string UpdateRow(EnumBackground index, Color value)
+        public string UpdateRowColor(EnumBackground index, Color value)
         {
-            return SqlUpdateRow(index.ToString() + "='" + Share.ValueTrans.DrawToMedia(value).ToString() + "'");
+            return SqlUpdateRow(index.ToString() + "_C='" + Share.ValueTrans.DrawToMedia(value).ToString() + "'");
+        }
+
+        /// <summary>
+        /// 修改行中的某一显隐列
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public string UpdateRowVisible(EnumBackground index, bool value)
+        {
+            return SqlUpdateRow(index.ToString() + "_V='" + value + "'");
+        }
+
+        /// <summary>
+        /// 修改行中的某一方向列
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public string UpdateRowDirection(EnumBackground index, bool value)
+        {
+            return SqlUpdateRow(index.ToString() + "_D='" + value + "'");
         }
 
         /// <summary>
@@ -98,17 +138,38 @@ namespace HBBio.Chromatogram
                         item.MCollColorA = Share.ValueTrans.MediaToDraw((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(reader.GetString(index++)));
                         item.MValveColor = Share.ValueTrans.MediaToDraw((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(reader.GetString(index++)));
                         item.MPhaseColor = Share.ValueTrans.MediaToDraw((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(reader.GetString(index++)));
+
+                        item.MMarkerVisible = reader.GetBoolean(index++);
+                        item.MCollMVisible = reader.GetBoolean(index++);
+                        item.MCollAVisible = reader.GetBoolean(index++);
+                        item.MValveVisible = reader.GetBoolean(index++);
+                        item.MPhaseVisible = reader.GetBoolean(index++);
+
+                        item.MMarkerDirection = reader.GetBoolean(index++);
+                        item.MCollMDirection = reader.GetBoolean(index++);
+                        item.MCollADirection = reader.GetBoolean(index++);
+                        item.MValveDirection = reader.GetBoolean(index++);
+                        item.MPhaseDirection = reader.GetBoolean(index++);
                     }
                     else
                     {
                         error = Share.ReadXaml.S_ErrorNoData;
-                    }
-                    CloseConnAndReader();
+                    } 
                 }
             }
             catch (Exception msg)
             {
                 error = msg.Message;
+            }
+            finally
+            {
+                CloseConnAndReader();
+            }
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                DropTable();
+                InitTable();
             }
 
             return error;

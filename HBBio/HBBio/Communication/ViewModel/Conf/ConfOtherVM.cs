@@ -46,6 +46,23 @@ namespace HBBio.Communication
                 OnPropertyChanged("MCloseUV");
             }
         }
+        public bool MOpenMixer 
+        {
+            get
+            {
+                return MItem.MOpenMixer;
+            }
+            set
+            {
+                if (MItem.MOpenMixer == value)
+                {
+                    return;
+                }
+
+                MItem.MOpenMixer = value;
+                OnPropertyChanged("MOpenMixer");
+            }
+        }
         #endregion
 
 

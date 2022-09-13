@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HBBio.AuditTrails"
         xmlns:share="clr-namespace:HBBio.Share"
         mc:Ignorable="d"
-        Title="{DynamicResource AT_OutputWin}" Height="463" Width="750" MinHeight="309" MinWidth="500" WindowStartupLocation="CenterOwner">
+        Title="{DynamicResource AT_OutputWin}" Height="463" Width="750" MinHeight="309" MinWidth="500" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ToolBarTray>
-            <ToolBar>
+            <ToolBar x:Name="bar">
                 <share:IconButton x:Name="btnWeight" Margin="2,0" Click="btnWeight_Click" Image="/Bio-LabChrom;component/Image/txtBold.png"/>
                 <share:IconButton x:Name="btnStyle" Margin="2,0" Click="btnStyle_Click" Image="/Bio-LabChrom;component/Image/txtItalic.png"/>
                 <share:IconButton x:Name="btnUnderline" Margin="2,0" Click="btnUnderline_Click" Image="/Bio-LabChrom;component/Image/txtUnderline.png"/>
@@ -25,7 +25,10 @@
                 <Button x:Name="btnMore" Margin="2,0" Height="30" Content="{DynamicResource btnMore}" FontSize="22" Click="btnMore_Click"/>
             </ToolBar>
         </ToolBarTray>
-        <FlowDocumentReader x:Name="docReader" Grid.Row="1"/>
+        <Grid Grid.Row="1">
+            <FlowDocumentReader x:Name="docReader"/>
+            <share:LoadingWaitUC x:Name="loadingWaitUC"/>
+        </Grid>
         <Button x:Name="btnPrint" Grid.Row="2" Content="{DynamicResource btnPrint}" Click="btnPrint_Click"/>
     </Grid>
 </Window>

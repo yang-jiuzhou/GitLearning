@@ -1359,7 +1359,7 @@ namespace HBBio.SystemControl
                 , SystemControlManager.s_comconfStatic.GetPumpGet(ENUMPumpName.FITB) > 0
                 , SystemControlManager.s_comconfStatic.GetPumpGet(ENUMPumpName.FITC) > 0
                 , SystemControlManager.s_comconfStatic.GetPumpGet(ENUMPumpName.FITD) > 0
-                , 0 != SystemControlManager.s_comconfStatic.GetValveGet(ENUMValveName.BPV));
+                , SystemControlManager.s_comconfStatic.GetValveGet(ENUMValveName.BPV));
 
             switch (SystemControlManager.MSystemState)
             {

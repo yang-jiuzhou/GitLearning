@@ -133,6 +133,12 @@ namespace HBBio.Communication
                 MSystemConfig.MConfOther.MCloseUV = MSystemConfigShow.MConfOtherVM.MCloseUV;
             }
 
+            if (MSystemConfig.MConfOther.MOpenMixer != MSystemConfigShow.MConfOtherVM.MOpenMixer)
+            {
+                sb.Append(chboxOpenMixer.Content.ToString() + " : " + (MSystemConfig.MConfOther.MOpenMixer ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off) + " -> " + (MSystemConfigShow.MConfOtherVM.MOpenMixer ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off));
+                MSystemConfig.MConfOther.MOpenMixer = MSystemConfigShow.MConfOtherVM.MOpenMixer;
+            }
+
             return sb.ToString();
         }
 
@@ -275,6 +281,7 @@ namespace HBBio.Communication
                 }
             }
             chboxCloseUV.Visibility = ItemVisibility.s_listUV[ENUMUVName.UV01];
+            chboxOpenMixer.Visibility = ItemVisibility.s_listMixer[ENUMMixerName.Mixer01];
             foreach (FrameworkElement it in gridOther.Children)
             {
                 it.DataContext = MSystemConfigShow.MConfOtherVM;

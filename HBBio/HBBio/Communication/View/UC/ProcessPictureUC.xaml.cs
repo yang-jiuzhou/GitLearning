@@ -125,7 +125,7 @@ namespace HBBio.Communication
         public bool MRunB { get; set; }
         public bool MRunC { get; set; }
         public bool MRunD { get; set; }
-        public bool MBPV { get; set; }
+        public int MBPV { get; set; }
 
 
         //当前选中的控件
@@ -307,7 +307,7 @@ namespace HBBio.Communication
         /// <param name="runC"></param>
         /// <param name="runD"></param>
         /// <param name="bpv"></param>
-        public void UpdateLines(bool runS, bool runA, bool runB, bool runC, bool runD, bool bpv)
+        public void UpdateLines(bool runS, bool runA, bool runB, bool runC, bool runD, int bpv)
         {
             if (null != m_listIP && (MRunS != runS || MRunA != runA || MRunB != runB || MRunC != runC || MRunD != runD || MBPV != bpv))
             {
@@ -697,7 +697,40 @@ namespace HBBio.Communication
                         case EnumLineType.B: running = MRunB; break;
                         case EnumLineType.C: running = MRunC; break;
                         case EnumLineType.D: running = MRunD; break;
-                        case EnumLineType.BPV: running = (MRunA | MRunB | MRunC | MRunD) & MBPV; break;
+                        case EnumLineType.BPV: 
+                            running = (MRunA | MRunB | MRunC | MRunD) & (0 < MBPV);
+                            BrushConverter brushConverter = new BrushConverter();
+                            if (running)
+                            {
+                                if (1 == MBPV)
+                                {
+                                    foreach (var it in m_list3.Keys)
+                                    {
+                                        it.BorderBrush = (Brush)brushConverter.ConvertFromString("#00FF00");
+                                        it.Foreground = (Brush)brushConverter.ConvertFromString("#00FF00");
+                                        it.Background = (Brush)brushConverter.ConvertFromString("#ECECEC");
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var it in m_list3.Keys)
+                                    {
+                                        it.BorderBrush = (Brush)brushConverter.ConvertFromString("#00FF00");
+                                        it.Foreground = (Brush)brushConverter.ConvertFromString("#ECECEC");
+                                        it.Background = (Brush)brushConverter.ConvertFromString("#00FF00");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                foreach (var it in m_list3.Keys)
+                                {
+                                    it.BorderBrush = (Brush)brushConverter.ConvertFromString("#ECECEC");
+                                    it.Foreground = (Brush)brushConverter.ConvertFromString("#ECECEC");
+                                    it.Background = (Brush)brushConverter.ConvertFromString("#ECECEC");
+                                }
+                            }
+                            break;
                     }
                     if (pt2.X == pt1.X)
                     {

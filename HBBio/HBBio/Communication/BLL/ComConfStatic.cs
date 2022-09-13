@@ -994,6 +994,34 @@ namespace HBBio.Communication
             m_dictPump[ENUMPumpName.FITB].m_flowSet = flowVol * perB / 100;
             m_dictPump[ENUMPumpName.FITC].m_flowSet = flowVol * perC / 100;
             m_dictPump[ENUMPumpName.FITD].m_flowSet = flowVol * perD / 100;
+
+            if (StaticSystemConfig.SSystemConfig.MConfOther.MOpenMixer && !m_dictMixer[ENUMMixerName.Mixer01].m_onoffGet)
+            {
+                if (0 < flowVol)
+                {
+                    int count = 0;
+                    if (0 < m_dictPump[ENUMPumpName.FITA].m_flowSet)
+                    {
+                        count++;
+                    }
+                    if (0 < m_dictPump[ENUMPumpName.FITB].m_flowSet)
+                    {
+                        count++;
+                    }
+                    if (0 < m_dictPump[ENUMPumpName.FITC].m_flowSet)
+                    {
+                        count++;
+                    }
+                    if (0 < m_dictPump[ENUMPumpName.FITD].m_flowSet)
+                    {
+                        count++;
+                    }
+                    if (1 < count)
+                    {
+                        m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = true;
+                    }
+                }
+            }
         }
         public void SetPumpSample(double flowVol)
         {

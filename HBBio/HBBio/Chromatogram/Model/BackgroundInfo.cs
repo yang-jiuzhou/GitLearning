@@ -37,6 +37,8 @@ namespace HBBio.Chromatogram
         }
         public Brush MMarkerBrush { get; set; }
         public Pen MMarkerPen { get; set; }
+        public bool MMarkerVisible { get; set; }
+        public bool MMarkerDirection { get; set; }
 
         private Color m_collM = Color.White;
         /// <summary>
@@ -57,6 +59,8 @@ namespace HBBio.Chromatogram
         }
         public Brush MCollBrushM { get; set; }
         public Pen MCollPenM { get; set; }
+        public bool MCollMVisible { get; set; }
+        public bool MCollMDirection { get; set; }
 
         private Color m_collA = Color.White;
         /// <summary>
@@ -77,6 +81,8 @@ namespace HBBio.Chromatogram
         }
         public Brush MCollBrushA { get; set; }
         public Pen MCollPenA { get; set; }
+        public bool MCollAVisible { get; set; }
+        public bool MCollADirection { get; set; }
 
         private Color m_valve = Color.White;
         /// <summary>
@@ -97,6 +103,8 @@ namespace HBBio.Chromatogram
         }
         public Brush MValveBrush { get; set; }
         public Pen MValvePen { get; set; }
+        public bool MValveVisible { get; set; }
+        public bool MValveDirection { get; set; }
 
         private Color m_phase = Color.White;
         /// <summary>
@@ -117,6 +125,8 @@ namespace HBBio.Chromatogram
         }
         public Brush MPhaseBrush { get; set; }
         public Pen MPhasePen { get; set; }
+        public bool MPhaseVisible { get; set; }
+        public bool MPhaseDirection { get; set; }
 
 
         public BackgroundInfo()
@@ -126,6 +136,18 @@ namespace HBBio.Chromatogram
             MCollColorA = Color.Blue;
             MValveColor = Color.Black;
             MPhaseColor = Color.Pink;
+
+            MMarkerVisible = false;
+            MCollMVisible = false;
+            MCollAVisible = false;
+            MValveVisible = false;
+            MPhaseVisible = false;
+
+            MMarkerDirection = true;
+            MCollMDirection = true;
+            MCollADirection = true;
+            MValveDirection = true;
+            MPhaseDirection = true;
         }
     }
 }

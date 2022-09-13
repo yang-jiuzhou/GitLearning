@@ -105,9 +105,12 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <CheckBox x:Name="chboxResetValve" Grid.Row="0" Content="{DynamicResource Com_ResetValve}" IsChecked="{Binding MResetValve}"/>
                     <CheckBox x:Name="chboxCloseUV" Grid.Row="2" Content="{DynamicResource Com_CloseUV}" IsChecked="{Binding MCloseUV}"/>
+                    <CheckBox x:Name="chboxOpenMixer" Grid.Row="4" Content="{DynamicResource Com_OpenMixer}" IsChecked="{Binding MOpenMixer}"/>
                 </Grid>
             </GroupBox>
         </WrapPanel>

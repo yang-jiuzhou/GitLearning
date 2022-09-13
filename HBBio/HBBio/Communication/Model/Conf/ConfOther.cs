@@ -18,6 +18,10 @@ namespace HBBio.Communication
         /// 紫外关灯
         /// </summary>
         public bool MCloseUV { get; set; }
+        /// <summary>
+        /// 双泵运行开启动态混合器
+        /// </summary>
+        public bool MOpenMixer { get; set; }
 
 
         /// <summary>
@@ -27,6 +31,7 @@ namespace HBBio.Communication
         {
             MResetValve = false;
             MCloseUV = false;
+            MOpenMixer = false;
         }
 
         /// <summary>
@@ -39,6 +44,7 @@ namespace HBBio.Communication
             StringBuilderSplit sb = new StringBuilderSplit(split);
             sb.Append(MResetValve);
             sb.Append(MCloseUV);
+            sb.Append(MOpenMixer);
             return sb.ToString();
         }
 
@@ -55,6 +61,7 @@ namespace HBBio.Communication
             {
                 MResetValve = Convert.ToBoolean(info[index++]);
                 MCloseUV = Convert.ToBoolean(info[index++]);
+                MOpenMixer = Convert.ToBoolean(info[index++]);
             }
             catch { }
         }

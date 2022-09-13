@@ -2,6 +2,7 @@
 using HBBio.Share;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -27,10 +28,6 @@ namespace HBBio.AuditTrails
         /// 读数据库的线程
         /// </summary>
         private Thread m_threadSearch = null;
-        /// <summary>
-        /// 导出PDF的线程
-        /// </summary>
-        private Thread m_threadOutputPDF = null;
         /// <summary>
         /// 导出Excel的线程
         /// </summary>
@@ -122,28 +119,39 @@ namespace HBBio.AuditTrails
         /// <param name="e"></param>
         private void btnPDF_Click(object sender, RoutedEventArgs e)
         {
-            if (null == m_threadOutputPDF || !m_threadOutputPDF.IsAlive)
+            Print.PaginatorHeaderFooter.s_signer = Administration.AdministrationStatic.Instance().MSigner;
+            Print.PaginatorHeaderFooter.s_reviewer = Administration.AdministrationStatic.Instance().MReviewer;
+
+            List<string> listType = new List<string>();
+            List<string> listUser = new List<string>();
+            List<string> listDate = new List<string>();
+            List<string> listInfo = new List<string>();
+            foreach (DataRow dataRow in auditTrailsSearchUC.Table.Rows)
             {
-                if (!Administration.AdministrationStatic.Instance().ShowSignerReviewerWin(this, Administration.EnumSignerReviewer.AuditTrails_Print))
+                listType.Add(dataRow[1].ToString());
+                listUser.Add(dataRow[6].ToString());
+                listDate.Add(dataRow[2].ToString());
+
+                StringBuilder sb = new StringBuilder();
+                if (!dataRow[3].ToString().Equals("N/A"))
                 {
-                    return;
+                    sb.Append(dataRow[3].ToString() + "\t");        //批处理(时间)
+                    sb.Append(dataRow[4].ToString() + "\t");        //批处理(体积)
+                    sb.Append(dataRow[5].ToString() + "\n");        //批处理(柱体积)
                 }
-
-                if (null == auditTrailsSearchUC.Table)
+                sb.Append(dataRow[7].ToString() + "\n");            //描述
+                if (!dataRow[8].ToString().Equals("N/A"))
                 {
-                    return;
+                    sb.Append(dataRow[8].ToString());               //旧值->新值 
                 }
-
-                m_threadOutputPDF = new Thread(ThreadPDF);
-                m_threadOutputPDF.IsBackground = true;
-                m_threadOutputPDF.Start();
-
-                AuditTrailsStatic.Instance().InsertRowOperate(this.Title + "-" + btnPDF.ToolTip);
+                listInfo.Add(sb.ToString());
             }
-            else
-            {
-                MessageBoxWin.Show(Share.ReadXaml.S_WaitCurrOper);
-            }
+
+            AuditTrailsStatic.Instance().InsertRowOperate(this.Title + "-" + btnPDF.ToolTip);
+
+            OutputWin m_pdfDlg = new OutputWin(this);
+            m_pdfDlg.SetData(listType, listUser, listDate, listInfo);
+            m_pdfDlg.ShowDialog();
         }
 
         /// <summary>
@@ -229,63 +237,6 @@ namespace HBBio.AuditTrails
                         this.auditTrailsSearchUC.Table = table;
                     }));
                 }
-            }
-            catch (Exception ex)
-            {
-                SystemLog.SystemLogManager.LogWrite(ex);
-            }
-            finally
-            {
-                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Collapsed;
-                }));
-            }
-        }
-
-        private void ThreadPDF()
-        {
-            try
-            {
-                this.auditTrailsSearchUC.Dispatcher.Invoke(new Action(delegate ()
-                {
-                    this.auditTrailsSearchUC.LoadingWaitVisibility = Visibility.Visible;
-                }));
-
-                Print.PaginatorHeaderFooter.s_signer = Administration.AdministrationStatic.Instance().MSigner;
-                Print.PaginatorHeaderFooter.s_reviewer = Administration.AdministrationStatic.Instance().MReviewer;
-
-                List<string> listType = new List<string>();
-                List<string> listUser = new List<string>();
-                List<string> listDate = new List<string>();
-                List<string> listInfo = new List<string>();
-                foreach (DataRow dataRow in auditTrailsSearchUC.Table.Rows)
-                {
-                    listType.Add(dataRow[1].ToString());
-                    listUser.Add(dataRow[6].ToString());
-                    listDate.Add(dataRow[2].ToString());
-
-                    StringBuilder sb = new StringBuilder();
-                    if (!dataRow[3].ToString().Equals("N/A"))
-                    {
-                        sb.Append(dataRow[3].ToString() + "\t");        //批处理(时间)
-                        sb.Append(dataRow[4].ToString() + "\t");        //批处理(体积)
-                        sb.Append(dataRow[5].ToString() + "\n");        //批处理(柱体积)
-                    }
-                    sb.Append(dataRow[7].ToString() + "\n");            //描述
-                    if (!dataRow[8].ToString().Equals("N/A"))
-                    {
-                        sb.Append(dataRow[8].ToString());               //旧值->新值 
-                    }
-                    listInfo.Add(sb.ToString());
-                }
-
-                App.Current.Dispatcher.Invoke((Action)(() =>
-                {
-                    OutputWin m_pdfDlg = new OutputWin(this);
-                    m_pdfDlg.SetData(listType, listUser, listDate, listInfo);
-                    m_pdfDlg.ShowDialog();
-                }));
             }
             catch (Exception ex)
             {

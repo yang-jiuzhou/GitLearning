@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="{DynamicResource labD_XAxis}">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="spanel" Orientation="Horizontal">
                 <TextBlock Margin="5" Text="{DynamicResource labD_AxisScale}"/>
                 <ComboBox x:Name="cboxXAxisScale" Margin="5" DisplayMemberPath="MString" SelectedValuePath="MEnum" SelectedValue="{Binding MModel.MAxisScale}"/>
                 <TextBlock Margin="5" Text="{DynamicResource labMin}"/>
@@ -55,8 +55,8 @@
                                     <ColumnDefinition Width="15"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{DynamicResource Com_Show}"/>
-                                <share:IconButton Command="{Binding MCommand}" CommandParameter="{StaticResource False}" MinHeight="18" MinWidth="{Binding MinHeight,RelativeSource={RelativeSource Self}}" Height="{Binding MinHeight,RelativeSource={RelativeSource Self}}" Width="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ImageHeight="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ImageWidth="{Binding MinHeight,RelativeSource={RelativeSource Self}}" x:Name="btnClear" Grid.Column="2" ToolTip="{DynamicResource btnClear}" Image="/Bio-LabChrom;component/Image/selectNull.png"/>
-                                <share:IconButton Command="{Binding MCommand}" CommandParameter="{StaticResource True}" MinHeight="18" MinWidth="{Binding MinHeight,RelativeSource={RelativeSource Self}}" Height="{Binding MinHeight,RelativeSource={RelativeSource Self}}" Width="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ImageHeight="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ImageWidth="{Binding MinHeight,RelativeSource={RelativeSource Self}}" x:Name="btnSelectAll" Grid.Column="4" ToolTip="{DynamicResource btnSelectAll}" Image="/Bio-LabChrom;component/Image/selectAll.png"/>
+                                <share:IconButton Grid.Column="2" Command="{Binding MCommand}" CommandParameter="{StaticResource False}" MinHeight="18" MinWidth="{Binding MinHeight,RelativeSource={RelativeSource Self}}" Height="{Binding MinHeight,RelativeSource={RelativeSource Self}}" Width="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ImageHeight="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ImageWidth="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ToolTip="{DynamicResource btnClear}" Image="/Bio-LabChrom;component/Image/selectNull.png"/>
+                                <share:IconButton Grid.Column="4" Command="{Binding MCommand}" CommandParameter="{StaticResource True}" MinHeight="18" MinWidth="{Binding MinHeight,RelativeSource={RelativeSource Self}}" Height="{Binding MinHeight,RelativeSource={RelativeSource Self}}" Width="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ImageHeight="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ImageWidth="{Binding MinHeight,RelativeSource={RelativeSource Self}}" ToolTip="{DynamicResource btnSelectAll}" Image="/Bio-LabChrom;component/Image/selectAll.png"/>
                             </Grid>
                         </DataGridCheckBoxColumn.Header>
                     </DataGridCheckBoxColumn>

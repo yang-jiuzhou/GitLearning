@@ -136,12 +136,16 @@
     <s:String x:Key="LabLength1" xml:space="preserve">Duration Value : </s:String>
     <s:String x:Key="LabUnit1" xml:space="preserve">Unit : </s:String>
     <s:String x:Key="LabPer">Percent</s:String>
+    <s:String x:Key="LabAS" xml:space="preserve"> %A_S(0-100) </s:String>
+    <s:String x:Key="LabAE" xml:space="preserve"> %A_E(0-100) </s:String>
     <s:String x:Key="LabBS" xml:space="preserve"> %B_S(0-100) </s:String>
     <s:String x:Key="LabBE" xml:space="preserve"> %B_E(0-100) </s:String>
     <s:String x:Key="LabCS" xml:space="preserve"> %C_S(0-100) </s:String>
     <s:String x:Key="LabCE" xml:space="preserve"> %C_E(0-100) </s:String>
     <s:String x:Key="LabDS" xml:space="preserve"> %D_S(0-100) </s:String>
     <s:String x:Key="LabDE" xml:space="preserve"> %D_E(0-100) </s:String>
+    <s:String x:Key="LabAS1" xml:space="preserve">%A_S(0-100) : </s:String>
+    <s:String x:Key="LabAE1" xml:space="preserve">%A_E(0-100) : </s:String>
     <s:String x:Key="LabBS1" xml:space="preserve">%B_S(0-100) : </s:String>
     <s:String x:Key="LabBE1" xml:space="preserve">%B_E(0-100) : </s:String>
     <s:String x:Key="LabCS1" xml:space="preserve">%C_S(0-100) : </s:String>
@@ -183,6 +187,9 @@
     <s:String x:Key="labMsgAlarm">Alarm Pop-ups</s:String>
     <s:String x:Key="labMsgWarning">Warning Pop-ups</s:String>
     <s:String x:Key="labColor">Color</s:String>
+    <s:String x:Key="labDirection">Direction</s:String>
+    <s:String x:Key="labDirectionH">Horizontal</s:String>
+    <s:String x:Key="labDirectionV">Vertical</s:String>
     <s:String x:Key="labCatalog">Catalog</s:String>
     <s:String x:Key="labFilePath1">File Path : </s:String>
     <s:String x:Key="labVisibility">Visibility</s:String>
@@ -920,6 +927,7 @@
     <s:String x:Key="Com_OtherSet">Other</s:String>
     <s:String x:Key="Com_ResetValve">Reset valve</s:String>
     <s:String x:Key="Com_CloseUV">Close UV</s:String>
+    <s:String x:Key="Com_OpenMixer">Open Mixer</s:String>
 
     <s:String x:Key="Com_DelComError">Configure has exist, can not delete!</s:String>
     <s:String x:Key="Com_ComError">Communication error</s:String>

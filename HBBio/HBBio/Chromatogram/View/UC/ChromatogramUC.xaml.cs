@@ -478,6 +478,79 @@ namespace HBBio.Chromatogram
         }
 
         /// <summary>
+        /// 初始化颜色方向等信息
+        /// </summary>
+        private void InitBackgroundInfo()
+        {
+            m_chromatogram.MBackgroundInfo = m_chromatogram.GetBackgroundColor();
+
+            if (m_chromatogram.MBackgroundInfo.MMarkerVisible)
+            {
+                menuMarkerVisibility.IsChecked = true;
+            }
+            if (m_chromatogram.MBackgroundInfo.MMarkerDirection)
+            {
+                menuMarkerDirectionH.IsChecked = true;
+            }
+            else
+            {
+                menuMarkerDirectionV.IsChecked = true;
+            }
+
+            if (m_chromatogram.MBackgroundInfo.MCollMVisible)
+            {
+                menuCollMVisibility.IsChecked = true;
+            }
+            if (m_chromatogram.MBackgroundInfo.MCollMDirection)
+            {
+                menuCollMDirectionH.IsChecked = true;
+            }
+            else
+            {
+                menuCollMDirectionV.IsChecked = true;
+            }
+
+            if (m_chromatogram.MBackgroundInfo.MCollAVisible)
+            {
+                menuCollAVisibility.IsChecked = true;
+            }
+            if (m_chromatogram.MBackgroundInfo.MCollADirection)
+            {
+                menuCollADirectionH.IsChecked = true;
+            }
+            else
+            {
+                menuCollADirectionV.IsChecked = true;
+            }
+
+            if (m_chromatogram.MBackgroundInfo.MValveVisible)
+            {
+                menuValveVisibility.IsChecked = true;
+            }
+            if (m_chromatogram.MBackgroundInfo.MValveDirection)
+            {
+                menuValveDirectionH.IsChecked = true;
+            }
+            else
+            {
+                menuValveDirectionV.IsChecked = true;
+            }
+
+            if (m_chromatogram.MBackgroundInfo.MPhaseVisible)
+            {
+                menuPhaseVisibility.IsChecked = true;
+            }
+            if (m_chromatogram.MBackgroundInfo.MPhaseDirection)
+            {
+                menuPhaseDirectionH.IsChecked = true;
+            }
+            else
+            {
+                menuPhaseDirectionV.IsChecked = true;
+            }
+        }
+
+        /// <summary>
         /// 谱图文件运行的线程函数
         /// </summary>
         private void ThreadDrawFun()
@@ -514,8 +587,8 @@ namespace HBBio.Chromatogram
         /// <param name="e"></param>
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            m_chromatogram.MBackgroundInfo = m_chromatogram.GetBackgroundColor();
-            
+            InitBackgroundInfo();
+
             m_drawThread = new Thread(ThreadDrawFun);
             m_drawThread.IsBackground = true;
             m_drawThread.Start();
@@ -958,7 +1031,8 @@ namespace HBBio.Chromatogram
         /// <param name="e"></param>
         private void menuMarkerVisibility_Click(object sender, RoutedEventArgs e)
         {
-            m_chromatogram.m_visibleMarker = menuMarkerVisibility.IsChecked;
+            m_chromatogram.MBackgroundInfo.MMarkerVisible = menuMarkerVisibility.IsChecked;
+            m_chromatogram.UpdateBackgroundVisible(EnumBackground.Marker, m_chromatogram.MBackgroundInfo.MMarkerVisible);
             UpdateDraw();
         }
 
@@ -981,6 +1055,32 @@ namespace HBBio.Chromatogram
                     UpdateDraw();
                 }
             }
+        }
+
+        /// <summary>
+        /// 标记方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuMarkerDirectionH_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MCollMDirection = true;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Marker, m_chromatogram.MBackgroundInfo.MMarkerDirection);
+            UpdateDraw();
+            menuMarkerDirectionV.IsChecked = false;
+        }
+
+        /// <summary>
+        /// 标记方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuMarkerDirectionV_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MCollMDirection = false;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Marker, m_chromatogram.MBackgroundInfo.MMarkerDirection);
+            UpdateDraw();
+            menuMarkerDirectionH.IsChecked = false;
         }
 
         /// <summary>
@@ -1028,18 +1128,19 @@ namespace HBBio.Chromatogram
         }
 
         /// <summary>
-        /// 收集显隐
+        /// 手动收集显隐
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void menuCollVisibility_Click(object sender, RoutedEventArgs e)
+        private void menuCollMVisibility_Click(object sender, RoutedEventArgs e)
         {
-            m_chromatogram.m_visibleColl = menuCollVisibility.IsChecked;
+            m_chromatogram.MBackgroundInfo.MCollMVisible = menuCollMVisibility.IsChecked;
+            m_chromatogram.UpdateBackgroundVisible(EnumBackground.Coll_M, m_chromatogram.MBackgroundInfo.MCollMVisible);
             UpdateDraw();
         }
 
         /// <summary>
-        /// 收集颜色
+        /// 手动收集颜色
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1058,6 +1159,50 @@ namespace HBBio.Chromatogram
                 }
             }
         }
+
+        /// <summary>
+        /// 手动收集方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuCollMDirectionH_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MCollMDirection = true;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Coll_M, m_chromatogram.MBackgroundInfo.MCollMDirection);
+            UpdateDraw();
+            menuCollMDirectionV.IsChecked = false;
+        }
+
+        /// <summary>
+        /// 手动收集方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuCollMDirectionV_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MCollMDirection = false;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Coll_M, m_chromatogram.MBackgroundInfo.MCollMDirection);
+            UpdateDraw();
+            menuCollMDirectionH.IsChecked = false;
+        }
+
+        /// <summary>
+        /// 自动收集显隐
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuCollAVisibility_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MCollAVisible = menuCollAVisibility.IsChecked;
+            m_chromatogram.UpdateBackgroundVisible(EnumBackground.Coll_A, m_chromatogram.MBackgroundInfo.MCollAVisible);
+            UpdateDraw();
+        }
+
+        /// <summary>
+        /// 自动收集颜色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuCollColorA_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.ColorDialog dlg = new System.Windows.Forms.ColorDialog();
@@ -1075,13 +1220,40 @@ namespace HBBio.Chromatogram
         }
 
         /// <summary>
+        /// 自动收集方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuCollADirectionH_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MCollADirection = true;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Coll_A, m_chromatogram.MBackgroundInfo.MCollADirection);
+            UpdateDraw();
+            menuCollADirectionV.IsChecked = false;
+        }
+
+        /// <summary>
+        /// 自动收集方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuCollADirectionV_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MCollADirection = false;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Coll_A, m_chromatogram.MBackgroundInfo.MCollADirection);
+            UpdateDraw();
+            menuCollADirectionH.IsChecked = false;
+        }
+
+        /// <summary>
         /// 切阀显隐
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void menuValveVisibility_Click(object sender, RoutedEventArgs e)
         {
-            m_chromatogram.m_visibleValve = menuValveVisibility.IsChecked;
+            m_chromatogram.MBackgroundInfo.MValveVisible = menuValveVisibility.IsChecked;
+            m_chromatogram.UpdateBackgroundVisible(EnumBackground.Valve, m_chromatogram.MBackgroundInfo.MValveVisible);
             UpdateDraw();
         }
 
@@ -1107,13 +1279,40 @@ namespace HBBio.Chromatogram
         }
 
         /// <summary>
+        /// 切阀方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuValveDirectionH_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MValveDirection = true;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Valve, m_chromatogram.MBackgroundInfo.MValveDirection);
+            UpdateDraw();
+            menuValveDirectionV.IsChecked = false;
+        }
+
+        /// <summary>
+        /// 切阀方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuValveDirectionV_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MValveDirection = false;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Valve, m_chromatogram.MBackgroundInfo.MValveDirection);
+            UpdateDraw();
+            menuValveDirectionH.IsChecked = false;
+        }
+
+        /// <summary>
         /// 方法阶段显隐
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void menuPhaseVisibility_Click(object sender, RoutedEventArgs e)
         {
-            m_chromatogram.m_visiblePhase = menuPhaseVisibility.IsChecked;
+            m_chromatogram.MBackgroundInfo.MPhaseVisible = menuPhaseVisibility.IsChecked;
+            m_chromatogram.UpdateBackgroundVisible(EnumBackground.Phase, m_chromatogram.MBackgroundInfo.MPhaseVisible);
             UpdateDraw();
         }
 
@@ -1136,6 +1335,32 @@ namespace HBBio.Chromatogram
                     UpdateDraw();
                 }
             } 
+        }
+
+        /// <summary>
+        /// 方法阶段方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuPhaseDirectionH_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MPhaseDirection = true;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Phase, m_chromatogram.MBackgroundInfo.MPhaseDirection);
+            UpdateDraw();
+            menuPhaseDirectionV.IsChecked = false;
+        }
+
+        /// <summary>
+        /// 方法阶段方向
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuPhaseDirectionV_Click(object sender, RoutedEventArgs e)
+        {
+            m_chromatogram.MBackgroundInfo.MPhaseDirection = false;
+            m_chromatogram.UpdateBackgroundDirection(EnumBackground.Phase, m_chromatogram.MBackgroundInfo.MPhaseDirection);
+            UpdateDraw();
+            menuPhaseDirectionH.IsChecked = false;
         }
 
         /// <summary>

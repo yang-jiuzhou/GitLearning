@@ -83,7 +83,7 @@ namespace HBBio.Communication
             }
             if (m_itemM.MVisible)
             {
-                result.Add(m_itemM.m_onoffGet ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off);
+                result.Add(m_itemM.m_onoffSet ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off);
             }
 
             return result;

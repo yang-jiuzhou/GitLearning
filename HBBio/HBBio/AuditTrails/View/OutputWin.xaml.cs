@@ -1,6 +1,7 @@
 ﻿using HBBio.Print;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace HBBio.AuditTrails
 {
@@ -22,6 +24,12 @@ namespace HBBio.AuditTrails
     /// </summary>
     public partial class OutputWin : Window
     {
+        List<string> m_listType;
+        List<string> m_listUser;
+        List<string> m_listDate;
+        List<string> m_listInfo;
+        DispatcherTimer m_timer = new DispatcherTimer();
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -36,7 +44,76 @@ namespace HBBio.AuditTrails
             cboxSize.ItemsSource = Share.MFontSize.MList;
 
             //加载字体枚举
-            cboxFamily.ItemsSource = Fonts.SystemFontFamilies;
+            cboxFamily.ItemsSource = Fonts.SystemFontFamilies;  
+        }
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            m_timer.Tick += new EventHandler(TimerFun);
+            m_timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            m_timer.Start();
+        }
+
+        /// <summary>
+        /// 定时器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerFun(object sender, EventArgs e)
+        {
+            m_timer.Stop();
+
+            docReader.Document = (FlowDocument)Application.LoadComponent(new Uri("./../../AuditTrails/View/Document.xaml", UriKind.RelativeOrAbsolute));
+            PrintDialog dialog = new PrintDialog();
+            docReader.Document.PageWidth = dialog.PrintableAreaWidth;
+            docReader.Document.PageHeight = dialog.PrintableAreaHeight;
+            PDFSet pdfSet;
+            PrintManager manager = new PrintManager();
+            manager.GetPDFSet(out pdfSet);
+            UpdatePDFSet(pdfSet);
+
+            TableRowGroup group = docReader.Document.FindName("table") as TableRowGroup;
+            Style styleCell = docReader.Document.Resources["BorderedCell"] as Style;
+            try
+            {
+                for (int i = 0; i < m_listType.Count; i++)
+                {
+                    TableRow row = new TableRow();
+
+                    TableCell cell = new TableCell(new Paragraph(new Run(m_listType[i])));
+                    cell.Style = styleCell;
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell(new Paragraph(new Run(m_listUser[i])));
+                    cell.Style = styleCell;
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell(new Paragraph(new Run(m_listDate[i])));
+                    cell.Style = styleCell;
+                    row.Cells.Add(cell);
+
+                    cell = new TableCell(new Paragraph(new Run(m_listInfo[i])));
+                    cell.Style = styleCell;
+
+                    row.Cells.Add(cell);
+
+                    group.Rows.Add(row);
+
+                    if (i % 100 == 99)
+                    {
+                        Share.MApp.DoEvents();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemLog.SystemLogManager.LogWrite(ex);
+            }
+            finally
+            {
+                loadingWaitUC.Visibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>
@@ -48,48 +125,12 @@ namespace HBBio.AuditTrails
         /// <param name="listInfo"></param>
         public void SetData(List<string> listType, List<string> listUser, List<string> listDate, List<string> listInfo)
         {
-            try
-            {
-                FlowDocument doc = (FlowDocument)Application.LoadComponent(new Uri("./../../AuditTrails/View/Document.xaml", UriKind.RelativeOrAbsolute));
-                PrintDialog dialog = new PrintDialog();
-                doc.PageWidth = dialog.PrintableAreaWidth;
-                doc.PageHeight = dialog.PrintableAreaHeight;
-                Style styleCell = doc.Resources["BorderedCell"] as Style;
-                TableRowGroup group = doc.FindName("table") as TableRowGroup;
-                for (int i = 0; i < listType.Count; i++)
-                {
-                    TableRow row = new TableRow();
+            m_listType = listType;
+            m_listUser = listUser;
+            m_listDate = listDate;
+            m_listInfo = listInfo;
 
-                    TableCell cell = new TableCell(new Paragraph(new Run(listType[i])));
-                    cell.Style = styleCell;
-                    row.Cells.Add(cell);
-
-                    cell = new TableCell(new Paragraph(new Run(listUser[i])));
-                    cell.Style = styleCell;
-                    row.Cells.Add(cell);
-
-                    cell = new TableCell(new Paragraph(new Run(listDate[i])));
-                    cell.Style = styleCell;
-                    row.Cells.Add(cell);
-
-                    cell = new TableCell(new Paragraph(new Run(listInfo[i])));
-                    cell.Style = styleCell;
-                    row.Cells.Add(cell);
-                    
-                    group.Rows.Add(row);
-                }
-
-                docReader.Document = doc;
-
-                PDFSet pdfSet;
-                PrintManager manager = new PrintManager();
-                manager.GetPDFSet(out pdfSet);
-                UpdatePDFSet(pdfSet);
-            }
-            catch (Exception ex)
-            {
-                SystemLog.SystemLogManager.LogWrite(ex);
-            }
+            
         }
 
         /// <summary>

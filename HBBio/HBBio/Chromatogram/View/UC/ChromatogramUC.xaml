@@ -29,27 +29,48 @@
                             </MenuItem>
                             <Separator/>
                             <MenuItem x:Name="menuMarker" Header="{DynamicResource labD_Marker}">
-                                <MenuItem x:Name="menuMarkerVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" IsChecked="True" Click="menuMarkerVisibility_Click"/>
+                                <MenuItem x:Name="menuMarkerVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" Click="menuMarkerVisibility_Click"/>
                                 <MenuItem x:Name="menuMarkerColor" Header="{DynamicResource labColor}" Click="menuMarkerColor_Click"/>
+                                <MenuItem Header="{DynamicResource labDirection}">
+                                    <MenuItem x:Name="menuMarkerDirectionH" Header="{DynamicResource labDirectionH}" IsCheckable="True" Click="menuMarkerDirectionH_Click"/>
+                                    <MenuItem x:Name="menuMarkerDirectionV" Header="{DynamicResource labDirectionV}" IsCheckable="True" Click="menuMarkerDirectionV_Click"/>
+                                </MenuItem>
                                 <MenuItem x:Name="menuMarkerAdd" Header="{DynamicResource btnAdd}" Click="menuMarkerAdd_Click"/>
                                 <MenuItem x:Name="menuMarkerDel" Header="{DynamicResource btnDel}" Click="menuMarkerDel_Click"/>
                             </MenuItem>
                             <MenuItem x:Name="menuColl" Header="{DynamicResource labD_Coll}">
-                                <MenuItem x:Name="menuCollVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" IsChecked="True" Click="menuCollVisibility_Click"/>
                                 <MenuItem x:Name="menuCollM" Header="{DynamicResource labD_CollM}">
-                                    <MenuItem x:Name="menuCollColorM" Header="{DynamicResource labColor}" Click="menuCollColorM_Click"/>
+                                    <MenuItem x:Name="menuCollMVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" Click="menuCollMVisibility_Click"/>
+                                    <MenuItem x:Name="menuCollMColor" Header="{DynamicResource labColor}" Click="menuCollColorM_Click"/>
+                                    <MenuItem Header="{DynamicResource labDirection}">
+                                        <MenuItem x:Name="menuCollMDirectionH" Header="{DynamicResource labDirectionH}" IsCheckable="True" Click="menuCollMDirectionH_Click"/>
+                                        <MenuItem x:Name="menuCollMDirectionV" Header="{DynamicResource labDirectionV}" IsCheckable="True" Click="menuCollMDirectionV_Click"/>
+                                    </MenuItem>
                                 </MenuItem>
                                 <MenuItem x:Name="menuCollA" Header="{DynamicResource labD_CollA}">
-                                    <MenuItem x:Name="menuCollColorA" Header="{DynamicResource labColor}" Click="menuCollColorA_Click"/>
+                                    <MenuItem x:Name="menuCollAVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" Click="menuCollAVisibility_Click"/>
+                                    <MenuItem x:Name="menuCollAColor" Header="{DynamicResource labColor}" Click="menuCollColorA_Click"/>
+                                    <MenuItem Header="{DynamicResource labDirection}">
+                                        <MenuItem x:Name="menuCollADirectionH" Header="{DynamicResource labDirectionH}" IsCheckable="True" Click="menuCollADirectionH_Click"/>
+                                        <MenuItem x:Name="menuCollADirectionV" Header="{DynamicResource labDirectionV}" IsCheckable="True" Click="menuCollADirectionV_Click"/>
+                                    </MenuItem>
                                 </MenuItem>
                             </MenuItem>
                             <MenuItem x:Name="menuValve" Header="{DynamicResource labD_Valve}">
-                                <MenuItem x:Name="menuValveVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" IsChecked="True" Click="menuValveVisibility_Click"/>
+                                <MenuItem x:Name="menuValveVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" Click="menuValveVisibility_Click"/>
                                 <MenuItem x:Name="menuValveColor" Header="{DynamicResource labColor}" Click="menuValveColor_Click"/>
+                                <MenuItem Header="{DynamicResource labDirection}">
+                                    <MenuItem x:Name="menuValveDirectionH" Header="{DynamicResource labDirectionH}" IsCheckable="True" Click="menuValveDirectionH_Click"/>
+                                    <MenuItem x:Name="menuValveDirectionV" Header="{DynamicResource labDirectionV}" IsCheckable="True" Click="menuValveDirectionV_Click"/>
+                                </MenuItem>
                             </MenuItem>
                             <MenuItem x:Name="menuPhase" Header="{DynamicResource labD_Phase}">
-                                <MenuItem x:Name="menuPhaseVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" IsChecked="False" Click="menuPhaseVisibility_Click"/>
+                                <MenuItem x:Name="menuPhaseVisibility" Header="{DynamicResource labVisibility}" IsCheckable="True" Click="menuPhaseVisibility_Click"/>
                                 <MenuItem x:Name="menuPhaseColor" Header="{DynamicResource labColor}" Click="menuPhaseColor_Click"/>
+                                <MenuItem Header="{DynamicResource labDirection}">
+                                    <MenuItem x:Name="menuPhaseDirectionH" Header="{DynamicResource labDirectionH}" IsCheckable="True" Click="menuPhaseDirectionH_Click"/>
+                                    <MenuItem x:Name="menuPhaseDirectionV" Header="{DynamicResource labDirectionV}" IsCheckable="True" Click="menuPhaseDirectionV_Click"/>
+                                </MenuItem>
                             </MenuItem>
                             <Separator/>
                             <MenuItem x:Name="menuCurve" Header="{DynamicResource D_Curve}" Click="menuCurve_Click"/>

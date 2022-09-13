@@ -82,7 +82,6 @@ namespace HBBio.Chromatogram
         public double m_disY = 0;
         public double m_disLastY = 0;
         //标记列表
-        public bool m_visibleMarker = true;
         public List<MarkerInfo> MMarkerList { get; }
         public string MMarkerInfo
         {
@@ -107,14 +106,11 @@ namespace HBBio.Chromatogram
             }
         }
         //收集列表
-        public bool m_visibleColl = true;
         public List<MarkerInfo> MCollListM { get; }
         public List<MarkerInfo> MCollListA { get; }
         //阀列表
-        public bool m_visibleValve = true;
         public List<MarkerInfo> MValveList { get; }
-        //阀列表
-        public bool m_visiblePhase = false;
+        //阶段列表
         public List<MarkerInfo> MPhaseList { get; }
         //各种标记的颜色
         public BackgroundInfo MBackgroundInfo { get; set; }
@@ -893,7 +889,7 @@ namespace HBBio.Chromatogram
             graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
 
-            if (m_visiblePhase)
+            if (MBackgroundInfo.MPhaseVisible)
             {
                 DrawPhase(graphics);
             }
@@ -934,17 +930,22 @@ namespace HBBio.Chromatogram
 
             graphics.Clip = temp;
 
-            if (m_visibleMarker)
+            if (MBackgroundInfo.MMarkerVisible)
             {
                 DrawMarker(graphics);
             }
 
-            if (m_visibleColl)
+            if (MBackgroundInfo.MCollMVisible)
             {
-                DrawColl(graphics);
+                DrawCollM(graphics);
             }
 
-            if (m_visibleValve)
+            if (MBackgroundInfo.MCollAVisible)
+            {
+                DrawCollA(graphics);
+            }
+
+            if (MBackgroundInfo.MValveVisible)
             {
                 DrawValve(graphics);
             }
@@ -1241,22 +1242,45 @@ namespace HBBio.Chromatogram
         /// 绘图，画收集
         /// </summary>
         /// <param name="mgph"></param>
-        protected void DrawColl(Graphics mgph)
+        protected void DrawCollM(Graphics mgph)
         {
             foreach (var it in MCollListM)
             {
                 int drawX = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (it.GetValByBase(MLines.MBase) - m_minPartX)) + m_chartLeft;
                 mgph.DrawLine(MBackgroundInfo.MCollPenM, drawX, m_chartBottom - 30, drawX, m_chartBottom);
-                mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 60);
-                mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 45);
+                if (MBackgroundInfo.MCollMDirection)
+                {
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 60);
+                    mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 45);
+                }
+                else
+                {
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 30, m_chartBottom - 45, new StringFormat(StringFormatFlags.DirectionVertical));
+                    mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 45, new StringFormat(StringFormatFlags.DirectionVertical));
+                }
             }
+        }
 
+        /// <summary>
+        /// 绘图，画收集
+        /// </summary>
+        /// <param name="mgph"></param>
+        protected void DrawCollA(Graphics mgph)
+        {
             foreach (var it in MCollListA)
             {
                 int drawX = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (it.GetValByBase(MLines.MBase) - m_minPartX)) + m_chartLeft;
                 mgph.DrawLine(MBackgroundInfo.MCollPenA, drawX, m_chartBottom - 30, drawX, m_chartBottom);
-                mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 60);
-                mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 45);
+                if (MBackgroundInfo.MCollADirection)
+                {
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 60);
+                    mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 45);
+                }
+                else
+                {
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 30, m_chartBottom - 45, new StringFormat(StringFormatFlags.DirectionVertical));
+                    mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 45, new StringFormat(StringFormatFlags.DirectionVertical));
+                }
             }
         }
 
@@ -1270,7 +1294,14 @@ namespace HBBio.Chromatogram
             {
                 int drawX = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (it.GetValByBase(MLines.MBase) - m_minPartX)) + m_chartLeft;
                 mgph.DrawLine(MBackgroundInfo.MValvePen, drawX, m_chartBottom - 50, drawX, m_chartBottom);
-                mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + " " + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MValveBrush, drawX - 15, m_chartBottom - 65);
+                if (MBackgroundInfo.MValveDirection)
+                {
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + " " + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MValveBrush, drawX - 15, m_chartBottom - 65);
+                }
+                else
+                {
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + " " + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MValveBrush, drawX - 15, m_chartBottom - 65, new StringFormat(StringFormatFlags.DirectionVertical));
+                }
             }
         }
 
@@ -1292,7 +1323,14 @@ namespace HBBio.Chromatogram
                     {
                         mgph.FillRectangle(MBackgroundInfo.MPhaseBrush, drawX1, m_chartTop, drawX2 - drawX1, m_chartHeight);
                     }
-                    mgph.DrawString(MPhaseList[i].GetValByBase(MLines.MBase).ToString() + " " + MPhaseList[i].MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MPhaseBrush, drawX1 + 15, m_chartTop - 15);
+                    if (MBackgroundInfo.MPhaseDirection)
+                    {
+                        mgph.DrawString(MPhaseList[i].GetValByBase(MLines.MBase).ToString() + " " + MPhaseList[i].MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MPhaseBrush, drawX1 + 15, m_chartTop - 15);
+                    }
+                    else
+                    {
+                        mgph.DrawString(MPhaseList[i].GetValByBase(MLines.MBase).ToString() + " " + MPhaseList[i].MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MPhaseBrush, drawX1 + 15, m_chartTop - 15, new StringFormat(StringFormatFlags.DirectionVertical));
+                    }
                 }
                 drawX1 = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (MPhaseList.Last().GetValByBase(MLines.MBase) - m_minPartX)) + m_chartLeft;
                 drawX2 = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (MLines.MXList.Last() - m_minPartX)) + m_chartLeft;
@@ -1300,7 +1338,14 @@ namespace HBBio.Chromatogram
                 {
                     mgph.FillRectangle(MBackgroundInfo.MPhaseBrush, drawX1, m_chartTop, drawX2 - drawX1, m_chartHeight);
                 }
-                mgph.DrawString(MPhaseList.Last().GetValByBase(MLines.MBase).ToString() + " " + MPhaseList.Last().MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MPhaseBrush, drawX1 + 15, m_chartTop - 15);
+                if (MBackgroundInfo.MPhaseDirection)
+                {
+                    mgph.DrawString(MPhaseList.Last().GetValByBase(MLines.MBase).ToString() + " " + MPhaseList.Last().MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MPhaseBrush, drawX1 + 15, m_chartTop - 15);
+                }
+                else
+                {
+                    mgph.DrawString(MPhaseList.Last().GetValByBase(MLines.MBase).ToString() + " " + MPhaseList.Last().MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MPhaseBrush, drawX1 + 15, m_chartTop - 15, new StringFormat(StringFormatFlags.DirectionVertical));
+                }
             }
         }
 
@@ -1953,7 +1998,19 @@ namespace HBBio.Chromatogram
         public bool UpdateBackgroundColor(EnumBackground index, Color value)
         {
             BackgroundTable table = new BackgroundTable();
-            return null == table.UpdateRow(index, value);
+            return null == table.UpdateRowColor(index, value);
+        }
+
+        public bool UpdateBackgroundVisible(EnumBackground index, bool value)
+        {
+            BackgroundTable table = new BackgroundTable();
+            return null == table.UpdateRowVisible(index, value);
+        }
+
+        public bool UpdateBackgroundDirection(EnumBackground index, bool value)
+        {
+            BackgroundTable table = new BackgroundTable();
+            return null == table.UpdateRowDirection(index, value);
         }
 
         public string GetAxisScaleList(int id, out List<AxisScale> list)

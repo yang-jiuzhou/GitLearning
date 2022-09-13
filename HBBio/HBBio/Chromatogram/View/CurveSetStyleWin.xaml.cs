@@ -20,6 +20,23 @@ namespace HBBio.Chromatogram
     /// </summary>
     public partial class CurveSetStyleWin : Window
     {
+        private CurveSetStyleVM m_dataContext = null;
+        public new object DataContext
+        {
+            get
+            {
+                return m_dataContext;
+            }
+            set
+            {
+                m_dataContext = (CurveSetStyleVM)value;
+
+                spanel.DataContext = m_dataContext;
+                dgv.ItemsSource = m_dataContext.MList;
+                gridCheck.DataContext = m_dataContext;
+            }
+        }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -38,9 +55,8 @@ namespace HBBio.Chromatogram
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dgv.ItemsSource = ((CurveSetStyleVM)this.DataContext).MList;
-            btnClear.DataContext = this.DataContext;
-            btnSelectAll.DataContext = this.DataContext;
+            //dgv.ItemsSource = ((CurveSetStyleVM)this.DataContext).MList;
+            //gridCheck.DataContext = this.DataContext;
         }
 
         /// <summary>
@@ -49,10 +65,10 @@ namespace HBBio.Chromatogram
         private void newColor_Click(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Forms.ColorDialog dlg = new System.Windows.Forms.ColorDialog();
-            dlg.Color = Share.ValueTrans.MediaToDraw(((SolidColorBrush)((CurveSetStyleVM)this.DataContext).MList[dgv.SelectedIndex].MModel.MBrush).Color);
+            dlg.Color = Share.ValueTrans.MediaToDraw(((SolidColorBrush)m_dataContext.MList[dgv.SelectedIndex].MModel.MBrush).Color);
             if (System.Windows.Forms.DialogResult.OK == dlg.ShowDialog())
             {
-                ((CurveSetStyleVM)this.DataContext).MList[dgv.SelectedIndex].MModel.MBrush = new SolidColorBrush(Share.ValueTrans.DrawToMedia(dlg.Color));
+                m_dataContext.MList[dgv.SelectedIndex].MModel.MBrush = new SolidColorBrush(Share.ValueTrans.DrawToMedia(dlg.Color));
                 MApp.DoEvents();
             }
         }
@@ -66,7 +82,7 @@ namespace HBBio.Chromatogram
         {
             if (null != dgv.CurrentCell && 3 == dgv.CurrentCell.Column.DisplayIndex)
             {
-                ((CurveSetStyleVM)this.DataContext).MList[dgv.SelectedIndex].MModel.MShow = !((CurveSetStyleVM)this.DataContext).MList[dgv.SelectedIndex].MModel.MShow;
+                m_dataContext.MList[dgv.SelectedIndex].MModel.MShow = !m_dataContext.MList[dgv.SelectedIndex].MModel.MShow;
             }
         }
 
@@ -77,12 +93,22 @@ namespace HBBio.Chromatogram
         /// <param name="e"></param>
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
+            if (m_dataContext.MMin >= m_dataContext.MMax)
+            {
+                return;
+            }
+
             int countShow = 0;
-            foreach (var it in ((CurveSetStyleVM)this.DataContext).MList)
+            foreach (var it in m_dataContext.MList)
             {
                 if (it.MModel.MShow)
                 {
                     countShow++;
+                }
+
+                if (it.MMin >= it.MMax)
+                {
+                    return;
                 }
             }
             if (0 == countShow)

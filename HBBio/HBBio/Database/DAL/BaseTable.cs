@@ -497,5 +497,38 @@ namespace HBBio.Database
 
             return result;
         }
+
+        /// <summary>
+        /// 删除表
+        /// </summary>
+        /// <returns></returns>
+        protected string DropTable()
+        {
+            string result = null;
+
+            SqlConnection conn = new SqlConnection(m_connStr);
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("drop table " + m_tableName + "", conn);
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception msg)
+            {
+                result = msg.Message;
+            }
+            finally
+            {
+                if (null != conn)
+                {
+                    conn.Close();
+                }
+            }
+
+            return result;
+        }
     }
 }

@@ -187,6 +187,9 @@
     <s:String x:Key="labMsgAlarm">警报弹窗</s:String>
     <s:String x:Key="labMsgWarning">警告弹窗</s:String>
     <s:String x:Key="labColor">颜色</s:String>
+    <s:String x:Key="labDirection">方向</s:String>
+    <s:String x:Key="labDirectionH">水平</s:String>
+    <s:String x:Key="labDirectionV">垂直</s:String>
     <s:String x:Key="labCatalog">目录</s:String>
     <s:String x:Key="labFilePath1">文件路径 : </s:String>
     <s:String x:Key="labVisibility">显示</s:String>
@@ -924,6 +927,7 @@
     <s:String x:Key="Com_OtherSet">其它</s:String>
     <s:String x:Key="Com_ResetValve">运行结束阀归位</s:String>
     <s:String x:Key="Com_CloseUV">运行结束紫外灯关闭</s:String>
+    <s:String x:Key="Com_OpenMixer">双泵开启动态混合器</s:String>
 
     <s:String x:Key="Com_DelComError">该配置存在数据,不可删除!</s:String>
     <s:String x:Key="Com_ComError">通讯故障</s:String>
