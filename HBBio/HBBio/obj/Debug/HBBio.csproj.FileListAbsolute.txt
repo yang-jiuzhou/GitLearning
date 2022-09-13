@@ -1662,3 +1662,5 @@ D:\GitLearning\HBBio\HBBio\obj\Debug\Bio-LabChrom.application
 D:\GitLearning\HBBio\HBBio\obj\Debug\HBBio.csproj.CopyComplete
 D:\GitLearning\HBBio\HBBio\obj\Debug\Bio-LabChrom.exe
 D:\GitLearning\HBBio\HBBio\obj\Debug\Bio-LabChrom.pdb
+D:\GitLearning\HBBio\HBBio\obj\Debug\Manual\View\OutWin.g.cs
+D:\GitLearning\HBBio\HBBio\obj\Debug\Manual\View\OutWin.baml

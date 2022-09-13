@@ -1112,7 +1112,12 @@
     <s:String x:Key="M_UVWin">UV Detector Setting</s:String>
 
     <s:String x:Key="M_ValveWin">Valve Setting</s:String>
-
+    <s:String x:Key="M_OutWin">Out Valve Setting</s:String>
+    <s:String x:Key="M_OutWin_SingleSelect">Single Select</s:String>
+    <s:String x:Key="M_OutWin_MultipleSelect">Multiple Select</s:String>
+    <s:String x:Key="M_OutWin_Start1">Vlave Start :</s:String>
+    <s:String x:Key="M_OutWin_Vol1">Switch Vol(ml) :</s:String>
+    
     <s:String x:Key="M_ValveSwitch">Valve Switch</s:String>
     
     

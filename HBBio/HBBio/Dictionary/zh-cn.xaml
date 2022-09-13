@@ -1112,6 +1112,11 @@
     <s:String x:Key="M_UVWin">紫外检测器设置</s:String>
 
     <s:String x:Key="M_ValveWin">阀设置</s:String>
+    <s:String x:Key="M_OutWin">出口阀设置</s:String>
+    <s:String x:Key="M_OutWin_SingleSelect">阀位切换</s:String>
+    <s:String x:Key="M_OutWin_MultipleSelect">阀位循环</s:String>
+    <s:String x:Key="M_OutWin_Start1">起始阀位 : </s:String>
+    <s:String x:Key="M_OutWin_Vol1">切换体积(ml) :</s:String>
 
     <s:String x:Key="M_ValveSwitch">阀切换</s:String>
     

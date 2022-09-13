@@ -542,6 +542,9 @@
     <Compile Include="Manual\Model\PumpSystemValue.cs" />
     <Compile Include="Manual\Model\PumpSampleValue.cs" />
     <Compile Include="Manual\Model\ValveListValue.cs" />
+    <Compile Include="Manual\View\OutWin.xaml.cs">
+      <DependentUpon>OutWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Manual\View\ASWin.xaml.cs">
       <DependentUpon>ASWin.xaml</DependentUpon>
     </Compile>
@@ -1191,6 +1194,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="HoldUntil\HoldUntilWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manual\View\OutWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

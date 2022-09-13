@@ -5,11 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HBBio.Manual"
         mc:Ignorable="d"
-        Title="{DynamicResource M_ValveWin}" Window.SizeToContent="WidthAndHeight" Background="#EEF5FD" Opacity="0.8" AllowsTransparency="True" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded">
+        Title="{DynamicResource M_ValveWin}" Window.SizeToContent="WidthAndHeight" Background="#EEF5FD" Opacity="0.8" AllowsTransparency="True" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
@@ -24,17 +22,5 @@
             <Button x:Name="btnClose" Style="{StaticResource closeBtnStyle}" Grid.Column="2" Click="btnClose_Click"/>
         </Grid>
         <Grid x:Name="grid" Grid.Row="2"/>
-        <Grid Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <RadioButton x:Name="rbtnReal" Grid.Column="0" Content="{DynamicResource labReal}" IsChecked="True" Visibility="Collapsed"/>
-            <RadioButton x:Name="rbtnDelay" Grid.Column="2" Content="{DynamicResource labDelay}" Visibility="Collapsed"/>
-            <Button x:Name="btnIntervene" Grid.Column="4" Content="{DynamicResource M_CollInterveneSet}" Click="btnIntervene_Click"/>
-        </Grid>
     </Grid>
 </Window>

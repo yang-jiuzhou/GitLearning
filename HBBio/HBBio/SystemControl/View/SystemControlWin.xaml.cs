@@ -42,8 +42,11 @@ namespace HBBio.SystemControl
         private List<Window> m_listChild = new List<Window>();      //子窗口集合
         private MessageBoxWin m_winAW = new MessageBoxWin("");      //警报警告弹窗
         private ScreenLockWin m_screenLockWin = new ScreenLockWin();
-        private List<Thread> m_listThradValveDelay = new List<Thread>();        //阀延迟切换的线程集合
-        private bool m_thradValveDelayIng = true;                               //阀延迟切换的线程信号
+
+        private static volatile bool s_threadFlagValveMulti = false;
+        private static Thread m_threadValveMulti = null;
+        private static Queue<double> m_queueVolValveMulti = new Queue<double>();
+
         private List<Thread> m_listThradCollectorDelay = new List<Thread>();    //收集器延迟切换的线程集合
         private bool m_thradCollectorDelayIng = true;                           //收集器延迟切换的线程信号
 
@@ -447,60 +450,49 @@ namespace HBBio.SystemControl
                 {
                     case ENUMValveName.Out:
                         {
-                            ValveWin win = new ValveWin(this, thumb.ToolTip.ToString(), StaticValue.GetNameList(index), SystemControlManager.s_comconfStatic.GetValveGet(index));
+                            OutWin win = new OutWin(this, thumb.ToolTip.ToString(), StaticValue.GetNameList(index), SystemControlManager.s_comconfStatic.GetValveGet(index));
+                            if (SystemState.Free == SystemControlManager.MSystemState)
+                            {
+                                win.MMultipleVisibility = Visibility.Collapsed;
+                            }
+                            else
+                            {
+                                if (0 < StaticSystemConfig.SSystemConfig.MDelayVol)
+                                {
+                                    win.MRealDelayVisibility = Visibility.Visible;
+                                }
+                            }
+                            
+                            win.MMultipleFlag = s_threadFlagValveMulti;
                             switch (SystemControlManager.MSystemState)
                             {
                                 case SystemState.Manual:
-                                    if (0 < StaticSystemConfig.SSystemConfig.MDelayVol)
-                                    {
-                                        win.MRealDelayVisibility = Visibility.Visible;
-                                    }
                                     win.MCollectionValve = SystemControlManager.m_manualRun.m_manualValue.m_collValveValue;
                                     break;
                                 case SystemState.Method:
-                                    if (0 < StaticSystemConfig.SSystemConfig.MDelayVol)
-                                    {
-                                        win.MRealDelayVisibility = Visibility.Visible;
-                                    }
                                     win.MCollectionValve = SystemControlManager.m_methodRun.MCollectionValve;
                                     break;
                             }
                             win.Left = pointThumb.X + thumb.ActualWidth;
                             win.Top = pointProcessPicture.Y;
+                            win.MSingle += DlyOutSingle;
+                            win.MMultipleStart += DlyOutSwitchMultipleStart;
+                            win.MMultipleStop += DlyOutSwitchMultipleStop;
                             if (true == win.ShowDialog())
                             {
-                                if (win.MIsDelay)
+                                if (SystemState.Manual == SystemControlManager.MSystemState)
                                 {
-                                    //出口阀延迟
-                                    Thread thread = new Thread(ThreadValveDelayFun);
-                                    thread.Start(win.MIndex);
-                                    m_listThradValveDelay.Add(thread);
+                                    SystemControlManager.m_manualRun.m_manualValue.m_valveValue.MListValave[(int)index].MIndex = win.MIndex;
+                                    SystemControlManager.m_manualRun.m_manualValue.m_valveValue.m_update = true;
                                 }
                                 else
                                 {
-                                    //结束出口阀延迟
-                                    m_thradValveDelayIng = false;
-                                    foreach (var it in m_listThradValveDelay)
-                                    {
-                                        while (it.IsAlive)
-                                        {
-                                            Thread.Sleep(DlyBase.c_sleep5);
-                                            MApp.DoEvents();
-                                        }
-                                    }
-                                    m_listThradValveDelay.Clear();
-
-                                    if (SystemState.Manual == SystemControlManager.MSystemState)
-                                    {
-                                        SystemControlManager.m_manualRun.m_manualValue.m_valveValue.MListValave[(int)index].MIndex = win.MIndex;
-                                        SystemControlManager.m_manualRun.m_manualValue.m_valveValue.m_update = true;
-                                    }
-                                    else
-                                    {
-                                        SystemControlManager.m_manualRun.ValveSwitch(index, win.MIndex);
-                                    }
+                                    SystemControlManager.m_manualRun.ValveSwitch(index, win.MIndex);
                                 }
                             }
+                            win.MSingle -= DlyOutSingle;
+                            win.MMultipleStart -= DlyOutSwitchMultipleStart;
+                            win.MMultipleStop -= DlyOutSwitchMultipleStop;
                         }
                         break;
                     default:
@@ -632,39 +624,6 @@ namespace HBBio.SystemControl
         }
 
         /// <summary>
-        /// 出口阀延迟切换的线程
-        /// </summary>
-        /// <param name="e"></param>
-        private void ThreadValveDelayFun(object e)
-        {
-            m_thradValveDelayIng = true;
-            double vol = SystemControlManager.m_curveStatic.MV;
-            while (m_thradValveDelayIng && (SystemControlManager.m_curveStatic.MV - vol) < Communication.StaticSystemConfig.SSystemConfig.MDelayVol)
-            {
-                Thread.Sleep(DlyBase.c_sleep5);
-            }
-
-            if (m_thradValveDelayIng)
-            {
-                if (SystemState.Manual == SystemControlManager.MSystemState)
-                {
-                    SystemControlManager.m_manualRun.m_manualValue.m_valveValue.MListValave[(int)ENUMValveName.Out].MIndex = (int)e;
-                    SystemControlManager.m_manualRun.m_manualValue.m_valveValue.m_update = true;
-                }
-                else
-                {
-                    int indexSetOld = SystemControlManager.s_comconfStatic.GetValveSet(ENUMValveName.Out);
-                    int indexSetNew = (int)e;
-                    if (indexSetOld != indexSetNew)
-                    {
-                        chromatogramUC.AddValve(new MarkerInfo((string)EnumOutInfo.NameList[indexSetOld] + "->" + EnumOutInfo.NameList[indexSetNew]));
-                    }
-                    SystemControlManager.s_comconfStatic.SetValve(ENUMValveName.Out, (int)e);
-                }
-            }
-        }
-
-        /// <summary>
         /// 收集器延迟切换的线程
         /// </summary>
         /// <param name="e"></param>
@@ -767,6 +726,154 @@ namespace HBBio.SystemControl
             }
 
             AuditTrailsStatic.Instance().InsertRowManual(menuManual.Header.ToString(), (string)e.OriginalSource);
+        }
+
+        /// <summary>
+        /// 更新出口阀切换设置(自定义事件处理)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DlyOutSingle(object sender, RoutedEventArgs e)
+        {
+            Thread thread = new Thread(ThreadFunValveSingle);
+            thread.Start((int)e.OriginalSource);
+        }
+
+        /// <summary>
+        /// 更新出口阀循环收集设置(自定义事件处理)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DlyOutSwitchMultipleStart(object sender, RoutedEventArgs e)
+        {
+            s_threadFlagValveMulti = true;
+
+            m_threadValveMulti = new Thread(ThreadFunValveMulti);
+            m_threadValveMulti.IsBackground = true;
+            m_threadValveMulti.Start();
+        }
+
+        /// <summary>
+        /// 更新出口阀循环收集设置(自定义事件处理)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DlyOutSwitchMultipleStop(object sender, RoutedEventArgs e)
+        {
+            s_threadFlagValveMulti = false;
+        }
+
+        /// <summary>
+        /// 阀位切换的线程
+        /// </summary>
+        /// <param name="e"></param>
+        private void ThreadFunValveSingle(object e)
+        {
+            double volStart = SystemControlManager.m_curveStatic.MV;
+            while ((SystemControlManager.m_curveStatic.MV - volStart) < Communication.StaticSystemConfig.SSystemConfig.MDelayVol && SystemState.Free != SystemControlManager.MSystemState)
+            {
+                Thread.Sleep(DlyBase.c_sleep5);
+            }
+            
+            if (SystemState.Free != SystemControlManager.MSystemState)
+            {
+                SwitchValve((int)e);
+            }
+        }
+
+        /// <summary>
+        /// 阀位循环的子线程
+        /// </summary>
+        private void ThreadFunValveMulti()
+        {
+            double volStart = SystemControlManager.m_curveStatic.MV;
+            bool delay = OutWin.s_multipleDelay;
+
+            if (delay)
+            {
+                //延迟
+                m_queueVolValveMulti.Enqueue(volStart + Communication.StaticSystemConfig.SSystemConfig.MDelayVol);
+                bool first = true;
+
+                while (s_threadFlagValveMulti && SystemState.Free != SystemControlManager.MSystemState)
+                {
+                    if (SystemControlManager.m_curveStatic.MV - volStart >= OutWin.s_multipleVol)
+                    {
+                        volStart = SystemControlManager.m_curveStatic.MV;
+
+                        m_queueVolValveMulti.Enqueue(volStart + Communication.StaticSystemConfig.SSystemConfig.MDelayVol);
+                    }
+
+                    if (0 < m_queueVolValveMulti.Count)
+                    {
+                        if (m_queueVolValveMulti.First() >= SystemControlManager.m_curveStatic.MV)
+                        {
+                            m_queueVolValveMulti.Dequeue();
+                            if (first)
+                            {
+                                first = false;
+                                SwitchValve(OutWin.s_multipleIndex + 1);
+                            }
+                            else
+                            {
+                                SwitchValve();
+                            }
+                        }
+                    }
+
+                    Thread.Sleep(Share.DlyBase.c_sleep5);
+                }
+            }
+            else
+            {
+                //立即
+                SwitchValve(OutWin.s_multipleIndex + 1);
+
+                while (s_threadFlagValveMulti && SystemState.Free != SystemControlManager.MSystemState)
+                {
+                    if (SystemControlManager.m_curveStatic.MV - volStart >= OutWin.s_multipleVol)
+                    {
+                        volStart = SystemControlManager.m_curveStatic.MV;
+
+                        SwitchValve();
+                    }
+                    Thread.Sleep(Share.DlyBase.c_sleep5);
+                }
+            }
+
+            //排废
+            if (SystemState.Free != SystemControlManager.MSystemState)
+            {
+                SwitchValve(0);
+            }
+        }
+
+        private void SwitchValve(int indexSetNew = -1)
+        {
+            if (-1 == indexSetNew)
+            {
+                indexSetNew = SystemControlManager.s_comconfStatic.GetValveSet(ENUMValveName.Out);
+                indexSetNew++;
+                if (indexSetNew >= EnumOutInfo.Count)
+                {
+                    indexSetNew = 1;
+                }
+            }
+
+            if (SystemState.Manual == SystemControlManager.MSystemState)
+            {
+                SystemControlManager.m_manualRun.m_manualValue.m_valveValue.MListValave[(int)ENUMValveName.Out].MIndex = indexSetNew;
+                SystemControlManager.m_manualRun.m_manualValue.m_valveValue.m_update = true;
+            }
+            else
+            {
+                int indexSetOld = SystemControlManager.s_comconfStatic.GetValveSet(ENUMValveName.Out);
+                if (indexSetOld != indexSetNew)
+                {
+                    chromatogramUC.AddValve(new MarkerInfo((string)EnumOutInfo.NameList[indexSetOld] + "->" + EnumOutInfo.NameList[indexSetNew]));
+                }
+                SystemControlManager.s_comconfStatic.SetValve(ENUMValveName.Out, indexSetNew);
+            }
         }
 
         /// <summary>
@@ -2014,9 +2121,6 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            m_thradValveDelayIng = false;
-            m_listThradValveDelay.Clear();
-
             m_thradCollectorDelayIng = false;
             m_listThradCollectorDelay.Clear();
 

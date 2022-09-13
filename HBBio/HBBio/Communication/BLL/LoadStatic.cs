@@ -534,7 +534,7 @@ namespace HBBio.Communication
                 s_NameList[0] = "Bypass";
                 for (int i = 1; i < count; i++)
                 {
-                    s_NameList[i] = "Position" + (i + 1);
+                    s_NameList[i] = "Pos" + (i + 1);
                 }
             }
         }

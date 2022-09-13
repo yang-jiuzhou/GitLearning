@@ -21,23 +21,6 @@ namespace HBBio.Manual
     {
         public int MIndex { get; set; }
         public string MOper { get; set; }
-        public Visibility MRealDelayVisibility
-        {
-            set
-            {
-                rbtnReal.Visibility = value;
-                rbtnDelay.Visibility = value;
-            }
-        }
-        public bool MIsDelay
-        {
-            get
-            {
-                return true == rbtnDelay.IsChecked;
-            }
-        }
-
-        public CollectionValve MCollectionValve { get; set; }
 
 
         /// <summary>
@@ -71,14 +54,6 @@ namespace HBBio.Manual
                 }
 
                 grid.Children.Add(btn);
-            }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (null == MCollectionValve || 0 == MCollectionValve.MList.Count || !MCollectionValve.MSignal)
-            {
-                btnIntervene.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -119,29 +94,6 @@ namespace HBBio.Manual
             {
                 DialogResult = false;
             }
-        }
-
-        /// <summary>
-        /// 收集干预
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnIntervene_Click(object sender, RoutedEventArgs e)
-        {
-            if (0 < MCollectionValve.MList.Count)
-            {
-                CollectionItemWin win = new CollectionItemWin();
-                List<string> tmp = Communication.EnumOutInfo.NameList.ToList();
-                tmp.RemoveAt(0);
-                win.MTubeNameList = tmp;
-                win.MItem = MCollectionValve.MList[MCollectionValve.MIndex - 1];
-                if (true == win.ShowDialog())
-                {
-                    MCollectionValve.MList[MCollectionValve.MIndex - 1] = win.MItem;
-                }
-            }
-
-            DialogResult = false;
         }
     }
 }
