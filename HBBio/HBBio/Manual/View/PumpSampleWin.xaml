@@ -59,15 +59,18 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Text="{DynamicResource M_PumpWash}"/>
-                <ComboBox x:Name="cbox" Grid.Row="2" Grid.Column="0"/>
-                <Button x:Name="btnStart" Grid.Row="2" Grid.Column="2" Content="{DynamicResource M_StartWash}" Click="btnStart_Click"/>
-                <Button x:Name="btnStop" Grid.Row="2" Grid.Column="4" Content="{DynamicResource M_StopWash}" Click="btnStop_Click"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Text="{DynamicResource labWash}"/>
+                <ComboBox x:Name="cboxWash" Grid.Row="2" Grid.Column="0" SelectionChanged="cboxWash_SelectionChanged"/>
+                <ComboBox x:Name="cbox" Grid.Row="2" Grid.Column="2"/>
+                <Button x:Name="btnStart" Grid.Row="2" Grid.Column="4" Content="{DynamicResource M_StartWash}" Click="btnStart_Click"/>
+                <Button x:Name="btnStop" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_StopWash}" Click="btnStop_Click"/>
             </Grid>
         </Grid>
     </Border>

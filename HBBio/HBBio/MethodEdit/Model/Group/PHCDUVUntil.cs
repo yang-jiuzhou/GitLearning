@@ -42,6 +42,7 @@ namespace HBBio.MethodEdit
             MHeaderText = "";
             MTotalTVCV = new BaseTVCV();
             MMaxTVCV = new BaseTVCV();
+            MMaxTVCV.MTVCV = 100;
         }
 
         /// <summary>

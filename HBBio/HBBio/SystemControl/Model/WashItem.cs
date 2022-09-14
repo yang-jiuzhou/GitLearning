@@ -13,6 +13,7 @@ namespace HBBio.SystemControl
         private List<WashItem> MList { get; set; }
         private List<EnumWashStatus> MListStatus { get; set; }
         private int MBPV { get; set; }
+        private int MCPV { get; set; }
 
 
         /// <summary>
@@ -23,6 +24,7 @@ namespace HBBio.SystemControl
             MList = new List<WashItem>();
             MListStatus = new List<EnumWashStatus>();
             MBPV = -1;
+            MCPV = -1;
 
             foreach (var it in Enum.GetNames(typeof(ENUMPumpName)))
             {
@@ -36,22 +38,48 @@ namespace HBBio.SystemControl
         /// </summary>
         /// <param name="comConf"></param>
         /// <param name="index"></param>
-        public void Start(ComConfStatic comConf, ENUMPumpName index)
+        public void Start(ComConfStatic comConf, ENUMPumpName index, int wash)
         {
             if (-1 == MBPV)
             {
-                MBPV = comConf.GetValveSet(ENUMValveName.BPV);
-                comConf.SetValve(ENUMValveName.BPV, 0);
+                switch (wash)
+                {
+                    case 1:
+                        //清洗系统
+                        MBPV = comConf.GetValveSet(ENUMValveName.BPV);
+                        comConf.SetValve(ENUMValveName.BPV, 0);
+                        break;
+                    case 2:
+                        //清洗泵
+                        MBPV = comConf.GetValveSet(ENUMValveName.BPV);
+                        comConf.SetValve(ENUMValveName.BPV, 1);
+                        MCPV = comConf.GetValveSet(ENUMValveName.CPV_1);
+                        comConf.SetValve(ENUMValveName.CPV_1, 0);
+                        break;
+                } 
             }
             MList[(int)index].Start(comConf, index);
         }
 
-        public void StartAll(ComConfStatic comConf)
+        public void StartAll(ComConfStatic comConf, int wash)
         {
             if (-1 == MBPV)
             {
-                MBPV = comConf.GetValveSet(ENUMValveName.BPV);
-                comConf.SetValve(ENUMValveName.BPV, 0);
+                switch (wash)
+                {
+                    case 1:
+                        //清洗系统
+                        MBPV = comConf.GetValveSet(ENUMValveName.BPV);
+                        comConf.SetValve(ENUMValveName.BPV, 0);
+                        break;
+                    case 2:
+                        //清洗泵
+                        MBPV = comConf.GetValveSet(ENUMValveName.BPV);
+                        comConf.SetValve(ENUMValveName.BPV, 1);
+                        MCPV = comConf.GetValveSet(ENUMValveName.CPV_1);
+                        comConf.SetValve(ENUMValveName.CPV_1, 0);
+                        break;
+                }
             }
             for (int i = 0; i < MList.Count; i++)
             {
@@ -92,6 +120,11 @@ namespace HBBio.SystemControl
                     {
                         comConf.SetValve(ENUMValveName.BPV, MBPV);
                         MBPV = -1;
+                        if (-1 != MCPV)
+                        {
+                            comConf.SetValve(ENUMValveName.CPV_1, MCPV);
+                            MCPV = -1;
+                        }
                     }
 
                     return EnumWashStatus.Over;

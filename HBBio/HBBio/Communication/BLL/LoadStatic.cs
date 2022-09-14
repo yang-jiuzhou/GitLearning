@@ -540,6 +540,58 @@ namespace HBBio.Communication
         }
     }
 
+    public static class EnumWashInfo
+    {
+        private static int s_Count = 1;
+        public static int Count
+        {
+            get
+            {
+                return s_Count;
+            }
+        }
+
+        private static string[] s_NameList = new string[1] { "null" };
+        public static string[] NameList
+        {
+            get
+            {
+                return s_NameList;
+            }
+        }
+
+        public static void Init()
+        {
+            switch (ItemVisibility.s_listValve[ENUMValveName.CPV_1])
+            {
+                case Visibility.Visible:
+                    Init(3);
+                    break;
+                default:
+                    Init(2);
+                    break;
+            }
+        }
+
+        private static void Init(int count)
+        {
+            s_Count = count;
+            s_NameList = new string[count];
+            switch(count)
+            {
+                case 2:
+                    s_NameList[0] = ReadXaml.GetResources("labWashNo");
+                    s_NameList[1] = ReadXaml.GetResources("labWashSystem");
+                    break;
+                case 3:
+                    s_NameList[0] = ReadXaml.GetResources("labWashNo");
+                    s_NameList[1] = ReadXaml.GetResources("labWashSystem");
+                    s_NameList[2] = ReadXaml.GetResources("labWashPump");
+                    break;
+            }
+        }
+    }
+
     public static class EnumCollectorInfo
     {
         private static int s_Count = 1;

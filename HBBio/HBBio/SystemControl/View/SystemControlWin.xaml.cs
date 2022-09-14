@@ -39,13 +39,12 @@ namespace HBBio.SystemControl
         private POINT m_currPt;                 //鼠标当前所在的位置
         private ObservableCollection<StringString> m_listAlarm = new ObservableCollection<StringString>();
         private ObservableCollection<StringString> m_listWarning = new ObservableCollection<StringString>();
-        private List<Window> m_listChild = new List<Window>();      //子窗口集合
-        private MessageBoxWin m_winAW = new MessageBoxWin("");      //警报警告弹窗
-        private ScreenLockWin m_screenLockWin = new ScreenLockWin();
+        private List<Window> m_listChild = new List<Window>();                  //子窗口集合
+        private MessageBoxWin m_winAW = new MessageBoxWin("");                  //警报警告弹窗
+        private ScreenLockWin m_screenLockWin = new ScreenLockWin();            //解锁窗口
 
-        private static volatile bool s_threadFlagValveMulti = false;
-        private static Thread m_threadValveMulti = null;
-        private static Queue<double> m_queueVolValveMulti = new Queue<double>();
+        private bool s_threadFlagValveMulti = false;                            //出口阀阀位循环的标志
+        private Queue<double> m_queueVolValveMulti = new Queue<double>();       //出口阀阀位循环待执行列表
 
         private List<Thread> m_listThradCollectorDelay = new List<Thread>();    //收集器延迟切换的线程集合
         private bool m_thradCollectorDelayIng = true;                           //收集器延迟切换的线程信号
@@ -736,6 +735,7 @@ namespace HBBio.SystemControl
         private void DlyOutSingle(object sender, RoutedEventArgs e)
         {
             Thread thread = new Thread(ThreadFunValveSingle);
+            thread.IsBackground = true;
             thread.Start((int)e.OriginalSource);
         }
 
@@ -748,9 +748,11 @@ namespace HBBio.SystemControl
         {
             s_threadFlagValveMulti = true;
 
-            m_threadValveMulti = new Thread(ThreadFunValveMulti);
-            m_threadValveMulti.IsBackground = true;
-            m_threadValveMulti.Start();
+            m_queueVolValveMulti.Clear();
+
+            Thread thread = new Thread(ThreadFunValveMulti);
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         /// <summary>
@@ -806,7 +808,7 @@ namespace HBBio.SystemControl
 
                     if (0 < m_queueVolValveMulti.Count)
                     {
-                        if (m_queueVolValveMulti.First() >= SystemControlManager.m_curveStatic.MV)
+                        if (m_queueVolValveMulti.First() <= SystemControlManager.m_curveStatic.MV)
                         {
                             m_queueVolValveMulti.Dequeue();
                             if (first)
@@ -846,6 +848,8 @@ namespace HBBio.SystemControl
             {
                 SwitchValve(0);
             }
+
+            s_threadFlagValveMulti = false;
         }
 
         private void SwitchValve(int indexSetNew = -1)
@@ -870,7 +874,7 @@ namespace HBBio.SystemControl
                 int indexSetOld = SystemControlManager.s_comconfStatic.GetValveSet(ENUMValveName.Out);
                 if (indexSetOld != indexSetNew)
                 {
-                    chromatogramUC.AddValve(new MarkerInfo((string)EnumOutInfo.NameList[indexSetOld] + "->" + EnumOutInfo.NameList[indexSetNew]));
+                    DlyManualRunAuditTrails(ReadXamlCollection.C_CollMarkM, EnumOutInfo.NameList[indexSetOld] + "->" + EnumOutInfo.NameList[indexSetNew]);
                 }
                 SystemControlManager.s_comconfStatic.SetValve(ENUMValveName.Out, indexSetNew);
             }

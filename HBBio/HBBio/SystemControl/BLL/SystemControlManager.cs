@@ -290,10 +290,16 @@ namespace HBBio.SystemControl
             switch (m_systemState)
             {
                 case SystemState.Manual:
-                    m_manualRun.m_state = ManualState.RunToPause;
+                    if (ManualState.Run == m_manualRun.m_state)
+                    {
+                        m_manualRun.m_state = ManualState.RunToPause;
+                    }
                     break;
                 case SystemState.Method:
-                    m_methodRun.m_state = MethodState.RunToPause;
+                    if (MethodState.Run == m_methodRun.m_state)
+                    {
+                        m_methodRun.m_state = MethodState.RunToPause;
+                    }
                     break;
             }
         }
@@ -427,7 +433,7 @@ namespace HBBio.SystemControl
         public static void DlyWashStart(object sender, RoutedEventArgs e)
         {
             s_comconfStatic.SetValve(((WashPara)e.OriginalSource).MValve, ((WashPara)e.OriginalSource).MValveIndex);
-            s_wash.Start(s_comconfStatic, ((WashPara)e.OriginalSource).MPump);
+            s_wash.Start(s_comconfStatic, ((WashPara)e.OriginalSource).MPump, ((WashPara)e.OriginalSource).MWashIndex);
         }
 
         /// <summary>
@@ -445,7 +451,7 @@ namespace HBBio.SystemControl
         /// <param name="sender"></param>
         private static void DlyMethodRunWash(object sender)
         {
-            s_wash.StartAll(s_comconfStatic);
+            s_wash.StartAll(s_comconfStatic, (int)sender);
         }
 
         /// <summary>

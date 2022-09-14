@@ -139,7 +139,7 @@ namespace HBBio.MethodEdit
                 MItem.MPerDE = value;
             }
         }
-        public bool MFillSystem
+        public int MFillSystem
         {
             get
             {

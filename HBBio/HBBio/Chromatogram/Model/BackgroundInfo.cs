@@ -120,10 +120,12 @@ namespace HBBio.Chromatogram
             {
                 m_phase = value;
                 MPhaseBrush = new SolidBrush(value);
+                MPhaseBrushOpacity = new SolidBrush(Color.FromArgb(50, value));
                 MPhasePen = new Pen(value);
             }
         }
         public Brush MPhaseBrush { get; set; }
+        public Brush MPhaseBrushOpacity { get; set; }
         public Pen MPhasePen { get; set; }
         public bool MPhaseVisible { get; set; }
         public bool MPhaseDirection { get; set; }

@@ -41,6 +41,8 @@ namespace HBBio.Manual
             }
         }
 
+        private System.Windows.Threading.DispatcherTimer m_timer = new System.Windows.Threading.DispatcherTimer();
+
         /// <summary>
         /// 自定义事件，开始清洗时触发
         /// </summary>
@@ -124,8 +126,12 @@ namespace HBBio.Manual
             btnStopC.Visibility = ItemVisibility.s_listPump[ENUMPumpName.FITC];
             btnStopD.Visibility = ItemVisibility.s_listPump[ENUMPumpName.FITD];
 
-            gridSystemWash.Visibility = ItemVisibility.s_listValve[ENUMValveName.CPV_1];
-            gridSystemWash.Visibility = Visibility.Collapsed;
+            cboxWash.ItemsSource = EnumWashInfo.NameList;
+            cboxWash.SelectedIndex = 1;
+
+            m_timer.Interval = TimeSpan.FromMilliseconds(500);
+            m_timer.Tick += timer1_Tick;
+            m_timer.Start();
         }
 
         /// <summary>
@@ -145,7 +151,19 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            m_timer.Stop();
+
             this.Close();
+        }
+
+        /// <summary>
+        /// 定时器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+ 
         }
 
         /// <summary>
@@ -232,7 +250,7 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnStartA_Click(object sender, RoutedEventArgs e)
         {
-            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITA, ENUMValveName.InA, cboxA.SelectedIndex));
+            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITA, ENUMValveName.InA, cboxA.SelectedIndex, cboxWash.SelectedIndex));
             RaiseEvent(args);
         }
 
@@ -243,7 +261,7 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnStartB_Click(object sender, RoutedEventArgs e)
         {
-            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITB, ENUMValveName.InB, cboxB.SelectedIndex));
+            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITB, ENUMValveName.InB, cboxB.SelectedIndex, cboxWash.SelectedIndex));
             RaiseEvent(args);
         }
 
@@ -254,7 +272,7 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnStartC_Click(object sender, RoutedEventArgs e)
         {
-            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITC, ENUMValveName.InC, cboxC.SelectedIndex));
+            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITC, ENUMValveName.InC, cboxC.SelectedIndex, cboxWash.SelectedIndex));
             RaiseEvent(args);
         }
 
@@ -265,7 +283,7 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnStartD_Click(object sender, RoutedEventArgs e)
         {
-            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITD, ENUMValveName.InD, cboxD.SelectedIndex));
+            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITD, ENUMValveName.InD, cboxD.SelectedIndex, cboxWash.SelectedIndex));
             RaiseEvent(args);
         }
 
@@ -274,30 +292,16 @@ namespace HBBio.Manual
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnStartSystem_Click(object sender, RoutedEventArgs e)
+        private void btnStartAll_Click(object sender, RoutedEventArgs e)
         {
-            if (true == rbtnSystemOut.IsChecked)
-            {
-                RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITA, ENUMValveName.InA, cboxA.SelectedIndex));
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITB, ENUMValveName.InB, cboxB.SelectedIndex));
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITC, ENUMValveName.InC, cboxC.SelectedIndex));
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITD, ENUMValveName.InD, cboxD.SelectedIndex));
-                RaiseEvent(args);
-            }
-            else if (true == rbtnInjectionValve.IsChecked)
-            {
-                RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITA, ENUMValveName.InA, cboxA.SelectedIndex));
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITB, ENUMValveName.InB, cboxB.SelectedIndex));
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITC, ENUMValveName.InC, cboxC.SelectedIndex));
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITD, ENUMValveName.InD, cboxD.SelectedIndex));
-                RaiseEvent(args);
-            }
+            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITA, ENUMValveName.InA, cboxA.SelectedIndex, cboxWash.SelectedIndex));
+            RaiseEvent(args);
+            args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITB, ENUMValveName.InB, cboxB.SelectedIndex, cboxWash.SelectedIndex));
+            RaiseEvent(args);
+            args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITC, ENUMValveName.InC, cboxC.SelectedIndex, cboxWash.SelectedIndex));
+            RaiseEvent(args);
+            args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITD, ENUMValveName.InD, cboxD.SelectedIndex, cboxWash.SelectedIndex));
+            RaiseEvent(args);
         }
 
         /// <summary>
@@ -349,29 +353,28 @@ namespace HBBio.Manual
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnStopSystem_Click(object sender, RoutedEventArgs e)
+        private void btnStopAll_Click(object sender, RoutedEventArgs e)
         {
-            if (true == rbtnSystemOut.IsChecked)
+            RoutedEventArgs args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITA);
+            RaiseEvent(args);
+            args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITB);
+            RaiseEvent(args);
+            args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITC);
+            RaiseEvent(args);
+            args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITD);
+            RaiseEvent(args);
+        }
+
+        /// <summary>
+        /// 不能选择不清洗
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboxWash_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (0 == cboxWash.SelectedIndex)
             {
-                RoutedEventArgs args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITA);
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITB);
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITC);
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITD);
-                RaiseEvent(args);
-            }
-            else if (true == rbtnInjectionValve.IsChecked)
-            {
-                RoutedEventArgs args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITA);
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITB);
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITC);
-                RaiseEvent(args);
-                args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITD);
-                RaiseEvent(args);
+                cboxWash.SelectedIndex = 1;
             }
         }
     }

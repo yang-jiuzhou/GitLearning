@@ -27,6 +27,9 @@
         <DataTemplate x:Key="ColumnBPV">
             <ComboBox ItemsSource="{x:Static comm:EnumBPVInfo.NameList}" SelectedIndex ="{Binding Path=MBPV,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
         </DataTemplate>
+        <DataTemplate x:Key="ColumnWash">
+            <ComboBox ItemsSource="{x:Static comm:EnumWashInfo.NameList}" SelectedIndex="{Binding Path=MFillSystem,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+        </DataTemplate>
     </UserControl.Resources>
     <GroupBox Header="{DynamicResource ME_EnumGroupType_FlowValveLength}">
         <Grid Margin="10">
@@ -56,7 +59,7 @@
                     <DataGridTextColumn x:Name="colCE" Binding="{Binding MPerCE,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabCE}"/>
                     <DataGridTextColumn x:Name="colDS" Binding="{Binding MPerDS,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabDS}"/>
                     <DataGridTextColumn x:Name="colDE" Binding="{Binding MPerDE,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabDE}"/>
-                    <DataGridCheckBoxColumn Binding="{Binding MFillSystem,UpdateSourceTrigger=LostFocus}" Header="{StaticResource labFillSystem}"/>
+                    <DataGridTemplateColumn x:Name="colWash" CellTemplate="{StaticResource ColumnWash}" Header="{StaticResource labFillSystem}"/>
                     <DataGridTextColumn x:Name="colTVCV" Binding="{Binding Path=MBaseTVCV,UpdateSourceTrigger=LostFocus}">
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>

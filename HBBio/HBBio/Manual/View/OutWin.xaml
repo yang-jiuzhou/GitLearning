@@ -64,7 +64,7 @@
                 <TextBlock Grid.Column="4" Text="{DynamicResource M_OutWin_Start1}"/>
                 <ComboBox x:Name="cboxSelect" Grid.Column="6"/>
                 <TextBlock Grid.Column="8" Text="{DynamicResource M_OutWin_Vol1}"/>
-                <xctk:DoubleUpDown x:Name="doubleVol" Grid.Column="10"/>
+                <xctk:DoubleUpDown x:Name="doubleVol" Grid.Column="10" Minimum="0.01"/>
                 <Button Grid.Column="12" x:Name="btnStart" Content="{DynamicResource btnSet}" Click="btnStart_Click"/>
                 <Button Grid.Column="14" x:Name="btnStop" Content="{DynamicResource btnCancel}" Click="btnStop_Click"/>
             </Grid>

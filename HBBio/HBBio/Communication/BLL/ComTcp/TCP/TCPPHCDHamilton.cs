@@ -134,6 +134,9 @@ namespace HBBio.Communication
             int phcdNum = 0;
             bool result = true;
 
+            double cdVal1 = 0;
+            double cdVal2 = 0;
+
             while (true)
             {
                 switch (m_state)
@@ -167,11 +170,13 @@ namespace HBBio.Communication
                             }
                             if (result && m_CdItem1.MVisible)
                             {
-                                result = ReadCDValue1(ref m_CdItem1.m_CdGet);
+                                result = ReadCDValue1(ref cdVal1);
+                                m_CdItem1.UpdateValue(cdVal1);
                             }
                             if (result && m_CdItem2.MVisible)
                             {
-                                result = ReadCDValue2(ref m_CdItem2.m_CdGet);
+                                result = ReadCDValue2(ref cdVal2);
+                                m_CdItem2.UpdateValue(cdVal2);
                             }
                             if (result)
                             {

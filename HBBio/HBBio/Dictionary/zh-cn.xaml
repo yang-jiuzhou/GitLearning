@@ -208,6 +208,10 @@
     <s:String x:Key="labDelay">延迟</s:String>
     <s:String x:Key="labFilter">筛选</s:String>
     <s:String x:Key="labFilter1" xml:space="preserve">筛选 : </s:String>
+    <s:String x:Key="labWash">清洗</s:String>
+    <s:String x:Key="labWashNo">不清洗</s:String>
+    <s:String x:Key="labWashSystem">清洗系统</s:String>
+    <s:String x:Key="labWashPump">清洗泵</s:String>
     
     
     

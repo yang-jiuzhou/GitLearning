@@ -100,8 +100,6 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="5"/>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="5"/>
@@ -114,41 +112,29 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="15" Text="{DynamicResource M_PumpWash}"/>
-                <ComboBox x:Name="cboxA" Grid.Row="2" Grid.Column="0"/>
-                <Button x:Name="btnStartA" Grid.Row="2" Grid.Column="2" Content="{DynamicResource M_StartWashA}" Click="btnStartA_Click"/>
-                <Button x:Name="btnStopA" Grid.Row="4" Grid.Column="2" Content="{DynamicResource M_StopWashA}" Click="btnStopA_Click"/>
-                <ComboBox x:Name="cboxB" Grid.Row="2" Grid.Column="4"/>
-                <Button x:Name="btnStartB" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_StartWashB}" Click="btnStartB_Click"/>
-                <Button x:Name="btnStopB" Grid.Row="4" Grid.Column="6" Content="{DynamicResource M_StopWashB}" Click="btnStopB_Click"/>
-                <ComboBox x:Name="cboxC" Grid.Row="2" Grid.Column="8"/>
-                <Button x:Name="btnStartC" Grid.Row="2" Grid.Column="10" Content="{DynamicResource M_StartWashC}" Click="btnStartC_Click"/>
-                <Button x:Name="btnStopC" Grid.Row="4" Grid.Column="10" Content="{DynamicResource M_StopWashC}" Click="btnStopC_Click"/>
-                <ComboBox x:Name="cboxD" Grid.Row="2" Grid.Column="12"/>
-                <Button x:Name="btnStartD" Grid.Row="2" Grid.Column="14" Content="{DynamicResource M_StartWashD}" Click="btnStartD_Click"/>
-                <Button x:Name="btnStopD" Grid.Row="4" Grid.Column="14" Content="{DynamicResource M_StopWashD}" Click="btnStopD_Click"/>
-            </Grid>
-            <Grid x:Name="gridSystemWash" Grid.Row="8">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Text="{DynamicResource M_SystemWash}"/>
-                <RadioButton x:Name="rbtnSystemOut" Grid.Row="2" Grid.Column="0" IsChecked="True" Content="{DynamicResource M_SystemOut}"/>
-                <RadioButton x:Name="rbtnInjectionValve" Grid.Row="2" Grid.Column="2" Content="{DynamicResource M_InjectionValve}"/>
-                <Button x:Name="btnStartSystem" Grid.Row="2" Grid.Column="4" Content="{DynamicResource M_StartWash}" Click="btnStartSystem_Click" HorizontalAlignment="Right" Width="75"/>
-                <Button x:Name="btnStopSystem" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_StopWash}" Click="btnStopSystem_Click"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="19" Text="{DynamicResource labWash}"/>
+                <ComboBox x:Name="cboxWash" Grid.Row="2" Grid.Column="0" SelectionChanged="cboxWash_SelectionChanged"/>
+                <ComboBox x:Name="cboxA" Grid.Row="2" Grid.Column="2"/>
+                <Button x:Name="btnStartA" Grid.Row="2" Grid.Column="4" Content="{DynamicResource M_StartWashA}" Click="btnStartA_Click"/>
+                <Button x:Name="btnStopA" Grid.Row="4" Grid.Column="4" Content="{DynamicResource M_StopWashA}" Click="btnStopA_Click"/>
+                <ComboBox x:Name="cboxB" Grid.Row="2" Grid.Column="6"/>
+                <Button x:Name="btnStartB" Grid.Row="2" Grid.Column="8" Content="{DynamicResource M_StartWashB}" Click="btnStartB_Click"/>
+                <Button x:Name="btnStopB" Grid.Row="4" Grid.Column="8" Content="{DynamicResource M_StopWashB}" Click="btnStopB_Click"/>
+                <ComboBox x:Name="cboxC" Grid.Row="2" Grid.Column="10"/>
+                <Button x:Name="btnStartC" Grid.Row="2" Grid.Column="12" Content="{DynamicResource M_StartWashC}" Click="btnStartC_Click"/>
+                <Button x:Name="btnStopC" Grid.Row="4" Grid.Column="12" Content="{DynamicResource M_StopWashC}" Click="btnStopC_Click"/>
+                <ComboBox x:Name="cboxD" Grid.Row="2" Grid.Column="14"/>
+                <Button x:Name="btnStartD" Grid.Row="2" Grid.Column="16" Content="{DynamicResource M_StartWashD}" Click="btnStartD_Click"/>
+                <Button x:Name="btnStopD" Grid.Row="4" Grid.Column="16" Content="{DynamicResource M_StopWashD}" Click="btnStopD_Click"/>
+                <Button x:Name="btnStartAll" Grid.Row="2" Grid.Column="18" Content="{DynamicResource M_StartWash}" Click="btnStartAll_Click"/>
+                <Button x:Name="btnStopAll" Grid.Row="4" Grid.Column="18" Content="{DynamicResource M_StopWash}" Click="btnStopAll_Click"/>
             </Grid>
         </Grid>
     </Border>

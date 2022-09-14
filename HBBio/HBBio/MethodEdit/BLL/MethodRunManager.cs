@@ -646,6 +646,12 @@ namespace HBBio.MethodEdit
                     m_phaseRunV = Math.Round(m_V - m_phaseStartV - m_holdTotalV, 2);
                 }
 
+                if (m_methodTempValue.MChange)
+                {
+                    m_methodTempValue.MChange = false;
+                    m_comconfStatic.SetPumpSystem(m_methodTempValue.MFlow, m_methodTempValue.MPerB, m_methodTempValue.MPerC, m_methodTempValue.MPerD);
+                }
+
                 //执行详细的阶段内容
                 RefreshPhaseCase();
 
@@ -954,36 +960,38 @@ namespace HBBio.MethodEdit
                         {
 
                             case EnumGroupType.SampleApplicationTech:
-                                if (m_listRun[it.MIndex])
-                                {
-                                    RefreshIngSampleApplicationTech(it, m_listDis, ref m_run);
-                                    //if (MRUN.Done == m_run)
-                                    //{
-                                    //    if (it.MIndex < m_listRun.Count - 1)
-                                    //    {
-                                    //        m_run = MRUN.Ing;
-                                    //        m_listRun[it.MIndex] = false;
-                                    //        m_listRun[it.MIndex + 1] = true;
-                                    //        m_listDis = m_phaseRunT;
-                                    //    }
-                                    //}
-                                }
+                                RefreshIngSampleApplicationTech(it, m_listDis, ref m_run);
+                                //if (m_listRun[it.MIndex])
+                                //{
+                                //    RefreshIngSampleApplicationTech(it, m_listDis, ref m_run);
+                                //    if (MRUN.Done == m_run)
+                                //    {
+                                //        if (it.MIndex < m_listRun.Count - 1)
+                                //        {
+                                //            m_run = MRUN.Ing;
+                                //            m_listRun[it.MIndex] = false;
+                                //            m_listRun[it.MIndex + 1] = true;
+                                //            m_listDis = m_phaseRunT;
+                                //        }
+                                //    }
+                                //}
                                 break;
                             case EnumGroupType.TVCV:
-                                if (m_listRun[it.MIndex])
-                                {
-                                    RefreshIngTVCV(phase, it, m_listDis, ref m_run);
-                                    //if (MRUN.Done == m_run)
-                                    //{
-                                    //    if (it.MIndex < m_listRun.Count - 1)
-                                    //    {
-                                    //        m_run = MRUN.Ing;
-                                    //        m_listRun[it.MIndex] = false;
-                                    //        m_listRun[it.MIndex + 1] = true;
-                                    //        m_listDis = m_phaseRunT;
-                                    //    }
-                                    //}
-                                }
+                                RefreshIngTVCV(phase, it, m_listDis, ref m_run);
+                                //if (m_listRun[it.MIndex])
+                                //{
+                                //    RefreshIngTVCV(phase, it, m_listDis, ref m_run);
+                                //    if (MRUN.Done == m_run)
+                                //    {
+                                //        if (it.MIndex < m_listRun.Count - 1)
+                                //        {
+                                //            m_run = MRUN.Ing;
+                                //            m_listRun[it.MIndex] = false;
+                                //            m_listRun[it.MIndex + 1] = true;
+                                //            m_listDis = m_phaseRunT;
+                                //        }
+                                //    }
+                                //}
                                 break;
                             case EnumGroupType.FlowValveLength:
                                 RefreshIngFlowValveLength(phase, it, ref m_run);
@@ -1051,9 +1059,12 @@ namespace HBBio.MethodEdit
                             MAuditTrailsHandler?.Invoke(phase.MNamePhase, item.MNote);
                         }
 
-                        if (item.MFillSystem)
+                        switch (item.MFillSystem)
                         {
-                            MWashHandler?.Invoke(null);
+                            case 1:
+                            case 2:
+                                MWashHandler?.Invoke(item.MFillSystem);
+                                break;
                         }
                     }
 
@@ -1223,10 +1234,13 @@ namespace HBBio.MethodEdit
                     {
                         phase.MArrIsRun[i] = true;
 
-                        if (item.MFillSystem)
+                        //清洗事件
+                        switch (item.MFillSystem)
                         {
-                            //清洗事件
-                            MWashHandler?.Invoke(null);
+                            case 1:
+                            case 2:
+                            MWashHandler?.Invoke(item.MFillSystem);
+                                break;
                         }
                     }
 
@@ -1260,7 +1274,7 @@ namespace HBBio.MethodEdit
             {
                 if (tmp.MEnableWash)
                 {
-                    MWashHandler?.Invoke(null);
+                    MWashHandler?.Invoke(1);
                 }
             }
         }
@@ -1703,7 +1717,7 @@ namespace HBBio.MethodEdit
             {
                 if (tmp.MEnableWash)
                 {
-                    MWashHandler?.Invoke(null);
+                    MWashHandler?.Invoke(1);
                 }
             }
         }

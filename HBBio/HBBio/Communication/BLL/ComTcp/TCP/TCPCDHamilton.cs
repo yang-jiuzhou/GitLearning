@@ -60,6 +60,8 @@ namespace HBBio.Communication
         {
             int phcdNum = 0;
 
+            double cdVal = 0;
+
             while (true)
             {
                 switch (m_state)
@@ -80,9 +82,11 @@ namespace HBBio.Communication
                         m_state = PHCDState.Free;
                         break;
                     case PHCDState.Read:
-                        if (Connect() && ReadCDValue(ref m_CdItem.m_CdGet))
+                        if (Connect() && ReadCDValue(ref cdVal))
                         {
                             m_communState = ENUMCommunicationState.Success;
+
+                            m_CdItem.UpdateValue(cdVal);
 
                             if (0 == phcdNum % 10)
                             {

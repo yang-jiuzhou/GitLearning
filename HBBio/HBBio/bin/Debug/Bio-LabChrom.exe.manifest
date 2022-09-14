@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bio-LabChrom.exe" size="2401680">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bio-LabChrom.exe" size="2405264">
       <assemblyIdentity name="Bio-LabChrom" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rAGNe6Q5gMVSP0OhB5XU2ayegjTheXPtEr0N6CRQOI8=</dsig:DigestValue>
+        <dsig:DigestValue>C4p1enQv+HME890vY/OwuAJ3Ibjc142Qu99q4cCdAdg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -28,7 +28,7 @@ namespace HBBio.MethodEdit
         public double MPerCE { get; set; }
         public double MPerDS { get; set; }
         public double MPerDE { get; set; }
-        public bool MFillSystem { get; set; }
+        public int MFillSystem { get; set; }
         public BaseTVCV MBaseTVCV { get; set; }
         public FlowVolLen MFlowVolLen { get; set; }
         public int MBPV { get; set; }
@@ -52,7 +52,7 @@ namespace HBBio.MethodEdit
             MPerCE = 0;
             MPerDS = 0;
             MPerDE = 0;
-            MFillSystem = false;
+            MFillSystem = 0;
             MBaseTVCV = new BaseTVCV();
             MFlowVolLen = new FlowVolLen();
             MBPV = 0;

@@ -50,7 +50,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock x:Name="labWashTime1" Grid.Row="0" Grid.Column="0" Text="{DynamicResource Com_WashTime1}"/>
-                    <xctk:DoubleUpDown Grid.Row="0" Grid.Column="2" Value="{Binding MWashTime}"/>
+                    <xctk:DoubleUpDown Grid.Row="0" Grid.Column="2" Value="{Binding MWashTime}" Minimum="0.1"/>
                     <TextBlock x:Name="labWashFlowPer1" Grid.Row="2" Grid.Column="0" Text="{DynamicResource Com_WashFlowPer1}"/>
                     <xctk:DoubleUpDown Grid.Row="2" Grid.Column="2" Value="{Binding MWashFlowPer}" Maximum="100"/>
                 </Grid>

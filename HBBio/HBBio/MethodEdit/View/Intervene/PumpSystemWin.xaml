@@ -75,16 +75,16 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="labConc" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Text="{DynamicResource M_Conc}"/>
-                <Slider x:Name="sliderB" Grid.Row="2" Grid.Column="0" Visibility="{Binding ElementName=btnStartB,Path=Visibility}" Maximum="100"/>
-                <xctk:DoubleUpDown x:Name="doubleB" Grid.Row="2" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderB,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=btnStartB,Path=Visibility}"/>
-                <TextBlock x:Name="labBPer" Grid.Row="2" Grid.Column="4" Text="%B" Visibility="{Binding ElementName=btnStartB,Path=Visibility}"/>
-                <Button x:Name="btnPer" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_SetFlowPer}" Visibility="{Binding ElementName=btnStartB,Path=Visibility}" Click="btnPer_Click"/>
+                <Slider x:Name="sliderB" Grid.Row="2" Grid.Column="0" Maximum="100"/>
+                <xctk:DoubleUpDown x:Name="doubleB" Grid.Row="2" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderB,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=sliderB,Path=Visibility}"/>
+                <TextBlock x:Name="labBPer" Grid.Row="2" Grid.Column="4" Text="%B" Visibility="{Binding ElementName=sliderB,Path=Visibility}"/>
+                <Button x:Name="btnPer" Grid.Row="2" Grid.Column="6" Content="{DynamicResource M_SetFlowPer}" Visibility="{Binding ElementName=sliderB,Path=Visibility}" Click="btnPer_Click"/>
                 <Slider x:Name="sliderC" Grid.Row="4" Grid.Column="0" Visibility="{Binding ElementName=btnStartC,Path=Visibility}" Maximum="100"/>
-                <xctk:DoubleUpDown x:Name="doubleC" Grid.Row="4" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderC,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=btnStartC,Path=Visibility}"/>
-                <TextBlock x:Name="labCPer" Grid.Row="4" Grid.Column="4" Text="%C" Visibility="{Binding ElementName=btnStartC,Path=Visibility}"/>
+                <xctk:DoubleUpDown x:Name="doubleC" Grid.Row="4" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderC,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=sliderC,Path=Visibility}"/>
+                <TextBlock x:Name="labCPer" Grid.Row="4" Grid.Column="4" Text="%C" Visibility="{Binding ElementName=sliderC,Path=Visibility}"/>
                 <Slider x:Name="sliderD" Grid.Row="6" Grid.Column="0" Visibility="{Binding ElementName=btnStartD,Path=Visibility}" Maximum="100"/>
-                <xctk:DoubleUpDown x:Name="doubleD" Grid.Row="6" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderD,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=btnStartD,Path=Visibility}"/>
-                <TextBlock x:Name="labDPer" Grid.Row="26" Grid.Column="4" Text="%D" Visibility="{Binding ElementName=btnStartD,Path=Visibility}"/>
+                <xctk:DoubleUpDown x:Name="doubleD" Grid.Row="6" Grid.Column="2" Maximum="100" Value="{Binding ElementName=sliderD,Path=Value,Mode=TwoWay}" Visibility="{Binding ElementName=sliderD,Path=Visibility}"/>
+                <TextBlock x:Name="labDPer" Grid.Row="26" Grid.Column="4" Text="%D" Visibility="{Binding ElementName=sliderD,Path=Visibility}"/>
             </Grid>
         </Grid>
     </Border>

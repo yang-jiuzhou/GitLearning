@@ -20,7 +20,7 @@ namespace HBBio.Communication
         /// </summary>
         public ConfWash()
         {
-            MWashTime = 0.1;
+            MWashTime = 1;
             MWashFlowPer = 50.0;
         }
 

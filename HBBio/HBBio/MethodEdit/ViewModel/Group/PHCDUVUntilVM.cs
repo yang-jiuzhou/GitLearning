@@ -102,27 +102,36 @@ namespace HBBio.MethodEdit
                 MItem.MMonitorIndex = value;
                 if (EnumMonitorInfo.NameList[value].Contains("pH"))
                 {
-                    MVisibPH = Visibility.Visible;
-                    MVisibCD = Visibility.Collapsed;
-                    MVisibUV = Visibility.Collapsed;
+                    MVisibPHMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
+                    MVisibCDMore = Visibility.Collapsed;
+                    MVisibUVMore = Visibility.Collapsed;
+                    MVisibPHLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
+                    MVisibCDLess = Visibility.Collapsed;
+                    MVisibUVLess = Visibility.Collapsed;
                     MMoreLessThanMax = StaticValue.s_maxPH;
                     MMoreLessThanMin = StaticValue.s_minPH;
                     MMoreLessThanStr = "[" + StaticValue.s_minPH + " - " + StaticValue.s_maxPH + "]";
                 }
                 else if (EnumMonitorInfo.NameList[value].Contains("Cd"))
                 {
-                    MVisibPH = Visibility.Collapsed;
-                    MVisibCD = Visibility.Visible;
-                    MVisibUV = Visibility.Collapsed;
+                    MVisibPHMore = Visibility.Collapsed;
+                    MVisibCDMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
+                    MVisibUVMore = Visibility.Collapsed;
+                    MVisibPHLess = Visibility.Collapsed;
+                    MVisibCDLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
+                    MVisibUVLess = Visibility.Collapsed;
                     MMoreLessThanMax = StaticValue.s_maxCD;
                     MMoreLessThanMin = StaticValue.s_minCD;
                     MMoreLessThanStr = "[" + StaticValue.s_minCD + " - " + StaticValue.s_maxCD + "]";
                 }
                 else
                 {
-                    MVisibPH = Visibility.Collapsed;
-                    MVisibCD = Visibility.Collapsed;
-                    MVisibUV = Visibility.Visible;
+                    MVisibPHMore = Visibility.Collapsed;
+                    MVisibCDMore = Visibility.Collapsed;
+                    MVisibUVMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
+                    MVisibPHLess = Visibility.Collapsed;
+                    MVisibCDLess = Visibility.Collapsed;
+                    MVisibUVLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
                     MMoreLessThanMax = StaticValue.s_maxUV;
                     MMoreLessThanMin = StaticValue.s_minUV;
                     MMoreLessThanStr = "[" + StaticValue.s_minUV + " - " + StaticValue.s_maxUV + "]";
@@ -153,6 +162,7 @@ namespace HBBio.MethodEdit
                         MVisibLessThan = Visibility.Visible;
                         break;
                 }
+                MMonitorIndex = MMonitorIndex;
             }
         }
         public double MMoreThan
@@ -237,40 +247,76 @@ namespace HBBio.MethodEdit
             }
         }
 
-        public Visibility MVisibPH
+        public Visibility MVisibPHMore
         {
             get
             {
-                return m_visibPH;
+                return m_visibPHMore;
             }
             set
             {
-                m_visibPH = value;
-                OnPropertyChanged("MVisibPH");
+                m_visibPHMore = value;
+                OnPropertyChanged("MVisibPHMore");
             }
         }
-        public Visibility MVisibCD
+        public Visibility MVisibCDMore
         {
             get
             {
-                return m_visibCD;
+                return m_visibCDMore;
             }
             set
             {
-                m_visibCD = value;
-                OnPropertyChanged("MVisibCD");
+                m_visibCDMore = value;
+                OnPropertyChanged("MVisibCDMore");
             }
         }
-        public Visibility MVisibUV
+        public Visibility MVisibUVMore
         {
             get
             {
-                return m_visibUV;
+                return m_visibUVMore;
             }
             set
             {
-                m_visibUV = value;
-                OnPropertyChanged("MVisibUV");
+                m_visibUVMore = value;
+                OnPropertyChanged("MVisibUVMore");
+            }
+        }
+        public Visibility MVisibPHLess
+        {
+            get
+            {
+                return m_visibPHLess;
+            }
+            set
+            {
+                m_visibPHLess = value;
+                OnPropertyChanged("MVisibPHLess");
+            }
+        }
+        public Visibility MVisibCDLess
+        {
+            get
+            {
+                return m_visibCDLess;
+            }
+            set
+            {
+                m_visibCDLess = value;
+                OnPropertyChanged("MVisibCDLess");
+            }
+        }
+        public Visibility MVisibUVLess
+        {
+            get
+            {
+                return m_visibUVLess;
+            }
+            set
+            {
+                m_visibUVLess = value;
+                OnPropertyChanged("MVisibUVLess");
             }
         }
         public Visibility MVisibMoreThan
@@ -321,9 +367,12 @@ namespace HBBio.MethodEdit
         public double m_moreLessThanMin = 0;
         private string m_moreLessThanStr = "";
 
-        private Visibility m_visibPH = Visibility.Visible;
-        private Visibility m_visibCD = Visibility.Visible;
-        private Visibility m_visibUV = Visibility.Visible;
+        private Visibility m_visibPHMore = Visibility.Visible;
+        private Visibility m_visibCDMore = Visibility.Visible;
+        private Visibility m_visibUVMore = Visibility.Visible;
+        private Visibility m_visibPHLess = Visibility.Visible;
+        private Visibility m_visibCDLess = Visibility.Visible;
+        private Visibility m_visibUVLess = Visibility.Visible;
         private Visibility m_visibMoreThan = Visibility.Visible;
         private Visibility m_visibLessThan = Visibility.Visible;
 

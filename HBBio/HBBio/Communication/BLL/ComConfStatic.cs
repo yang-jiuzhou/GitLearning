@@ -203,6 +203,7 @@ namespace HBBio.Communication
                 //初始化警报警告
                 StaticAlarmWarning.Init(GetAlarmWarning());
                 StaticSystemConfig.Init(GetSystemConfig());
+                EnumWashInfo.Init();
                 double maxFlowS = 0;
                 double maxFlowA = 0;
                 double maxFlowB = 0;

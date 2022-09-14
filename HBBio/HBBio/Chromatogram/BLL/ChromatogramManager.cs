@@ -1321,7 +1321,7 @@ namespace HBBio.Chromatogram
                     drawX2 = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (MPhaseList[i + 1].GetValByBase(MLines.MBase) - m_minPartX)) + m_chartLeft;
                     if (0 == i % 2)
                     {
-                        mgph.FillRectangle(MBackgroundInfo.MPhaseBrush, drawX1, m_chartTop, drawX2 - drawX1, m_chartHeight);
+                        mgph.FillRectangle(MBackgroundInfo.MPhaseBrushOpacity, drawX1, m_chartTop, drawX2 - drawX1, m_chartHeight);
                     }
                     if (MBackgroundInfo.MPhaseDirection)
                     {
@@ -1336,7 +1336,7 @@ namespace HBBio.Chromatogram
                 drawX2 = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (MLines.MXList.Last() - m_minPartX)) + m_chartLeft;
                 if (0 == (MPhaseList.Count - 1) % 2)
                 {
-                    mgph.FillRectangle(MBackgroundInfo.MPhaseBrush, drawX1, m_chartTop, drawX2 - drawX1, m_chartHeight);
+                    mgph.FillRectangle(MBackgroundInfo.MPhaseBrushOpacity, drawX1, m_chartTop, drawX2 - drawX1, m_chartHeight);
                 }
                 if (MBackgroundInfo.MPhaseDirection)
                 {

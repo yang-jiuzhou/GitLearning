@@ -35,6 +35,10 @@ namespace HBBio.MethodEdit
 
             sliderFlow.Maximum = StaticValue.s_maxFlowVol;
             doubleFlow.Maximum = StaticValue.s_maxFlowVol;
+
+            sliderB.Visibility = ItemVisibility.s_listPump[ENUMPumpName.FITB];
+            sliderC.Visibility = ItemVisibility.s_listPump[ENUMPumpName.FITC];
+            sliderD.Visibility = ItemVisibility.s_listPump[ENUMPumpName.FITD];
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

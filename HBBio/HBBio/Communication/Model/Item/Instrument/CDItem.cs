@@ -11,6 +11,7 @@ namespace HBBio.Communication
     {
         public double m_CdGet;        //(读)
         public double m_timeGet;
+        private Queue<double> m_smooth = new Queue<double>();
 
 
         public CDItem()
@@ -31,6 +32,16 @@ namespace HBBio.Communication
             result.Add(new Signal(MConstName, MDlyName, DlyBase.SC_CDUNIT, 0, StaticValue.s_maxCD, true, true));
 
             return result;
+        }
+
+        public void UpdateValue(double val)
+        {
+            m_smooth.Enqueue(val);
+            if (m_smooth.Count > 5)
+            {
+                m_smooth.Dequeue();
+            }
+            m_CdGet = Math.Round(m_smooth.Average(), 3);
         }
     }
 }

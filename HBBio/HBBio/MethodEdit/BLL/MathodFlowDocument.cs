@@ -348,7 +348,7 @@ namespace HBBio.MethodEdit
                     sb.Append(ReadXaml.GetResources("LabDS") + ":" + it.MPerDS);
                     sb.Append(ReadXaml.GetResources("LabDE") + ":" + it.MPerDE);
                 }
-                sb.Append(ReadXaml.GetResources("labFillSystem") + ":" + (it.MFillSystem ? ReadXaml.S_Yes : ReadXaml.S_No));
+                sb.Append(ReadXaml.GetResources("labFillSystem") + ":" + EnumWashInfo.NameList[it.MFillSystem]);
                 sb.Append(baseStr + "(" + baseUnitStr + ")" + ":" + it.MBaseTVCV.MTVCV);
                 sb.Append(ReadXaml.GetResources("labFlowRate") + "(" + flowrateUnitStr + ")" + ":" + it.MFlowVolLen.MFlowRate);
                 if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.BPV])
@@ -457,7 +457,7 @@ namespace HBBio.MethodEdit
                     sb.Append(ReadXaml.GetResources("LabDS") + ":" + it.MPerDS);
                     sb.Append(ReadXaml.GetResources("LabDE") + ":" + it.MPerDE);
                 }
-                sb.Append(ReadXaml.GetResources("labFillSystem") + ":" + (it.MFillSystem ? ReadXaml.S_Yes : ReadXaml.S_No));
+                sb.Append(ReadXaml.GetResources("labFillSystem") + ":" + EnumWashInfo.NameList[it.MFillSystem]);
                 sb.Append(baseStr + "(" + baseUnitStr + ")" + ":" + it.MBaseTVCV.MTVCV);
                 list.ListItems.Add(AddListItem(sb.ToString(), 2));
             }

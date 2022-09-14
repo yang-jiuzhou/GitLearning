@@ -104,6 +104,9 @@ namespace HBBio.Manual
             cbox.SelectedIndex = valveValue.MListValave[(int)ENUMValveName.InS].MIndex;
 
             cbox.Visibility = ItemVisibility.s_listValve[ENUMValveName.InS];
+
+            cboxWash.ItemsSource = EnumWashInfo.NameList;
+            cboxWash.SelectedIndex = 1;
         }
 
         /// <summary>
@@ -154,7 +157,7 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITS, ENUMValveName.InS, cbox.SelectedIndex));
+            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITS, ENUMValveName.InS, cbox.SelectedIndex, cboxWash.SelectedIndex));
             RaiseEvent(args);
         }
 
@@ -167,6 +170,19 @@ namespace HBBio.Manual
         {
             RoutedEventArgs args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITS);
             RaiseEvent(args);
+        }
+
+        /// <summary>
+        /// 不能选择不清洗
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboxWash_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (0 == cboxWash.SelectedIndex)
+            {
+                cboxWash.SelectedIndex = 1;
+            }
         }
     }
 }

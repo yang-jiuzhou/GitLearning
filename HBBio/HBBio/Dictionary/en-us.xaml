@@ -208,6 +208,10 @@
     <s:String x:Key="labDelay">Delay</s:String>
     <s:String x:Key="labFilter">Filter</s:String>
     <s:String x:Key="labFilter1" xml:space="preserve">Filter : </s:String>
+    <s:String x:Key="labWash">Wash</s:String>
+    <s:String x:Key="labWashNo">No Wash</s:String>
+    <s:String x:Key="labWashSystem">System Wash</s:String>
+    <s:String x:Key="labWashPump">Pump Wash</s:String>
     
     
     

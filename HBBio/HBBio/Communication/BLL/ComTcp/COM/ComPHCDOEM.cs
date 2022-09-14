@@ -128,6 +128,8 @@ namespace HBBio.Communication
         protected override void ThreadRun()
         {
             double cdTemp = 0;
+            double cdVal = 0;
+
             while (true)
             {
                 switch (m_state)
@@ -148,9 +150,10 @@ namespace HBBio.Communication
                         m_state = PHCDState.Free;
                         break;
                     case PHCDState.Read:
-                        if (Connect() && ReadValue(ref m_pHItem.m_pHGet, ref m_ttItem.m_tempGet, ref m_CdItem.m_CdGet, ref cdTemp))
+                        if (Connect() && ReadValue(ref m_pHItem.m_pHGet, ref m_ttItem.m_tempGet, ref cdVal, ref cdTemp))
                         {
                             m_communState = ENUMCommunicationState.Success;
+                            m_CdItem.UpdateValue(cdVal);
                             Thread.Sleep(DlyBase.c_sleep5);
                         }
                         else

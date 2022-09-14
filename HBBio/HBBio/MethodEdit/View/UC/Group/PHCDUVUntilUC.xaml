@@ -64,16 +64,16 @@
                 <ComboBox x:Name="cboxMonitor" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" SelectedIndex="{Binding Path=MMonitorIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Row="2" Text="{DynamicResource ME_JudgmentLogic1}"/>
                 <ComboBox x:Name="cboxJudge" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" SelectedIndex="{Binding Path=MJudgeIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Grid.Row="4" Text="{DynamicResource ME_PHMoreThan1}" Visibility="{Binding MVisibPH}"/>
-                <TextBlock Grid.Row="4" Text="{DynamicResource ME_CDMoreThan1}" Visibility="{Binding MVisibCD}"/>
-                <TextBlock Grid.Row="4" Text="{DynamicResource ME_UVMoreThan1}" Visibility="{Binding MVisibUV}"/>
-                <xctk:DoubleUpDown Grid.Row="4" Grid.Column="2" Value="{Binding MMoreThan}" Minimum="{Binding MMoreLessThanMin}" Maximum="{Binding MMoreLessThanMax}"/>
-                <TextBlock Grid.Row="4" Grid.Column="4" Text="{Binding MMoreLessThanStr}"/>
-                <TextBlock Grid.Row="6" Text="{DynamicResource ME_PHLessThan1}" Visibility="{Binding MVisibPH}"/>
-                <TextBlock Grid.Row="6" Text="{DynamicResource ME_CDLessThan1}" Visibility="{Binding MVisibCD}"/>
-                <TextBlock Grid.Row="6" Text="{DynamicResource ME_UVLessThan1}" Visibility="{Binding MVisibUV}"/>
-                <xctk:DoubleUpDown Grid.Row="6" Grid.Column="2" Value="{Binding MLessThan}" Minimum="{Binding MMoreLessThanMin}" Maximum="{Binding MMoreLessThanMax}"/>
-                <TextBlock Grid.Row="6" Grid.Column="4" Text="{Binding MMoreLessThanStr}"/>
+                <TextBlock Grid.Row="4" Text="{DynamicResource ME_PHMoreThan1}" Visibility="{Binding MVisibPHMore}"/>
+                <TextBlock Grid.Row="4" Text="{DynamicResource ME_CDMoreThan1}" Visibility="{Binding MVisibCDMore}"/>
+                <TextBlock Grid.Row="4" Text="{DynamicResource ME_UVMoreThan1}" Visibility="{Binding MVisibUVMore}"/>
+                <xctk:DoubleUpDown Grid.Row="4" Grid.Column="2" Value="{Binding MMoreThan}" Minimum="{Binding MMoreLessThanMin}" Maximum="{Binding MMoreLessThanMax}" Visibility="{Binding MVisibMoreThan}"/>
+                <TextBlock Grid.Row="4" Grid.Column="4" Text="{Binding MMoreLessThanStr}" Visibility="{Binding MVisibMoreThan}"/>
+                <TextBlock Grid.Row="6" Text="{DynamicResource ME_PHLessThan1}" Visibility="{Binding MVisibPHLess}"/>
+                <TextBlock Grid.Row="6" Text="{DynamicResource ME_CDLessThan1}" Visibility="{Binding MVisibCDLess}"/>
+                <TextBlock Grid.Row="6" Text="{DynamicResource ME_UVLessThan1}" Visibility="{Binding MVisibUVLess}"/>
+                <xctk:DoubleUpDown Grid.Row="6" Grid.Column="2" Value="{Binding MLessThan}" Minimum="{Binding MMoreLessThanMin}" Maximum="{Binding MMoreLessThanMax}" Visibility="{Binding MVisibLessThan}"/>
+                <TextBlock Grid.Row="6" Grid.Column="4" Text="{Binding MMoreLessThanStr}" Visibility="{Binding MVisibLessThan}"/>
                 <TextBlock Grid.Row="8" Text="{DynamicResource ME_StabilityTime1}"/>
                 <xctk:DoubleUpDown Grid.Row="8" Grid.Column="2" Value="{Binding MStabilityTime}"/>
                 <TextBlock Grid.Row="8" Grid.Column="4" Text="{x:Static share:DlyBase.SC_TUNIT}"/>

@@ -103,7 +103,7 @@ namespace HBBio.Manual
         }
         public static bool s_multipleDelay = false;
         public static int s_multipleIndex = 0;
-        public static double s_multipleVol = 0;
+        public static double s_multipleVol = 0.01;
 
         public CollectionValve MCollectionValve { get; set; }
 
