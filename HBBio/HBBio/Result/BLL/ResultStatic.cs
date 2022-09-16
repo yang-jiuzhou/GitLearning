@@ -165,7 +165,7 @@ namespace HBBio.Result
         {
             if (chromatogramTime > m_T)
             {
-                m_V += ((totalFlow + m_lastTotalFlow) * (chromatogramTime - m_T) / 2);
+                m_V += (totalFlow + m_lastTotalFlow) * (chromatogramTime - m_T) / 2;
                 m_CV = m_V / m_colVol;
                 m_T = chromatogramTime;
 

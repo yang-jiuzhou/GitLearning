@@ -321,7 +321,7 @@ namespace HBBio.Administration
             for (int i = 0; i < Enum.GetNames(typeof(EnumPermission)).GetLength(0); i++)
             {
                 int count = FindCharCount(((EnumPermission)i).ToString(), '_');
-                string name = ReadXaml.GetName((EnumPermission)i);
+                string name = Share.ReadXaml.GetEnum((EnumPermission)i);
                 if (count >= listName.Count - 1)
                 {
                     listName.Add(name);
@@ -475,7 +475,7 @@ namespace HBBio.Administration
             List<SignerReviewerRow> list = new List<SignerReviewerRow>();
             foreach (EnumSignerReviewer it in Enum.GetValues(typeof(EnumSignerReviewer)))
             {
-                list.Add(new SignerReviewerRow(it, ReadXaml.GetName(it), signerReviewerInfo.MListSigner[(int)it], signerReviewerInfo.MListReviewer[(int)it]));
+                list.Add(new SignerReviewerRow(it, Share.ReadXaml.GetEnum(it), signerReviewerInfo.MListSigner[(int)it], signerReviewerInfo.MListReviewer[(int)it]));
             }
 
             return list;

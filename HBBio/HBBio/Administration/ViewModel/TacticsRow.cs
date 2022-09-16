@@ -43,7 +43,7 @@ namespace HBBio.Administration
         {
             MIndex = index;
             MValue = info.GetValue(index);
-            MColumnName = ReadXaml.GetName(index);
+            MColumnName = Share.ReadXaml.GetEnum(index, "A_T_");
             MColumnValue = GetValueString(info, index);
         }
 
@@ -57,11 +57,11 @@ namespace HBBio.Administration
             switch (index)
             {
                 case EnumTactics.NameReg: return 1 == info.NameReg ? Share.ReadXaml.S_Enabled : Share.ReadXaml.S_Disabled;
-                case EnumTactics.NameLock: return info.NameLock.ToString() + ReadXaml.GetUnit(index);
+                case EnumTactics.NameLock: return info.NameLock.ToString() + ReadXamlAdministration.GetUnit(index);
                 case EnumTactics.PwdReg: return 1 == info.PwdReg ? Share.ReadXaml.S_Enabled : Share.ReadXaml.S_Disabled;
-                case EnumTactics.PwdLength: return info.PwdLength.ToString() + ReadXaml.GetUnit(index);
-                case EnumTactics.PwdMaxTime: return info.PwdMaxTime.ToString() + ReadXaml.GetUnit(index);
-                case EnumTactics.ScreenLock: return info.ScreenLock.ToString() + ReadXaml.GetUnit(index);
+                case EnumTactics.PwdLength: return info.PwdLength.ToString() + ReadXamlAdministration.GetUnit(index);
+                case EnumTactics.PwdMaxTime: return info.PwdMaxTime.ToString() + ReadXamlAdministration.GetUnit(index);
+                case EnumTactics.ScreenLock: return info.ScreenLock.ToString() + ReadXamlAdministration.GetUnit(index);
             }
 
             return "";

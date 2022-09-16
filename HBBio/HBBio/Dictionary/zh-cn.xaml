@@ -732,7 +732,7 @@
 
     <s:String x:Key="Coll_Mark_M">手动收集标签</s:String>
     <s:String x:Key="Coll_Mark_A">自动收集标签</s:String>
-
+    <s:String x:Key="Coll_Delay">延迟切换</s:String>
     <s:String x:Key="Coll_Over">收集已满</s:String>
 
 

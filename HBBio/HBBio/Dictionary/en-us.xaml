@@ -732,7 +732,7 @@
 
     <s:String x:Key="Coll_Mark_M">Mark_Manual Coll</s:String>
     <s:String x:Key="Coll_Mark_A">Mark_Auto Coll</s:String>
-
+    <s:String x:Key="Coll_Delay">Delay Coll</s:String>
     <s:String x:Key="Coll_Over">Coll Over</s:String>
 
 

@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace HBBio.Administration
 {
-    public class ReadXaml
+    public class ReadXamlAdministration
     {
         /// <summary>
         /// 默认权限
@@ -19,30 +19,6 @@ namespace HBBio.Administration
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public static string GetName(EnumPermission index)
-        {
-            return (string)Application.Current.Resources[index.ToString()];
-        }
-
-        /// <summary>
-        /// 从xmal获取文本
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public static string GetName(EnumSignerReviewer index)
-        {
-            return (string)Application.Current.Resources[index.ToString()];
-        }
-
-        /// <summary>
-        /// 从xmal获取文本
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public static string GetName(EnumTactics index)
-        {
-            return (string)Application.Current.Resources["A_T_" + index.ToString()];
-        }
         public static string GetTitle1(EnumTactics index)
         {
             return (string)Application.Current.Resources["A_T_" + index.ToString() + "Title1"];

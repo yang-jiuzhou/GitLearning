@@ -163,6 +163,10 @@ namespace HBBio.Manual
             {
                 btnIntervene.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                groupMultipleSelect.Visibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>

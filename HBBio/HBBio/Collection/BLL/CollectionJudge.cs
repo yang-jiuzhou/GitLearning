@@ -454,7 +454,6 @@ namespace HBBio.Collection
         private static void JudgeTVCV(ref EnumNOIngFinish status, double val, double hold, double ts, double te, double startVal)
         {
             double valRun = Math.Round(val - startVal, 2);
-
             switch (status)
             {
                 case EnumNOIngFinish.NULL:

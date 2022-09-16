@@ -180,8 +180,11 @@ namespace HBBio.Chromatogram
         }
         public void RestoreData()
         {
-            MMaxAuto = m_drawData.Max();
-            MMinAuto = m_drawData.Min();
+            if (0 < m_drawData.Count)
+            {
+                MMaxAuto = m_drawData.Max();
+                MMinAuto = m_drawData.Min();
+            }
 
             if (MMinAuto == MMaxAuto)
             {

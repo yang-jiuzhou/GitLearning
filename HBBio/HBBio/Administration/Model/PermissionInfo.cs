@@ -63,11 +63,11 @@ namespace HBBio.Administration
         /// <returns></returns>
         public static PermissionInfo GetDefault(EnumPermissionName index)
         {
-            PermissionInfo item = new PermissionInfo(-1, 0, Share.ReadXaml.GetEnum(index, "A_Permission"), ReadXaml.S_DefaultPermission, false);
+            PermissionInfo item = new PermissionInfo(-1, 0, Share.ReadXaml.GetEnum(index, "A_Permission"), ReadXamlAdministration.S_DefaultPermission, false);
             switch (index)
             {
                 case EnumPermissionName.Admin:
-                    item = new PermissionInfo(-1, 0, Share.ReadXaml.GetEnum(index, "A_Permission"), ReadXaml.S_DefaultPermission, true);
+                    item = new PermissionInfo(-1, 0, Share.ReadXaml.GetEnum(index, "A_Permission"), ReadXamlAdministration.S_DefaultPermission, true);
                     break;
                 case EnumPermissionName.IT:
                     for (int i = 0; i < item.MList.Count; i++)

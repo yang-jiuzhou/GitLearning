@@ -72,14 +72,7 @@ namespace HBBio.Share
             object retval = null;
             using (MemoryStream ms = new MemoryStream(arr))
             {
-                try
-                {
-                    IFormatter formatter = new BinaryFormatter();
-                    retval = formatter.Deserialize(ms);
-                    ms.Close();
-                }
-                catch
-                { }
+                retval = SetMemoryStream<T>(ms);
             }
             return (T)retval;
         }

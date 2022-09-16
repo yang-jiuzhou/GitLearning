@@ -233,6 +233,39 @@ namespace HBBio.Communication
         }
     }
 
+    public class EnumValveInfo
+    {
+        public static int Count(ENUMValveName name)
+        {
+            switch (name)
+            {
+                case ENUMValveName.InS: return EnumInSInfo.Count;
+                case ENUMValveName.InA: return EnumInAInfo.Count;
+                case ENUMValveName.InB: return EnumInBInfo.Count;
+                case ENUMValveName.InC: return EnumInCInfo.Count;
+                case ENUMValveName.InD: return EnumInDInfo.Count;
+                case ENUMValveName.CPV_1:
+                case ENUMValveName.CPV_2: return EnumCPVInfo.Count;
+                default: return EnumOutInfo.Count;
+            }
+        }
+
+        public static string[] NameList(ENUMValveName name)
+        {
+            switch (name)
+            {
+                case ENUMValveName.InS: return EnumInSInfo.NameList;
+                case ENUMValveName.InA: return EnumInAInfo.NameList;
+                case ENUMValveName.InB: return EnumInBInfo.NameList;
+                case ENUMValveName.InC: return EnumInCInfo.NameList;
+                case ENUMValveName.InD: return EnumInDInfo.NameList;
+                case ENUMValveName.CPV_1:
+                case ENUMValveName.CPV_2: return EnumCPVInfo.NameList;
+                default: return EnumOutInfo.NameList;
+            }
+        }
+    }
+
     public class EnumInSInfo
     {
         private static int s_Count = 1;

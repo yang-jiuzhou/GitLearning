@@ -79,11 +79,11 @@ namespace HBBio.Administration
                             break;
                     }
                     this.numValue.Value = MItem.MValue;
-                    this.labTitle.Text = 0 == MItem.MValue ? ReadXaml.GetTitle1(MItem.MIndex) : ReadXaml.GetTitle2(MItem.MIndex);
-                    this.labUnit.Text = ReadXaml.GetUnit(MItem.MIndex);
+                    this.labTitle.Text = 0 == MItem.MValue ? ReadXamlAdministration.GetTitle1(MItem.MIndex) : ReadXamlAdministration.GetTitle2(MItem.MIndex);
+                    this.labUnit.Text = ReadXamlAdministration.GetUnit(MItem.MIndex);
                     break;
             }
-            this.labInfo.Text = ReadXaml.GetInfo(MItem.MIndex);
+            this.labInfo.Text = ReadXamlAdministration.GetInfo(MItem.MIndex);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace HBBio.Administration
                     case EnumTactics.PwdLength:
                     case EnumTactics.PwdMaxTime:
                     case EnumTactics.ScreenLock:
-                        this.labTitle.Text = 0 == Convert.ToInt16(numValue.Text) ? ReadXaml.GetTitle1(MItem.MIndex) : ReadXaml.GetTitle2(MItem.MIndex);
+                        this.labTitle.Text = 0 == Convert.ToInt16(numValue.Text) ? ReadXamlAdministration.GetTitle1(MItem.MIndex) : ReadXamlAdministration.GetTitle2(MItem.MIndex);
                         break;
                 }
             }

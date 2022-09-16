@@ -324,7 +324,7 @@ namespace HBBio.Administration
         {
             if (m_signerReviewerInfo.MListReviewer[(int)index])
             {
-                ReviewerWin dlg = new ReviewerWin(parent, ReadXaml.GetName(index), m_userInfo.MUserName, m_userInfo.MPwdSign);
+                ReviewerWin dlg = new ReviewerWin(parent, Share.ReadXaml.GetEnum(index), m_userInfo.MUserName, m_userInfo.MPwdSign);
                 if (false == dlg.ShowDialog())
                 {
                     return false;
@@ -334,7 +334,7 @@ namespace HBBio.Administration
             }
             else if (m_signerReviewerInfo.MListSigner[(int)index])
             {
-                SignerWin dlg = new SignerWin(parent, ReadXaml.GetName(index), m_userInfo.MUserName, m_userInfo.MPwdSign);
+                SignerWin dlg = new SignerWin(parent, Share.ReadXaml.GetEnum(index), m_userInfo.MUserName, m_userInfo.MPwdSign);
                 if (false == dlg.ShowDialog())
                 {
                     return false;

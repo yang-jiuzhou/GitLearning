@@ -518,7 +518,6 @@ namespace HBBio.SystemControl
                                                 }
                                                 m_curveStatic.AddItem(m_curveStatic.m_curveInfo);
                                                 MResultEvent?.Invoke(m_curveStatic.m_curveInfo);
-
                                                 m_manualRun.Run(m_curveStatic.m_T, m_curveStatic.MV, m_curveStatic.MCV, true);
                                                 Thread.Sleep(DlyBase.c_sleep5);
                                             }
@@ -578,9 +577,10 @@ namespace HBBio.SystemControl
                                                 }
                                                 m_curveStatic.AddItem(m_curveStatic.m_curveInfo);
                                                 MResultEvent?.Invoke(m_curveStatic.m_curveInfo);
-
-                                                m_methodRun.Run(m_curveStatic.m_T, m_curveStatic.MV);
-                                                Thread.Sleep(DlyBase.c_sleep5);
+                                                if (!m_methodRun.Run(m_curveStatic.m_T, m_curveStatic.MV))
+                                                {
+                                                    Thread.Sleep(DlyBase.c_sleep5);
+                                                }
                                             }
                                             else
                                             {

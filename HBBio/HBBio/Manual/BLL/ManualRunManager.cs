@@ -284,7 +284,15 @@ namespace HBBio.Manual
 
                     for (int i = 0; i < m_manualValue.m_valveValue.MListValave.Count; i++)
                     {
-                        ValveSwitch((ENUMValveName)i, m_manualValue.m_valveValue.MListValave[i].MIndex);
+                        switch ((ENUMValveName)i)
+                        {
+                            case ENUMValveName.Out:
+                                ValveSwitchOut(m_manualValue.m_valveValue.MListValave[i].MIndex);
+                                break;
+                            default:
+                                ValveSwitchOther((ENUMValveName)i, m_manualValue.m_valveValue.MListValave[i].MIndex);
+                                break;
+                        }
                     }
                 }
 
@@ -297,7 +305,8 @@ namespace HBBio.Manual
                         ischange = true;
                         m_manualValue.m_collValveValue.Init(ref outValve, m_theoryTVCV);
                     }
-                    if (run && m_manualValue.m_collValveValue.JudgeCondition(ref outValve, m_theoryTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList))
+                    if (run && m_manualValue.m_collValveValue.JudgeCondition(ref outValve, m_theoryTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList)
+                        && m_manualValue.m_collValveValue.JudgeCondition(ref outValve, m_theoryTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList))
                     {
                         ischange = true;
                     }
@@ -653,24 +662,31 @@ namespace HBBio.Manual
         }
 
         /// <summary>
-        /// 切换阀
+        /// 切换阀(其它)
         /// </summary>
         /// <param name="name"></param>
         /// <param name="index"></param>
-        public void ValveSwitch(ENUMValveName name, int index)
+        public void ValveSwitchOther(ENUMValveName name, int index)
         {
-            switch (name)
+            int indexOld = m_comconfStatic.GetValveSet(name);
+            if (indexOld != index && indexOld < EnumValveInfo.Count(name) && index < EnumValveInfo.Count(name))
             {
-                case ENUMValveName.Out:
-                    int indexOld = m_comconfStatic.GetValveSet(name);
-                    if (indexOld != index && indexOld < EnumOutInfo.Count && index < EnumOutInfo.Count)
-                    {
-                        MAuditTrailsHandler?.Invoke(ReadXamlManual.C_ValveSwitch, EnumOutInfo.NameList[indexOld] + "->" + EnumOutInfo.NameList[index]);
-                    }
-                    break;
+                m_comconfStatic.SetValve(name, index);
+                MAuditTrailsHandler?.Invoke(ReadXamlManual.C_ValveSwitch, EnumValveInfo.NameList(name)[indexOld] + "->" + EnumValveInfo.NameList(name)[index]);
             }
-
-            m_comconfStatic.SetValve(name, index);
+        }
+        /// <summary>
+        /// 切换阀(出口阀)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="index"></param>
+        public void ValveSwitchOut(int index)
+        {
+            if (index < EnumOutInfo.Count)
+            {
+                m_comconfStatic.SetValve(ENUMValveName.Out, index);
+                MAuditTrailsHandler?.Invoke(ReadXamlCollection.C_CollMarkM, EnumOutInfo.NameList[index]);
+            }
         }
     }
 

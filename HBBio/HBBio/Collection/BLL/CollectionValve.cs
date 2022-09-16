@@ -257,7 +257,9 @@ namespace HBBio.Collection
         {
             if (m_signal)
             {
-                QueueAdd(new CollectionValveDelay());
+                m_delayQue.Clear();
+                m_logDescQue.Clear();
+                m_logOperQue.Clear();
 
                 m_signal = false;
             }
@@ -480,7 +482,7 @@ namespace HBBio.Collection
                 result = m_delayQue.Last().m_outIndex;
 
                 CollectionValveDelay temp = m_delayQue.Peek();
-                if (-1 != temp.m_mode && vol - temp.m_vol < Communication.StaticSystemConfig.SSystemConfig.MListConfpHCdUV[temp.m_mode - 3].MVol)
+                if (-1 != temp.m_mode && Math.Round(vol - temp.m_vol, 2) < Communication.StaticSystemConfig.SSystemConfig.MListConfpHCdUV[temp.m_mode - 3].MVol)
                 {
                     return result;
                 }

@@ -573,6 +573,14 @@ namespace HBBio.Chromatogram
                 }
             }
 
+            foreach (var it in MCollListA)
+            {
+                if (it.MT == item.MT)
+                {
+                    it.MType = item.MType;
+                    return;
+                }
+            }
             MCollListA.Add(item);
         }
 
@@ -638,6 +646,14 @@ namespace HBBio.Chromatogram
                 }
             }
 
+            foreach (var it in MValveList)
+            {
+                if (it.MT == item.MT)
+                {
+                    it.MType = it.MType + "\n" + item.MType;
+                    return;
+                }
+            }
             MValveList.Add(item);
         }
 
@@ -1247,16 +1263,14 @@ namespace HBBio.Chromatogram
             foreach (var it in MCollListM)
             {
                 int drawX = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (it.GetValByBase(MLines.MBase) - m_minPartX)) + m_chartLeft;
-                mgph.DrawLine(MBackgroundInfo.MCollPenM, drawX, m_chartBottom - 30, drawX, m_chartBottom);
+                mgph.DrawLine(MBackgroundInfo.MCollPenM, drawX, m_chartBottom - 50, drawX, m_chartBottom);
                 if (MBackgroundInfo.MCollMDirection)
                 {
-                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 60);
-                    mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 45);
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + "\n" + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 80);
                 }
                 else
                 {
-                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 30, m_chartBottom - 45, new StringFormat(StringFormatFlags.DirectionVertical));
-                    mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX - 15, m_chartBottom - 45, new StringFormat(StringFormatFlags.DirectionVertical));
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + "\n" + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushM, drawX, m_chartBottom - 50, new StringFormat(StringFormatFlags.DirectionVertical));
                 }
             }
         }
@@ -1270,16 +1284,14 @@ namespace HBBio.Chromatogram
             foreach (var it in MCollListA)
             {
                 int drawX = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (it.GetValByBase(MLines.MBase) - m_minPartX)) + m_chartLeft;
-                mgph.DrawLine(MBackgroundInfo.MCollPenA, drawX, m_chartBottom - 30, drawX, m_chartBottom);
+                mgph.DrawLine(MBackgroundInfo.MCollPenA, drawX, m_chartBottom - 50, drawX, m_chartBottom);
                 if (MBackgroundInfo.MCollADirection)
                 {
-                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 60);
-                    mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 45);
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + "\n" + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 80);
                 }
                 else
                 {
-                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString(), new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 30, m_chartBottom - 45, new StringFormat(StringFormatFlags.DirectionVertical));
-                    mgph.DrawString(it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX - 15, m_chartBottom - 45, new StringFormat(StringFormatFlags.DirectionVertical));
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + "\n" + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MCollBrushA, drawX, m_chartBottom - 50, new StringFormat(StringFormatFlags.DirectionVertical));
                 }
             }
         }
@@ -1293,14 +1305,14 @@ namespace HBBio.Chromatogram
             foreach (var it in MValveList)
             {
                 int drawX = (int)(m_chartWidth / (m_maxPartX - m_minPartX) * (it.GetValByBase(MLines.MBase) - m_minPartX)) + m_chartLeft;
-                mgph.DrawLine(MBackgroundInfo.MValvePen, drawX, m_chartBottom - 50, drawX, m_chartBottom);
+                mgph.DrawLine(MBackgroundInfo.MValvePen, drawX, m_chartBottom - 90, drawX, m_chartBottom);
                 if (MBackgroundInfo.MValveDirection)
                 {
-                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + " " + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MValveBrush, drawX - 15, m_chartBottom - 65);
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + "\n" + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MValveBrush, drawX - 15, m_chartBottom - 120);
                 }
                 else
                 {
-                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + " " + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MValveBrush, drawX - 15, m_chartBottom - 65, new StringFormat(StringFormatFlags.DirectionVertical));
+                    mgph.DrawString(it.GetValByBase(MLines.MBase).ToString() + "\n" + it.MType, new System.Drawing.Font("微软雅黑", 9), MBackgroundInfo.MValveBrush, drawX, m_chartBottom - 90, new StringFormat(StringFormatFlags.DirectionVertical));
                 }
             }
         }
@@ -1350,7 +1362,7 @@ namespace HBBio.Chromatogram
         }
 
         /// <summary>
-        /// 绘图，画标记
+        /// 绘图，画峰
         /// </summary>
         /// <param name="mgph"></param>
         protected void DrawPeak(Graphics mgph, List<PointF[]> listPoint)

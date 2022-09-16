@@ -369,8 +369,10 @@ namespace HBBio.MethodEdit
         /// <summary>
         /// 运行
         /// </summary>
-        public void Run(double time, double vol)
+        public bool Run(double time, double vol)
         {
+            bool result = false;
+
             m_T = time;
             m_V = vol;
 
@@ -380,12 +382,16 @@ namespace HBBio.MethodEdit
                     //运行队列
                     if (m_indexCurrMethod < MMethodQueue.MMethodList.Count)
                     {
-                        RefreshMethod();
+                        result = RefreshMethod();
                     }
                     //运行结束
                     if (m_indexCurrMethod == MMethodQueue.MMethodList.Count)
                     {
                         m_state = MethodState.Stop;
+                    }
+                    else
+                    {
+                        result = result || RefreshMethod();
                     }
                     break;
                 default:
@@ -408,8 +414,14 @@ namespace HBBio.MethodEdit
                     {
                         m_state = MethodState.Stop;
                     }
+                    else
+                    {
+                        RefreshPhase();
+                    }
                     break;
             }
+
+            return result;
         }
 
         /// <summary>
@@ -520,7 +532,7 @@ namespace HBBio.MethodEdit
         /// <summary>
         /// 执行队列的方法
         /// </summary>
-        private void RefreshMethod()
+        private bool RefreshMethod()
         {
             if (MRUN.No == m_runMethod)//第一次运行该方法
             {
@@ -546,20 +558,35 @@ namespace HBBio.MethodEdit
             }
             else if (MRUN.Ing == m_runMethod)
             {
-                if (m_indexCurrPhase < MMethod.MPhaseList.Count)
+                if (m_indexCurrLoop < MMethod.MMethodSetting.MLoop)
                 {
-                    RefreshPhase();
+                    if (m_indexCurrPhase < MMethod.MPhaseList.Count)
+                    {
+                        RefreshPhase();
+                    }
 
                     if (m_indexCurrPhase == MMethod.MPhaseList.Count)
                     {
-                        if (!MMethodQueue.MOnly && m_indexCurrMethod < MMethodQueue.MMethodList.Count - 1)
-                        {
-                            MMethodBeginHandler?.Invoke(m_indexCurrMethod + 2);
-                        }
-
-                        m_indexCurrMethod++;
-                        m_runMethod = MRUN.No;
+                        m_indexCurrLoop++;
+                        m_indexCurrPhase = 0;
                     }
+                }
+
+                if (m_indexCurrLoop == MMethod.MMethodSetting.MLoop)
+                {
+                    if (!MMethodQueue.MOnly && m_indexCurrMethod < MMethodQueue.MMethodList.Count - 1)
+                    {
+                        MMethodBeginHandler?.Invoke(m_indexCurrMethod + 2);
+                    }
+
+                    m_indexCurrMethod++;
+                    m_runMethod = MRUN.No;
+
+                    return true;
+                }
+                else
+                {
+                    RefreshPhase();
                 }
             }
             else
@@ -571,7 +598,11 @@ namespace HBBio.MethodEdit
 
                 m_indexCurrMethod++;
                 m_runMethod = MRUN.No;
+
+                return true;
             }
+
+            return false;
         }
 
         /// <summary>
@@ -1390,6 +1421,7 @@ namespace HBBio.MethodEdit
                             {
                                 int outValve = m_comconfStatic.GetValveSet(ENUMValveName.Out);
                                 tmp.MValve.JudgeCondition(ref outValve, MPhaseRunTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList);
+                                tmp.MValve.JudgeCondition(ref outValve, MPhaseRunTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList);
                                 m_comconfStatic.SetValve(ENUMValveName.Out, outValve);
                                 string desc = null;
                                 string oper = null;
@@ -1699,10 +1731,12 @@ namespace HBBio.MethodEdit
             if (null == phase.MArrIsRun || phase.MArrIsRun.Length != tmp.MList.Count)
             {
                 phase.MArrIsRun = new bool[tmp.MList.Count];
+                phase.MArrIsIncubation = new bool[tmp.MList.Count];
             }
             for (int i = 0; i < phase.MArrIsRun.Length; i++)
             {
                 phase.MArrIsRun[i] = false;
+                phase.MArrIsIncubation[i] = false;
             }
         }
         private void RefreshBreakValveSelection(DlyPhase phase, BaseGroup baseGroup)
