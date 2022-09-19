@@ -1438,6 +1438,7 @@ namespace HBBio.MethodEdit
                                 {
                                     CollTextIndex index = new CollTextIndex(item.m_txtSet, item.m_indexSet, item.m_ingSet);
                                     tmp.MCollector.JudgeCondition(ref index, MPhaseRunTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList);
+                                    tmp.MCollector.JudgeCondition(ref index, MPhaseRunTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList);
                                     item.MIndexSet = index.MStr;
                                     item.MStatusSet = index.MStatus;
                                     string desc = null;

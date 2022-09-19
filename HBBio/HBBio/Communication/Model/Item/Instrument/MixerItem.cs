@@ -8,6 +8,7 @@ namespace HBBio.Communication
 {
     public class MixerItem : BaseInstrument
     {
+        public bool m_pause = false;    //是否暂停
         public bool m_onoffSet;        //(写)
         public bool m_onoffGet;        //(读)
 

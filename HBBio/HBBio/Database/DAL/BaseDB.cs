@@ -20,10 +20,11 @@ namespace HBBio.Database
      **/
     class BaseDB
     {
-        private const string ConfDBName = "HB_LabChrom_ConfDB";
-        private const string ComDBName = "HB_LabChrom_ComDB";
-        private const string LogDBName = "HB_LabChrom_LogDB";
-        private const string CurveDBName = "HB_LabChrom_CurveDB";
+        private const string C_ID = "";
+        private const string ConfDBName = "HB_LabChrom_ConfDB" + C_ID;
+        private const string ComDBName = "HB_LabChrom_ComDB" + C_ID;
+        private const string LogDBName = "HB_LabChrom_LogDB" + C_ID;
+        private const string CurveDBName = "HB_LabChrom_CurveDB" + C_ID;
         public readonly static string ConfDB = @"server=" + Environment.MachineName + ";database=" + ConfDBName + ";uid=sa;pwd=123;Connection Timeout=5;";
         public readonly static string ComDB = @"server=" + Environment.MachineName + ";database=" + ComDBName + ";uid=sa;pwd=123;Connection Timeout=5;";
         public readonly static string LogDB = @"server=" + Environment.MachineName + ";database=" + LogDBName + ";uid=sa;pwd=123;Connection Timeout=5;";

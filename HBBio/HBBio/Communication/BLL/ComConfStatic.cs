@@ -1027,6 +1027,8 @@ namespace HBBio.Communication
         public void SetPumpSample(double flowVol)
         {
             m_dictPump[ENUMPumpName.FITS].m_flowSet = flowVol;
+
+            m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = false;
         }
         public void SetPumpPause(bool pause)
         {
@@ -1035,6 +1037,8 @@ namespace HBBio.Communication
             m_dictPump[ENUMPumpName.FITB].m_pause = pause;
             m_dictPump[ENUMPumpName.FITC].m_pause = pause;
             m_dictPump[ENUMPumpName.FITD].m_pause = pause;
+
+            m_dictMixer[ENUMMixerName.Mixer01].m_pause = pause;
         }
         public double GetPumpGet(ENUMPumpName name)
         {

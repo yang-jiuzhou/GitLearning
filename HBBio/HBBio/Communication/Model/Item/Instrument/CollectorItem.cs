@@ -70,7 +70,7 @@ namespace HBBio.Communication
             {
                 if (0 == m_indexSet)
                 {
-                    return "WASTE";
+                    return "WASTE(" + m_txtSet.ToString() + m_indexSet + ")";
                 }
                 else
                 {
@@ -79,137 +79,32 @@ namespace HBBio.Communication
             }
             set
             {
-                switch (value)
+                if (value.Contains("WASTE"))
                 {
-                    case "+1":
-                        {
-                            switch (m_txtSet)
-                            {
-                                case EnumCollIndexText.L:
-                                    if (m_indexSet < m_countL)
-                                    {
-                                        m_indexSet += 1;
-                                    }
-                                    else
-                                    {
-                                        m_indexSet = 1;
-                                        m_txtSet = EnumCollIndexText.R;
-                                    }
-                                    break;
-                                case EnumCollIndexText.R:
-                                    if (m_indexSet < m_countR)
-                                    {
-                                        m_indexSet += 1;
-                                    }
-                                    else
-                                    {
-                                        m_indexSet = 1;
-                                        m_txtSet = EnumCollIndexText.L;
-                                    }
-                                    break;
-                                case EnumCollIndexText.Out:
-                                    if (m_indexSet < m_countL)
-                                    {
-                                        m_indexSet += 1;
-                                    }
-                                    else
-                                    {
-                                        m_indexSet = 1;
-                                    }
-                                    break;
-                            }
-                        }
-                        break;
-                    case "-1":
-                        {
-                            switch (m_txtSet)
-                            {
-                                case EnumCollIndexText.L:
-                                    if (m_indexSet > 1)
-                                    {
-                                        m_indexSet -= 1;
-                                    }
-                                    else
-                                    {
-                                        m_indexSet = m_countR;
-                                        m_txtSet = EnumCollIndexText.R;
-                                    }
-                                    break;
-                                case EnumCollIndexText.R:
-                                    if (m_indexSet > 1)
-                                    {
-                                        m_indexSet -= 1;
-                                    }
-                                    else
-                                    {
-                                        m_indexSet = m_countL;
-                                        m_txtSet = EnumCollIndexText.L;
-                                    }
-                                    break;
-                                case EnumCollIndexText.Out:
-                                    if (m_indexSet  > 1)
-                                    {
-                                        m_indexSet -= 1;
-                                    }
-                                    else
-                                    {
-                                        m_indexSet = m_countL;
-                                    }
-                                    break;
-                            }
-                        }
-                        break;
-                    case "WASTE":
-                        {
-                            switch (m_txtSet)
-                            {
-                                case EnumCollIndexText.Out:
-                                    m_indexSet = 0;
-                                    break;
-                            }
-                        }
-                        break;
-                    default:
-                        {
-                            if (value.Contains("L"))
-                            {
-                                m_txtSet = EnumCollIndexText.L;
-                                m_indexSet = Convert.ToInt32(value.Remove(0, 1));
-                            }
-                            else if (value.Contains("R"))
-                            {
-                                m_txtSet = EnumCollIndexText.R;
-                                m_indexSet = Convert.ToInt32(value.Remove(0, 1));
-                            }
-                            else if (value.Contains("O"))
-                            {
-                                m_txtSet = EnumCollIndexText.Out;
-                                m_indexSet = Convert.ToInt32(value.Remove(0, 3));
-                            }
-                            else
-                            {
-      
-                            }
-                        }
-                        break;
+                    string newValue = value.Replace("WASTE(", "").Replace(")", "");
+                    if (newValue.Contains("L"))
+                    {
+                        m_txtSet = EnumCollIndexText.L;
+                        m_indexSet = Convert.ToInt32(newValue.Remove(0, 1));
+                    }
+                    else
+                    {
+                        m_txtSet = EnumCollIndexText.R;
+                        m_indexSet = Convert.ToInt32(newValue.Remove(0, 1));
+                    }
+                }
+                else if (value.Contains("L"))
+                {
+                    m_txtSet = EnumCollIndexText.L;
+                    m_indexSet = Convert.ToInt32(value.Remove(0, 1));
+                }
+                else if (value.Contains("R"))
+                {
+                    m_txtSet = EnumCollIndexText.R;
+                    m_indexSet = Convert.ToInt32(value.Remove(0, 1));
                 }
 
                 OnPropertyChanged("MIndexSet");
-
-                switch (m_txtSet)
-                {
-                    case EnumCollIndexText.Out:
-                        switch (value)
-                        {
-                            case "WASTE":
-                                MStatusSet = false;
-                                break;
-                            default:
-                                MStatusSet = true;
-                                break;
-                        }
-                        break;
-                }
             }
         }     
         public string MIndexGet
@@ -218,7 +113,7 @@ namespace HBBio.Communication
             {
                 if (0 == m_indexGet)
                 {
-                    return "WASTE";
+                    return "WASTE(" + m_txtGet.ToString() + m_indexGet + ")";
                 }
                 else
                 {
@@ -227,7 +122,21 @@ namespace HBBio.Communication
             }
             set
             {
-                if (value.Contains("L"))
+                if (value.Contains("WASTE"))
+                {
+                    string newValue = value.Replace("WASTE(", "").Replace(")", "");
+                    if (newValue.Contains("L"))
+                    {
+                        m_txtGet = EnumCollIndexText.L;
+                        m_indexGet = Convert.ToInt32(newValue.Remove(0, 1));
+                    }
+                    else
+                    {
+                        m_txtGet = EnumCollIndexText.R;
+                        m_indexGet = Convert.ToInt32(newValue.Remove(0, 1));
+                    }
+                }
+                else if (value.Contains("L"))
                 {
                     m_txtGet = EnumCollIndexText.L;
                     m_indexGet = Convert.ToInt32(value.Remove(0, 1));
@@ -237,15 +146,7 @@ namespace HBBio.Communication
                     m_txtGet = EnumCollIndexText.R;
                     m_indexGet = Convert.ToInt32(value.Remove(0, 1));
                 }
-                else if (value.Contains("O"))
-                {
-                    m_txtGet = EnumCollIndexText.Out;
-                    m_indexGet = Convert.ToInt32(value.Remove(0, 3));
-                }
-                else
-                {
 
-                }
                 OnPropertyChanged("MIndexGet");
             }
         }
@@ -264,23 +165,6 @@ namespace HBBio.Communication
 
                 m_ingSet = value;
                 OnPropertyChanged("MStatusSet");
-
-                switch (m_txtSet)
-                {
-                    case EnumCollIndexText.Out:
-                        if (!value)
-                        {
-                            MIndexSet = "WASTE";
-                        }
-                        else
-                        {
-                            if (MIndexSet.Equals("WASTE"))
-                            {
-                                MIndexSet = m_txtSet.ToString() + m_indexGet;
-                            }
-                        }
-                        break;
-                }
             }
         }
         public bool MStatusGet
@@ -301,6 +185,84 @@ namespace HBBio.Communication
         {
             MConstNameList = Enum.GetNames(typeof(ENUMCollectorName));
             MConstName = MConstNameList[0];
+        }
+
+        public CollTextIndex GetCurr()
+        {
+            CollTextIndex curr = new CollTextIndex();
+            curr.MText = m_txtSet;
+            curr.MIndex = m_indexSet;
+            curr.MStatus = m_ingSet;
+
+            return curr;
+        }
+
+        public CollTextIndex GetAdd()
+        {
+            CollTextIndex curr = new CollTextIndex();
+            curr.MText = m_txtSet;
+            switch (m_txtSet)
+            {
+                case EnumCollIndexText.L:
+                    if (m_indexSet < m_countL)
+                    {
+                        curr.MIndex = m_indexSet + 1;
+                    }
+                    else
+                    {
+                        curr.MText = EnumCollIndexText.R;
+                        curr.MIndex = 1;
+                    }
+                    break;
+                case EnumCollIndexText.R:
+                    if (m_indexSet < m_countR)
+                    {
+                        curr.MText = EnumCollIndexText.R;
+                        curr.MIndex = m_indexSet + 1;
+                    }
+                    else
+                    {
+                        curr.MIndex = 1;
+                    }
+                    break;
+            }
+            curr.MStatus = m_ingSet;
+
+            return curr;
+        }
+
+        public CollTextIndex GetDel()
+        {
+            CollTextIndex curr = new CollTextIndex();
+            curr.MText = m_txtSet;
+            switch (m_txtSet)
+            {
+                case EnumCollIndexText.L:
+                    if (m_indexSet > 1)
+                    {
+                        curr.MIndex = m_indexSet - 1;
+                    }
+                    else
+                    {
+                        curr.MIndex = m_countR;
+                        curr.MText = EnumCollIndexText.R;
+                    }
+                    break;
+                case EnumCollIndexText.R:
+                    if (m_indexSet > 1)
+                    {
+                        curr.MIndex = m_indexSet - 1;
+                    }
+                    else
+                    {
+                        curr.MIndex = m_countL;
+                        curr.MText = EnumCollIndexText.L;
+                    }
+                    break;
+            }
+            curr.MStatus = m_ingSet;
+
+            return curr;
         }
     }
 }

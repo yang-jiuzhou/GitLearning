@@ -333,7 +333,8 @@ namespace HBBio.Manual
                                 ischange = true;
                                 m_manualValue.m_collCollectorValue.Init(ref index, m_theoryTVCV);
                             }
-                            if (run && m_manualValue.m_collCollectorValue.JudgeCondition(ref index, m_theoryTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList))
+                            if (run && m_manualValue.m_collCollectorValue.JudgeCondition(ref index, m_theoryTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList)
+                                && m_manualValue.m_collCollectorValue.JudgeCondition(ref index, m_theoryTVCV, EnumMonitorInfo.ValueList, EnumMonitorInfo.SlopeList))
                             {
                                 ischange = true;
                             }

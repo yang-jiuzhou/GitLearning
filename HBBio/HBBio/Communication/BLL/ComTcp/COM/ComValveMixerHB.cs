@@ -83,7 +83,7 @@ namespace HBBio.Communication
             }
             if (m_itemM.MVisible)
             {
-                result.Add(m_itemM.m_onoffSet ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off);
+                result.Add(!m_itemM.m_pause && m_itemM.m_onoffSet ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off);
             }
 
             return result;
@@ -196,7 +196,7 @@ namespace HBBio.Communication
                         m_state = EnumValveMixerState.ReadWrite;
                         break;
                     case EnumValveMixerState.ReadWrite:
-                        if (Connect() && SetStatus(m_itemM.m_onoffSet, ref m_itemM.m_onoffGet, m_itemV1.MValveSet, ref tempV1, m_itemV2.MValveSet, ref tempV2, m_itemV3.MValveSet, ref tempV3))
+                        if (Connect() && SetStatus(!m_itemM.m_pause && m_itemM.m_onoffSet, ref m_itemM.m_onoffGet, m_itemV1.MValveSet, ref tempV1, m_itemV2.MValveSet, ref tempV2, m_itemV3.MValveSet, ref tempV3))
                         {
                             m_communState = ENUMCommunicationState.Success;
                             m_itemV1.MValveGet = tempV1;

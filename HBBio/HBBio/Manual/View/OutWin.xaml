@@ -27,7 +27,7 @@
             <Button x:Name="btnClose" Style="{StaticResource closeBtnStyle}" Grid.Column="2" Click="btnClose_Click"/>
         </Grid>
         <GroupBox Grid.Row="2" Header="{DynamicResource M_OutWin_SingleSelect}">
-            <Grid>
+            <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="10"/>
@@ -35,13 +35,13 @@
                     <ColumnDefinition Width="15"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <RadioButton x:Name="rbtnRealSingle" Grid.Column="0" Content="{DynamicResource labReal}" IsChecked="True" Visibility="Collapsed"/>
-                <RadioButton x:Name="rbtnDelaySingle" Grid.Column="2" Content="{DynamicResource labDelay}" Visibility="Collapsed"/>
+                <RadioButton x:Name="rbtnRealSingle" Grid.Column="0" Content="{DynamicResource labReal}" IsChecked="True"/>
+                <RadioButton x:Name="rbtnDelaySingle" Grid.Column="2" Content="{DynamicResource labDelay}"/>
                 <Grid x:Name="grid" Grid.Column="4"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupMultipleSelect" Grid.Row="4" Header="{DynamicResource M_OutWin_MultipleSelect}">
-            <Grid>
+            <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="10"/>
@@ -59,8 +59,8 @@
                     <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <RadioButton x:Name="rbtnRealMultiple" Grid.Column="0" Content="{DynamicResource labReal}" Visibility="Collapsed"/>
-                <RadioButton x:Name="rbtnDelayMultiple" Grid.Column="2" Content="{DynamicResource labDelay}" Visibility="Collapsed"/>
+                <RadioButton x:Name="rbtnRealMultiple" Grid.Column="0" Content="{DynamicResource labReal}"/>
+                <RadioButton x:Name="rbtnDelayMultiple" Grid.Column="2" Content="{DynamicResource labDelay}"/>
                 <TextBlock Grid.Column="4" Text="{DynamicResource M_OutWin_Start1}"/>
                 <ComboBox x:Name="cboxSelect" Grid.Column="6"/>
                 <TextBlock Grid.Column="8" Text="{DynamicResource M_OutWin_Vol1}"/>

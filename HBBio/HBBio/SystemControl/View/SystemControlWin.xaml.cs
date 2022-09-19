@@ -43,12 +43,9 @@ namespace HBBio.SystemControl
         private MessageBoxWin m_winAW = new MessageBoxWin("");                  //警报警告弹窗
         private ScreenLockWin m_screenLockWin = new ScreenLockWin();            //解锁窗口
 
-        private bool s_threadFlagValveMulti = false;                            //出口阀阀位循环的标志
-        private Queue<double> m_queueVolValveMulti = new Queue<double>();       //出口阀阀位循环待执行列表
-
-        private List<Thread> m_listThradCollectorDelay = new List<Thread>();    //收集器延迟切换的线程集合
-        private bool m_thradCollectorDelayIng = true;                           //收集器延迟切换的线程信号
-
+        private bool m_threadFlagValveMulti = false;                            //出口阀阀位循环的标志
+        private bool m_threadFlagCollectorMulti = false;                         //收集器阀位循环的标志
+        
         public struct POINT
         {
             public int X;
@@ -452,17 +449,18 @@ namespace HBBio.SystemControl
                             OutWin win = new OutWin(this, thumb.ToolTip.ToString(), StaticValue.GetNameList(index), SystemControlManager.s_comconfStatic.GetValveGet(index));
                             if (SystemState.Free == SystemControlManager.MSystemState)
                             {
+                                win.MRealDelayVisibility = Visibility.Collapsed;
                                 win.MMultipleVisibility = Visibility.Collapsed;
                             }
                             else
                             {
-                                if (0 < StaticSystemConfig.SSystemConfig.MDelayVol)
+                                if (0 == StaticSystemConfig.SSystemConfig.MDelayVol)
                                 {
-                                    win.MRealDelayVisibility = Visibility.Visible;
+                                    win.MRealDelayVisibility = Visibility.Collapsed;
                                 }
                             }
                             
-                            win.MMultipleFlag = s_threadFlagValveMulti;
+                            win.MMultipleFlag = m_threadFlagValveMulti;
                             switch (SystemControlManager.MSystemState)
                             {
                                 case SystemState.Manual:
@@ -595,6 +593,20 @@ namespace HBBio.SystemControl
                 win.Owner = this;
                 win.Left = pointThumb.X + thumb.ActualWidth;
                 win.Top = pointProcessPicture.Y - 50;
+                if (SystemState.Free == SystemControlManager.MSystemState)
+                {
+                    win.MRealDelayVisibility = Visibility.Collapsed;
+                    win.MMultipleVisibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    if (0 == StaticSystemConfig.SSystemConfig.MDelayVol + Communication.StaticSystemConfig.SSystemConfig.MConfCollector.MGLTJ)
+                    {
+                        win.MRealDelayVisibility = Visibility.Collapsed;
+                    }
+                }
+
+                win.MMultipleFlag = m_threadFlagCollectorMulti;
                 win.MItemShow = SystemControlManager.s_comconfStatic.GetItem(ENUMCollectorName.Collector01);
                 if (0 != EnumCollectorInfo.CountL)
                 {
@@ -614,44 +626,13 @@ namespace HBBio.SystemControl
                         win.MCollectionCollector = SystemControlManager.m_methodRun.MCollectionCollector;
                         break;
                 }
-                win.MAuditTrailsHandler += DlyManualRunAuditTrails;
-                win.MUpdateCollector += DlyUpdateCollector;
+                win.MSingle += DlyCollectorSingle;
+                win.MMultipleStart += DlyCollectorSwitchMultipleStart;
+                win.MMultipleStop += DlyCollectorSwitchMultipleStop;
                 win.ShowDialog();
-                win.MAuditTrailsHandler -= DlyManualRunAuditTrails;
-                win.MUpdateCollector -= DlyUpdateCollector;
-            }
-        }
-
-        /// <summary>
-        /// 收集器延迟切换的线程
-        /// </summary>
-        /// <param name="e"></param>
-        private void ThreadCollectorDelayIndexFun(object e)
-        {
-            m_thradCollectorDelayIng = true;
-            double vol = SystemControlManager.m_curveStatic.MV;
-            while (m_thradCollectorDelayIng && (SystemControlManager.m_curveStatic.MV - vol) < Communication.StaticSystemConfig.SSystemConfig.MDelayVol)
-            {
-                Thread.Sleep(DlyBase.c_sleep5);
-            }
-
-            if (m_thradCollectorDelayIng)
-            {
-                SystemControlManager.s_comconfStatic.GetItem(ENUMCollectorName.Collector01).MIndexSet = e.ToString();
-            }
-        }
-        private void ThreadCollectorDelayStatusFun(object e)
-        {
-            m_thradCollectorDelayIng = true;
-            double vol = SystemControlManager.m_curveStatic.MV;
-            while (m_thradCollectorDelayIng && (SystemControlManager.m_curveStatic.MV - vol) < Communication.StaticSystemConfig.SSystemConfig.MDelayVol)
-            {
-                Thread.Sleep(DlyBase.c_sleep5);
-            }
-
-            if (m_thradCollectorDelayIng)
-            {
-                SystemControlManager.s_comconfStatic.GetItem(ENUMCollectorName.Collector01).MStatusSet = (bool)e;
+                win.MSingle -= DlyCollectorSingle;
+                win.MMultipleStart -= DlyCollectorSwitchMultipleStart;
+                win.MMultipleStop -= DlyCollectorSwitchMultipleStop;
             }
         }
 
@@ -728,6 +709,22 @@ namespace HBBio.SystemControl
         }
 
         /// <summary>
+        /// 更新紫外设置(自定义事件处理)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DlyUpdateUV(object sender, RoutedEventArgs e)
+        {
+            UVValue uvValue = (UVValue)e.OriginalSource;
+            SystemControlManager.s_comconfStatic.SetUVWave(ENUMUVName.UV01, uvValue);
+            SystemControlManager.s_comconfStatic.SetUVLamp(ENUMUVName.UV01, uvValue.MOnoff);
+            if (uvValue.MClear)
+            {
+                SystemControlManager.s_comconfStatic.SetUVClear(ENUMUVName.UV01);
+            }
+        }
+
+        /// <summary>
         /// 更新出口阀切换设置(自定义事件处理)
         /// </summary>
         /// <param name="sender"></param>
@@ -744,9 +741,7 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void DlyOutSwitchMultipleStart(object sender, RoutedEventArgs e)
         {
-            s_threadFlagValveMulti = true;
-
-            m_queueVolValveMulti.Clear();
+            m_threadFlagValveMulti = true;
 
             Thread thread = new Thread(ThreadFunValveMulti);
             thread.IsBackground = true;
@@ -760,7 +755,7 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void DlyOutSwitchMultipleStop(object sender, RoutedEventArgs e)
         {
-            s_threadFlagValveMulti = false;
+            m_threadFlagValveMulti = false;
         }
 
         /// <summary>
@@ -775,7 +770,7 @@ namespace HBBio.SystemControl
             SwitchValve(delay, OutWin.s_multipleIndex + 1);
 
             //循环
-            while (s_threadFlagValveMulti && SystemState.Free != SystemControlManager.MSystemState)
+            while (m_threadFlagValveMulti && SystemState.Free != SystemControlManager.MSystemState)
             {
                 if (Math.Round(SystemControlManager.m_curveStatic.MV - volStart, 2) >= OutWin.s_multipleVol)
                 {
@@ -792,7 +787,7 @@ namespace HBBio.SystemControl
                 SwitchValve(delay, 0);
             }
 
-            s_threadFlagValveMulti = false;
+            m_threadFlagValveMulti = false;
         }
 
         private void SwitchValve(bool delay, int indexSetNew = -1)
@@ -840,65 +835,117 @@ namespace HBBio.SystemControl
         }
 
         /// <summary>
-        /// 更新紫外设置(自定义事件处理)
+        /// 更新收集器收集设置(自定义事件处理)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DlyUpdateUV(object sender, RoutedEventArgs e)
+        private void DlyCollectorSingle(object sender, RoutedEventArgs e)
         {
-            UVValue uvValue = (UVValue)e.OriginalSource;
-            SystemControlManager.s_comconfStatic.SetUVWave(ENUMUVName.UV01, uvValue);
-            SystemControlManager.s_comconfStatic.SetUVLamp(ENUMUVName.UV01, uvValue.MOnoff);
-            if (uvValue.MClear)
-            {
-                SystemControlManager.s_comconfStatic.SetUVClear(ENUMUVName.UV01);
-            }
+            SwitchCollector(CollectorWin.s_singleDelay, (CollTextIndex)e.OriginalSource);
         }
 
         /// <summary>
-        /// 更新收集设置(自定义事件处理)
+        /// 更新收集器循环收集设置(自定义事件处理)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DlyUpdateCollector(object sender, RoutedEventArgs e)
+        private void DlyCollectorSwitchMultipleStart(object sender, RoutedEventArgs e)
         {
-            switch (e.OriginalSource.ToString())
+            m_threadFlagCollectorMulti = true;
+
+            Thread thread = new Thread(ThreadFunCollectorMulti);
+            thread.IsBackground = true;
+            thread.Start();
+        }
+
+        /// <summary>
+        /// 更新收集器循环收集设置(自定义事件处理)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DlyCollectorSwitchMultipleStop(object sender, RoutedEventArgs e)
+        {
+            m_threadFlagCollectorMulti = false;
+        }
+
+        /// <summary>
+        /// 收集器阀位循环的子线程
+        /// </summary>
+        private void ThreadFunCollectorMulti()
+        {
+            double volStart = SystemControlManager.m_curveStatic.MV;
+            bool delay = CollectorWin.s_multipleDelay;
+
+            //立即
+            SwitchCollector(delay, new CollTextIndex(EnumCollectorInfo.NameList[CollectorWin.s_multipleIndex], true));
+
+            //循环
+            while (m_threadFlagCollectorMulti && SystemState.Free != SystemControlManager.MSystemState)
             {
-                case "True":
+                if (Math.Round(SystemControlManager.m_curveStatic.MV - volStart, 2) >= CollectorWin.s_multipleVol)
+                {
+                    volStart = SystemControlManager.m_curveStatic.MV;
+
+                    SwitchCollector(delay, SystemControlManager.s_comconfStatic.GetItem(ENUMCollectorName.Collector01).GetAdd());
+                }
+                Thread.Sleep(Share.DlyBase.c_sleep3);
+            }
+
+            //排废
+            if (SystemState.Free != SystemControlManager.MSystemState)
+            {
+                CollTextIndex curr = SystemControlManager.s_comconfStatic.GetItem(ENUMCollectorName.Collector01).GetCurr();
+                curr.MStatus = false;
+                SwitchCollector(delay, curr);
+            }
+
+            m_threadFlagCollectorMulti = false;
+        }
+
+        private void SwitchCollector(bool delay, CollTextIndex textIndexSetNew)
+        {
+            if (delay)
+            {
+                DlyManualRunAuditTrails(ReadXamlCollection.C_CollMarkM, textIndexSetNew.MStr);
+                Thread thread = new Thread(ThreadFunDelaySwitchCollector);
+                thread.IsBackground = true;
+                thread.Start(textIndexSetNew);
+            }
+            else
+            {
+                CollectorItem curr = SystemControlManager.s_comconfStatic.GetItem(ENUMCollectorName.Collector01);
+                if (null != curr)
+                {
+                    lock (curr.m_locker)
                     {
-                        Thread thread = new Thread(ThreadCollectorDelayStatusFun);
-                        thread.Start(true);
-                        m_listThradCollectorDelay.Add(thread);
+                        curr.MIndexSet = textIndexSetNew.MStr;
+                        curr.MStatusSet = textIndexSetNew.MStatus;
                     }
-                    break;
-                case "False":
+                }
+                DlyManualRunAuditTrails(ReadXamlCollection.C_CollMarkM, textIndexSetNew.MStr);
+            }
+        }
+
+        private void ThreadFunDelaySwitchCollector(object e)
+        {
+            double volStart = SystemControlManager.m_curveStatic.MV;
+            while (Math.Round(SystemControlManager.m_curveStatic.MV - volStart, 2) < (Communication.StaticSystemConfig.SSystemConfig.MDelayVol + Communication.StaticSystemConfig.SSystemConfig.MConfCollector.MGLTJ) && SystemState.Free != SystemControlManager.MSystemState)
+            {
+                Thread.Sleep(DlyBase.c_sleep3);
+            }
+
+            CollectorItem curr = SystemControlManager.s_comconfStatic.GetItem(ENUMCollectorName.Collector01);
+            if (SystemState.Free != SystemControlManager.MSystemState)
+            {
+                if (null != curr)
+                {
+                    lock (curr.m_locker)
                     {
-                        Thread thread = new Thread(ThreadCollectorDelayStatusFun);
-                        thread.Start(false);
-                        m_listThradCollectorDelay.Add(thread);
+                        curr.MIndexSet = ((CollTextIndex)e).MStr;
+                        curr.MStatusSet = ((CollTextIndex)e).MStatus;
                     }
-                    break;
-                case "":
-                    {
-                        m_thradCollectorDelayIng = false;
-                        foreach (var it in m_listThradCollectorDelay)
-                        {
-                            while (it.IsAlive)
-                            {
-                                Thread.Sleep(DlyBase.c_sleep5);
-                                MApp.DoEvents();
-                            }
-                        }
-                        m_listThradCollectorDelay.Clear();
-                    }
-                    break;
-                default:
-                    {
-                        Thread thread = new Thread(ThreadCollectorDelayIndexFun);
-                        thread.Start(e.OriginalSource);
-                        m_listThradCollectorDelay.Add(thread);
-                    }
-                    break;
+                }
+                DlyManualRunAuditTrails(ReadXamlCollection.C_CollDelay, ((CollTextIndex)e).MStr);
             }
         }
 
@@ -966,11 +1013,17 @@ namespace HBBio.SystemControl
                 {
                     case ReadXamlCollection.C_CollMarkM:
                         AuditTrailsStatic.Instance().InsertRowColl(ReadXamlCollection.S_CollMarkM, (string)oper);
-                        chromatogramUC.AddCollM(new MarkerInfo((string)oper));
+                        if (SystemState.Free != SystemControlManager.MSystemState)
+                        {
+                            chromatogramUC.AddCollM(new MarkerInfo((string)oper));
+                        }
                         break;
                     case ReadXamlCollection.C_CollMarkA:
                         AuditTrailsStatic.Instance().InsertRowColl(ReadXamlCollection.S_CollMarkA, (string)oper);
-                        chromatogramUC.AddCollA(new MarkerInfo((string)oper));
+                        if (SystemState.Free != SystemControlManager.MSystemState)
+                        {
+                            chromatogramUC.AddCollA(new MarkerInfo((string)oper));
+                        }
                         break;
                     case ReadXamlCollection.C_CollOver:
                         AuditTrailsStatic.Instance().InsertRowColl(ReadXamlCollection.S_CollColl, (string)oper);
@@ -980,7 +1033,10 @@ namespace HBBio.SystemControl
                         break;
                     case ReadXamlManual.C_ValveSwitch:
                         AuditTrailsStatic.Instance().InsertRowMarker(ReadXamlManual.S_ValveSwitch, (string)oper);
-                        chromatogramUC.AddValve(new MarkerInfo((string)oper));
+                        if (SystemState.Free != SystemControlManager.MSystemState)
+                        {
+                            chromatogramUC.AddValve(new MarkerInfo((string)oper));
+                        }
                         break;
                     default:
                         AuditTrailsStatic.Instance().InsertRowManual((string)desc, (string)oper);
@@ -2084,9 +2140,6 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            m_thradCollectorDelayIng = false;
-            m_listThradCollectorDelay.Clear();
-
             this.btnHold.IsChecked = false;
             this.btnHoldUntil.IsChecked = false;
             SystemControlManager.SetSystemStateStop();

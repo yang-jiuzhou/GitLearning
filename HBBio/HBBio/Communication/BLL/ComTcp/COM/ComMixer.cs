@@ -47,7 +47,7 @@ namespace HBBio.Communication
         {
             List<object> result = new List<object>();
 
-            result.Add(m_item.m_onoffSet ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off);
+            result.Add(!m_item.m_pause && m_item.m_onoffSet ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off);
 
             return result;
         }
@@ -77,7 +77,7 @@ namespace HBBio.Communication
                         m_state = MIXERState.Free;
                         break;
                     case MIXERState.ReadWrite:
-                        if (Connect() && OpenOrClose(m_item.m_onoffSet, ref m_item.m_onoffGet))
+                        if (Connect() && OpenOrClose(!m_item.m_pause && m_item.m_onoffSet, ref m_item.m_onoffGet))
                         {
                             m_communState = ENUMCommunicationState.Success;
                             Thread.Sleep(DlyBase.c_sleep5);

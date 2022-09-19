@@ -121,6 +121,7 @@ namespace HBBio.Collection
             }
             else
             {
+                m_currIndex = new CollTextIndex(index.MText, index.MIndex);
                 JudgeCondNext(listTVCV, true);
             }
         }
@@ -132,7 +133,6 @@ namespace HBBio.Collection
         /// <param name="listTVCV"></param>
         /// <param name="listVal"></param>
         /// <param name="listSlope"></param>
-        /// <param name="clear"></param>
         /// <returns></returns>
         public bool JudgeCondition(ref CollTextIndex index, double[] listTVCV, List<double> listVal, List<double> listSlope)
         {
@@ -167,9 +167,6 @@ namespace HBBio.Collection
                                         break;
                                     case EnumPositionStart.Right:
                                         QueAddCond(new CollTextIndex(EnumCollIndexText.R, m_list[m_condIndex].MStartIndex), listTVCV[1], m_list[m_condIndex]);
-                                        break;
-                                    case EnumPositionStart.Out:
-                                        QueAddCond(new CollTextIndex(EnumCollIndexText.Out, m_list[m_condIndex].MStartIndex), listTVCV[1], m_list[m_condIndex]);
                                         break;
                                 }
                                 break;
@@ -242,6 +239,12 @@ namespace HBBio.Collection
             return m_signal;
         }
 
+        /// <summary>
+        /// 获取日志信息
+        /// </summary>
+        /// <param name="desc"></param>
+        /// <param name="oper"></param>
+        /// <returns></returns>
         public bool GetLogDescOper(ref string desc, ref string oper)
         {
             if (0 < m_logDescQue.Count)
@@ -269,13 +272,13 @@ namespace HBBio.Collection
         /// <summary>
         /// 停止收集
         /// </summary>
-        /// <param name="outValve"></param>
-        /// <param name="waste"></param>
         public void JudgeFinish()
         {
             if (m_signal)
             {
-                QueueAdd(new CollectionCollectorDelay());
+                m_delayQue.Clear();
+                m_logDescQue.Clear();
+                m_logOperQue.Clear();
 
                 m_signal = false;
             }
@@ -284,9 +287,9 @@ namespace HBBio.Collection
         /// <summary>
         /// 初始化循环
         /// </summary>
-        /// <param name="time"></param>
-        /// <param name="vol"></param>
-        /// <param name="cv"></param>
+        /// <param name="index"></param>
+        /// <param name="listTVCV"></param>
+        /// <param name="first"></param>
         private void InitLoop(CollTextIndex index, double[] listTVCV, bool first)
         {
             JudgeLoopNext(index, listTVCV, first);
@@ -295,16 +298,10 @@ namespace HBBio.Collection
         /// <summary>
         /// 判断内部循环状态
         /// </summary>
-        /// <param name="outValve"></param>
-        /// <param name="time"></param>
-        /// <param name="vol"></param>
-        /// <param name="cv"></param>
-        /// <param name="ph"></param>
-        /// <param name="cd"></param>
-        /// <param name="uv"></param>
-        /// <param name="kph"></param>
-        /// <param name="kcd"></param>
-        /// <param name="kuv"></param>
+        /// <param name="index"></param>
+        /// <param name="listTVCV"></param>
+        /// <param name="listVal"></param>
+        /// <param name="listSlope"></param>
         private void JudgeLoop(CollTextIndex index, double[] listTVCV, List<double> listVal, List<double> listSlope)
         {
             switch (CollectionJudge.JudgeObjectMulti(ref m_loopIndexStatus1, ref m_loopIndexStatus2, listTVCV, listVal, listSlope, m_list[m_condIndex].MLoop, m_loopIndexVal1, ref m_loopIndexVal2))
@@ -352,10 +349,8 @@ namespace HBBio.Collection
         /// <summary>
         /// 切换到下一行条件
         /// </summary>
-        /// <param name="outValve"></param>
-        /// <param name="time"></param>
-        /// <param name="vol"></param>
-        /// <param name="cv"></param>
+        /// <param name="listTVCV"></param>
+        /// <param name="change"></param>
         private void JudgeCondNext(double[] listTVCV, bool change)
         {
             if (change)
@@ -400,10 +395,8 @@ namespace HBBio.Collection
         /// <summary>
         /// 切换到下一行循环
         /// </summary>
-        /// <param name="time"></param>
-        /// <param name="vol"></param>
-        /// <param name="cv"></param>
-        /// <param name="dir"></param>
+        /// <param name="index"></param>
+        /// <param name="listTVCV"></param>
         /// <param name="first"></param>
         private void JudgeLoopNext(CollTextIndex index, double[] listTVCV, bool first)
         {
@@ -441,9 +434,6 @@ namespace HBBio.Collection
                     case EnumPositionStart.Right:
                         m_currIndex = new CollTextIndex(EnumCollIndexText.R, m_list[m_condIndex].MStartIndex);
                         break;
-                    case EnumPositionStart.Out:
-                        m_currIndex = new CollTextIndex(EnumCollIndexText.Out, m_list[m_condIndex].MStartIndex);
-                        break;
                 }
             }
             else
@@ -465,12 +455,6 @@ namespace HBBio.Collection
                             m_currIndex.MText = EnumCollIndexText.L;
                         }
                         break;
-                    case EnumCollIndexText.Out:
-                        if (m_currIndex.MIndex > EnumCollectorInfo.Count)//超出范围
-                        {
-                            m_currIndex.MIndex = 1;
-                        }
-                        break;
                 }
             }
         }
@@ -479,10 +463,8 @@ namespace HBBio.Collection
         /// 增加收集操作队列
         /// </summary>
         /// <param name="index"></param>
-        /// <param name="mode1"></param>
-        /// <param name="mode2"></param>
         /// <param name="vol"></param>
-        /// <param name="str"></param>
+        /// <param name="item"></param>
         private void QueAddCond(CollTextIndex index, double vol, CollectionItem item)
         {
             QueueAdd(new CollectionCollectorDelay(index, vol, Communication.StaticSystemConfig.SSystemConfig.MListConfpHCdUV, item.MCond.MObj1.MType, item.MCond.MObj2.MType));
@@ -492,10 +474,8 @@ namespace HBBio.Collection
         /// 增加循环操作队列
         /// </summary>
         /// <param name="index"></param>
-        /// <param name="mode1"></param>
-        /// <param name="mode2"></param>
         /// <param name="vol"></param>
-        /// <param name="str"></param>
+        /// <param name="item"></param>
         private void QueAddLoop(CollTextIndex index, double vol, CollectionItem item)
         {
             QueueAdd(new CollectionCollectorDelay(index, vol, Communication.StaticSystemConfig.SSystemConfig.MListConfpHCdUV, item.MCond.MObj1.MType, item.MCond.MObj2.MType, item.MLoop.MObj1.MType, item.MLoop.MObj2.MType));
@@ -537,10 +517,12 @@ namespace HBBio.Collection
         /// <summary>
         /// 计算理论下一个收集口
         /// </summary>
-        /// <param name="currIndex"></param>
+        /// <param name="index"></param>
         private void CalNext(ref CollTextIndex index)
         {
             CalCurr(ref index);
+
+            index.MIndex += 1;
 
             switch (index.MText)
             {
@@ -558,24 +540,20 @@ namespace HBBio.Collection
                         index.MText = EnumCollIndexText.L;
                     }
                     break;
-                case EnumCollIndexText.Out:
-                    if (index.MIndex > EnumCollectorInfo.Count)
-                    {
-                        index.MIndex = 1;
-                    }
-                    break;
             }
         }
 
         /// <summary>
         /// 执行操作队列
         /// </summary>
+        /// <param name="index"></param>
+        /// <param name="vol"></param>
         private void QueJudge(ref CollTextIndex index, double vol)
         {
             if (0 < m_delayQue.Count)
             {
                 CollectionCollectorDelay temp = m_delayQue.Peek();
-                if (-1 != temp.m_mode && vol - temp.m_vol < Communication.StaticSystemConfig.SSystemConfig.MListConfpHCdUV[temp.m_mode - 3].MVol)
+                if (-1 != temp.m_mode && Math.Round(vol - temp.m_vol, 2) < Communication.StaticSystemConfig.SSystemConfig.MListConfpHCdUV[temp.m_mode - 3].MVol)
                 {
                     return;
                 }

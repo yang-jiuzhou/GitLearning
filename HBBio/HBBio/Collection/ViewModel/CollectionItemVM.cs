@@ -63,8 +63,6 @@ namespace HBBio.Collection
                         return EnumCollIndexText.L.ToString() + MItem.MStartIndex;
                     case EnumPositionStart.Right:
                         return EnumCollIndexText.R.ToString() + MItem.MStartIndex;
-                    case EnumPositionStart.Out:
-                        return EnumCollIndexText.Out.ToString() + MItem.MStartIndex;
                     default:
                         return ReadXamlCollection.S_Default;
                 }
@@ -80,11 +78,6 @@ namespace HBBio.Collection
                 {
                     MItem.MPositionStart = EnumPositionStart.Right;
                     MItem.MStartIndex = Convert.ToInt32(value.Remove(0, 1));
-                }
-                else if (value.Contains("O"))
-                {
-                    MItem.MPositionStart = EnumPositionStart.Out;
-                    MItem.MStartIndex = Convert.ToInt32(value.Remove(0, 3));
                 }
                 else
                 {

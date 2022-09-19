@@ -675,6 +675,8 @@ namespace HBBio.Chromatogram
         /// <param name="listPoint"></param>
         protected void DrawLines(Graphics mgph, List<Point[]> listPoint)
         {
+            Region tmp = mgph.Clip;
+            mgph.Clip = new Region(new Rectangle(m_chartLeft, m_chartTop, m_chartWidth, m_chartHeight));
             try
             {
                 int select = -1;
@@ -689,7 +691,7 @@ namespace HBBio.Chromatogram
                             {
                                 if (null != listPoint[j])
                                 {
-                                    mgph.DrawCurve(new Pen(MListLines[j].MItemList[i].MColor), listPoint[ij], 0.01f);
+                                    mgph.DrawLines(new Pen(MListLines[j].MItemList[i].MColor), listPoint[ij]);
                                 }
                             }
                             else
@@ -705,7 +707,7 @@ namespace HBBio.Chromatogram
                 //选中加粗,最后画
                 if (-1 != select && null != listPoint[select])
                 {
-                    mgph.DrawCurve(new Pen(MLines.MSelectItem.MColor, 3), listPoint[select], 0.01f);
+                    mgph.DrawLines(new Pen(MLines.MSelectItem.MColor, 3), listPoint[select]);
                 }
 
                 for (int i = 0; i < listPoint.Count; i++)
@@ -716,6 +718,8 @@ namespace HBBio.Chromatogram
                 listPoint = null;
             }
             catch { }
+
+            mgph.Clip = tmp;
         }
 
         /// <summary>

@@ -264,6 +264,7 @@
     <Compile Include="Collection\Model\CollectionItem.cs" />
     <Compile Include="Collection\Model\CollectionObject.cs" />
     <Compile Include="Collection\Model\CollectionObjectMulti.cs" />
+    <Compile Include="Collection\Model\CollTextIndex.cs" />
     <Compile Include="Collection\ViewModel\CollectionItemVM.cs" />
     <Compile Include="Collection\ViewModel\CollectionObjectMultiVM.cs" />
     <Compile Include="Collection\ViewModel\CollectionObjectVM.cs" />

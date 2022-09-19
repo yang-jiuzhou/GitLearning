@@ -23,6 +23,36 @@ namespace HBBio.Manual
     /// </summary>
     public partial class CollectorWin : Window
     {
+        /// <summary>
+        /// 自定义事件，收集位切换时触发
+        /// </summary>
+        public static readonly RoutedEvent MSingleEvent = EventManager.RegisterRoutedEvent("MSingle", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CollectorWin));
+        public event RoutedEventHandler MSingle
+        {
+            add { AddHandler(MSingleEvent, value); }
+            remove { RemoveHandler(MSingleEvent, value); }
+        }
+
+        /// <summary>
+        /// 自定义事件，阀位循环开始时触发
+        /// </summary>
+        public static readonly RoutedEvent MMultipleStartEvent = EventManager.RegisterRoutedEvent("MMultipleStart", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CollectorWin));
+        public event RoutedEventHandler MMultipleStart
+        {
+            add { AddHandler(MMultipleStartEvent, value); }
+            remove { RemoveHandler(MMultipleStartEvent, value); }
+        }
+
+        /// <summary>
+        /// 自定义事件，阀位循环结束时触发
+        /// </summary>
+        public static readonly RoutedEvent MMultipleStopEvent = EventManager.RegisterRoutedEvent("MMultipleStop", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CollectorWin));
+        public event RoutedEventHandler MMultipleStop
+        {
+            add { AddHandler(MMultipleStopEvent, value); }
+            remove { RemoveHandler(MMultipleStopEvent, value); }
+        }
+
         private List<string> m_tubeName = new List<string>();       //试管架列表
         private bool m_cboxFlag = false;                            //正在操作收集口下拉框
         private bool m_btnFlag = false;                             //正在操作状态按钮
@@ -39,24 +69,58 @@ namespace HBBio.Manual
                 value.ForEach(i => m_tubeName.Add(i));
             }
         }
-        public CollectionCollector MCollectionCollector { get; set; }
-
-
-        /// <summary>
-        /// 自定义事件，更新紫外设置时触发
-        /// </summary>
-        public static readonly RoutedEvent MUpdateEvent =
-             EventManager.RegisterRoutedEvent("MUpdateCollector", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CollectorWin));
-        public event RoutedEventHandler MUpdateCollector
+        public Visibility MRealDelayVisibility
         {
-            add { AddHandler(MUpdateEvent, value); }
-            remove { RemoveHandler(MUpdateEvent, value); }
+            get
+            {
+                return rbtnRealSingle.Visibility;
+            }
+            set
+            {
+                rbtnRealSingle.Visibility = value;
+                rbtnDelaySingle.Visibility = value;
+                rbtnRealMultiple.Visibility = value;
+                rbtnDelayMultiple.Visibility = value;
+            }
+        }
+        public Visibility MMultipleVisibility
+        {
+            get
+            {
+                return groupMultipleSelect.Visibility;
+            }
+            set
+            {
+                groupMultipleSelect.Visibility = value;
+            }
         }
 
-        //创建一个自定义委托，用于审计跟踪
-        public delegate void MAuditTrailsDdelegate(object desc, object oper);
-        //声明一个审计跟踪事件
-        public MAuditTrailsDdelegate MAuditTrailsHandler;
+        public bool MMultipleFlag
+        {
+            get
+            {
+                return true == btnStop.IsEnabled;
+            }
+            set
+            {
+                if (value)
+                {
+                    btnStart.IsEnabled = false;
+                    btnStop.IsEnabled = true;
+                }
+                else
+                {
+                    btnStart.IsEnabled = true;
+                    btnStop.IsEnabled = false;
+                }
+            }
+        }
+        public static bool s_singleDelay = false;
+        public static bool s_multipleDelay = false;
+        public static int s_multipleIndex = 0;
+        public static double s_multipleVol = 0.01;
+
+        public CollectionCollector MCollectionCollector { get; set; }
 
 
         /// <summary>
@@ -87,6 +151,26 @@ namespace HBBio.Manual
             cboxIndexShow.ItemsSource = StringInt.GetItemsSource(MTubeNames);
             cboxIndex.ItemsSource = StringInt.GetItemsSource(MTubeNames);
 
+            if (s_singleDelay)
+            {
+                rbtnDelaySingle.IsChecked = true;
+            }
+            else
+            {
+                rbtnRealSingle.IsChecked = true;
+            }
+            if (s_multipleDelay)
+            {
+                rbtnDelayMultiple.IsChecked = true;
+            }
+            else
+            {
+                rbtnRealMultiple.IsChecked = true;
+            }
+            cboxSelect.ItemsSource = StringInt.GetItemsSource(MTubeNames);
+            cboxSelect.SelectedIndex = s_multipleIndex;
+            doubleVol.Value = s_multipleVol;
+
             if (null != MItemShow)
             {
                 cboxIndexShow.DataContext = MItemShow;
@@ -100,7 +184,7 @@ namespace HBBio.Manual
 
             if (null == MCollectionCollector || 0 == MCollectionCollector.MList.Count || !MCollectionCollector.MSignal)
             {
-                groupIntervene.Visibility = Visibility.Collapsed;
+                btnIntervene.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -144,24 +228,11 @@ namespace HBBio.Manual
             if (m_cboxFlag)
             {
                 AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, this.labIndex.Text + cboxIndex.SelectedValue.ToString());
-                
-                if (true == rbtnReal.IsChecked)
-                {
-                    RoutedEventArgs args = new RoutedEventArgs(MUpdateEvent, "");
-                    RaiseEvent(args);
 
-                    MItemShow.MIndexSet = cboxIndex.SelectedValue.ToString();
-                }
-                else
-                {
-                    RoutedEventArgs args = new RoutedEventArgs(MUpdateEvent, cboxIndex.SelectedValue.ToString());
-                    RaiseEvent(args);
-                }
-                
-                if (sbtnStatus.IsChecked)
-                {
-                    MAuditTrailsHandler?.Invoke(ReadXamlCollection.C_CollMarkM, cboxIndex.SelectedValue.ToString());
-                }
+                s_singleDelay = true == rbtnDelaySingle.IsChecked;
+
+                RoutedEventArgs args = new RoutedEventArgs(MSingleEvent, new CollTextIndex(cboxIndex.SelectedValue.ToString(), sbtnStatus.IsChecked));
+                RaiseEvent(args);
             } 
         }
 
@@ -195,28 +266,11 @@ namespace HBBio.Manual
             if (m_btnFlag)
             {
                 AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, this.labStatus.Text + (sbtnStatus.IsChecked ? ReadXamlCollection.S_CollColl : ReadXamlCollection.S_CollWaste));
-                
-                if (true == rbtnReal.IsChecked)
-                {
-                    RoutedEventArgs args = new RoutedEventArgs(MUpdateEvent, "");
-                    RaiseEvent(args);
 
-                    MItemShow.MStatusSet = sbtnStatus.IsChecked;
-                }
-                else
-                {
-                    RoutedEventArgs args = new RoutedEventArgs(MUpdateEvent, sbtnStatus.IsChecked ? "True" : "False");
-                    RaiseEvent(args);
-                }
+                s_singleDelay = true == rbtnDelaySingle.IsChecked;
 
-                if (sbtnStatus.IsChecked)
-                {
-                    MAuditTrailsHandler?.Invoke(ReadXamlCollection.C_CollMarkM, cboxIndex.SelectedValue.ToString());
-                }
-                else
-                {
-                    MAuditTrailsHandler?.Invoke(ReadXamlCollection.C_CollMarkM, "WASTE");
-                }
+                RoutedEventArgs args = new RoutedEventArgs(MSingleEvent, new CollTextIndex(MItemShow.MIndexSet, sbtnStatus.IsChecked));
+                RaiseEvent(args);
             }
         }
 
@@ -227,34 +281,12 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnFront_Click(object sender, RoutedEventArgs e)
         {
-            AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, this.gboxShortcut.Header.ToString() + this.btnFront.ToolTip.ToString());
-            
-            if (true == rbtnReal.IsChecked)
-            {
-                RoutedEventArgs args = new RoutedEventArgs(MUpdateEvent, "");
-                RaiseEvent(args);
+            AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, this.btnFront.ToolTip.ToString());
 
-                MItemShow.MIndexSet = "-1";
-            }
-            else
-            {
-                RoutedEventArgs args = new RoutedEventArgs(MUpdateEvent, "-1");
-                RaiseEvent(args);
-            }
+            s_singleDelay = true == rbtnDelaySingle.IsChecked;
 
-            if (0 < cboxIndex.SelectedIndex)
-            {
-                cboxIndex.SelectedIndex -= 1;
-            }
-            else
-            {
-                cboxIndex.SelectedIndex = cboxIndex.Items.Count - 1;
-            }
-
-            if (sbtnStatus.IsChecked)
-            {
-                MAuditTrailsHandler?.Invoke(ReadXamlCollection.C_CollMarkM, cboxIndex.SelectedValue.ToString());
-            }
+            RoutedEventArgs args = new RoutedEventArgs(MSingleEvent, MItemShow.GetDel());
+            RaiseEvent(args);
         }
 
         /// <summary>
@@ -264,34 +296,52 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, this.gboxShortcut.Header.ToString() + this.btnBack.ToolTip.ToString());
-            
-            if (true == rbtnReal.IsChecked)
-            {
-                RoutedEventArgs args = new RoutedEventArgs(MUpdateEvent, "");
-                RaiseEvent(args);
+            AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, this.btnBack.ToolTip.ToString());
 
-                MItemShow.MIndexSet = "+1";
-            }
-            else
-            {
-                RoutedEventArgs args = new RoutedEventArgs(MUpdateEvent, "+1");
-                RaiseEvent(args);
-            }
+            s_singleDelay = true == rbtnDelaySingle.IsChecked;
 
-            if (cboxIndex.Items.Count - 1 > cboxIndex.SelectedIndex)
-            {
-                cboxIndex.SelectedIndex += 1;
-            }
-            else
-            {
-                cboxIndex.SelectedIndex = 0;
-            }
+            RoutedEventArgs args = new RoutedEventArgs(MSingleEvent, MItemShow.GetAdd());
+            RaiseEvent(args);
+        }
 
-            if (sbtnStatus.IsChecked)
-            {
-                MAuditTrailsHandler?.Invoke(ReadXamlCollection.C_CollMarkM, cboxIndex.SelectedValue.ToString());
-            }
+        /// <summary>
+        /// 阀位循环开始
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            btnStart.IsEnabled = false;
+            btnStop.IsEnabled = true;
+
+            s_multipleDelay = true == rbtnDelayMultiple.IsChecked;
+            s_multipleIndex = cboxSelect.SelectedIndex;
+            s_multipleVol = (double)doubleVol.Value;
+
+            AuditTrails.AuditTrailsStatic.Instance().InsertRowColl(ReadXamlCollection.S_CollMarkA, Title + btnStart.Content.ToString());
+
+            RoutedEventArgs args = new RoutedEventArgs(MMultipleStartEvent, null);
+            RaiseEvent(args);
+
+            DialogResult = false;
+        }
+
+        /// <summary>
+        /// 阀位循环取消
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {
+            btnStart.IsEnabled = true;
+            btnStop.IsEnabled = false;
+
+            AuditTrails.AuditTrailsStatic.Instance().InsertRowColl(ReadXamlCollection.S_CollMarkA, Title + btnStop.Content.ToString());
+
+            RoutedEventArgs args = new RoutedEventArgs(MMultipleStopEvent, null);
+            RaiseEvent(args);
+
+            DialogResult = false;
         }
 
         /// <summary>

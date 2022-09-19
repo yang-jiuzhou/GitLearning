@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:HBBio.Manual"
         xmlns:share="clr-namespace:HBBio.Share"
         mc:Ignorable="d"
@@ -10,6 +11,10 @@
     <Border BorderBrush="#FF268DE4" BorderThickness="2" CornerRadius="5">
         <Grid Margin="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="Auto"/>
@@ -29,7 +34,7 @@
                 <Button x:Name="btnClose" Grid.Column="4" Style="{StaticResource closeBtnStyle}" Click="btnClose_Click"/>
             </Grid>
             <GroupBox Grid.Row="2" Header="{DynamicResource M_CollIndexStatusShow}">
-                <Grid Margin="10">
+                <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="10"/>
@@ -45,55 +50,67 @@
                     <share:SwitchButtonUC x:Name="sbtnStatusShow" Grid.Column="6" IsChecked="{Binding MStatusGet}" IsEnabled="False"/>
                 </Grid>
             </GroupBox>
-            <Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <GroupBox Grid.Column="0" Header="{DynamicResource M_CollIndexStatusSet}">
-                    <Grid Margin="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="labIndex" Grid.Row="0" Grid.Column="0" Text="{DynamicResource M_CollIndex1}"/>
-                        <ComboBox x:Name="cboxIndex" Grid.Row="0" Grid.Column="2" MinWidth="100" DisplayMemberPath="MName" SelectedValuePath="MName" SelectionChanged="cboxIndex_SelectionChanged" MouseEnter="cboxIndex_MouseEnter" MouseLeave="cboxIndex_MouseLeave"/>
-                        <TextBlock x:Name="labStatus" Grid.Row="2" Grid.Column="0" Text="{DynamicResource M_CollStatus1}"/>
-                        <share:SwitchButtonUC x:Name="sbtnStatus" Grid.Row="2" Grid.Column="2" MouseDown="sbtnStatus_MouseDown" MouseEnter="sbtnStatus_MouseEnter" MouseLeave="sbtnStatus_MouseLeave"/>
-                    </Grid>
-                </GroupBox>
-                <GroupBox x:Name="gboxShortcut" Grid.Column="2" Header="{DynamicResource M_CollShortcutSet}">
-                    <StackPanel Orientation="Horizontal">
-                        <share:IconButton x:Name="btnFront" ToolTip="{DynamicResource btnPrev}" Click="btnFront_Click" Margin="5" VerticalAlignment="Center" Image="/Bio-LabChrom;component/Image/prev.png"/>
-                        <share:IconButton x:Name="btnBack" ToolTip="{DynamicResource btnNext}" Click="btnBack_Click" Margin="5" VerticalAlignment="Center" Image="/Bio-LabChrom;component/Image/back.png"/>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Grid.Column="4" Header="{DynamicResource labAction}">
-                    <Grid Margin="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <RadioButton x:Name="rbtnReal" Grid.Row="0" Content="{DynamicResource labReal}" IsChecked="True"/>
-                        <RadioButton x:Name="rbtnDelay" Grid.Row="2" Content="{DynamicResource labDelay}"/>
-                    </Grid>
-                </GroupBox>
-                <GroupBox x:Name="groupIntervene" Grid.Column="6" Header="{DynamicResource M_CollInterveneSet}">
-                    <Button x:Name="btnIntervene" Content="{DynamicResource btnSet}" Click="btnIntervene_Click" VerticalAlignment="Center"/>
-                </GroupBox>
-            </Grid>
+            <GroupBox Grid.Row="4" Header="{DynamicResource M_CollIndexStatusSet}">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="rbtnRealSingle" Grid.Column="0" Content="{DynamicResource labReal}" IsChecked="True"/>
+                    <RadioButton x:Name="rbtnDelaySingle" Grid.Column="2" Content="{DynamicResource labDelay}"/>
+                    <TextBlock x:Name="labIndex" Grid.Column="4" Text="{DynamicResource M_CollIndex1}"/>
+                    <ComboBox x:Name="cboxIndex" Grid.Column="6" MinWidth="100" DisplayMemberPath="MName" SelectedValuePath="MName" SelectionChanged="cboxIndex_SelectionChanged" MouseEnter="cboxIndex_MouseEnter" MouseLeave="cboxIndex_MouseLeave"/>
+                    <TextBlock x:Name="labStatus" Grid.Column="8" Text="{DynamicResource M_CollStatus1}"/>
+                    <share:SwitchButtonUC x:Name="sbtnStatus" Grid.Column="10" MouseDown="sbtnStatus_MouseDown" MouseEnter="sbtnStatus_MouseEnter" MouseLeave="sbtnStatus_MouseLeave"/>
+                    <share:IconButton x:Name="btnFront" Grid.Column="12" ToolTip="{DynamicResource btnPrev}" Image="/Bio-LabChrom;component/Image/prev.png" Click="btnFront_Click" />
+                    <share:IconButton x:Name="btnBack" Grid.Column="14" ToolTip="{DynamicResource btnNext}" Image="/Bio-LabChrom;component/Image/back.png" Click="btnBack_Click"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="groupMultipleSelect" Grid.Row="6" Header="{DynamicResource M_OutWin_MultipleSelect}">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="rbtnRealMultiple" Grid.Column="0" Content="{DynamicResource labReal}"/>
+                    <RadioButton x:Name="rbtnDelayMultiple" Grid.Column="2" Content="{DynamicResource labDelay}"/>
+                    <TextBlock Grid.Column="4" Text="{DynamicResource M_OutWin_Start1}"/>
+                    <ComboBox x:Name="cboxSelect" Grid.Column="6" DisplayMemberPath="MName"/>
+                    <TextBlock Grid.Column="8" Text="{DynamicResource M_OutWin_Vol1}"/>
+                    <xctk:DoubleUpDown x:Name="doubleVol" Grid.Column="10" Minimum="0.01"/>
+                    <Button Grid.Column="12" x:Name="btnStart" Content="{DynamicResource btnSet}" Click="btnStart_Click"/>
+                    <Button Grid.Column="14" x:Name="btnStop" Content="{DynamicResource btnCancel}" Click="btnStop_Click"/>
+                </Grid>
+            </GroupBox>
+            <StackPanel Grid.Row="8">
+                <Button x:Name="btnIntervene" Margin="5" HorizontalAlignment="Right" Content="{DynamicResource M_CollInterveneSet}" Click="btnIntervene_Click"/>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

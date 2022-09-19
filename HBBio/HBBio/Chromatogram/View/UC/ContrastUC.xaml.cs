@@ -30,6 +30,8 @@ namespace HBBio.Chromatogram
         private bool m_isRulerOddMove = false;      //单标尺信号
         private bool m_isRulerEvenMove = false;     //双标尺信号
 
+        private ColorButton m_last = null;          //上一个按钮
+
         private Thread m_drawThread;                //画谱图文件线程
         private volatile bool m_draw = true;        //画谱图文件线程的信号位
 
@@ -217,6 +219,13 @@ namespace HBBio.Chromatogram
         /// <param name="e"></param>
         private void SignalBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (null != m_last)
+            {
+                m_last.Background = new SolidColorBrush(Colors.Transparent);
+            }
+            m_last = (ColorButton)sender;
+            ((ColorButton)sender).Background = new SolidColorBrush(Color.FromArgb(50, 0, 0, 255));
+
             m_chromatogram.MSelectIndex = ((ColorButton)sender).MIndex % m_chromatogram.MListLines.Count;
             m_chromatogram.MLines.MSelectIndex = ((ColorButton)sender).MIndex / m_chromatogram.MListLines.Count;
             UpdateDraw();
