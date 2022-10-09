@@ -29,6 +29,7 @@ namespace HBBio.Chromatogram
         private bool m_isClicked = false;
         private bool m_isRulerOddMove = false;      //单标尺信号
         private bool m_isRulerEvenMove = false;     //双标尺信号
+        private bool m_isYMove = false;             //当前选择的Y轴在移动
 
         private ColorButton m_last = null;          //上一个按钮
 
@@ -276,6 +277,11 @@ namespace HBBio.Chromatogram
             {
                 UpdateDraw();
             }
+            else if (m_chromatogram.IsMoveY(pt))//Y轴移动
+            {
+                m_clickPt = pt;
+                m_isYMove = true;
+            }
             else//放大
             {
                 m_clickPt = pt;
@@ -326,6 +332,20 @@ namespace HBBio.Chromatogram
                 
                 txtRulerInfo.Text = m_chromatogram.GetRulerEven(lineRulerOdd.X1, lineRulerEven.X1);
             }
+            else if (m_isYMove)//Y轴移动
+            {
+                if (m_chromatogram.IsMoveY(pt))
+                {
+                    m_chromatogram.MoveBeginY(m_clickPt.Y, pt.Y);
+                    UpdateDraw();
+                }
+                else
+                {
+                    m_isYMove = false;
+                    m_chromatogram.MoveEndY(m_clickPt.Y, pt.Y);
+                    UpdateDraw();
+                }
+            }
             else if (m_isClicked)//放大
             {
                 if (pt.X - m_clickPt.X > 5 && pt.Y - m_clickPt.Y > 5)
@@ -353,6 +373,12 @@ namespace HBBio.Chromatogram
             else if (m_isRulerEvenMove)//移动双标尺
             {
                 m_isRulerEvenMove = false;
+            }
+            else if (m_isYMove)//Y轴移动
+            {
+                m_isYMove = false;
+                m_chromatogram.MoveEndY(m_clickPt.Y, e.GetPosition(canvas).Y);
+                UpdateDraw();
             }
             else if (m_isClicked)//放大
             {
@@ -611,6 +637,11 @@ namespace HBBio.Chromatogram
             }
         }
 
+        /// <summary>
+        /// 信号选择
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuSelect_Click(object sender, RoutedEventArgs e)
         {
             m_chromatogram.m_listContrast[Convert.ToInt32(((MenuItem)sender).Tag)] = ((MenuItem)sender).IsChecked;

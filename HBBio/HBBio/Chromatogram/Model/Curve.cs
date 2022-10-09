@@ -98,6 +98,11 @@ namespace HBBio.Chromatogram
             }
         }
 
+        /// <summary>
+        /// 位移
+        /// </summary>
+        public double MMove { get; set; }
+
         //实时运行数据列表
         private List<double> m_drawData = new List<double>();    
         public List<double> MDrawData
@@ -161,23 +166,11 @@ namespace HBBio.Chromatogram
             {
                 MMinAuto = data;
             }
-            //if (1 == m_drawData.Count)
-            //{
-            //    MMaxAuto = data;
-            //    MMinAuto = data;
-            //}
-            //else
-            //{
-            //    if (data > MMaxAuto)
-            //    {
-            //        MMaxAuto = data;
-            //    }
-            //    else if (data < MMinAuto)
-            //    {
-            //        MMinAuto = data;
-            //    }
-            //}
         }
+
+        /// <summary>
+        /// 还原数据后进行最值赋值
+        /// </summary>
         public void RestoreData()
         {
             if (0 < m_drawData.Count)

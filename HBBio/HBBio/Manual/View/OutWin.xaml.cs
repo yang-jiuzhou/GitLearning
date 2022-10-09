@@ -161,6 +161,10 @@ namespace HBBio.Manual
         {
             if (null == MCollectionValve || 0 == MCollectionValve.MList.Count || !MCollectionValve.MSignal)
             {
+                if (1 == cboxSelect.Items.Count)
+                {
+                    groupMultipleSelect.Visibility = Visibility.Collapsed;
+                }
                 btnIntervene.Visibility = Visibility.Collapsed;
             }
             else

@@ -56,12 +56,12 @@ namespace HBBio.PassDog
             string errorInfo = "";
             if (CSentinel.CompareMemery(txtHB.Text + "-" + txtName.Text + "-" + txtMode.Text + "-" + txtSN.Text, ref errorInfo))
             {
-                MessageBoxWin.Show("SN对比成功!");
+                MessageBoxWin.Show(Share.ReadXaml.GetResources("PassDog_CheckSuccess"));
                 btnOk.IsEnabled = true;
             }
             else
             {
-                MessageBoxWin.Show("SN对比失败\r\n" + errorInfo);
+                MessageBoxWin.Show(Share.ReadXaml.GetResources("PassDog_CheckFail") +"\r\n" + errorInfo);
                 btnOk.IsEnabled = false;
             }
         }
@@ -85,11 +85,11 @@ namespace HBBio.PassDog
 
             if (null == CSentinel.SetDogInfo(item))
             {
-                MessageBoxWin.Show("加密狗SN更新成功!");
+                MessageBoxWin.Show(Share.ReadXaml.GetResources("PassDog_UpdateSuccess"));
             }
             else
             {
-                MessageBoxWin.Show("加密狗SN更新失败!");
+                MessageBoxWin.Show(Share.ReadXaml.GetResources("PassDog_UpdateFail"));
             }
         }
 

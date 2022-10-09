@@ -683,7 +683,8 @@ namespace HBBio.Manual
         /// <param name="index"></param>
         public void ValveSwitchOut(int index)
         {
-            if (index < EnumOutInfo.Count)
+            int indexOld = m_comconfStatic.GetValveSet(ENUMValveName.Out);
+            if (indexOld != index && index < EnumOutInfo.Count)
             {
                 m_comconfStatic.SetValve(ENUMValveName.Out, index);
                 MAuditTrailsHandler?.Invoke(ReadXamlCollection.C_CollMarkM, EnumOutInfo.NameList[index]);

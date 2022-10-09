@@ -92,6 +92,11 @@ namespace HBBio.MethodEdit
             MItem.MPhaseList.Add(basePhase);
             MPhaseList.Add(fac.GetPhaseVM(basePhase, MMethodSetting.MMethodBaseValue));
         }
+        public void AddPhase(BasePhaseVM basePhaseVM)
+        {
+            MItem.MPhaseList.Add(basePhaseVM.MItemBase);
+            MPhaseList.Add(basePhaseVM);
+        }
 
         /// <summary>
         /// 插入阶段
@@ -104,6 +109,11 @@ namespace HBBio.MethodEdit
             BasePhase basePhase = fac.GetPhase(type, nameType);
             MItem.MPhaseList.Insert(index, basePhase);
             MPhaseList.Insert(index, fac.GetPhaseVM(basePhase, MMethodSetting.MMethodBaseValue));
+        }
+        public void InsertPhase(int index, BasePhaseVM basePhaseVM)
+        {
+            MItem.MPhaseList.Insert(index, basePhaseVM.MItemBase);
+            MPhaseList.Insert(index, basePhaseVM);
         }
 
         /// <summary>

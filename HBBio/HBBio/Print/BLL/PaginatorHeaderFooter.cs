@@ -139,7 +139,7 @@ namespace HBBio.Print
                 //分割线
                 ctx.DrawLine(new Pen(m_foreground, 0.5), new Point(page.ContentBox.Left, page.ContentBox.Bottom + 1), new Point(page.ContentBox.Right, page.ContentBox.Bottom + 1));
                 //页码左下侧显示
-                FormattedText txtPage = new FormattedText("第" + (pageNumber + 1) + "页",
+                FormattedText txtPage = new FormattedText(Share.ReadXaml.GetResources("Print_No") + (pageNumber + 1) + Share.ReadXaml.GetResources("Print_Page"),
                     System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight,
                     m_typeface, m_emSize, m_foreground);
                 ctx.DrawText(txtPage, new Point(page.ContentBox.Left, page.ContentBox.Bottom + 2));
@@ -147,7 +147,7 @@ namespace HBBio.Print
                 double lengthAdd = 0;
                 if (m_pdfSet.m_outputTime)
                 {
-                    FormattedText txtOutputTimeLab = new FormattedText("导出时间",
+                    FormattedText txtOutputTimeLab = new FormattedText(Share.ReadXaml.GetResources("Print_Time"),
                         System.Globalization.CultureInfo.CurrentCulture, FlowDirection.RightToLeft,
                         m_typeface, m_emSize, m_foreground);
                     ctx.DrawText(txtOutputTimeLab, new Point(page.ContentBox.Right, page.ContentBox.Bottom + 2));
@@ -161,7 +161,7 @@ namespace HBBio.Print
                 //审核人员
                 if (m_pdfSet.m_reviewer)
                 {
-                    FormattedText txtReviewerLab = new FormattedText("审核人员",
+                    FormattedText txtReviewerLab = new FormattedText(Share.ReadXaml.GetResources("Print_Reviewer"),
                         System.Globalization.CultureInfo.CurrentCulture, FlowDirection.RightToLeft,
                         m_typeface, m_emSize, m_foreground);
                     ctx.DrawText(txtReviewerLab, new Point(page.ContentBox.Right - lengthAdd, page.ContentBox.Bottom + 2));
@@ -175,7 +175,7 @@ namespace HBBio.Print
                 //签名人员
                 if (m_pdfSet.m_signer)
                 {
-                    FormattedText txtSignerLab = new FormattedText("签名人员",
+                    FormattedText txtSignerLab = new FormattedText(Share.ReadXaml.GetResources("Print_Signer"),
                         System.Globalization.CultureInfo.CurrentCulture, FlowDirection.RightToLeft,
                         m_typeface, m_emSize, m_foreground);
                     ctx.DrawText(txtSignerLab, new Point(page.ContentBox.Right - lengthAdd, page.ContentBox.Bottom + 2));

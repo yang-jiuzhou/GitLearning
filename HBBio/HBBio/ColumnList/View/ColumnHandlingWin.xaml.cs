@@ -287,7 +287,7 @@ namespace HBBio.ColumnList
                     }
                     for (int i = 0; i < list.Count; i++)
                     {
-                        list[i].MNote += "\n导入";
+                        list[i].MNote += "\n" + Share.ReadXaml.GetResources("labImport");
                         list[i].MUser = m_userName;
                     }
                     ColumnManager columnManager = new ColumnManager();

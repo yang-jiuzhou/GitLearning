@@ -95,7 +95,7 @@ namespace HBBio.MethodEdit
                     MListGroup.Add(groupFactory.GetGroup(EnumGroupType.PHCDUVUntil));
                     MListGroup.Add(groupFactory.GetGroup(EnumGroupType.CollValveCollector));
 
-                    ((PHCDUVUntil)MListGroup[2]).MHeaderText = "冲洗至";
+                    ((PHCDUVUntil)MListGroup[2]).MHeaderText = Share.ReadXaml.GetResources("ME_Msg_ColumnWashUntil");
                     break;
                 case EnumPhaseType.Elution:
                     MListGroup.Add(groupFactory.GetGroup(EnumGroupType.FlowRate));
@@ -112,7 +112,7 @@ namespace HBBio.MethodEdit
                     MListGroup.Add(groupFactory.GetGroup(EnumGroupType.ValveSelection));
                     MListGroup.Add(groupFactory.GetGroup(EnumGroupType.PHCDUVUntil));
 
-                    ((PHCDUVUntil)MListGroup[3]).MHeaderText = "平衡至";
+                    ((PHCDUVUntil)MListGroup[3]).MHeaderText = Share.ReadXaml.GetResources("ME_Msg_EquilibrationUntil");
                     break;
                 case EnumPhaseType.Miscellaneous:
                     break;

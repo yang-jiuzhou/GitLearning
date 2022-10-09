@@ -212,6 +212,7 @@
     <s:String x:Key="labWashNo">不清洗</s:String>
     <s:String x:Key="labWashSystem">清洗系统</s:String>
     <s:String x:Key="labWashPump">清洗泵</s:String>
+    <s:String x:Key="labImport">导入</s:String>
     
     
     
@@ -427,7 +428,7 @@
     <s:String x:Key="SC_AboutWin">关于</s:String>
     <s:String x:Key="SC_ProductionInformation">产品信息</s:String>
     <s:String x:Key="SC_Production">产品 : 汉邦 Bio-LabChrom</s:String>
-    <s:String x:Key="SC_Version">版本 : 2.0.0</s:String>
+    <s:String x:Key="SC_Version">版本 : 2.2.0</s:String>
     <s:String x:Key="SC_Website">网址 : www.hanbon.com.cn</s:String>
 
     <!--倒计时-->
@@ -465,7 +466,7 @@
     <s:String x:Key="A_Reviewer">审核</s:String>
 
     <s:String x:Key="A_LoginWin">用户登录</s:String>
-    <s:String x:Key="A_Version">Bio-LabChrom系统V2.0.0版</s:String>
+    <s:String x:Key="A_Version">Bio-LabChrom系统V2.2.0版</s:String>
     <s:String x:Key="A_PwdLogin">登录密码</s:String>
     <s:String x:Key="A_PwdLogin1" xml:space="preserve">登录密码 : </s:String>
     <s:String x:Key="A_Register">注册</s:String>
@@ -1363,12 +1364,18 @@
     <s:String x:Key="ME_Desc_Phase_New">新建用户自定义阶段成功</s:String>
     <s:String x:Key="ME_Msg_ErrorConf">阶段配置不合理 ! </s:String>
 
+    <s:String x:Key="ME_Msg_ColumnWashUntil">冲洗至</s:String>
+    <s:String x:Key="ME_Msg_EquilibrationUntil">平衡至</s:String>
 
 
 
     <!--PassDog 加密狗-->
     <s:String x:Key="PassDog_CheckSNWin">SN加密校验</s:String>
     <s:String x:Key="PassDog_Check">校验</s:String>
+    <s:String x:Key="PassDog_CheckSuccess">SN对比成功!</s:String>
+    <s:String x:Key="PassDog_CheckFail">SN对比失败!</s:String>
+    <s:String x:Key="PassDog_UpdateSuccess">SN更新成功!</s:String>
+    <s:String x:Key="PassDog_UpdateFail">SN更新失败!</s:String>
     
     
     
@@ -1377,10 +1384,16 @@
     <s:String x:Key="Print_MarkerStyle1" xml:space="preserve">标记样式 : </s:String>
 
     <s:String x:Key="Print_PrintPreviewWin">导出预览</s:String>
-    
-    
-    
-    
+
+    <s:String x:Key="Print_No">第</s:String>
+    <s:String x:Key="Print_Page">页</s:String>
+    <s:String x:Key="Print_Time">导出时间</s:String>
+    <s:String x:Key="Print_Signer">签名</s:String>
+    <s:String x:Key="Print_Reviewer">审核</s:String>
+
+
+
+
     <!--ProjectManager 项目管理-->
     <s:String x:Key="PM_ProjectTreeUC_Msg_NotNull">不可删除非空目录 !</s:String>
     

@@ -2,6 +2,7 @@
 using HBBio.Share;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,7 +20,7 @@ namespace HBBio.Communication
         /// </summary>
         public ComCollectorHB(ComConf info) : base(info)
         {
-            
+            m_serialPort.Parity = Parity.Even;
         }
 
 

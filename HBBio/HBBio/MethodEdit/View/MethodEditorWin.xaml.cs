@@ -1036,12 +1036,12 @@ namespace HBBio.MethodEdit
                 int index = stackPanelPhaseList.Children.IndexOf(obj);
                 stackPanelPhaseList.Children.Remove(obj);
                 BasePhaseVM curr = MMethod.MPhaseList[index];
-                MMethod.MPhaseList.RemoveAt(index);
+                MMethod.RemoveAtPhase(index);
 
                 if (0 == e.GetPosition(stackPanelPhaseList).X && 0 == e.GetPosition(stackPanelPhaseList).Y)
                 {
                     stackPanelPhaseList.Children.Insert(index, obj);
-                    MMethod.MPhaseList.Insert(index, curr);
+                    MMethod.InsertPhase(index, curr);
                     ((Label)stackPanelPhaseList.Children[index]).Margin = new Thickness(0);
                     if (0 < index)
                     {
@@ -1066,7 +1066,7 @@ namespace HBBio.MethodEdit
                                 ((Label)stackPanelPhaseList.Children[i - 1]).Margin = new Thickness(0);
                             }
                             stackPanelPhaseList.Children.Insert(i, obj);
-                            MMethod.MPhaseList.Insert(i, curr);
+                            MMethod.InsertPhase(i, curr);
                             m_isPressMove = false;
                             m_labMove = null;
                             return;
@@ -1074,7 +1074,7 @@ namespace HBBio.MethodEdit
                     }
 
                     stackPanelPhaseList.Children.Add(obj);
-                    MMethod.MPhaseList.Add(curr);
+                    MMethod.AddPhase(curr);
                     m_isPressMove = false;
                     m_labMove = null;
                 }

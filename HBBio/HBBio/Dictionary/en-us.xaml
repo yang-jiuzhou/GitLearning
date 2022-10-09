@@ -212,9 +212,10 @@
     <s:String x:Key="labWashNo">No Wash</s:String>
     <s:String x:Key="labWashSystem">System Wash</s:String>
     <s:String x:Key="labWashPump">Pump Wash</s:String>
-    
-    
-    
+    <s:String x:Key="labImport">Import</s:String>
+
+
+
 
     <!--常用提示-->
     <s:String x:Key="txtSuccess">Success</s:String>
@@ -427,7 +428,7 @@
     <s:String x:Key="SC_AboutWin">About</s:String>
     <s:String x:Key="SC_ProductionInformation">Product Information</s:String>
     <s:String x:Key="SC_Production">Product : Hanbon Bio-LabChrom</s:String>
-    <s:String x:Key="SC_Version">Version : 2.0.0</s:String>
+    <s:String x:Key="SC_Version">Version : 2.2.0</s:String>
     <s:String x:Key="SC_Website">Website : www.hanbon.com.cn</s:String>
 
     <!--倒计时-->
@@ -465,7 +466,7 @@
     <s:String x:Key="A_Reviewer">Review</s:String>
 
     <s:String x:Key="A_LoginWin">Login</s:String>
-    <s:String x:Key="A_Version">Bio-Lab system V2.0.0</s:String>
+    <s:String x:Key="A_Version">Bio-Lab system V2.2.0</s:String>
     <s:String x:Key="A_PwdLogin">Login Password</s:String>
     <s:String x:Key="A_PwdLogin1" xml:space="preserve">Login Password :</s:String>
     <s:String x:Key="A_Register">Register</s:String>
@@ -1363,12 +1364,18 @@
     <s:String x:Key="ME_Desc_Phase_New">New personal phase succeeded</s:String>
     <s:String x:Key="ME_Msg_ErrorConf">Unreasonable phase configure ! </s:String>
 
+    <s:String x:Key="ME_Msg_ColumnWashUntil">ColumnWash Until</s:String>
+    <s:String x:Key="ME_Msg_EquilibrationUntil">Equilibration Until</s:String>
 
 
 
     <!--PassDog 加密狗-->
     <s:String x:Key="PassDog_CheckSNWin">SN Encryption verification</s:String>
     <s:String x:Key="PassDog_Check">Verification</s:String>
+    <s:String x:Key="PassDog_CheckSuccess">SN Check Success!</s:String>
+    <s:String x:Key="PassDog_CheckFail">SN Check Fail!</s:String>
+    <s:String x:Key="PassDog_UpdateSuccess">SN Update Success!</s:String>
+    <s:String x:Key="PassDog_UpdateFail">SN Update Fai!</s:String>
     
     
     
@@ -1377,10 +1384,16 @@
     <s:String x:Key="Print_MarkerStyle1" xml:space="preserve">Marker Style :</s:String>
 
     <s:String x:Key="Print_PrintPreviewWin">Export Preview</s:String>
+
+    <s:String x:Key="Print_No" xml:space="preserve">No </s:String>
+    <s:String x:Key="Print_Page" xml:space="preserve"> Page</s:String>
+    <s:String x:Key="Print_Time">Time</s:String>
+    <s:String x:Key="Print_Signer">Signer</s:String>
+    <s:String x:Key="Print_Reviewer">Reviewer</s:String>
+
     
     
-    
-    
+
     <!--ProjectManager 项目管理-->
     <s:String x:Key="PM_ProjectTreeUC_Msg_NotNull">Non empty directories cannot be deleted !</s:String>
     

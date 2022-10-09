@@ -60,7 +60,7 @@ namespace HBBio.ProjectManager
         {
             if (null == item || 0 != item.MParentId)
             {
-                return "错误!";
+                return Share.ReadXaml.S_ErrorNoData;
             }
 
             ProjectTreeTable table = new ProjectTreeTable();

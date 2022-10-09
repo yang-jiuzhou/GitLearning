@@ -370,6 +370,7 @@ namespace HBBio.Evaluation
 
                 if (m_listConstName[m_selectIndex].Contains("Cd"))
                 {
+                    this.colTopValUnit.Text = DlyBase.SC_CDUNIT;
                     this.colStartValUnit.Text = DlyBase.SC_CDUNIT;
                     this.colEndValUnit.Text = DlyBase.SC_CDUNIT;
                     this.colHeightUnit.Text = DlyBase.SC_CDUNIT;
@@ -377,6 +378,7 @@ namespace HBBio.Evaluation
                 }
                 else if (m_listConstName[m_selectIndex].Contains("UV"))
                 {
+                    this.colTopValUnit.Text = DlyBase.SC_UVABSUNIT;
                     this.colStartValUnit.Text = DlyBase.SC_UVABSUNIT;
                     this.colEndValUnit.Text = DlyBase.SC_UVABSUNIT;
                     this.colHeightUnit.Text = DlyBase.SC_UVABSUNIT;
@@ -384,6 +386,7 @@ namespace HBBio.Evaluation
                 }
                 else
                 {
+                    this.colTopValUnit.Text = DlyBase.SC_CDUNIT;
                     this.colStartValUnit.Text = "";
                     this.colEndValUnit.Text = "";
                     this.colHeightUnit.Text = "";

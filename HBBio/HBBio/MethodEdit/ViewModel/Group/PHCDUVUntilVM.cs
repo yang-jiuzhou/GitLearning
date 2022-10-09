@@ -100,41 +100,44 @@ namespace HBBio.MethodEdit
             set
             {
                 MItem.MMonitorIndex = value;
-                if (EnumMonitorInfo.NameList[value].Contains("pH"))
+                if (value < EnumMonitorInfo.NameList.Length)
                 {
-                    MVisibPHMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
-                    MVisibCDMore = Visibility.Collapsed;
-                    MVisibUVMore = Visibility.Collapsed;
-                    MVisibPHLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
-                    MVisibCDLess = Visibility.Collapsed;
-                    MVisibUVLess = Visibility.Collapsed;
-                    MMoreLessThanMax = StaticValue.s_maxPH;
-                    MMoreLessThanMin = StaticValue.s_minPH;
-                    MMoreLessThanStr = "[" + StaticValue.s_minPH + " - " + StaticValue.s_maxPH + "]";
-                }
-                else if (EnumMonitorInfo.NameList[value].Contains("Cd"))
-                {
-                    MVisibPHMore = Visibility.Collapsed;
-                    MVisibCDMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
-                    MVisibUVMore = Visibility.Collapsed;
-                    MVisibPHLess = Visibility.Collapsed;
-                    MVisibCDLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
-                    MVisibUVLess = Visibility.Collapsed;
-                    MMoreLessThanMax = StaticValue.s_maxCD;
-                    MMoreLessThanMin = StaticValue.s_minCD;
-                    MMoreLessThanStr = "[" + StaticValue.s_minCD + " - " + StaticValue.s_maxCD + "]";
-                }
-                else
-                {
-                    MVisibPHMore = Visibility.Collapsed;
-                    MVisibCDMore = Visibility.Collapsed;
-                    MVisibUVMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
-                    MVisibPHLess = Visibility.Collapsed;
-                    MVisibCDLess = Visibility.Collapsed;
-                    MVisibUVLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
-                    MMoreLessThanMax = StaticValue.s_maxUV;
-                    MMoreLessThanMin = StaticValue.s_minUV;
-                    MMoreLessThanStr = "[" + StaticValue.s_minUV + " - " + StaticValue.s_maxUV + "]";
+                    if (EnumMonitorInfo.NameList[value].Contains("pH"))
+                    {
+                        MVisibPHMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
+                        MVisibCDMore = Visibility.Collapsed;
+                        MVisibUVMore = Visibility.Collapsed;
+                        MVisibPHLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
+                        MVisibCDLess = Visibility.Collapsed;
+                        MVisibUVLess = Visibility.Collapsed;
+                        MMoreLessThanMax = StaticValue.s_maxPH;
+                        MMoreLessThanMin = StaticValue.s_minPH;
+                        MMoreLessThanStr = "[" + StaticValue.s_minPH + " - " + StaticValue.s_maxPH + "]";
+                    }
+                    else if (EnumMonitorInfo.NameList[value].Contains("Cd"))
+                    {
+                        MVisibPHMore = Visibility.Collapsed;
+                        MVisibCDMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
+                        MVisibUVMore = Visibility.Collapsed;
+                        MVisibPHLess = Visibility.Collapsed;
+                        MVisibCDLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
+                        MVisibUVLess = Visibility.Collapsed;
+                        MMoreLessThanMax = StaticValue.s_maxCD;
+                        MMoreLessThanMin = StaticValue.s_minCD;
+                        MMoreLessThanStr = "[" + StaticValue.s_minCD + " - " + StaticValue.s_maxCD + "]";
+                    }
+                    else
+                    {
+                        MVisibPHMore = Visibility.Collapsed;
+                        MVisibCDMore = Visibility.Collapsed;
+                        MVisibUVMore = Visibility.Visible == MVisibMoreThan ? Visibility.Visible : Visibility.Collapsed;
+                        MVisibPHLess = Visibility.Collapsed;
+                        MVisibCDLess = Visibility.Collapsed;
+                        MVisibUVLess = Visibility.Visible == MVisibLessThan ? Visibility.Visible : Visibility.Collapsed;
+                        MMoreLessThanMax = StaticValue.s_maxUV;
+                        MMoreLessThanMin = StaticValue.s_minUV;
+                        MMoreLessThanStr = "[" + StaticValue.s_minUV + " - " + StaticValue.s_maxUV + "]";
+                    }
                 }
             }
         }

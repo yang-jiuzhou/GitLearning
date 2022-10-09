@@ -443,7 +443,7 @@ namespace HBBio.Communication
         {
             for (int i = 0; i < list.Count; i++)
             {
-                if (!list[i].MResult.Contains("成功"))
+                if (!list[i].MResult.Contains(Share.ReadXaml.S_SuccessTxt))
                 {
                     continue;
                 }

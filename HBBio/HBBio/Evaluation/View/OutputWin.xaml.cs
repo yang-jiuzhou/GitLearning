@@ -139,19 +139,19 @@ namespace HBBio.Evaluation
                             cell.Style = styleCell;
                             row.Cells.Add(cell);
 
-                            cell = new TableCell(new Paragraph(new Run(item.MTopVal.ToString())));
-                            cell.Style = styleCell;
-                            row.Cells.Add(cell);
-
                             cell = new TableCell(new Paragraph(new Run(item.MStartValX.ToString())));
                             cell.Style = styleCell;
                             row.Cells.Add(cell);
 
-                            cell = new TableCell(new Paragraph(new Run(item.MStartValY.ToString())));
+                            cell = new TableCell(new Paragraph(new Run(item.MEndValX.ToString())));
                             cell.Style = styleCell;
                             row.Cells.Add(cell);
 
-                            cell = new TableCell(new Paragraph(new Run(item.MEndValX.ToString())));
+                            cell = new TableCell(new Paragraph(new Run(item.MTopVal.ToString())));
+                            cell.Style = styleCell;
+                            row.Cells.Add(cell);
+
+                            cell = new TableCell(new Paragraph(new Run(item.MStartValY.ToString())));
                             cell.Style = styleCell;
                             row.Cells.Add(cell);
 

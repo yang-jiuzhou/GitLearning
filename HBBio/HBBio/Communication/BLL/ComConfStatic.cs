@@ -325,7 +325,7 @@ namespace HBBio.Communication
 
                     if (m_dictPT[ENUMPTName.PTColumnBack].MVisible)
                     {
-                        deltaPT = m_dictPT[ENUMPTName.PTColumnBack].m_pressGet - m_dictPT[ENUMPTName.PTColumnFront].m_pressGet;
+                        deltaPT = Math.Abs(m_dictPT[ENUMPTName.PTColumnBack].m_pressGet - m_dictPT[ENUMPTName.PTColumnFront].m_pressGet);
                     }
 
                     int index = 0;
@@ -729,21 +729,48 @@ namespace HBBio.Communication
                     {
                         if (((ENUMPumpID)Enum.Parse(typeof(ENUMPumpID), cc.MModel)).ToString().Contains("OEM"))
                         {
-                            ENUMPumpName name = (ENUMPumpName)Enum.Parse(typeof(ENUMPumpName), cc.MList[0].MConstName);
-                            ItemVisibility.s_listPump[name] = Visibility.Visible;
-                            m_dictPump[name] = (PumpItem)cc.MList[0];
+                            {
+                                ENUMPumpName name = (ENUMPumpName)Enum.Parse(typeof(ENUMPumpName), cc.MList[0].MConstName);
+                                ItemVisibility.s_listPump[name] = Visibility.Visible;
+                                m_dictPump[name] = (PumpItem)cc.MList[0];
+                            }
                             if (cc.MList[1].MVisible)
                             {
-                                name = (ENUMPumpName)Enum.Parse(typeof(ENUMPumpName), cc.MList[1].MConstName);
+                                ENUMPumpName name = (ENUMPumpName)Enum.Parse(typeof(ENUMPumpName), cc.MList[1].MConstName);
                                 ItemVisibility.s_listPump[name] = Visibility.Visible;
                                 m_dictPump[name] = (PumpItem)cc.MList[1];
+                            }
+                            if (cc.MList[2].MVisible)
+                            {
+                                ENUMPTName name = (ENUMPTName)Enum.Parse(typeof(ENUMPTName), cc.MList[2].MConstName);
+                                ItemVisibility.s_listPT[name] = Visibility.Visible;
+                                m_dictPT[name] = (PTItem)cc.MList[2];
+                            }
+                            if (cc.MList[3].MVisible)
+                            {
+                                ENUMPTName name = (ENUMPTName)Enum.Parse(typeof(ENUMPTName), cc.MList[3].MConstName);
+                                ItemVisibility.s_listPT[name] = Visibility.Visible;
+                                m_dictPT[name] = (PTItem)cc.MList[3];
+                            }
+                            if (cc.MList[4].MVisible)
+                            {
+                                ENUMPTName name = (ENUMPTName)Enum.Parse(typeof(ENUMPTName), cc.MList[4].MConstName);
+                                ItemVisibility.s_listPT[name] = Visibility.Visible;
+                                m_dictPT[name] = (PTItem)cc.MList[4];
                             }
                         }
                         else
                         {
-                            ENUMPumpName name = (ENUMPumpName)Enum.Parse(typeof(ENUMPumpName), cc.MList[0].MConstName);
-                            ItemVisibility.s_listPump[name] = Visibility.Visible;
-                            m_dictPump[name] = (PumpItem)cc.MList[0];
+                            {
+                                ENUMPumpName name = (ENUMPumpName)Enum.Parse(typeof(ENUMPumpName), cc.MList[0].MConstName);
+                                ItemVisibility.s_listPump[name] = Visibility.Visible;
+                                m_dictPump[name] = (PumpItem)cc.MList[0];
+                            }
+                            {
+                                ENUMPTName name = (ENUMPTName)Enum.Parse(typeof(ENUMPTName), cc.MList[1].MConstName);
+                                ItemVisibility.s_listPT[name] = Visibility.Visible;
+                                m_dictPT[name] = (PTItem)cc.MList[1];
+                            }
                         }
                     }
                     break;

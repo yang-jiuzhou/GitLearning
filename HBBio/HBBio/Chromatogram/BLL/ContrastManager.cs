@@ -443,6 +443,44 @@ namespace HBBio.Chromatogram
         }
 
         /// <summary>
+        /// 判断是否移动Y轴
+        /// </summary>
+        /// <param name="pt"></param>
+        /// <returns></returns>
+        public bool IsMoveY(System.Windows.Point pt)
+        {
+            if (pt.X > 0 && pt.X < m_chartLeft && pt.Y> m_chartTop && pt.Y < m_chartBottom)//切换X轴
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void MoveBeginY(double start, double end)
+        {
+            if (-1 != MLines.MSelectIndex)
+            {
+                MLines.MSelectItem.MMove = (start - end) / m_chartHeight * (MLines.MSelectItem.MMaxPart - MLines.MSelectItem.MMinPart);
+            }
+        }
+        public void MoveEndY(double start, double end)
+        {
+            if (-1 != MLines.MSelectIndex)
+            {
+                MLines.MSelectItem.MMove = (start - end) / m_chartHeight * (MLines.MSelectItem.MMaxPart - MLines.MSelectItem.MMinPart);
+
+                MLines.MSelectItem.MMaxFix = Math.Round(MLines.MSelectItem.MMax - MLines.MSelectItem.MMove, 2);
+                MLines.MSelectItem.MMinFix = Math.Round(MLines.MSelectItem.MMin - MLines.MSelectItem.MMove, 2);
+                MLines.MSelectItem.MAxisScale = EnumAxisScale.Fixed;
+                MLines.MSelectItem.MMove = 0;
+            }
+        }
+
+
+        /// <summary>
         /// 画图
         /// </summary>
         public System.Windows.Media.Imaging.WriteableBitmap DrawBitmap()
@@ -974,8 +1012,8 @@ namespace HBBio.Chromatogram
         /// <param name="scale"></param>
         protected void CalScaleY(Curve line, ScaleData scale)
         {
-            line.MMinPart = scale.MYMin * (line.MMax - line.MMin) + line.MMin;
-            line.MMaxPart = scale.MYMax * (line.MMax - line.MMin) + line.MMin;
+            line.MMinPart = scale.MYMin * (line.MMax - line.MMin) + line.MMin - line.MMove;
+            line.MMaxPart = scale.MYMax * (line.MMax - line.MMin) + line.MMin - line.MMove;
 
             //Y轴最小刻度0.0001
             if (Math.Abs(line.MMaxPart - line.MMinPart) < 0.0002)

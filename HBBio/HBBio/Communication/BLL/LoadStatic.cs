@@ -244,6 +244,8 @@ namespace HBBio.Communication
                 case ENUMValveName.InB: return EnumInBInfo.Count;
                 case ENUMValveName.InC: return EnumInCInfo.Count;
                 case ENUMValveName.InD: return EnumInDInfo.Count;
+                case ENUMValveName.IJV: return EnumIJVInfo.Count;
+                case ENUMValveName.BPV: return EnumBPVInfo.Count;
                 case ENUMValveName.CPV_1:
                 case ENUMValveName.CPV_2: return EnumCPVInfo.Count;
                 default: return EnumOutInfo.Count;
@@ -259,6 +261,8 @@ namespace HBBio.Communication
                 case ENUMValveName.InB: return EnumInBInfo.NameList;
                 case ENUMValveName.InC: return EnumInCInfo.NameList;
                 case ENUMValveName.InD: return EnumInDInfo.NameList;
+                case ENUMValveName.IJV: return EnumIJVInfo.NameList;
+                case ENUMValveName.BPV: return EnumBPVInfo.NameList;
                 case ENUMValveName.CPV_1:
                 case ENUMValveName.CPV_2: return EnumCPVInfo.NameList;
                 default: return EnumOutInfo.NameList;
@@ -295,8 +299,8 @@ namespace HBBio.Communication
                 s_NameList[0] = "Buffer";
                 for (int i = 1; i < count; i++)
                 {
-                    s_NameList[i] = "S" + i;
-                }
+                    s_NameList[i] = "S" + (i + 1);
+            }
                 if (off)
                 {
                     s_NameList[count - 1] = "Off";
@@ -498,7 +502,7 @@ namespace HBBio.Communication
 
     public static class EnumIJVInfo
     {
-        private static int s_Count = 2;
+        private static int s_Count = 1;
         public static int Count
         {
             get
@@ -507,19 +511,34 @@ namespace HBBio.Communication
             }
         }
 
-        private static string[] s_NameList = new string[2] { "Load", "Inject" };
+        private static string[] s_NameList = new string[1] { "null" };
         public static string[] NameList
         {
             get
             {
                 return s_NameList;
+            }
+        }
+
+        public static void Init(int count, bool off = false)
+        {
+            s_Count = count;
+            s_NameList = new string[count];
+            if (0 < count)
+            {
+                s_NameList[0] = "Load";
+                s_NameList[1] = "Inject";
+                if (off)
+                {
+                    s_NameList[count - 1] = "Off";
+                }
             }
         }
     }
 
     public static class EnumBPVInfo
     {
-        private static int s_Count = 3;
+        private static int s_Count = 1;
         public static int Count
         {
             get
@@ -528,12 +547,28 @@ namespace HBBio.Communication
             }
         }
 
-        private static string[] s_NameList = new string[3] { "Bypass", "Forward", "Recoil" };
+        private static string[] s_NameList = new string[1] { "null" };
         public static string[] NameList
         {
             get
             {
                 return s_NameList;
+            }
+        }
+
+        public static void Init(int count, bool off = false)
+        {
+            s_Count = count;
+            s_NameList = new string[count];
+            if (0 < count)
+            {
+                s_NameList[0] = "Bypass";
+                s_NameList[1] = "Forward";
+                s_NameList[2] = "Recoil";
+                if (off)
+                {
+                    s_NameList[count - 1] = "Off";
+                }
             }
         }
     }
@@ -1132,6 +1167,13 @@ namespace HBBio.Communication
             s_maxFlowBVol = flowB;
             s_maxFlowCVol = flowC;
             s_maxFlowDVol = flowD;
+
+            if (0 == s_maxFlowVol)
+            {
+                s_maxFlowVol = 1;
+                s_maxFlowAVol = 1;
+            }
+
             Reset();
         }
 

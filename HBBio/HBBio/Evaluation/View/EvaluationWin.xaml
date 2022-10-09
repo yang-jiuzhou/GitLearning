@@ -81,6 +81,16 @@
                                 </StackPanel>
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="colTopVal" Binding="{Binding MTopVal,StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource E_PI_TopVal}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock x:Name="colTopValUnit"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
                         <DataGridTextColumn x:Name="colStartVal" Binding="{Binding MStartValY,StringFormat={}{0:F2}}">
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
@@ -111,7 +121,7 @@
                                 </StackPanel>
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="colArea" Binding="{Binding MArea,StringFormat={}{0:F2}}">
+                        <DataGridTextColumn x:Name="colArea" Binding="{Binding MArea,StringFormat={}{0:F3}}">
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource E_PI_Area}"/>
@@ -121,7 +131,7 @@
                                 </StackPanel>
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="colAreaPer" Binding="{Binding MAreaPer,StringFormat={}{0:F2}}">
+                        <DataGridTextColumn x:Name="colAreaPer" Binding="{Binding MAreaPer,StringFormat={}{0:F3}}">
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource E_PI_AreaPer}"/>
@@ -131,7 +141,7 @@
                                 </StackPanel>
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="colHalfWidth" Binding="{Binding MHalfWidth,StringFormat={}{0:F2}}">
+                        <DataGridTextColumn x:Name="colHalfWidth" Binding="{Binding MHalfWidth,StringFormat={}{0:F3}}">
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource E_PI_HalfWidth}"/>
