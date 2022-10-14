@@ -1416,6 +1416,7 @@ namespace HBBio.SystemControl
             btnManual.IsEnabled = AdministrationStatic.Instance().ShowPermission(EnumPermission.Manual);
             btnProject.IsEnabled = AdministrationStatic.Instance().ShowPermission(EnumPermission.Project);
             btnAuditTrails.IsEnabled = AdministrationStatic.Instance().ShowPermission(EnumPermission.AuditTrails);
+            btnSystemMonitor.IsEnabled = AdministrationStatic.Instance().ShowPermission(EnumPermission.MonitorSet);
             btnDB.IsEnabled = AdministrationStatic.Instance().ShowPermission(EnumPermission.Databases);
         }
 
@@ -1815,7 +1816,6 @@ namespace HBBio.SystemControl
             win.Closing += ChildWindow_Closing;
             m_listChild.Add(win);
         }
-
 
         /// <summary>
         /// 工具-手动编辑

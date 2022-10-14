@@ -1,0 +1,1585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B25D1199-25DC-4231-8B2D-2BD064D80D4C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HBBio</RootNamespace>
+    <AssemblyName>Bio-LabChrom</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\Bio-LabChrom\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>hblog.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>BCAB69F8989CA9886E952021EC74754FF087B63E</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>HBBio_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="hasp_net_windows">
+      <HintPath>PassDog\BLL\hasp_net_windows.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\lib\net451\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.114.0\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.114.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Administration\BLL\AdministrationManager.cs" />
+    <Compile Include="Administration\BLL\AdministrationStatic.cs" />
+    <Compile Include="Administration\Model\Enum\EnumPermission.cs" />
+    <Compile Include="Administration\Model\Enum\EnumPermissionName.cs" />
+    <Compile Include="Administration\Model\Enum\EnumSignerReviewer.cs" />
+    <Compile Include="Administration\Model\Enum\EnumTactics.cs" />
+    <Compile Include="Administration\ViewModel\PermissionNode.cs" />
+    <Compile Include="Administration\ViewModel\PermissionTree.cs" />
+    <Compile Include="Administration\BLL\ReadXamlAdministration.cs" />
+    <Compile Include="Administration\BLL\WindowPermission.cs" />
+    <Compile Include="Administration\DAL\PermissionTable.cs" />
+    <Compile Include="Administration\DAL\SignerReviewerTable.cs" />
+    <Compile Include="Administration\DAL\TacticsTable.cs" />
+    <Compile Include="Administration\DAL\UserTable.cs" />
+    <Compile Include="Administration\Model\PermissionInfo.cs" />
+    <Compile Include="Administration\Model\SignerReviewerInfo.cs" />
+    <Compile Include="Administration\Model\TacticsInfo.cs" />
+    <Compile Include="Administration\Model\UserInfo.cs" />
+    <Compile Include="Administration\ViewModel\UserInfoVM.cs" />
+    <Compile Include="Administration\View\AdministrationWin.xaml.cs">
+      <DependentUpon>AdministrationWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\LoginWin.xaml.cs">
+      <DependentUpon>LoginWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\PermissionAddWin.xaml.cs">
+      <DependentUpon>PermissionAddWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\PermissionEditWin.xaml.cs">
+      <DependentUpon>PermissionEditWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\RegisterWin.xaml.cs">
+      <DependentUpon>RegisterWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\ReviewerWin.xaml.cs">
+      <DependentUpon>ReviewerWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\SignerWin.xaml.cs">
+      <DependentUpon>SignerWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\TacticsEditWin.xaml.cs">
+      <DependentUpon>TacticsEditWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\UserAddWin.xaml.cs">
+      <DependentUpon>UserAddWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\UserEditWin.xaml.cs">
+      <DependentUpon>UserEditWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\UserLockWin.xaml.cs">
+      <DependentUpon>UserLockWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\UserPwdWin.xaml.cs">
+      <DependentUpon>UserPwdWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\View\UserSwitchWin.xaml.cs">
+      <DependentUpon>UserSwitchWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\ViewModel\SignerReviewerRow.cs" />
+    <Compile Include="Administration\ViewModel\TacticsRow.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AuditTrails\BLL\AuditTrailsManager.cs" />
+    <Compile Include="AuditTrails\BLL\AuditTrailsStatic.cs" />
+    <Compile Include="AuditTrails\DAL\LogColumnVisibilityTable.cs" />
+    <Compile Include="AuditTrails\DAL\LogListTable.cs" />
+    <Compile Include="AuditTrails\DAL\LogUnitTable.cs" />
+    <Compile Include="AuditTrails\Model\Enum\EnumATType.cs" />
+    <Compile Include="AuditTrails\Model\Enum\EnumLog.cs" />
+    <Compile Include="AuditTrails\Model\LogColumnVisibility.cs" />
+    <Compile Include="AuditTrails\Model\LogInfo.cs" />
+    <Compile Include="AuditTrails\ViewModel\SearchInfoVM.cs" />
+    <Compile Include="AuditTrails\View\AuditTrailWin.xaml.cs">
+      <DependentUpon>AuditTrailWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AuditTrails\View\OutputWin.xaml.cs">
+      <DependentUpon>OutputWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AuditTrails\View\UC\AuditTrailsSearchUC.xaml.cs">
+      <DependentUpon>AuditTrailsSearchUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AuditTrails\View\UC\AuditTrailsUC.xaml.cs">
+      <DependentUpon>AuditTrailsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chromatogram\BLL\ChromatogramManager.cs" />
+    <Compile Include="Chromatogram\BLL\ContrastManager.cs" />
+    <Compile Include="Chromatogram\DAL\AxisScaleTable.cs" />
+    <Compile Include="Chromatogram\DAL\BackgroundTable.cs" />
+    <Compile Include="Chromatogram\Model\AxisScale.cs" />
+    <Compile Include="Chromatogram\Model\BackgroundInfo.cs" />
+    <Compile Include="Chromatogram\Model\ColorButton.cs" />
+    <Compile Include="Chromatogram\Model\Curve.cs" />
+    <Compile Include="Chromatogram\Model\CurveSet.cs" />
+    <Compile Include="Chromatogram\Model\CurveSetStyle.cs" />
+    <Compile Include="Chromatogram\Model\MarkerInfo.cs" />
+    <Compile Include="Chromatogram\Model\NameUnitColorShow.cs" />
+    <Compile Include="Chromatogram\Model\ScaleData.cs" />
+    <Compile Include="Chromatogram\View\CurveColorWin.xaml.cs">
+      <DependentUpon>CurveColorWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chromatogram\View\CurveSetStyleWin.xaml.cs">
+      <DependentUpon>CurveSetStyleWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chromatogram\View\MarkerAddWin.xaml.cs">
+      <DependentUpon>MarkerAddWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chromatogram\View\MarkerDelWin.xaml.cs">
+      <DependentUpon>MarkerDelWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chromatogram\View\UC\ChromatogramUC.xaml.cs">
+      <DependentUpon>ChromatogramUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chromatogram\View\UC\ContrastUC.xaml.cs">
+      <DependentUpon>ContrastUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chromatogram\ViewModel\CurveSetStyleVM.cs" />
+    <Compile Include="Collection\BLL\CollectionCollector.cs" />
+    <Compile Include="Collection\BLL\CollectionCollectorDelay.cs" />
+    <Compile Include="Collection\BLL\CollectionValve.cs" />
+    <Compile Include="Collection\BLL\CollectionValveDelay.cs" />
+    <Compile Include="Collection\BLL\CollectionJudge.cs" />
+    <Compile Include="Collection\BLL\ReadXamlCollection.cs" />
+    <Compile Include="Collection\Model\CollectionItem.cs" />
+    <Compile Include="Collection\Model\CollectionObject.cs" />
+    <Compile Include="Collection\Model\CollectionObjectMulti.cs" />
+    <Compile Include="Collection\Model\CollTextIndex.cs" />
+    <Compile Include="Collection\ViewModel\CollectionItemVM.cs" />
+    <Compile Include="Collection\ViewModel\CollectionObjectMultiVM.cs" />
+    <Compile Include="Collection\ViewModel\CollectionObjectVM.cs" />
+    <Compile Include="Collection\View\CollectionItemWin.xaml.cs">
+      <DependentUpon>CollectionItemWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Collection\View\UC\CollectionObjectMultiUC.xaml.cs">
+      <DependentUpon>CollectionObjectMultiUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Collection\View\UC\CollectionObjectUC.xaml.cs">
+      <DependentUpon>CollectionObjectUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Collection\View\UC\CollectionUC.xaml.cs">
+      <DependentUpon>CollectionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColumnList\BLL\ColumnExImManager.cs" />
+    <Compile Include="ColumnList\BLL\ColumnManager.cs" />
+    <Compile Include="ColumnList\DAL\ColumnListExImTable.cs" />
+    <Compile Include="ColumnList\DAL\ColumnListTable.cs" />
+    <Compile Include="ColumnList\Model\ColumnItem.cs" />
+    <Compile Include="ColumnList\Model\Details.cs" />
+    <Compile Include="ColumnList\Model\ParametersValueUnit.cs" />
+    <Compile Include="ColumnList\Model\RunParameters.cs" />
+    <Compile Include="ColumnList\View\ColumnHandlingWin.xaml.cs">
+      <DependentUpon>ColumnHandlingWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColumnList\View\ColumnItemWin.xaml.cs">
+      <DependentUpon>ColumnItemWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColumnList\View\OutputWin.xaml.cs">
+      <DependentUpon>OutputWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\BLL\ComConfStatic.cs" />
+    <Compile Include="Communication\BLL\CommunicationSetsManager.cs" />
+    <Compile Include="Communication\BLL\ComTcp\BaseCommunication.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\BaseCom.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComAS.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComASABD05.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComASABD06.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComCDHamilton.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComCollector.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComCollectorHB.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComPumpWatsonMarlow.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveHBColl.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComCollectorQBH.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComMixer.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComPHCD.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComPHCDHamilton.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComPHCDOEM.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComPHHamilton.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComPump.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComPumpOEM.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComPumpQBH.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComRI.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComUV.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComUVECOM4.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComUVQBH2.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValve.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveHB.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveHBGS4.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveQBHColl.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveVICI.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveVICI2.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\ASState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\CollectorState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\EnumValveMixerState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\MIXERState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\PHCDState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\PUMPState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\RIState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\UVState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\Enum\VALVEState.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\BaseTCP.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPAS.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPASABD05.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPASABD06.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPCDHamilton.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPCollector.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPCollectorHB.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPCollectorQBH.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPMixer.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPPHCD.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPPHCDHamilton.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPPHCDOEM.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPPHHamilton.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPPump.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPPumpOEM.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPPumpQBH.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPRI.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPUV.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPUVECOM4.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPUVQBH2.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValve.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveHB.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveHB2.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveHBColl.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveHBGS4.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveMixerHB.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveQBHColl.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveVICI.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveVICI2.cs" />
+    <Compile Include="Communication\BLL\InstrumentCallBack.cs" />
+    <Compile Include="Communication\BLL\LoadStatic.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveHB2.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveMixerHB.cs" />
+    <Compile Include="Communication\BLL\ReadXamlCommunication.cs" />
+    <Compile Include="Communication\DAL\BaseInstrumentTable.cs" />
+    <Compile Include="Communication\DAL\CirclePointTable.cs" />
+    <Compile Include="Communication\DAL\ColumnPointTable.cs" />
+    <Compile Include="Communication\DAL\ComConfTable.cs" />
+    <Compile Include="Communication\DAL\CommunicationSetsTable.cs" />
+    <Compile Include="Communication\DAL\InstrumentPointTable.cs" />
+    <Compile Include="Communication\DAL\InstrumentSizeTable.cs" />
+    <Compile Include="Communication\DAL\SignalTable.cs" />
+    <Compile Include="Communication\DAL\SystemConfigTable.cs" />
+    <Compile Include="Communication\DAL\TimeSetTable.cs" />
+    <Compile Include="Communication\Model\AddressPort.cs" />
+    <Compile Include="Communication\Model\Conf\AlarmWarning.cs" />
+    <Compile Include="Communication\Model\Conf\AlarmWarningItem.cs" />
+    <Compile Include="Communication\Model\Control\ASTimeJudge.cs" />
+    <Compile Include="Communication\Model\Conf\ConfAS.cs" />
+    <Compile Include="Communication\Model\Conf\ConfCollector.cs" />
+    <Compile Include="Communication\Model\Conf\ConfColumn.cs" />
+    <Compile Include="Communication\Model\Conf\ConfOther.cs" />
+    <Compile Include="Communication\Model\Conf\ConfpHCdUV.cs" />
+    <Compile Include="Communication\Model\Conf\ConfWash.cs" />
+    <Compile Include="Communication\Model\Conf\SystemConfig.cs" />
+    <Compile Include="Communication\Model\Control\MonitroPara.cs" />
+    <Compile Include="Communication\Model\Control\UVValue.cs" />
+    <Compile Include="Communication\Model\Control\WashItem.cs" />
+    <Compile Include="Communication\Model\InstrumentPoint.cs" />
+    <Compile Include="Communication\Model\InstrumentSize.cs" />
+    <Compile Include="Communication\Model\Item\BaseInstrument.cs" />
+    <Compile Include="Communication\Model\Item\ComConf.cs" />
+    <Compile Include="Communication\Model\Item\CommunicationSets.cs" />
+    <Compile Include="Communication\Model\Item\ENUMInstrumentTypeInfo.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\ASItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\CDItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\CollectorItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\MixerItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\PHItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\PTItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\PumpItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\RIItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\SamplerItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\TTItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\UVItem.cs" />
+    <Compile Include="Communication\Model\Item\Instrument\ValveItem.cs" />
+    <Compile Include="Communication\Model\Item\Signal.cs" />
+    <Compile Include="Communication\Model\Share\DispatcherHelper.cs" />
+    <Compile Include="Communication\Model\Share\DlyMath.cs" />
+    <Compile Include="Communication\Model\Share\ValueWrapper.cs" />
+    <Compile Include="Communication\Model\Control\RIValue.cs" />
+    <Compile Include="Communication\ViewModel\Conf\ConfOtherVM.cs" />
+    <Compile Include="Communication\ViewModel\Control\MixerValueVM.cs" />
+    <Compile Include="Communication\ViewModel\Control\UVValueVM.cs" />
+    <Compile Include="Communication\View\CollectorHBModeWin.xaml.cs">
+      <DependentUpon>CollectorHBModeWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\UC\RIUC.xaml.cs">
+      <DependentUpon>RIUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\ViewModel\Conf\AlarmWarningItemVM.cs" />
+    <Compile Include="Communication\ViewModel\Conf\AlarmWarningVM.cs" />
+    <Compile Include="Communication\ViewModel\Conf\ConfASVM.cs" />
+    <Compile Include="Communication\ViewModel\Conf\ConfCollectorVM.cs" />
+    <Compile Include="Communication\ViewModel\Conf\ConfColumnVM.cs" />
+    <Compile Include="Communication\ViewModel\Conf\ConfpHCdUVVM.cs" />
+    <Compile Include="Communication\ViewModel\Conf\ConfWashVM.cs" />
+    <Compile Include="Communication\ViewModel\Conf\SystemConfigVM.cs" />
+    <Compile Include="Communication\ViewModel\Control\MonitroParaVM.cs" />
+    <Compile Include="Communication\View\AddressPortWin.xaml.cs">
+      <DependentUpon>AddressPortWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\AlarmWarningWin.xaml.cs">
+      <DependentUpon>AlarmWarningWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\CalOEMCDWin.xaml.cs">
+      <DependentUpon>CalOEMCDWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\CalOEMPHWin.xaml.cs">
+      <DependentUpon>CalOEMPHWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\CollectorQBHModeWin.xaml.cs">
+      <DependentUpon>CollectorQBHModeWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\CommunSetsWin.xaml.cs">
+      <DependentUpon>CommunSetsWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\ConfAlarmWarningWin.xaml.cs">
+      <DependentUpon>ConfAlarmWarningWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\EditCommunWin.xaml.cs">
+      <DependentUpon>EditCommunWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\EditProcessPictureWin.xaml.cs">
+      <DependentUpon>EditProcessPictureWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\NewCommunWin.xaml.cs">
+      <DependentUpon>NewCommunWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\SystemConfigWin.xaml.cs">
+      <DependentUpon>SystemConfigWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\UC\ConfASUC.xaml.cs">
+      <DependentUpon>ConfASUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\UC\MonitorParaUC.xaml.cs">
+      <DependentUpon>MonitorParaUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\UC\ProcessPictureUC.xaml.cs">
+      <DependentUpon>ProcessPictureUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\UC\UVUC.xaml.cs">
+      <DependentUpon>UVUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Database\BLL\DBManager.cs" />
+    <Compile Include="Database\BLL\ReadXamlDatabase.cs" />
+    <Compile Include="Database\DAL\BaseDB.cs" />
+    <Compile Include="Database\DAL\BaseExImTable.cs" />
+    <Compile Include="Database\DAL\BaseTable.cs" />
+    <Compile Include="Database\DAL\DBAutoBackupTable.cs" />
+    <Compile Include="Database\DAL\DBBackupRestoreTable.cs" />
+    <Compile Include="Database\View\DBAutoBackupWin.xaml.cs">
+      <DependentUpon>DBAutoBackupWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Model\DBBackupRestoreInfo.cs" />
+    <Compile Include="Database\Model\DBAutoBackupInfo.cs" />
+    <Compile Include="Database\View\DBBackupRestoreWin.xaml.cs">
+      <DependentUpon>DBBackupRestoreWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionary\DicEvent.cs" />
+    <Compile Include="Evaluation\BLL\EvaluationManager.cs" />
+    <Compile Include="Evaluation\BLL\PeakManager.cs" />
+    <Compile Include="Evaluation\BLL\PeakMath.cs" />
+    <Compile Include="Evaluation\DAL\IntegrationSetTable.cs" />
+    <Compile Include="Evaluation\DAL\OutputSelectSetTable.cs" />
+    <Compile Include="Evaluation\Model\IntegrationSet.cs" />
+    <Compile Include="Evaluation\Model\OutputSelectSet.cs" />
+    <Compile Include="Evaluation\Model\PeakIntegration.cs" />
+    <Compile Include="Evaluation\Model\PeakValue.cs" />
+    <Compile Include="Evaluation\View\ContrastWin.xaml.cs">
+      <DependentUpon>ContrastWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation\View\EvaluationWin.xaml.cs">
+      <DependentUpon>EvaluationWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation\View\IntegrationSetWin.xaml.cs">
+      <DependentUpon>IntegrationSetWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation\View\OutputSelectSetWin.xaml.cs">
+      <DependentUpon>OutputSelectSetWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Evaluation\View\OutputWin.xaml.cs">
+      <DependentUpon>OutputWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\BLL\ManualManager.cs" />
+    <Compile Include="Manual\BLL\ManualRunManager.cs" />
+    <Compile Include="Manual\BLL\ReadXamlManual.cs" />
+    <Compile Include="Manual\DAL\ManualTempTable.cs" />
+    <Compile Include="HoldUntil\HoldUntil.cs" />
+    <Compile Include="HoldUntil\HoldUntilVM.cs" />
+    <Compile Include="HoldUntil\HoldUntilWin.xaml.cs">
+      <DependentUpon>HoldUntilWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\Model\AlarmWarningValve.cs" />
+    <Compile Include="Manual\Model\ASListValue.cs" />
+    <Compile Include="Communication\Model\Control\ASManualPara.cs" />
+    <Compile Include="Communication\ViewModel\Control\ASManualParaVM.cs" />
+    <Compile Include="Manual\Model\ManualItem.cs" />
+    <Compile Include="Manual\Model\ManualValue.cs" />
+    <Compile Include="Manual\Model\MarkerValue.cs" />
+    <Compile Include="Communication\Model\Control\MixerValue.cs" />
+    <Compile Include="Manual\Model\MonitorValue.cs" />
+    <Compile Include="Manual\Model\PauseStopValue.cs" />
+    <Compile Include="Manual\Model\PumpSystemValue.cs" />
+    <Compile Include="Manual\Model\PumpSampleValue.cs" />
+    <Compile Include="Manual\Model\ValveListValue.cs" />
+    <Compile Include="Manual\View\OutWin.xaml.cs">
+      <DependentUpon>OutWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\ASWin.xaml.cs">
+      <DependentUpon>ASWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\CollectorWin.xaml.cs">
+      <DependentUpon>CollectorWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\ManualWin.xaml.cs">
+      <DependentUpon>ManualWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\MixerWin.xaml.cs">
+      <DependentUpon>MixerWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\PumpSampleWin.xaml.cs">
+      <DependentUpon>PumpSampleWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\PumpSystemWin.xaml.cs">
+      <DependentUpon>PumpSystemWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\RIWin.xaml.cs">
+      <DependentUpon>RIWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\UC\ASManualParaUC.xaml.cs">
+      <DependentUpon>ASManualParaUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\UVWin.xaml.cs">
+      <DependentUpon>UVWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manual\View\ValveWin.xaml.cs">
+      <DependentUpon>ValveWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\BLL\GroupFactory.cs" />
+    <Compile Include="MethodEdit\BLL\MathodFlowDocument.cs" />
+    <Compile Include="MethodEdit\BLL\MethodExImManager.cs" />
+    <Compile Include="MethodEdit\BLL\MethodFactory.cs" />
+    <Compile Include="MethodEdit\BLL\MethodManager.cs" />
+    <Compile Include="MethodEdit\BLL\MethodRunManager.cs" />
+    <Compile Include="MethodEdit\BLL\MethodState.cs" />
+    <Compile Include="MethodEdit\BLL\MethodTempValue.cs" />
+    <Compile Include="MethodEdit\BLL\MRUN.cs" />
+    <Compile Include="MethodEdit\BLL\PhaseFactory.cs" />
+    <Compile Include="MethodEdit\BLL\ReadXamlMethod.cs" />
+    <Compile Include="MethodEdit\DAL\PhaseTable.cs" />
+    <Compile Include="Communication\View\UC\MixerUC.xaml.cs">
+      <DependentUpon>MixerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\Model\Enum\EnumAnswerType.cs" />
+    <Compile Include="MethodEdit\Model\Enum\EnumGroupType.cs" />
+    <Compile Include="MethodEdit\Model\Enum\EnumMethodMaintenance.cs" />
+    <Compile Include="MethodEdit\Model\Enum\EnumMethodPurification.cs" />
+    <Compile Include="MethodEdit\Model\Enum\EnumMethodType.cs" />
+    <Compile Include="MethodEdit\Model\Enum\EnumPhaseType.cs" />
+    <Compile Include="MethodEdit\Model\Enum\EnumResultType.cs" />
+    <Compile Include="Communication\Model\Control\ASMethodPara.cs" />
+    <Compile Include="MethodEdit\Model\Group\Mixer.cs" />
+    <Compile Include="MethodEdit\View\Intervene\ASWin.xaml.cs">
+      <DependentUpon>ASWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\PersonalPhaseWin.xaml.cs">
+      <DependentUpon>PersonalPhaseWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\Intervene\PumpSampleWin.xaml.cs">
+      <DependentUpon>PumpSampleWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\Intervene\PumpSystemWin.xaml.cs">
+      <DependentUpon>PumpSystemWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\MixerUC.xaml.cs">
+      <DependentUpon>MixerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\TVCVUC.xaml.cs">
+      <DependentUpon>TVCVUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\BPVUC.xaml.cs">
+      <DependentUpon>BPVUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\DAL\MethodExImTable.cs" />
+    <Compile Include="MethodEdit\DAL\MethodTable.cs" />
+    <Compile Include="MethodEdit\DAL\MethodTempTable.cs" />
+    <Compile Include="Communication\ViewModel\Control\ASMethodParaVM.cs" />
+    <Compile Include="MethodEdit\Model\Group\BaseGroup.cs" />
+    <Compile Include="MethodEdit\Model\MS\DefineQuestions.cs" />
+    <Compile Include="MethodEdit\Model\Enum\EnumPHCDUVUntil.cs" />
+    <Compile Include="MethodEdit\Model\Enum\EnumSAT.cs" />
+    <Compile Include="MethodEdit\Model\Method.cs" />
+    <Compile Include="MethodEdit\Model\MethodQueue.cs" />
+    <Compile Include="MethodEdit\Model\MS\MethodSettings.cs" />
+    <Compile Include="MethodEdit\Model\MethodTemp.cs" />
+    <Compile Include="MethodEdit\Model\MethodType.cs" />
+    <Compile Include="MethodEdit\Model\Phase\BasePhase.cs" />
+    <Compile Include="MethodEdit\Model\Phase\DlyPhase.cs" />
+    <Compile Include="MethodEdit\Model\Group\BPVValve.cs" />
+    <Compile Include="MethodEdit\Model\Group\UVReset.cs" />
+    <Compile Include="MethodEdit\Model\Phase\Miscellaneous.cs" />
+    <Compile Include="MethodEdit\Model\Group\BaseTVCV.cs" />
+    <Compile Include="MethodEdit\Model\Group\CIP.cs" />
+    <Compile Include="MethodEdit\Model\Group\CIPItem.cs" />
+    <Compile Include="MethodEdit\Model\Group\CollValveCollector.cs" />
+    <Compile Include="MethodEdit\Model\Group\FlowRate.cs" />
+    <Compile Include="MethodEdit\Model\Group\FlowRatePer.cs" />
+    <Compile Include="MethodEdit\Model\Group\FlowRatePerItem.cs" />
+    <Compile Include="MethodEdit\Model\Group\FlowValveLength.cs" />
+    <Compile Include="MethodEdit\Model\Group\FlowValveLengthItem.cs" />
+    <Compile Include="MethodEdit\Model\Group\FlowVolLen.cs" />
+    <Compile Include="MethodEdit\Model\Group\PHCDUVUntil.cs" />
+    <Compile Include="MethodEdit\Model\Group\SampleApplicationTech.cs" />
+    <Compile Include="MethodEdit\Model\Group\ValveSelection.cs" />
+    <Compile Include="MethodEdit\Model\MS\ResultName.cs" />
+    <Compile Include="MethodEdit\View\UC\Group\UVResetUC.xaml.cs">
+      <DependentUpon>UVResetUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\ViewModel\Group\BaseGroupVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\MixerVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\MS\DefineQuestionsVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\MS\ResultNameVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Phase\BasePhaseVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Phase\DlyPhaseVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\BaseTVCVVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\BPVValveVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\CIPItemVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\CIPVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\CollValveCollectorVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\FlowRatePerItemVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\FlowRatePerVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\FlowRateVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\FlowValveLengthItemVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\FlowValveLengthVM.cs" />
+    <Compile Include="MethodEdit\View\RenamePhaseNameWin.xaml.cs">
+      <DependentUpon>RenamePhaseNameWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\MS\DefineQuestionsWin.xaml.cs">
+      <DependentUpon>DefineQuestionsWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\MethodEditorWin.xaml.cs">
+      <DependentUpon>MethodEditorWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\MethodQueueWin.xaml.cs">
+      <DependentUpon>MethodQueueWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\NewMethodWin.xaml.cs">
+      <DependentUpon>NewMethodWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\MS\NotesWin.xaml.cs">
+      <DependentUpon>NotesWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\OutputWin.xaml.cs">
+      <DependentUpon>OutputWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\MS\ResultNameWin.xaml.cs">
+      <DependentUpon>ResultNameWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\View\UC\ASMethodParaUC.xaml.cs">
+      <DependentUpon>ASMethodParaUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Canvas\MethodCanvasUC.xaml.cs">
+      <DependentUpon>MethodCanvasUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\CIPUC.xaml.cs">
+      <DependentUpon>CIPUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\CollValveCollectorUC.xaml.cs">
+      <DependentUpon>CollValveCollectorUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\FlowRatePerUC.xaml.cs">
+      <DependentUpon>FlowRatePerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\FlowRateUC.xaml.cs">
+      <DependentUpon>FlowRateUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\FlowValveLengthUC.xaml.cs">
+      <DependentUpon>FlowValveLengthUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\PHCDUVUntilUC.xaml.cs">
+      <DependentUpon>PHCDUVUntilUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\SampleApplicationTechUC.xaml.cs">
+      <DependentUpon>SampleApplicationTechUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\ValveSelectionUC.xaml.cs">
+      <DependentUpon>ValveSelectionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\ViewModel\Group\UVResetVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\MS\MethodBaseValue.cs" />
+    <Compile Include="MethodEdit\ViewModel\MS\MethodSettingsVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\MethodVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\PHCDUVUntilVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\SampleApplicationTechVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\ValveSelectionVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Phase\MiscellaneousVM.cs" />
+    <Compile Include="PassDog\BLL\CSentinel.cs" />
+    <Compile Include="PassDog\Model\PassDogValue.cs" />
+    <Compile Include="PassDog\View\CheckSNWin.xaml.cs">
+      <DependentUpon>CheckSNWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PassDog\DAL\PassDogTable.cs" />
+    <Compile Include="Print\BLL\PaginatorHeaderFooter.cs" />
+    <Compile Include="Print\BLL\PrintManager.cs" />
+    <Compile Include="Print\DAL\PDFSetTable.cs" />
+    <Compile Include="Print\BLL\ExcelManager.cs" />
+    <Compile Include="Print\Model\PDFSet.cs" />
+    <Compile Include="Print\View\OutputSetWin.xaml.cs">
+      <DependentUpon>OutputSetWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Print\View\PrintPreviewWin.xaml.cs">
+      <DependentUpon>PrintPreviewWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManager\BLL\ProjectTreeManager.cs" />
+    <Compile Include="ProjectManager\DAL\ProjectTreeTable.cs" />
+    <Compile Include="ProjectManager\Model\ProjectTree.cs" />
+    <Compile Include="ProjectManager\Model\TreeNode.cs" />
+    <Compile Include="ProjectManager\View\ProjectManagerWin.xaml.cs">
+      <DependentUpon>ProjectManagerWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManager\View\RunLocationResultWin.xaml.cs">
+      <DependentUpon>RunLocationResultWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManager\View\RunResultWin.xaml.cs">
+      <DependentUpon>RunResultWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManager\View\TreeNodeInformationWin.xaml.cs">
+      <DependentUpon>TreeNodeInformationWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManager\View\UC\ProjectTreeUC.xaml.cs">
+      <DependentUpon>ProjectTreeUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Result\BLL\ResultManager.cs" />
+    <Compile Include="Result\BLL\ResultStatic.cs" />
+    <Compile Include="Result\DAL\ResultListTable.cs" />
+    <Compile Include="Result\DAL\ResultUnitTable.cs" />
+    <Compile Include="Result\Model\ResultRow.cs" />
+    <Compile Include="Result\Model\ResultTitle.cs" />
+    <Compile Include="Share\Common\DeepCopy.cs" />
+    <Compile Include="Share\Common\DelegateCommand.cs" />
+    <Compile Include="Share\Common\Descsp.cs" />
+    <Compile Include="Share\Common\DlyNotifyPropertyChanged.cs" />
+    <Compile Include="Share\Common\EnumString.cs" />
+    <Compile Include="Share\Common\IconButton.cs" />
+    <Compile Include="Share\Common\IconToggleButton.cs" />
+    <Compile Include="Share\Common\IDBSetGet.cs" />
+    <Compile Include="Share\Common\MApp.cs" />
+    <Compile Include="Share\Common\MConverter.cs" />
+    <Compile Include="Share\Common\MDouble.cs" />
+    <Compile Include="Share\Common\MString.cs" />
+    <Compile Include="Share\Common\MVisual.cs" />
+    <Compile Include="Share\Common\StringBool.cs" />
+    <Compile Include="Share\Common\StringBuilderSplit.cs" />
+    <Compile Include="Share\Common\StringInt.cs" />
+    <Compile Include="Share\Common\StringsString.cs" />
+    <Compile Include="Share\Common\TextBoxDouble.cs" />
+    <Compile Include="Share\Common\TextBoxDoubleEx.cs" />
+    <Compile Include="Share\Common\TextBoxInt.cs" />
+    <Compile Include="Share\Common\TextLegal.cs" />
+    <Compile Include="Share\Static\ConstStatic.cs" />
+    <Compile Include="Share\Static\ReadXaml.cs" />
+    <Compile Include="Share\View\UC\LoadingWaitUC.xaml.cs">
+      <DependentUpon>LoadingWaitUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Share\View\UC\SwitchButtonUC.xaml.cs">
+      <DependentUpon>SwitchButtonUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Share\View\MessageBoxWin.xaml.cs">
+      <DependentUpon>MessageBoxWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Share\View\StringBoolWin.xaml.cs">
+      <DependentUpon>StringBoolWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Share\Common\UnmanagedArray.cs" />
+    <Compile Include="SystemControl\BLL\DBSelfCheck.cs" />
+    <Compile Include="SystemControl\BLL\SystemControlManager.cs" />
+    <Compile Include="SystemControl\DAL\ConfCheckableTable.cs" />
+    <Compile Include="SystemControl\Model\ConfCheckable.cs" />
+    <Compile Include="SystemControl\View\ScreenLockWin.xaml.cs">
+      <DependentUpon>ScreenLockWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowSize\BLL\WindowSizeManager.cs" />
+    <Compile Include="WindowSize\DAL\WindowSizeTable.cs" />
+    <Compile Include="SystemControl\View\CountdownWin.xaml.cs">
+      <DependentUpon>CountdownWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\DAL\LanguageHelper.cs" />
+    <Compile Include="SystemControl\DAL\ViewVisibilityTable.cs" />
+    <Compile Include="SystemControl\Model\RunData.cs" />
+    <Compile Include="SystemControl\Model\WashItem.cs" />
+    <Compile Include="SystemControl\View\AboutWin.xaml.cs">
+      <DependentUpon>AboutWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\View\SystemControlWin.xaml.cs">
+      <DependentUpon>SystemControlWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\View\SystemMonitorWin.xaml.cs">
+      <DependentUpon>SystemMonitorWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\View\UC\RunParametersUC.xaml.cs">
+      <DependentUpon>RunParametersUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\View\UC\RunStatusUC.xaml.cs">
+      <DependentUpon>RunStatusUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\Model\ViewVisibility.cs" />
+    <Compile Include="SystemLog\BLL\SystemLogManager.cs" />
+    <Compile Include="TubeStand\BLL\TubeStandManager.cs" />
+    <Compile Include="TubeStand\DAL\EnumTubeStand.cs" />
+    <Compile Include="TubeStand\DAL\TubeStandTable.cs" />
+    <Compile Include="TubeStand\Model\TubeStandItem.cs" />
+    <Compile Include="TubeStand\View\TubeStandItemWin.xaml.cs">
+      <DependentUpon>TubeStandItemWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TubeStand\View\TubeStandWin.xaml.cs">
+      <DependentUpon>TubeStandWin.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="HBBio_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Administration\View\AdministrationWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\LoginWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\PermissionAddWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\PermissionEditWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\RegisterWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\ReviewerWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\SignerWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\TacticsEditWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\UserAddWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\UserEditWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\UserLockWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\UserPwdWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Administration\View\UserSwitchWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AuditTrails\View\AuditTrailWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AuditTrails\View\Document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AuditTrails\View\OutputWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AuditTrails\View\UC\AuditTrailsSearchUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AuditTrails\View\UC\AuditTrailsUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chromatogram\View\CurveColorWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chromatogram\View\CurveSetStyleWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chromatogram\View\MarkerAddWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chromatogram\View\MarkerDelWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chromatogram\View\UC\ChromatogramUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chromatogram\View\UC\ContrastUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Collection\View\CollectionItemWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Collection\View\UC\CollectionObjectMultiUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Collection\View\UC\CollectionObjectUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Collection\View\UC\CollectionUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColumnList\View\ColumnHandlingWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColumnList\View\ColumnItemWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColumnList\View\Document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ColumnList\View\OutputWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\CollectorHBModeWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\UC\RIUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Communication\View\AddressPortWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\AlarmWarningWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\CalOEMCDWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\CalOEMPHWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\CollectorQBHModeWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\CommunSetsWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\ConfAlarmWarningWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\EditCommunWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\EditProcessPictureWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\NewCommunWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\SystemConfigWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\UC\ConfASUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\UC\MonitorParaUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\UC\ProcessPictureUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\UC\UVUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Database\View\DBAutoBackupWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Database\View\DBBackupRestoreWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\Color.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryCheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryGroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryLabel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryPasswordBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryRadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryScrollBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryTextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryToolkitDateTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\DictionaryToolkitDoubleUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryTreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\DictionaryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\en-us.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\zh-cn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Evaluation\View\ContrastWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Evaluation\View\Document.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Evaluation\View\EvaluationWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Evaluation\View\IntegrationSetWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Evaluation\View\OutputSelectSetWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Evaluation\View\OutputWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HoldUntil\HoldUntilWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manual\View\OutWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manual\View\ASWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Manual\View\CollectorWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Manual\View\ManualWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Manual\View\MixerWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Manual\View\PumpSampleWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Manual\View\PumpSystemWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Manual\View\RIWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\UC\ASManualParaUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Manual\View\UVWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Manual\View\ValveWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\UC\MixerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MethodEdit\View\Intervene\ASWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\PersonalPhaseWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MethodEdit\View\Intervene\PumpSampleWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\Intervene\PumpSystemWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\MixerUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\TVCVUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\BPVUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MethodEdit\View\RenamePhaseNameWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MethodEdit\View\MS\DefineQuestionsWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\MethodEditorWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\MethodQueueWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\NewMethodWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\MS\NotesWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\OutputWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\MS\ResultNameWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Communication\View\UC\ASMethodParaUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Canvas\MethodCanvasUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\CIPUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\CollValveCollectorUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\FlowRatePerUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\FlowRateUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\FlowValveLengthUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\PHCDUVUntilUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\SampleApplicationTechUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\ValveSelectionUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\UVResetUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PassDog\View\CheckSNWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Print\View\OutputSetWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Print\View\PrintPreviewWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectManager\View\ProjectManagerWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectManager\View\RunLocationResultWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectManager\View\RunResultWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectManager\View\TreeNodeInformationWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectManager\View\UC\ProjectTreeUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Share\View\UC\LoadingWaitUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Share\View\UC\SwitchButtonUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Share\View\MessageBoxWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Share\View\StringBoolWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SystemControl\View\ScreenLockWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\View\CountdownWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\View\AboutWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\View\SystemControlWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SystemControl\View\SystemMonitorWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\View\UC\RunParametersUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\View\UC\RunStatusUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TubeStand\View\TubeStandItemWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TubeStand\View\TubeStandWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\about.png" />
+    <Resource Include="Image\add.png" />
+    <Resource Include="Image\administration.png" />
+    <Resource Include="Image\alarm.png" />
+    <Resource Include="Image\alarmNo.png" />
+    <Resource Include="Image\alarmYes.png" />
+    <Resource Include="Image\auditTrails.png" />
+    <Resource Include="Image\back.png" />
+    <Resource Include="Image\begin.png" />
+    <Resource Include="Image\chromatogram.png" />
+    <Resource Include="Image\clear.png" />
+    <Resource Include="Image\columnHandling.png" />
+    <Resource Include="Image\communication.png" />
+    <Resource Include="Image\config.png" />
+    <Resource Include="Image\continue.png" />
+    <Resource Include="Image\contrast.png" />
+    <Resource Include="Image\copy.png" />
+    <Resource Include="Image\database.png" />
+    <Resource Include="Image\delete.png" />
+    <Resource Include="Image\downArrowCircle.png" />
+    <Resource Include="Image\edit.png" />
+    <Resource Include="Image\end.png" />
+    <Resource Include="Image\export.png" />
+    <Resource Include="Image\folderClose.png" />
+    <Resource Include="Image\folderClose1.png" />
+    <Resource Include="Image\folderMinus.png" />
+    <Resource Include="Image\folderOpen.png" />
+    <Resource Include="Image\folderOpen1.png" />
+    <Resource Include="Image\folderPlus.png" />
+    <Resource Include="Image\general.png" />
+    <Resource Include="Image\hblog.ico" />
+    <Resource Include="Image\help.png" />
+    <Resource Include="Image\hold.png" />
+    <Resource Include="Image\holdUntil.png" />
+    <Resource Include="Image\import.png" />
+    <Resource Include="Image\insert.png" />
+    <Resource Include="Image\language.png" />
+    <Resource Include="Image\leftArrow.png" />
+    <Resource Include="Image\leftArrowCircle.png" />
+    <Resource Include="Image\lock.png" />
+    <Resource Include="Image\manual.png" />
+    <Resource Include="Image\message.png" />
+    <Resource Include="Image\method.png" />
+    <Resource Include="Image\methodQueue.png" />
+    <Resource Include="Image\monitor.png" />
+    <Resource Include="Image\next.png" />
+    <Resource Include="Image\off.png" />
+    <Resource Include="Image\on.png" />
+    <Resource Include="Image\open.png" />
+    <Resource Include="Image\ouputSet.png" />
+    <Resource Include="Image\paste.png" />
+    <Resource Include="Image\pause.png" />
+    <Resource Include="Image\pdf.png" />
+    <Resource Include="Image\peak\Boundary.png" />
+    <Resource Include="Image\peak\Criticality.png" />
+    <Resource Include="Image\peak\DelPeak.png" />
+    <Resource Include="Image\peak\MinusPeak.png" />
+    <Resource Include="Image\peak\PeakBackCut.png" />
+    <Resource Include="Image\peak\PeakEnd.png" />
+    <Resource Include="Image\peak\PeakFrontCut.png" />
+    <Resource Include="Image\peak\PeakStart.png" />
+    <Resource Include="Image\peak\PeakWidth.png" />
+    <Resource Include="Image\peak\PlusPeak.png" />
+    <Resource Include="Image\peak\SeverPeakValley.png" />
+    <Resource Include="Image\peak\Seververtical.png" />
+    <Resource Include="Image\prev.png" />
+    <Resource Include="Image\processPicture.png" />
+    <Resource Include="Image\project.png" />
+    <Resource Include="Image\refresh.png" />
+    <Resource Include="Image\rename.png" />
+    <Resource Include="Image\rightArrow.png" />
+    <Resource Include="Image\rightArrowCircle.png" />
+    <Resource Include="Image\run.png" />
+    <Resource Include="Image\runData.png" />
+    <Resource Include="Image\save.png" />
+    <Resource Include="Image\search.png" />
+    <Resource Include="Image\selectAll.png" />
+    <Resource Include="Image\selectNull.png" />
+    <Resource Include="Image\send.png" />
+    <Resource Include="Image\signer.png" />
+    <Resource Include="Image\start.gif" />
+    <Resource Include="Image\stop.png" />
+    <Resource Include="Image\transmission.png" />
+    <Resource Include="Image\txtBold.png" />
+    <Resource Include="Image\txtItalic.png" />
+    <Resource Include="Image\txtUnderline.png" />
+    <Resource Include="Image\unlock.png" />
+    <Resource Include="Image\upArrowCircle.png" />
+    <Resource Include="Image\user.png" />
+    <Resource Include="Image\userPwd.png" />
+    <Resource Include="Image\userSwitch.png" />
+    <Resource Include="Image\zoomIn.png" />
+    <Resource Include="Image\zoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hblog.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\cd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\ph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\uv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\tube.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\windowSize.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

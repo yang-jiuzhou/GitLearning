@@ -1,0 +1,53 @@
+﻿<Window x:Class="HBBio.MethodEdit.NewMethodWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.MethodEdit"
+        mc:Ignorable="d"
+        Title="{DynamicResource ME_NewMethodWin}" SizeToContent="WidthAndHeight" MinHeight="369" MinWidth="500"  WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{DynamicResource ME_Type1}"/>
+            <RadioButton x:Name="rbtnPurification" Grid.Row="2" Margin="20,0,0,0" Content="{DynamicResource ME_Purification1}"/>
+            <ComboBox x:Name="cboxPurification" Grid.Row="4" Margin="40,0,0,0" IsEnabled="{Binding ElementName=rbtnPurification,Path=IsChecked}"/>
+            <RadioButton x:Name="rbtnMaintenance" Grid.Row="6" Margin="20,0,0,0" Content="{DynamicResource ME_Maintenance1}"/>
+            <ComboBox x:Name="cboxMaintenance" Grid.Row="8" Margin="40,0,0,0" IsEnabled="{Binding ElementName=rbtnMaintenance,Path=IsChecked}"/>
+            <RadioButton Grid.Row="10" Margin="20,0,0,0" Content="{DynamicResource ME_Empty}" IsChecked="True"/>
+            <TextBlock Grid.Row="12" Text="{DynamicResource ME_Name1}"/>
+            <TextBox x:Name="txtMethodName" Grid.Row="14" Margin="40,0,0,0"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnOK" Grid.Column="1" Content="{DynamicResource btnOK}" Click="btnOK_Click"/>
+            <Button x:Name="btnCancel" Grid.Column="3" Content="{DynamicResource btnCancel}" Click="btnCancel_Click"/>
+        </Grid>
+    </Grid>
+</Window>

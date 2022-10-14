@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="HBBio.MethodEdit.BPVUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HBBio.MethodEdit"
+             xmlns:comm="clr-namespace:HBBio.Communication"
+             mc:Ignorable="d">
+    <GroupBox Header="{DynamicResource ME_EnumGroupType_BPV}">
+        <StackPanel Margin="15" Orientation="Horizontal" VerticalAlignment="Top">
+            <TextBlock Text="{DynamicResource labBPV1}"/>
+            <ComboBox Margin="5,0" ItemsSource="{x:Static comm:EnumBPVInfo.NameList}" SelectedIndex="{Binding MBPV}"/>
+        </StackPanel>
+    </GroupBox>
+</UserControl>

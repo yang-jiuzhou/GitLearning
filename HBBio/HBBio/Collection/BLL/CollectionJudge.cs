@@ -9,17 +9,17 @@ namespace HBBio.Collection
     class CollectionJudge
     {
         public static EnumNOIngFinish JudgeObjectMulti(ref EnumNOIngFinish status1, ref EnumNOIngFinish status2,
-            double[] listTVCV, List<double> listVal, List<double> listSlope, CollectionObjectMulti item,
+            double[] listTVCV, List<double> listVal, List<double> listMinVal, List<double> listMaxVal, List<double> listSlope, List<double> listLastSlope, CollectionObjectMulti item,
             double compare1, ref double compare2)
         {
             switch (item.MRelation)
             {
                 case EnumRelation.Only:
-                    JudgeTVCVPHCDUV(ref status1, listTVCV, listVal, listSlope, item.MObj1, compare1);
+                    JudgeTVCVPHCDUV(ref status1, listTVCV, listVal, listMinVal, listMaxVal, listSlope, listLastSlope, item.MObj1, compare1);
                     break;
                 default:
-                    JudgeTVCVPHCDUV(ref status1, listTVCV, listVal, listSlope, item.MObj1, compare1);
-                    JudgeTVCVPHCDUV(ref status2, listTVCV, listVal, listSlope, item.MObj2, compare2);
+                    JudgeTVCVPHCDUV(ref status1, listTVCV, listVal, listMinVal, listMaxVal, listSlope, listLastSlope, item.MObj1, compare1);
+                    JudgeTVCVPHCDUV(ref status2, listTVCV, listVal, listMinVal, listMaxVal, listSlope, listLastSlope, item.MObj2, compare2);
                     break;
             }
 
@@ -410,7 +410,7 @@ namespace HBBio.Collection
         /// 判断T,V,CV,PH,CD,UV
         /// </summary>
         /// <param name="val"></param>
-        private static void JudgeTVCVPHCDUV(ref EnumNOIngFinish status, double[] listTVCV, List<double> listVal, List<double> listSlope, CollectionObject item, double compare)
+        private static void JudgeTVCVPHCDUV(ref EnumNOIngFinish status, double[] listTVCV, List<double> listVal, List<double> listMinVal, List<double> listMaxVal, List<double> listSlope, List<double> listLastSlope, CollectionObject item, double compare)
         {
             switch (item.MType)
             {
@@ -423,7 +423,11 @@ namespace HBBio.Collection
                     switch (item.MTS)
                     {
                         case EnumThresholdSlope.Threshold:
-                            JudgePHCDUV(ref status, listVal[item.MType - 3], item.MTdB, item.MTdE, listSlope[item.MType - 3]);
+                            double tmpMin = listMinVal[item.MType - 3];
+                            double tmpMax = listMaxVal[item.MType - 3];
+                            JudgePHCDUV(ref status, listVal[item.MType - 3], item.MTdB, item.MTdE, listSlope[item.MType - 3], listLastSlope[item.MType - 3], ref tmpMin, ref tmpMax);
+                            listMinVal[item.MType - 3] = tmpMin;
+                            listMaxVal[item.MType - 3] = tmpMax;
                             break;
                         case EnumThresholdSlope.Slope:
                             JudgePHCDUV(ref status, listSlope[item.MType - 3], item.MSJ, item.MSlope);
@@ -603,7 +607,7 @@ namespace HBBio.Collection
         /// 判断PH,CD,UV
         /// </summary>
         /// <param name="val"></param>
-        private static void JudgePHCDUV(ref EnumNOIngFinish status, double val, double ts, double te, double k)
+        private static void JudgePHCDUV(ref EnumNOIngFinish status, double val, double ts, double te, double k, double k_last, ref double valMin, ref double valMax)
         {
             switch (status)
             {
@@ -628,10 +632,22 @@ namespace HBBio.Collection
                     break;
                 case EnumNOIngFinish.IngFirst:
                     status = EnumNOIngFinish.Ing;
+                    valMin = val;
+                    valMax = val;
                     break;
                 case EnumNOIngFinish.Ing:
-                    if (val < te && k < 0)
+                    if (val < valMin)
                     {
+                        valMin = val;
+                    }
+                    else if(val > valMax)
+                    {
+                        valMax = val;
+                    }
+
+                    if (val < te && k < 0 || (k > 0 && k_last < 0 && val < valMax - (valMax - valMin) / 5))
+                    {
+                        //1.当前值小于结束值；2.斜率由负变正且当前值小于逢高的1/5
                         status = EnumNOIngFinish.Finish;
                     }
                     break;

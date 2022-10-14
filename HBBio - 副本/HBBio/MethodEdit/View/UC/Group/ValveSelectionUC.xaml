@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="HBBio.MethodEdit.ValveSelectionUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:HBBio.MethodEdit"
+             xmlns:share="clr-namespace:HBBio.Share"
+             xmlns:comm="clr-namespace:HBBio.Communication"
+             mc:Ignorable="d">
+    <GroupBox Header="{DynamicResource ME_EnumGroupType_ValveSelection}">
+        <Grid x:Name="grid" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <CheckBox x:Name="chboxUTSIAIMS" Grid.Row="0" Grid.ColumnSpan="8" Content="{DynamicResource ME_SameMSValve}" IsChecked="{Binding MEnableSameMS}"/>
+            <TextBlock x:Name="labInA" Grid.Row="2" Text="{DynamicResource labInA1}"/>
+            <ComboBox x:Name="cboxInA" Grid.Row="2" Grid.Column="2" ItemsSource="{x:Static comm:EnumInAInfo.NameList}" SelectedIndex="{Binding MInA}"/>
+            <TextBlock x:Name="labInB" Grid.Row="4" Text="{DynamicResource labInB1}"/>
+            <ComboBox x:Name="cboxInB" Grid.Row="4" Grid.Column="2" ItemsSource="{x:Static comm:EnumInBInfo.NameList}" SelectedIndex="{Binding MInB}"/>
+            <xctk:DoubleUpDown x:Name="doublePerB" Grid.Row="4" Grid.Column="4" Maximum="100" Value="{Binding MPerB}" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ValveSelectionUC}},Path=VisibilityPer}"/>
+            <TextBlock x:Name="labPerB" Grid.Row="4" Grid.Column="6" Text="%B" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ValveSelectionUC}},Path=VisibilityPer}"/>
+            <TextBlock x:Name="labInC" Grid.Row="6" Text="{DynamicResource labInC1}"/>
+            <ComboBox x:Name="cboxInC" Grid.Row="6" Grid.Column="2" ItemsSource="{x:Static comm:EnumInCInfo.NameList}" SelectedIndex="{Binding MInC}"/>
+            <xctk:DoubleUpDown x:Name="doublePerC" Grid.Row="6" Grid.Column="4" Maximum="100" Value="{Binding MPerC}" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ValveSelectionUC}},Path=VisibilityPer}"/>
+            <TextBlock x:Name="labPerC" Grid.Row="6" Grid.Column="6" Text="%C" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ValveSelectionUC}},Path=VisibilityPer}"/>
+            <TextBlock x:Name="labInD" Grid.Row="8" Text="{DynamicResource labInD1}"/>
+            <ComboBox x:Name="cboxInD" Grid.Row="8" Grid.Column="2" ItemsSource="{x:Static comm:EnumInDInfo.NameList}" SelectedIndex="{Binding MInD}"/>
+            <xctk:DoubleUpDown x:Name="doublePerD" Grid.Row="8" Grid.Column="4" Maximum="100" Value="{Binding MPerD}" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ValveSelectionUC}},Path=VisibilityPer}"/>
+            <TextBlock x:Name="labPerD" Grid.Row="8" Grid.Column="6" Text="%D" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ValveSelectionUC}},Path=VisibilityPer}"/>
+            <TextBlock x:Name="labBPV" Grid.Row="10" Text="{DynamicResource labBPV1}"/>
+            <ComboBox x:Name="cboxBPV" Grid.Row="10" Grid.Column="2" ItemsSource="{x:Static comm:EnumBPVInfo.NameList}" SelectedIndex="{Binding MBPV}"/>
+            <CheckBox x:Name="chboxFTSWTSB" Grid.Row="12" Grid.ColumnSpan="8" Content="{DynamicResource ME_FTSWTSB}" IsChecked="{Binding MEnableWash}" Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ValveSelectionUC}},Path=VisibilityFillSystem}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

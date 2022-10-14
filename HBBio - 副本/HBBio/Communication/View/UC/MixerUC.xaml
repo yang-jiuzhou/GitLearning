@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="HBBio.Communication.MixerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HBBio.Communication"
+             xmlns:share="clr-namespace:HBBio.Share"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <share:BoolFalseConverter x:Key="BoolFalseConverter"></share:BoolFalseConverter>
+    </UserControl.Resources>
+    <StackPanel Margin="15" Orientation="Horizontal" VerticalAlignment="Top">
+        <TextBlock x:Name="labMixer" Margin="5" Text="{DynamicResource labMixer1}"/>
+        <RadioButton x:Name="rbtnOn" Content="{DynamicResource labOn}" IsChecked="{Binding MOnoff}"/>
+        <RadioButton x:Name="rbtnOff" Content="{DynamicResource labOff}" IsChecked="{Binding MOnoff,Converter={StaticResource BoolFalseConverter}}"/>
+    </StackPanel>
+</UserControl>

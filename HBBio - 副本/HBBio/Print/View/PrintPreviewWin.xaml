@@ -1,0 +1,12 @@
+﻿<Window x:Class="HBBio.Print.PrintPreviewWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.Print"
+        mc:Ignorable="d"
+        Title="{DynamicResource Print_PrintPreviewWin}" Height="463" Width="750" MinHeight="309" MinWidth="500" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
+    <Grid>
+        <DocumentViewer Name="docViewer"/>
+    </Grid>
+</Window>

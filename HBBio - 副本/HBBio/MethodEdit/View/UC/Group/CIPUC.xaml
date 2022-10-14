@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="HBBio.MethodEdit.CIPUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:HBBio.MethodEdit"
+             xmlns:share="clr-namespace:HBBio.Share"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ListboxCheck">
+            <CheckBox IsChecked="{Binding MIsSelected}" Content="{Binding MValveName}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <GroupBox Header="{DynamicResource ME_EnumGroupType_CIP}">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource labNote1}"/>
+                <TextBox Margin="15,0" Text="{Binding MNote}" MaxWidth="350"/>
+            </StackPanel>
+            <CheckBox x:Name="chboxPTMMAITTSS" Grid.Row="2" Content="{DynamicResource ME_PTMMAITTSS}" IsChecked="{Binding Path=MPause,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <local:FlowRateUC x:Name="flowRateUC" Grid.Row="4"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="6">
+                <TextBlock Text="{DynamicResource ME_VolumePerPosition1}"/>
+                <xctk:DoubleUpDown Margin="15,0" Value="{Binding MVolumePerPosition}"/>
+                <TextBlock Text="{x:Static share:DlyBase.SC_VUNITML}"/>
+            </StackPanel>
+            <Grid Grid.Row="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <TextBlock x:Name="PumpA" Text="{DynamicResource labPumpA}"/>
+                    <TextBlock x:Name="InA" Text="{DynamicResource labInA}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2">
+                    <TextBlock x:Name="PumpB" Text="{DynamicResource labPumpB}"/>
+                    <TextBlock x:Name="InB" Text="{DynamicResource labInB}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4">
+                    <TextBlock x:Name="PumpC" Text="{DynamicResource labPumpC}"/>
+                    <TextBlock x:Name="InC" Text="{DynamicResource labInC}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="6">
+                    <TextBlock x:Name="PumpD" Text="{DynamicResource labPumpD}"/>
+                    <TextBlock x:Name="InD" Text="{DynamicResource labInD}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="8">
+                    <TextBlock x:Name="PumpS" Text="{DynamicResource labPumpS}"/>
+                    <TextBlock x:Name="InS" Text="{DynamicResource labInS}"/>
+                </StackPanel>
+                <TextBlock x:Name="CPV" Grid.Row="0" Grid.Column="10" Text="{DynamicResource labCPV}"/>
+                <TextBlock x:Name="Out" Grid.Row="0" Grid.Column="12" Text="{DynamicResource labOut}"/>
+                <ListBox x:Name="boxInA" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding MListInA}" ItemTemplate="{StaticResource ListboxCheck}"/>
+                <ListBox x:Name="boxInB" Grid.Row="2" Grid.Column="2" ItemsSource="{Binding MListInB}" ItemTemplate="{StaticResource ListboxCheck}"/>
+                <ListBox x:Name="boxInC" Grid.Row="2" Grid.Column="4" ItemsSource="{Binding MListInC}" ItemTemplate="{StaticResource ListboxCheck}"/>
+                <ListBox x:Name="boxInD" Grid.Row="2" Grid.Column="6" ItemsSource="{Binding MListInD}" ItemTemplate="{StaticResource ListboxCheck}"/>
+                <ListBox x:Name="boxInS" Grid.Row="2" Grid.Column="8" ItemsSource="{Binding MListInS}" ItemTemplate="{StaticResource ListboxCheck}"/>
+                <ListBox x:Name="boxCPV" Grid.Row="2" Grid.Column="10" ItemsSource="{Binding MListCPV}" ItemTemplate="{StaticResource ListboxCheck}"/>
+                <ListBox x:Name="boxOut" Grid.Row="2" Grid.Column="12" ItemsSource="{Binding MListOut}" ItemTemplate="{StaticResource ListboxCheck}"/>
+                <CheckBox x:Name="chboxInA" Grid.Row="4" Grid.Column="0" Content="{DynamicResource labSelectAll}" Click="chboxInA_Click"/>
+                <CheckBox x:Name="chboxInB" Grid.Row="4" Grid.Column="2" Content="{DynamicResource labSelectAll}" Click="chboxInB_Click"/>
+                <CheckBox x:Name="chboxInC" Grid.Row="4" Grid.Column="4" Content="{DynamicResource labSelectAll}" Click="chboxInC_Click"/>
+                <CheckBox x:Name="chboxInD" Grid.Row="4" Grid.Column="6" Content="{DynamicResource labSelectAll}" Click="chboxInD_Click"/>
+                <CheckBox x:Name="chboxInS" Grid.Row="4" Grid.Column="8" Content="{DynamicResource labSelectAll}" Click="chboxInS_Click"/>
+                <CheckBox x:Name="chboxCPV" Grid.Row="4" Grid.Column="10" Content="{DynamicResource labSelectAll}" Click="chboxCPV_Click"/>
+                <CheckBox x:Name="chboxOut" Grid.Row="4" Grid.Column="12" Content="{DynamicResource labSelectAll}" Click="chboxOut_Click"/>
+            </Grid>
+            <StackPanel Grid.Row="10" Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource ME_ESVUITP1}"/>
+                <xctk:DoubleUpDown  Margin="15,0" IsReadOnly="True" Text="{Binding MVolumeTotal}"/>
+                <TextBlock Text="{x:Static share:DlyBase.SC_VUNITML}"/>
+            </StackPanel>
+        </Grid>
+    </GroupBox>
+</UserControl>

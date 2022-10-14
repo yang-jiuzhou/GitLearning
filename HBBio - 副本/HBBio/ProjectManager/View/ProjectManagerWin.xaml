@@ -1,0 +1,119 @@
+﻿<Window x:Class="HBBio.ProjectManager.ProjectManagerWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.ProjectManager"
+        xmlns:share="clr-namespace:HBBio.Share"
+        xmlns:methodedit="clr-namespace:HBBio.MethodEdit"
+        mc:Ignorable="d"
+        Title="{DynamicResource PM_ProjectManagerWin}" Height="500" Width="800" MinHeight="461" MinWidth="750" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="500"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <local:ProjectTreeUC x:Name="projectTreeUC" Grid.Column="0"/>
+        <TabControl x:Name="tabControl" Grid.Column="2">
+            <TabItem x:Name="tabMethod" Header="{DynamicResource PM_MethodEditor}">
+                <DockPanel Visibility="{Binding ElementName=tabMethod,Path=Visibility}">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <share:IconButton x:Name="btnNewMethod" ToolTip="{DynamicResource PM_AddMethod}" Margin="5" Click="btnNewMethod_Click" Image="/Bio-LabChrom;component/Image/add.png"/>
+                        <share:IconButton x:Name="btnNewMethodQueue" ToolTip="{DynamicResource PM_AddMethodQueue}" Margin="5" Click="btnNewMethodQueue_Click" Image="/Bio-LabChrom;component/Image/add.png"/>
+                        <share:IconButton x:Name="btnRenameMethod" ToolTip="{DynamicResource btnRename}" Margin="5" Click="btnRenameMethod_Click" Image="/Bio-LabChrom;component/Image/rename.PNG"/>
+                        <share:IconButton x:Name="btnEditMethod" ToolTip="{DynamicResource btnEdit}" Margin="5" Click="btnEditMethod_Click" Image="/Bio-LabChrom;component/Image/edit.PNG"/>
+                        <share:IconButton x:Name="btnDelMethod" ToolTip="{DynamicResource btnDel}" Margin="5" Click="btnDelMethod_Click" Image="/Bio-LabChrom;component/Image/delete.png"/>
+                        <share:IconButton x:Name="btnCopyMethod" ToolTip="{DynamicResource btnCopy}" Margin="5" Click="btnCopyMethod_Click" Image="/Bio-LabChrom;component/Image/copy.PNG"/>
+                        <share:IconButton x:Name="btnPasteMethod" ToolTip="{DynamicResource btnPaste}" Margin="5" IsEnabled="False" Click="btnPasteMethod_Click" Image="/Bio-LabChrom;component/Image/paste.PNG"/>
+                        <share:IconButton x:Name="btnPrintMethod" ToolTip="{DynamicResource btnPrint}" Margin="5,5" Click="btnPrintMethod_Click" Image="/Bio-LabChrom;component/Image/pdf.png"/>
+                        <share:IconButton x:Name="btnExportMethod" ToolTip="{DynamicResource btnExport}" Margin="5,5" Click="btnExportMethod_Click" Image="/Bio-LabChrom;component/Image/export.png"/>
+                        <share:IconButton x:Name="btnImportMethod" ToolTip="{DynamicResource btnImport}" Margin="5,5" Click="btnImportMethod_Click" Image="/Bio-LabChrom;component/Image/import.png"/>
+                        <share:IconButton x:Name="btnSendMethod" ToolTip="{DynamicResource btnSend}" Margin="5" Click="btnSendMethod_Click" Image="/Bio-LabChrom;component/Image/send.PNG"/>
+                    </StackPanel>
+                    <Grid Margin="5" DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{DynamicResource E_Filter1}"/>
+                        <TextBox x:Name="txtFilterMethod" Grid.Column="2" TextChanged="txtFilterMethod_TextChanged"/>
+                    </Grid>
+                    <ListBox x:Name="listMethod" SelectionMode="Extended" MouseDoubleClick="listMethod_MouseDoubleClick">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Image Stretch="Fill" Source="{Binding MIcon}"/>
+                                        <TextBlock Text="{Binding MName}" Padding="5"/>
+                                    </StackPanel>
+                                    <TextBox x:Name="txtRenameMethod" Text="{Binding MName}" Visibility="Collapsed" LostFocus="txtRenameMethod_LostFocus"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem x:Name="tabEvaluation" Header="{DynamicResource PM_Evaluation}">
+                <DockPanel Visibility="{Binding ElementName=tabEvaluation,Path=Visibility}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <share:IconButton x:Name="btnOpenResult" ToolTip="{DynamicResource btnOpen}" Margin="5" Click="btnOpenResult_Click" Image="/Bio-LabChrom;component/Image/open.PNG"/>
+                        <share:IconButton x:Name="btnContrastResult" ToolTip="{DynamicResource btnCompare}" Margin="5" Click="btnContrastResult_Click" Image="/Bio-LabChrom;component/Image/contrast.PNG"/>
+                        <share:IconButton x:Name="btnBG" ToolTip="{DynamicResource D_BG}" Margin="5" Click="btnBG_Click" Image="/Bio-LabChrom;component/Image/send.PNG"/>
+                        <share:IconButton x:Name="btnRenameResult" ToolTip="{DynamicResource btnRename}" Margin="5" Click="btnRenameResult_Click" Image="/Bio-LabChrom;component/Image/rename.PNG"/>
+                        <Label/>
+                    </DockPanel>
+                    <Grid Margin="5" DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{DynamicResource E_Filter1}"/>
+                        <TextBox x:Name="txtFilterResult" Grid.Column="2" TextChanged="txtFilterResult_TextChanged"/>
+                    </Grid>
+                    <ListBox x:Name="listResult" HorizontalContentAlignment="Stretch" MouseDoubleClick="listResult_MouseDoubleClick">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Height="30" Background="Transparent">
+                                        <CheckBox IsChecked="{Binding MCheck}" MinWidth="30" Width="30"/>
+                                        <Image Stretch="Fill" Source="{Binding MIcon}"/>
+                                        <TextBlock Text="{Binding MName}"/>
+                                        <StackPanel.ToolTip>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="5"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="5"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="5"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource labStartTime1}"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding MBeginTimeStr}"/>
+                                                <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource labEndTime1}"/>
+                                                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding MEndTimeStr}"/>
+                                                <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource labUser1}"/>
+                                                <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding MUserName}"/>
+                                            </Grid>
+                                        </StackPanel.ToolTip>
+                                    </StackPanel>
+                                    <TextBox x:Name="txtRenameResult" Text="{Binding MName}" Visibility="Collapsed" LostFocus="txtRenameResult_LostFocus"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

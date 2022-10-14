@@ -1,0 +1,31 @@
+﻿<Window x:Class="HBBio.MethodEdit.RenamePhaseNameWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.MethodEdit"
+        mc:Ignorable="d"
+        Title="{DynamicResource ME_RenamePhaseNameWin}" Window.SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource ME_PhaseOld1}"/>
+        <TextBox x:Name="txtOld" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" IsReadOnly="True"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource ME_PhaseNew1}"/>
+        <TextBox x:Name="txtNew" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3"/>
+        <Button x:Name="btnOK" Grid.Row="4" Grid.Column="2" Content="{DynamicResource btnOK}" Click="btnOK_Click"/>
+        <Button x:Name="btnCancel" Grid.Row="4" Grid.Column="4" Content="{DynamicResource btnCancel}" Click="btnCancel_Click"/>
+    </Grid>
+</Window>

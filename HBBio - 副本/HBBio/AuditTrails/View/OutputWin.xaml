@@ -1,0 +1,34 @@
+﻿<Window x:Class="HBBio.AuditTrails.OutputWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.AuditTrails"
+        xmlns:share="clr-namespace:HBBio.Share"
+        mc:Ignorable="d"
+        Title="{DynamicResource AT_OutputWin}" Height="463" Width="750" MinHeight="309" MinWidth="500" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBarTray>
+            <ToolBar x:Name="bar">
+                <share:IconButton x:Name="btnWeight" Margin="2,0" Click="btnWeight_Click" Image="/Bio-LabChrom;component/Image/txtBold.png"/>
+                <share:IconButton x:Name="btnStyle" Margin="2,0" Click="btnStyle_Click" Image="/Bio-LabChrom;component/Image/txtItalic.png"/>
+                <share:IconButton x:Name="btnUnderline" Margin="2,0" Click="btnUnderline_Click" Image="/Bio-LabChrom;component/Image/txtUnderline.png"/>
+                <ComboBox x:Name="cboxSize" Margin="2,0" Width="50" Height="35" SelectionChanged="cboxSize_SelectionChanged"/>
+                <ComboBox x:Name="cboxFamily" Margin="2,0" Width="100" Height="35" SelectionChanged="cboxFamily_SelectionChanged"/>
+                <Button x:Name="btnColorFore" Margin="2,0" Width="30" Height="30" Click="btnColorFore_Click"/>
+                <Button x:Name="btnColorBack" Margin="2,0" Width="30" Height="30" Click="btnColorBack_Click"/>
+                <Button x:Name="btnMore" Margin="2,0" Height="30" Content="{DynamicResource btnMore}" FontSize="22" Click="btnMore_Click"/>
+            </ToolBar>
+        </ToolBarTray>
+        <Grid Grid.Row="1">
+            <FlowDocumentReader x:Name="docReader"/>
+            <share:LoadingWaitUC x:Name="loadingWaitUC"/>
+        </Grid>
+        <Button x:Name="btnPrint" Grid.Row="2" Content="{DynamicResource btnPrint}" Click="btnPrint_Click"/>
+    </Grid>
+</Window>

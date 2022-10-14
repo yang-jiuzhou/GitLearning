@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="HBBio.MethodEdit.FlowRatePerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HBBio.MethodEdit"
+             xmlns:share="clr-namespace:HBBio.Share"
+             xmlns:comm="clr-namespace:HBBio.Communication"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ColumnWash">
+            <ComboBox ItemsSource="{x:Static comm:EnumWashInfo.NameList}" SelectedIndex="{Binding Path=MFillSystem,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <GroupBox Header="{DynamicResource ME_EnumGroupType_FlowRatePer}">
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="121*"/>
+                <ColumnDefinition Width="838*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <share:IconButton x:Name="btnAdd" ToolTip="{DynamicResource btnAdd}" Margin="5" Click="btnAdd_Click" Image="/Bio-LabChrom;component/Image/add.png"/>
+                <share:IconButton x:Name="btnDel" ToolTip="{DynamicResource btnDel}" Margin="5" Click="btnDel_Click" Image="/Bio-LabChrom;component/Image/delete.png"/>
+                <share:IconButton x:Name="btnUp" ToolTip="{DynamicResource btnUp}" Margin="5" Click="btnUp_Click" Image="/Bio-LabChrom;component/Image/upArrowCircle.png"/>
+                <share:IconButton x:Name="btnDown" ToolTip="{DynamicResource btnDown}" Margin="5" Click="btnDown_Click" Image="/Bio-LabChrom;component/Image/downArrowCircle.png"/>
+                <share:IconButton x:Name="btnCopy" ToolTip="{DynamicResource btnCopy}" Margin="5" Click="btnCopy_Click" Image="/Bio-LabChrom;component/Image/copy.PNG"/>
+                <share:IconButton x:Name="btnPaste" ToolTip="{DynamicResource btnPaste}" Margin="5" Click="btnPaste_Click" Image="/Bio-LabChrom;component/Image/paste.PNG"/>
+            </StackPanel>
+            <DataGrid x:Name="dgv" Grid.Column="2" FrozenColumnCount="1" CanUserReorderColumns="False" CanUserSortColumns="False" CellEditEnding="dgv_CellEditEnding" Grid.ColumnSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="colBS" Binding="{Binding MPerBS,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabBS}"/>
+                    <DataGridTextColumn x:Name="colBE" Binding="{Binding MPerBE,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabBE}"/>
+                    <DataGridTextColumn x:Name="colCS" Binding="{Binding MPerCS,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabCS}"/>
+                    <DataGridTextColumn x:Name="colCE" Binding="{Binding MPerCE,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabCE}"/>
+                    <DataGridTextColumn x:Name="colDS" Binding="{Binding MPerDS,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabDS}"/>
+                    <DataGridTextColumn x:Name="colDE" Binding="{Binding MPerDE,UpdateSourceTrigger=LostFocus}" Header="{StaticResource LabDE}"/>
+                    <DataGridTemplateColumn x:Name="colWash" CellTemplate="{StaticResource ColumnWash}" Header="{StaticResource labFillSystem}"/>
+                    <DataGridTextColumn x:Name="colTVCV" Binding="{Binding Path=MBaseTVCV,UpdateSourceTrigger=LostFocus}">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=DataContext.MBaseStr,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                    <TextBlock Text="("/>
+                                    <TextBlock Text="{Binding Path=DataContext.MBaseUnitStr,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </GroupBox>
+</UserControl>

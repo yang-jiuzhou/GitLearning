@@ -1,0 +1,39 @@
+﻿<Window x:Class="HBBio.PassDog.CheckSNWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HBBio.PassDog"
+        mc:Ignorable="d"
+        Title="{DynamicResource PassDog_CheckSNWin}" Window.SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="SN : "/>
+        <TextBox x:Name="txtHB" Grid.Row="0" Grid.Column="2"/>
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="-"/>
+        <TextBox x:Name="txtName" Grid.Row="0" Grid.Column="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="5" Text="-"/>
+        <TextBox x:Name="txtMode" Grid.Row="0" Grid.Column="6"/>
+        <TextBlock Grid.Row="0" Grid.Column="7" Text="-"/>
+        <TextBox x:Name="txtSN" Grid.Row="0" Grid.Column="8"/>
+        <Button x:Name="btnCheck" Grid.Row="2" Grid.Column="2" Content="{DynamicResource PassDog_Check}" Click="btnCheck_Click"/>
+        <Button x:Name="btnSave" Grid.Row="2" Grid.Column="4" Content="{DynamicResource btnSave}" Click="btnSave_Click"/>
+        <Button x:Name="btnOk" Grid.Row="2" Grid.Column="6" Content="{DynamicResource btnOK}" IsEnabled="False" Click="btnOk_Click"/>
+        <Button x:Name="btnCancel" Grid.Row="2" Grid.Column="8" Content="{DynamicResource btnCancel}" Click="btnCancel_Click"/>
+    </Grid>
+</Window>

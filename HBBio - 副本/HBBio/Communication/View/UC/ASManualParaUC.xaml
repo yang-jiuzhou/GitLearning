@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="HBBio.Communication.ASManualParaUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:HBBio.Communication"
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
+    <GroupBox Margin="5" Header="{Binding MHeader}">
+        <Grid x:Name="gridAS" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="labAction" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{DynamicResource labASAction1}"/>
+            <ComboBox x:Name="cboxAction" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" MinWidth="155" DisplayMemberPath="MString" SelectedValuePath="MEnum" SelectedValue="{Binding MAction}"/>
+            <TextBlock x:Name="labDelay" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="{DynamicResource labASDelay1}" Visibility="{Binding MVisibleLengthUnit}"/>
+            <xctk:DoubleUpDown x:Name="doubleLength" Grid.Row="6" Grid.Column="0" Value="{Binding MLength}" Visibility="{Binding MVisibleLengthUnit}"/>
+            <ComboBox x:Name="cboxUnit" Grid.Row="6" Grid.Column="2" DisplayMemberPath="MName" SelectedValuePath="MMode" SelectedValue="{Binding MUnit}" Visibility="{Binding MVisibleLengthUnit}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

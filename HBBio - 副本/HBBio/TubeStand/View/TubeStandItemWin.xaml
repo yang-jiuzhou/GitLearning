@@ -1,0 +1,67 @@
+﻿<Window x:Class="HBBio.TubeStand.TubeStandItemWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:HBBio.TubeStand"
+        mc:Ignorable="d"
+        Title="{DynamicResource TS_TubeStandItemWin}" Window.SizeToContent="WidthAndHeight" MinWidth="250" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="labName" Grid.Row="0" Grid.Column="0" Text="{DynamicResource TS_Name1}"/>
+            <TextBox x:Name="txtName" Grid.Row="0" Grid.Column="2" Text="{Binding MName}"/>
+            <TextBlock x:Name="labCollVolume" Grid.Row="2" Grid.Column="0" Text="{DynamicResource TS_CollVolume1}"/>
+            <xctk:DoubleUpDown x:Name="doubleCollVolume" Grid.Row="2" Grid.Column="2" Value="{Binding MCollVolume}"/>
+            <TextBlock x:Name="labVolume" Grid.Row="4" Grid.Column="0" Text="{DynamicResource TS_Volume1}"/>
+            <xctk:DoubleUpDown x:Name="doubleVolume" Grid.Row="4" Grid.Column="2" Value="{Binding MVolume}"/>
+            <TextBlock x:Name="labCount" Grid.Row="6" Grid.Column="0" Text="{DynamicResource TS_Count1}"/>
+            <xctk:IntegerUpDown x:Name="intCollCount" Grid.Row="6" Grid.Column="2" Value="{Binding MCount}"/>
+            <TextBlock x:Name="labDiameter" Grid.Row="8" Grid.Column="0" Text="{DynamicResource TS_Diameter1}"/>
+            <xctk:DoubleUpDown x:Name="doubleDiameter" Grid.Row="8" Grid.Column="2" Value="{Binding MDiameter}"/>
+            <TextBlock x:Name="labHeight" Grid.Row="10" Grid.Column="0" Text="{DynamicResource TS_Height1}"/>
+            <xctk:DoubleUpDown x:Name="doubleHeight" Grid.Row="10" Grid.Column="2" Value="{Binding MHeight}"/>
+            <TextBlock x:Name="labRow" Grid.Row="12" Grid.Column="0" Text="{DynamicResource TS_Row1}"/>
+            <xctk:IntegerUpDown x:Name="intRow" Grid.Row="12" Grid.Column="2" Value="{Binding MRow}"/>
+            <TextBlock x:Name="labCol" Grid.Row="14" Grid.Column="0" Text="{DynamicResource TS_Col1}"/>
+            <xctk:IntegerUpDown x:Name="intCol" Grid.Row="14" Grid.Column="2" Value="{Binding MCol}"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnOK" Grid.Column="1" Content="{DynamicResource btnOK}" Click="btnOK_Click"/>
+            <Button x:Name="btnCancel" Grid.Column="3" Content="{DynamicResource btnCancel}" Click="btnCancel_Click"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="HBBio.Collection.CollectionObjectMultiUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HBBio.Collection"
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="labObjOne" Grid.Row="0" Grid.Column="0" Text="{DynamicResource Coll_ObjOne1}" Margin="0,0,0,5" VerticalAlignment="Bottom"/>
+        <local:CollectionObjectUC x:Name="ucObject1" Grid.Row="0" Grid.Column="2"/>
+        <TextBlock x:Name="labObjTwo" Grid.Row="2" Grid.Column="0" Text="{DynamicResource Coll_ObjTwo1}" Margin="0,0,0,5" VerticalAlignment="Bottom" Visibility="{Binding MVisibilityObj2}"/>
+        <local:CollectionObjectUC x:Name="ucObject2" Grid.Row="2" Grid.Column="2" Visibility="{Binding ElementName=labObjTwo,Path=Visibility}"/>
+        <Grid Grid.Row="0" Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="labRelation" Grid.Row="1" Text="{DynamicResource Coll_ObjSelect1}"/>
+            <ComboBox x:Name="cboxRelation" Grid.Row="3" DisplayMemberPath="MString" SelectedValuePath="MEnum" SelectedValue="{Binding MRelation}"/>
+        </Grid>
+    </Grid>
+</UserControl>

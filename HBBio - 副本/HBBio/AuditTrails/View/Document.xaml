@@ -1,0 +1,54 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:local="clr-namespace:HBBio.AuditTrails"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:core="clr-namespace:System;assembly=mscorlib"
+              TextOptions.TextFormattingMode="Display">
+    <FlowDocument.Resources>
+        <Style TargetType="Table" x:Key="BorderedTable">
+            <Setter Property="CellSpacing" Value="0"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="BorderBrush" Value="#000"></Setter>
+        </Style>
+        <Style TargetType="TableCell" x:Key="BorderedCell">
+            <Setter Property="BorderThickness" Value="0.5"></Setter>
+            <Setter Property="BorderBrush" Value="#000"></Setter>
+            <Setter Property="Padding" Value="3"></Setter>
+        </Style>
+    </FlowDocument.Resources>
+    <Table Style="{StaticResource BorderedTable}">
+        <Table.Columns>
+            <TableColumn Width="*"></TableColumn>
+            <TableColumn Width="*"></TableColumn>
+            <TableColumn Width="*"></TableColumn>
+            <TableColumn Width="4*"></TableColumn>
+        </Table.Columns>
+        <TableRowGroup Name="table">
+            <TableRow FontWeight="Bold">
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>
+                        <Run Text="{StaticResource AT_Type}"/>
+                    </Paragraph>
+                </TableCell>
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>
+                        <Run Text="{StaticResource AT_UserName}"/>
+                    </Paragraph>
+                </TableCell>
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>
+                        <Run Text="{StaticResource AT_Date}"/>
+                    </Paragraph>
+                </TableCell>
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>
+                        <Run Text="{StaticResource AT_BatchT}"/>
+                        <Run Text="{StaticResource AT_BatchV}"/>
+                        <Run Text="{StaticResource AT_BatchCV}"/>
+                        <Run Text="{StaticResource AT_Description}"/>
+                        <Run Text="{StaticResource AT_Operation}"/>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+        </TableRowGroup>
+    </Table>
+</FlowDocument>

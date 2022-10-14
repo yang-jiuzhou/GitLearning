@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="HBBio.Communication.ConfASUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:HBBio.Communication"
+             mc:Ignorable="d">
+    <GroupBox Margin="10" Header="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ConfASUC}},Path=MHeader}">
+        <Grid x:Name="grid" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="labASMin1" Grid.Row="0" Grid.Column="0" Text="{DynamicResource Com_ASMin1}"/>
+            <xctk:DoubleUpDown x:Name="doubleASMin" Grid.Row="0" Grid.Column="2" Maximum="255" Value="{Binding MSize}"/>
+            <TextBlock x:Name="labASDelayLength1" Grid.Row="2" Grid.Column="0" Text="{DynamicResource Com_ASDelayLength1}"/>
+            <xctk:DoubleUpDown x:Name="doubleASDelayLength" Grid.Row="2" Grid.Column="2" Value="{Binding MDelayLength}"/>
+            <TextBlock x:Name="labASDelayUnit1" Grid.Row="4" Grid.Column="0" Text="{DynamicResource Com_ASDelayUnit1}"/>
+            <ComboBox x:Name="cboxASDelayUnit" Grid.Row="4" Grid.Column="2" DisplayMemberPath="MName" SelectedValuePath="MMode" SelectedValue="{Binding MDelayUnit}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>
