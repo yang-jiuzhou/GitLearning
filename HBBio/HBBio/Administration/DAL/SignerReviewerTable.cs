@@ -42,14 +42,43 @@ namespace HBBio.Administration
         protected override string CreateTable()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("[ID] [int] NOT NULL,");
+            sb.Append("[ID] [int],");
             for (int i = 0; i < Enum.GetNames(typeof(EnumSignerReviewer)).GetLength(0); i++)
             {
-                sb.Append("[" + ((EnumSignerReviewer)i).ToString() + "] [bit] NOT NULL,");
+                sb.Append("[" + ((EnumSignerReviewer)i).ToString() + "] [bit],");
             }
             sb.Remove(sb.Length - 1, 1);
 
             return SqlCreateTable(sb.ToString());
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("ID");
+                    listType.Add("int");
+                    for (int i = 0; i < Enum.GetNames(typeof(EnumSignerReviewer)).GetLength(0); i++)
+                    {
+                        listName.Add(((EnumSignerReviewer)i).ToString());
+                        listType.Add("bit");
+                    }
+
+                    error = CreateNewTable(listName, listType, false);
+                }
+            }
+
+            return error;
         }
 
         /// <summary>

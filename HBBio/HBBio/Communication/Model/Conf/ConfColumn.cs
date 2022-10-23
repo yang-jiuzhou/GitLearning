@@ -59,10 +59,10 @@ namespace HBBio.Communication
         /// <param name="infoStr"></param>
         public void SetDBInfo(string split, string infoStr)
         {
-            string[] info = System.Text.RegularExpressions.Regex.Split(infoStr, split);
-            int index = 0;
             try
             {
+                string[] info = System.Text.RegularExpressions.Regex.Split(infoStr, split);
+                int index = 0;
                 MColumnVol = Convert.ToDouble(info[index++]);
                 MColumnDiameter = Convert.ToDouble(info[index++]);
                 MColumnHeight = Convert.ToDouble(info[index++]);

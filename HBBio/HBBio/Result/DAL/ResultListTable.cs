@@ -34,20 +34,56 @@ namespace HBBio.Result
         protected override string CreateTable()
         {
             return SqlCreateTable(@"[ID] [int] PRIMARY KEY IDENTITY(1,1),
-                [Name] [nvarchar](MAX) NOT NULL,
+                [Name] [nvarchar](MAX),
                 [CommunicationSetsID] [int] FOREIGN KEY REFERENCES CommunicationSetsTable(ID),
                 [ProjectTreeID] [int] FOREIGN KEY REFERENCES ProjectTreeTable(ID),
-                [UserID] [int] NOT NULL,
-                [Type] [int] NOT NULL,
+                [UserID] [int],
+                [Type] [int],
                 [MethodStreamInfo] [varbinary](MAX),
                 [BeginTime] [datetime],
                 [EndTime] [datetime],
-                [CurveName] [varchar](19) NOT NULL UNIQUE,
-                [ColumnVol] [float] NOT NULL,
-                [ColumnHeight] [float] NOT NULL,
+                [CurveName] [varchar](19) UNIQUE,
+                [ColumnVol] [float],
+                [ColumnHeight] [float],
                 [AttachmentInfo] [nvarchar](MAX),
                 [MarkerInfo] [nvarchar](MAX)
                 ");
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("ID");
+                    listName.Add("Name");
+                    listName.Add("CommunicationSetsID");
+                    listName.Add("ProjectTreeID");
+                    listName.Add("UserID");
+                    listName.Add("Type");
+                    listName.Add("MethodStreamInfo");
+                    listName.Add("BeginTime");
+                    listName.Add("EndTime");
+                    listName.Add("CurveName");
+                    listName.Add("ColumnVol");
+                    listName.Add("ColumnHeight");
+                    listName.Add("AttachmentInfo");
+                    listName.Add("MarkerInfo");
+
+                    error = CreateNewTable(listName, listType, true);
+                }
+            }
+
+            return error;
         }
 
         /// <summary>

@@ -55,6 +55,38 @@ namespace HBBio.Database
         }
 
         /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("AutoEnabled");
+                    listName.Add("AutoFrequency");
+                    listName.Add("MaxCount");
+                    listName.Add("AutoLocal");
+                    listName.Add("AutoRemote");
+                    listName.Add("PathLocal");
+                    listName.Add("IP");
+                    listName.Add("UserName");
+                    listName.Add("Pwd");
+                    listName.Add("PathRemote");
+
+                    error = CreateNewTable(listName, listType, false);
+                }
+            }
+
+            return error;
+        }
+
+        /// <summary>
         /// 插入行
         /// </summary>
         /// <param name="item"></param>

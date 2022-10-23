@@ -57,6 +57,31 @@ namespace HBBio.MethodEdit
         }
 
         /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("ID");
+                    listName.Add("Name");
+                    listName.Add("Info");
+
+                    error = CreateNewTable(listName, listType, true);
+                }
+            }
+
+            return error;
+        }
+
+        /// <summary>
         /// 删除行信息
         /// </summary>
         /// <param name="name"></param>

@@ -49,6 +49,15 @@ namespace HBBio.PassDog
         }
 
         /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            return "";
+        }
+
+        /// <summary>
         /// 获取行信息
         /// </summary>
         /// <param name="name"></param>

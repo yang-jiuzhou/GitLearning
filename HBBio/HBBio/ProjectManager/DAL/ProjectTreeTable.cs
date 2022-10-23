@@ -53,6 +53,15 @@ namespace HBBio.ProjectManager
         }
 
         /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            return "";
+        }
+
+        /// <summary>
         /// 插入行
         /// </summary>
         /// <returns></returns>

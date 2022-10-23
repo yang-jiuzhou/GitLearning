@@ -94,7 +94,7 @@ namespace HBBio.Communication
         /// </summary>
         /// <param name="infoStr"></param>
         /// <param name="split"></param>
-        public void SetDBInfo(string infoStr, string split = "#~#")
+        public void SetDBInfo(int id, string infoStr, string split = "#~#")
         {
             try
             {
@@ -120,7 +120,43 @@ namespace HBBio.Communication
                 MConfOther.SetDBInfo(split, info[index++]);
             }
             catch
-            { }
+            {
+                List<ComConf> cfList = new List<ComConf>();
+                ComConfTable ccDB = new ComConfTable(id);
+                if (null == ccDB.GetDataList(out cfList))
+                {
+                    foreach (var itCF in cfList)
+                    {
+                        for (int i = 0; i < itCF.MList.Count; i++)
+                        {
+                            if (!itCF.MList[i].MVisible)
+                            {
+                                itCF.MList.RemoveAt(i);
+                                --i;
+                            }
+                        }
+
+                        foreach (var itBI in itCF.MList)
+                        {
+                            if (itBI.MConstName.Contains("AS"))
+                            {
+                                MListConfAS.Add(new ConfAS());
+                            }
+                            else if (itBI.MConstName.Contains("pH") || itBI.MConstName.Contains("Cd"))
+                            {
+                                MListConfpHCdUV.Add(new ConfpHCdUV() { MName = itBI.MConstName });
+                            }
+                            else if (itBI.MConstName.Contains("UV"))
+                            {
+                                for (int i = 0; i < ((UVItem)itBI).m_signalCount; i++)
+                                {
+                                    MListConfpHCdUV.Add(new ConfpHCdUV() { MName = itBI.MConstName + "_" + (i + 1) });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

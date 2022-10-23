@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HBBio.MethodEdit
 {
     [Serializable]
-    class Mixer : BaseGroup
+    public class Mixer : BaseGroup
     {
         public bool MOnoff { get; set; }
 

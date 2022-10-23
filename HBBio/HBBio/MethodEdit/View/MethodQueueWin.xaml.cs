@@ -33,6 +33,17 @@ namespace HBBio.MethodEdit
 
         private ObservableCollection<MString> m_listSelect = new ObservableCollection<MString>();
 
+        /// <summary>
+        /// 自定义事件，添加方法或者方法序列时触发
+        /// </summary>
+        public static readonly RoutedEvent MAddMethodEvent =
+             EventManager.RegisterRoutedEvent("MAddMethod", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MethodEditorWin));
+        public event RoutedEventHandler MAddMethod
+        {
+            add { AddHandler(MAddMethodEvent, value); }
+            remove { RemoveHandler(MAddMethodEvent, value); }
+        }
+
 
         /// <summary>
         /// 构造函数（初始化）
@@ -120,6 +131,9 @@ namespace HBBio.MethodEdit
                     string error = manager.AddMethodQueue(MMethodQueue);
                     if (null == error)
                     {
+                        RoutedEventArgs args = new RoutedEventArgs(MAddMethodEvent, null);
+                        RaiseEvent(args);
+
                         AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Queue_New"), MMethodQueue.MName);
                         Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_Queue_SaveYes"));
                     }
@@ -145,7 +159,7 @@ namespace HBBio.MethodEdit
                     }
                 }
 
-                DialogResult = true;
+                Close();
             }
         }
 
@@ -156,7 +170,7 @@ namespace HBBio.MethodEdit
         /// <param name="e"></param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+            Close();
         }
 
         /// <summary>

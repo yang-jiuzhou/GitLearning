@@ -55,10 +55,10 @@ namespace HBBio.Communication
         /// <param name="infoStr"></param>
         public void SetDBInfo(string split, string infoStr)
         {
-            string[] info = System.Text.RegularExpressions.Regex.Split(infoStr, split);
-            int index = 0;
             try
             {
+                string[] info = System.Text.RegularExpressions.Regex.Split(infoStr, split);
+                int index = 0;
                 MResetValve = Convert.ToBoolean(info[index++]);
                 MCloseUV = Convert.ToBoolean(info[index++]);
                 MOpenMixer = Convert.ToBoolean(info[index++]);

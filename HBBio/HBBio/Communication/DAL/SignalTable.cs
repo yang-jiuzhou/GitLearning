@@ -42,27 +42,70 @@ namespace HBBio.Communication
         {
             return SqlCreateTable(
                 @"[ID] [int] PRIMARY KEY IDENTITY(1,1),
-                [ConstName] [nvarchar](64) NOT NULL UNIQUE,
-                [DlyName] [nvarchar](64) NOT NULL UNIQUE,
-                [Brush] [varchar](32) NOT NULL,
-                [Unit] [nvarchar](32) NOT NULL,
-                [ColorNew] [varchar](32) NOT NULL,
-                [ShowNew] [bit] NOT NULL,
-                [ColorOld] [varchar](32) NOT NULL,
-                [ShowOld] [bit] NOT NULL,
-                [ContrastOld] [bit] NOT NULL,
-                [ValLL] [float] NOT NULL,
-                [ValL] [float] NOT NULL,
-                [ValH] [float] NOT NULL,
-                [ValHH] [float] NOT NULL,
-                [ValMin] [float] NOT NULL,
-                [ValMax] [float] NOT NULL,
-                [Smooth] [int] NOT NULL,
-                [IsLine] [bit] NOT NULL,
-                [IsAlarmWarning] [bit] NOT NULL,
-                [IsShow] [bit] NOT NULL,
+                [ConstName] [nvarchar](64) UNIQUE,
+                [DlyName] [nvarchar](64) UNIQUE,
+                [Brush] [varchar](32),
+                [Unit] [nvarchar](32),
+                [ColorNew] [varchar](32),
+                [ShowNew] [bit],
+                [ColorOld] [varchar](32),
+                [ShowOld] [bit],
+                [ContrastOld] [bit],
+                [ValLL] [float],
+                [ValL] [float],
+                [ValH] [float],
+                [ValHH] [float],
+                [ValMin] [float],
+                [ValMax] [float],
+                [Smooth] [int],
+                [IsLine] [bit],
+                [IsAlarmWarning] [bit],
+                [IsShow] [bit],
                 [BaseInstrumentID] [int] FOREIGN KEY REFERENCES BaseInstrument" + m_id + @"(ID)"
                 );
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("ID");
+                    listName.Add("ConstName");
+                    listName.Add("DlyName");
+                    listName.Add("Brush");
+                    listName.Add("Unit");
+                    listName.Add("ColorNew");
+                    listName.Add("ShowNew");
+                    listName.Add("ColorOld");
+                    listName.Add("ShowOld");
+                    listName.Add("ContrastOld");
+                    listName.Add("ValLL");
+                    listName.Add("ValL");
+                    listName.Add("ValH");
+                    listName.Add("ValHH");
+                    listName.Add("ValMin");
+                    listName.Add("ValMax");
+                    listName.Add("Smooth");
+                    listName.Add("IsLine");
+                    listName.Add("IsAlarmWarning");
+                    listName.Add("IsShow");
+                    listName.Add("BaseInstrumentID");
+
+                    error = CreateNewTable(listName, listType, true);
+                }
+            }
+
+            return error;
         }
 
         /// <summary>

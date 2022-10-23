@@ -626,7 +626,7 @@ namespace HBBio.Communication
             string scInfo = null;
             if (null == csManager.GetSystemConfig(m_cs, out scInfo))
             {
-                conf.SetDBInfo(scInfo);
+                conf.SetDBInfo(m_cs.MId, scInfo);
             }
 
             return conf;

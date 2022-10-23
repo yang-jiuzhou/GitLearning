@@ -9,10 +9,19 @@ using System.Windows;
 namespace HBBio.MethodEdit
 {
     [Serializable]
-    class DlyPhase : BasePhase
+    public class DlyPhase : BasePhase
     {
         public bool[] MArrIsRun { get; set; }           //仅在执行方法运行临时所用，其它地方不要使用
         public bool[] MArrIsIncubation { get; set; }    //仅在执行方法运行临时所用，其它地方不要使用
+
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public DlyPhase() : base()
+        {
+
+        }
 
         /// <summary>
         /// 计算阶段长度

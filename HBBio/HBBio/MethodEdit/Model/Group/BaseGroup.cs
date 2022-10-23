@@ -4,9 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace HBBio.MethodEdit
 {
+    [XmlInclude(typeof(BaseTVCV))]
+    [XmlInclude(typeof(BPVValve))]
+    [XmlInclude(typeof(CIP))]
+    [XmlInclude(typeof(CollValveCollector))]
+    [XmlInclude(typeof(FlowRate))]
+    [XmlInclude(typeof(FlowRatePer))]
+    [XmlInclude(typeof(FlowValveLength))]
+    [XmlInclude(typeof(Mixer))]
+    [XmlInclude(typeof(PHCDUVUntil))]
+    [XmlInclude(typeof(SampleApplicationTech))]
+    [XmlInclude(typeof(UVReset))]
+    [XmlInclude(typeof(ValveSelection))]
     [Serializable]
     public abstract class BaseGroup
     {

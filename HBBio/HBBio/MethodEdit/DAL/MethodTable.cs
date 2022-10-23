@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,15 @@ namespace HBBio.MethodEdit
             }
 
             return error;
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            return "";
         }
 
         /// <summary>
@@ -304,6 +314,76 @@ namespace HBBio.MethodEdit
             }
 
             return error;
+        }
+
+        /// <summary>
+        /// 所有方法生成xml文件
+        /// </summary>
+        /// <returns></returns>
+        public string CreateXml()
+        {
+            string error = null;
+
+            try
+            {
+                SqlDataReader reader = null;
+                error = CreateConnAndReader(@"SELECT ID,StreamInfo FROM " + m_tableName + @" ORDER BY ID", out reader);
+                if (null == error)
+                {
+                    while (reader.Read())//匹配
+                    {
+                        try
+                        {
+                            Method item = Share.DeepCopy.SetMemoryStream<Method>(reader.GetSqlBytes(1).Stream);
+                            item.MID = reader.GetInt32(0);
+
+                            Share.XmlSerialize.Serialize(BaseDB.m_pathError + item.MID + "method.xml", item);
+                        }
+                        catch
+                        { }
+                        
+                    }
+
+                    CloseConnAndReader();
+                }
+            }
+            catch (Exception msg)
+            {
+                error = msg.Message;
+            }
+
+            return error;
+        }
+
+        /// <summary>
+        /// 从xml中修复
+        /// </summary>
+        /// <returns></returns>
+        public string RepairXml()
+        {
+            string error = null;
+
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(BaseDB.m_pathError);
+                FileInfo[] fil = dir.GetFiles();
+                DirectoryInfo[] dii = dir.GetDirectories();
+                foreach (FileInfo f in fil)
+                {
+                    if (f.FullName.Contains("method.xml"))
+                    {
+                        Method item = Share.XmlSerialize.DeSerialize<Method>(f.FullName);
+                        UpdateMethod(item);
+                    }
+                }
+            }
+            catch (Exception msg)
+            {
+                error = msg.Message;
+            }
+
+            return error;
+            
         }
     }
 }

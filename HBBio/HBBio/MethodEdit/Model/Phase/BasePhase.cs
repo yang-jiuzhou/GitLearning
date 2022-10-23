@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Xml.Serialization;
 
 namespace HBBio.MethodEdit
 {
@@ -17,6 +18,8 @@ namespace HBBio.MethodEdit
      * Author:  yangjiuzhou
      * Company: hanbon
      **/
+    [XmlInclude(typeof(DlyPhase))]
+    [XmlInclude(typeof(Miscellaneous))]
     [Serializable]
     public abstract class BasePhase
     {
