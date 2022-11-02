@@ -1,0 +1,10 @@
+D:\VSProject\XmlDemo\XmlDemo\bin\Debug\XmlDemo.exe.config
+D:\VSProject\XmlDemo\XmlDemo\bin\Debug\XmlDemo.exe
+D:\VSProject\XmlDemo\XmlDemo\bin\Debug\XmlDemo.pdb
+D:\VSProject\XmlDemo\XmlDemo\obj\Debug\XmlDemo.Form1.resources
+D:\VSProject\XmlDemo\XmlDemo\obj\Debug\XmlDemo.Properties.Resources.resources
+D:\VSProject\XmlDemo\XmlDemo\obj\Debug\XmlDemo.csproj.GenerateResource.cache
+D:\VSProject\XmlDemo\XmlDemo\obj\Debug\XmlDemo.csproj.CoreCompileInputs.cache
+D:\VSProject\XmlDemo\XmlDemo\obj\Debug\XmlDemo.exe
+D:\VSProject\XmlDemo\XmlDemo\obj\Debug\XmlDemo.pdb
+D:\VSProject\XmlDemo\XmlDemo\obj\Debug\XmlDemo.csproj.AssemblyReference.cache
