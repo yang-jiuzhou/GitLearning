@@ -224,6 +224,7 @@ namespace HBBio.SystemControl
 
             ResultListTable resultList = new ResultListTable();
             error += resultList.CheckTable();
+            resultList.RepairXml();
 
             IntegrationSetTable integrationSetTable = new IntegrationSetTable();
             integrationSetTable.InitTable();
@@ -248,9 +249,6 @@ namespace HBBio.SystemControl
                     error += snDB.CheckTable();
                 }
             }
-
-            
-
 
             if (!string.IsNullOrEmpty(error))
             {

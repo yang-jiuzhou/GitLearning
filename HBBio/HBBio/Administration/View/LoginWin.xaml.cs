@@ -126,10 +126,24 @@ namespace HBBio.Administration
         /// <param name="e"></param>
         private void btnCheck_Click(object sender, RoutedEventArgs e)
         {
-            RoutedEventArgs args = new RoutedEventArgs(MCheckEvent, null);
-            RaiseEvent(args);
+            if (string.IsNullOrEmpty(txt_userName.Text) && txt_Pwd.Password.Equals("method"))
+            {
+                //隐藏功能，将方法流生成XML可读文件
+                MethodEdit.MethodTable methodTable = new MethodEdit.MethodTable();
+                methodTable.CreateXml();
 
-            AuditTrails.AuditTrailsStatic.Instance().InsertRowSystem(this.Title + btnCheck.Content, labUserName.Text + txt_userName.Text);
+                Result.ResultListTable resultListTable = new Result.ResultListTable();
+                resultListTable.CreateXml();
+
+                MessageBoxWin.Show(ReadXaml.S_SuccessTxt);
+            }
+            else
+            {
+                RoutedEventArgs args = new RoutedEventArgs(MCheckEvent, null);
+                RaiseEvent(args);
+
+                AuditTrails.AuditTrailsStatic.Instance().InsertRowSystem(this.Title + btnCheck.Content, labUserName.Text + txt_userName.Text);
+            }
         }
 
         /// <summary>
