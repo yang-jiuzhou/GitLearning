@@ -62,6 +62,8 @@ namespace HBBio.MethodEdit
             MNameStep = new List<string>();
         }
 
+        public abstract bool Compare(BasePhase baseItem);
+
         /// <summary>
         /// 初始化
         /// </summary>

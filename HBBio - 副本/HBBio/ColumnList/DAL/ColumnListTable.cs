@@ -80,6 +80,15 @@ namespace HBBio.ColumnList
         }
 
         /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            return "";
+        }
+
+        /// <summary>
         /// 删除行信息
         /// </summary>
         /// <param name="name"></param>

@@ -1367,6 +1367,8 @@
     <s:String x:Key="ME_Msg_ColumnWashUntil">ColumnWash Until</s:String>
     <s:String x:Key="ME_Msg_EquilibrationUntil">Equilibration Until</s:String>
 
+    <s:String x:Key="ME_Desc_ReplaceMethod">Replace method</s:String>
+
 
 
     <!--PassDog 加密狗-->

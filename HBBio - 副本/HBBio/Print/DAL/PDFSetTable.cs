@@ -43,21 +43,57 @@ namespace HBBio.Print
         protected override string CreateTable()
         {
             return SqlCreateTable(
-                @"[Icon] [nvarchar](max) NOT NULL,
-                    [Title] [nvarchar](max) NOT NULL,
-                    [MarginLeft] [int] NOT NULL,
-                    [MarginRight] [int] NOT NULL,
-                    [MarginTop] [int] NOT NULL,
-                    [MarginBottom] [int] NOT NULL,
-                    [MarkerStyle] [int] NOT NULL,
-                    [Signer] [bit] NOT NULL,
-                    [Reviewer] [bit] NOT NULL,
-                    [OutputTime] [bit] NOT NULL,
-                    [FontSize] [int] NOT NULL,
-                    [FontFamily] [int] NOT NULL,
-                    [ColorBack] [varchar](32) NOT NULL,
-                    [ColorFore] [varchar](32) NOT NULL"
+                @"[Icon] [nvarchar](max),
+                    [Title] [nvarchar](max),
+                    [MarginLeft] [int],
+                    [MarginRight] [int],
+                    [MarginTop] [int],
+                    [MarginBottom] [int],
+                    [MarkerStyle] [int],
+                    [Signer] [bit],
+                    [Reviewer] [bit],
+                    [OutputTime] [bit],
+                    [FontSize] [int],
+                    [FontFamily] [int],
+                    [ColorBack] [varchar](32),
+                    [ColorFore] [varchar](32)"
                 );
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("Icon");
+                    listName.Add("Title");
+                    listName.Add("MarginLeft");
+                    listName.Add("MarginRight");
+                    listName.Add("MarginTop");
+                    listName.Add("MarginBottom");
+                    listName.Add("MarkerStyle");
+                    listName.Add("Signer");
+                    listName.Add("Reviewer");
+                    listName.Add("OutputTime");
+                    listName.Add("FontSize");
+                    listName.Add("FontFamily");
+                    listName.Add("ColorBack");
+                    listName.Add("ColorFore");
+
+                    error = CreateNewTable(listName, listType, false);
+                }
+            }
+
+            return error;
         }
 
         /// <summary>

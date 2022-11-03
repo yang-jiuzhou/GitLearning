@@ -35,15 +35,6 @@ namespace HBBio.MethodEdit
 
         private bool m_doubleClick = false;
 
-        private bool m_clickSave = false;
-        public bool MClickSave
-        {
-            get
-            {
-                return m_clickSave;
-            }
-        }
-
 
         /// <summary>
         /// 自定义事件，发送方法或者方法序列时触发
@@ -54,6 +45,17 @@ namespace HBBio.MethodEdit
         {
             add { AddHandler(MSelectEvent, value); }
             remove { RemoveHandler(MSelectEvent, value); }
+        }
+
+        /// <summary>
+        /// 自定义事件，添加方法或者方法序列时触发
+        /// </summary>
+        public static readonly RoutedEvent MAddMethodEvent =
+             EventManager.RegisterRoutedEvent("MAddMethod", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MethodEditorWin));
+        public event RoutedEventHandler MAddMethod
+        {
+            add { AddHandler(MAddMethodEvent, value); }
+            remove { RemoveHandler(MAddMethodEvent, value); }
         }
 
 
@@ -711,7 +713,9 @@ namespace HBBio.MethodEdit
                 string error = manager.AddMethod(MMethod.MItem);
                 if (null == error)
                 {
-                    m_clickSave = true;
+                    RoutedEventArgs args = new RoutedEventArgs(MAddMethodEvent, null);
+                    RaiseEvent(args);
+
                     AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_New"), MMethod.MItem.MName);
                     Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_SaveYes"));
                 }
@@ -743,10 +747,10 @@ namespace HBBio.MethodEdit
         /// <param name="e"></param>
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
+            AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Send"), MMethod.MItem.MName);
+
             RoutedEventArgs args = new RoutedEventArgs(MSelectEvent, new MethodType(MMethod.MItem.MID, MMethod.MItem.MName, MMethod.MItem.MType));
             RaiseEvent(args);
-
-            AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Send"), MMethod.MItem.MName);
         }
 
         /// <summary>

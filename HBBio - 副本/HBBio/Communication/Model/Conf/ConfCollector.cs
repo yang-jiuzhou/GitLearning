@@ -64,10 +64,10 @@ namespace HBBio.Communication
         /// <param name="infoStr"></param>
         public void SetDBInfo(string split, string infoStr)
         {
-            string[] info = System.Text.RegularExpressions.Regex.Split(infoStr, split);
-            int index = 0;
             try
             {
+                string[] info = System.Text.RegularExpressions.Regex.Split(infoStr, split);
+                int index = 0;
                 MGLTJ = Convert.ToDouble(info[index++]);
                 MVolL = Convert.ToInt32(info[index++]);
                 MVolR = Convert.ToInt32(info[index++]);

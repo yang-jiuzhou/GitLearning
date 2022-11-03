@@ -46,6 +46,12 @@ namespace HBBio.Database
         protected abstract string CreateTable();
 
         /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public abstract string CheckTable();
+
+        /// <summary>
         /// 关闭资源
         /// </summary>
         /// <param name="cmd"></param>
@@ -529,6 +535,362 @@ namespace HBBio.Database
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 重新生成表
+        /// </summary>
+        protected void DropInitTable()
+        {
+            DropTable();
+            InitTable();
+        }
+
+        /// <summary>
+        /// 获取完整表的所有列名，数据类型
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        protected string SelectColumnNameType(List<string> name, List<string> type)
+        {
+            string error = null;
+
+            try
+            {
+                SqlDataReader reader = null;
+                error = CreateConnAndReader(@"SELECT COLUMN_NAME,DATA_TYPE from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + m_tableName + "'", out reader);
+
+                if (null == error)
+                {
+                    while (reader.Read())
+                    {
+                        int index = 0;
+                        name.Add(reader.GetString(index++));
+                        type.Add(reader.GetString(index++));
+                    }
+                    CloseConnAndReader();
+                }
+            }
+            catch (Exception msg)
+            {
+                error = msg.Message;
+            }
+
+            return error;
+        }
+
+        protected string UpdateColumnIsNull(string obj, object value)
+        {
+            string error = null;
+            List<string> listColumn = new List<string>();
+            try
+            {
+                SqlDataReader reader = null;
+                error = CreateConnAndReader(@"SELECT COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + m_tableName + "' AND DATA_TYPE='" + obj + "'", out reader);
+
+                if (null == error)
+                {
+                    while (reader.Read())
+                    {
+                        listColumn.Add(reader.GetString(0));
+                    }
+                    CloseConnAndReader();
+                }
+            }
+            catch (Exception msg)
+            {
+                error = msg.Message;
+            }
+
+            SqlConnection conn = new SqlConnection(m_connStr);
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.Text;
+
+                foreach(var it in listColumn)
+                {
+                    cmd.CommandText = "UPDATE " + m_tableName + " SET " + it + "='" + value + "' WHERE " + it + " is NULL";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception msg)
+            {
+                error = msg.Message;
+            }
+            finally
+            {
+                if (null != conn)
+                {
+                    conn.Close();
+                }
+            }
+
+            return error;
+        }
+
+        /// <summary>
+        /// 删除表
+        /// </summary>
+        /// <returns></returns>
+        protected string DropColumn(string name)
+        {
+            string result = null;
+
+            SqlConnection conn = new SqlConnection(m_connStr);
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("alter table " + m_tableName + " drop column " + name, conn);
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception msg)
+            {
+                result = msg.Message;
+            }
+            finally
+            {
+                if (null != conn)
+                {
+                    conn.Close();
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 修改表名
+        /// </summary>
+        /// <returns></returns>
+        protected string RenameTableName()
+        {
+            string result = null;
+
+            SqlConnection conn = new SqlConnection(m_connStr);
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.Text;
+
+                cmd.CommandText = "EXEC sp_rename '" + m_tableName + "','" + m_tableName + "_copy'";
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception msg)
+            {
+                result = msg.Message;
+            }
+            finally
+            {
+                if (null != conn)
+                {
+                    conn.Close();
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 修改表名
+        /// </summary>
+        /// <returns></returns>
+        protected string CopyColumnData(List<string> column, bool identity)
+        {
+            string result = null;
+
+            SqlConnection conn = new SqlConnection(m_connStr);
+
+            try
+            {
+                conn.Open();
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < column.Count - 1; i++)
+                {
+                    sb.Append(column[i]);
+                    sb.Append(",");
+                }
+                sb.Append(column.Last());
+                
+                StringBuilder sb2 = new StringBuilder();
+                if (identity)
+                {
+                    sb2.Append("SET IDENTITY_INSERT " + m_tableName + " ON; ");
+                }
+                sb2.Append("INSERT INTO " + m_tableName + "(" + sb.ToString() + ") SELECT " + sb.ToString() + " FROM " + m_tableName + "_copy;");
+                if (identity)
+                {
+                    sb2.Append("SET IDENTITY_INSERT " + m_tableName + " OFF; ");
+                }
+                
+                SqlCommand cmd = new SqlCommand(sb2.ToString(), conn);
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception msg)
+            {
+                result = msg.Message;
+            }
+            finally
+            {
+                if (null != conn)
+                {
+                    conn.Close();
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 获取约束列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        protected string SelectCONSTRAINT(List<string> name)
+        {
+            string error = null;
+
+            try
+            {
+                SqlDataReader reader = null;
+                error = CreateConnAndReader(@"select * from sysobjects where OBJECT_NAME(parent_obj)='" + m_tableName + "'", out reader);
+
+                if (null == error)
+                {
+                    while (reader.Read())
+                    {
+                        name.Add(reader.GetString(0));
+                    }
+                    CloseConnAndReader();
+                }
+            }
+            catch (Exception msg)
+            {
+                error = msg.Message;
+            }
+
+            return error;
+        }
+
+        /// <summary>
+        /// 获取约束列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        protected string DelCONSTRAINT(List<string> name)
+        {
+            string result = null;
+
+            SqlConnection conn = new SqlConnection(m_connStr);
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.Text;
+
+                for (int i = 0; i < name.Count; i++)
+                {
+                    cmd.CommandText = "alter table " + m_tableName + " drop constraint " + name[i];
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    { }
+                }
+            }
+            catch (Exception msg)
+            {
+                result = msg.Message;
+            }
+            finally
+            {
+                if (null != conn)
+                {
+                    conn.Close();
+                }
+            }
+
+            return result;
+        }
+
+        protected string CreateNewTable(List<string> listName, List<string> listType, bool identity)
+        {
+            List<string> listName1 = new List<string>();
+            List<string> listType1 = new List<string>();
+            string error = SelectColumnNameType(listName1, listType1);
+            if (null != error)
+            {
+                return error;
+            }
+
+            if (0 == listName1.Count)
+            {
+                InitTable();
+            }
+
+            bool equal = true;
+            if (listName.Count != listName1.Count)
+            {
+                equal = false;
+            }
+            else
+            {
+                for (int i = 0; i < listName1.Count; i++)
+                {
+                    if (!listName[i].Equals(listName1[i]))
+                    {
+                        equal = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!equal)
+            {
+                List<string> name = new List<string>();
+                error += SelectCONSTRAINT(name);
+                error += DelCONSTRAINT(name);
+                error += RenameTableName();
+                error += CreateTable();
+                //error += AddDefaultValue();
+                List<string> listAccesssName = new List<string>();
+                for (int i = 0; i < listName1.Count; i++)
+                {
+                    if (listName.Contains(listName1[i]))
+                    {
+                        listAccesssName.Add(listName1[i]);
+                    }
+                }
+                error += CopyColumnData(listAccesssName, identity);
+                error += UpdateColumnIsNull("bit", 1);
+                error += UpdateColumnIsNull("varchar", "");
+                error += UpdateColumnIsNull("nvarchar", "");
+            }
+
+            if (string.IsNullOrEmpty(error))
+            {
+                return null;
+            }
+            else
+            {
+                return error;
+            }
         }
     }
 }

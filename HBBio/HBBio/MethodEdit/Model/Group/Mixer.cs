@@ -17,5 +17,11 @@ namespace HBBio.MethodEdit
 
             MOnoff = false;
         }
+
+        public override bool Compare(BaseGroup baseItem)
+        {
+            Mixer item = (Mixer)baseItem;
+            return MOnoff == item.MOnoff;
+        }
     }
 }

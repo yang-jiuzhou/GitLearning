@@ -45,6 +45,26 @@ namespace HBBio.MethodEdit
             MMaxTVCV.MTVCV = 100;
         }
 
+        public override bool Compare(BaseGroup baseItem)
+        {
+            PHCDUVUntil item = (PHCDUVUntil)baseItem;
+
+            if ( !MHeaderText.Equals(item.MHeaderText)
+                || MUntilType != item.MUntilType
+                || MTotalTVCV != item.MTotalTVCV
+                || MMonitorIndex != item.MMonitorIndex
+                || MJudgeIndex != item.MJudgeIndex
+                || MMoreThan != item.MMoreThan
+                || MLessThan != item.MLessThan
+                || MStabilityTime != item.MStabilityTime
+                || !MMaxTVCV.Compare(item.MMaxTVCV))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// 设置判断开始
         /// </summary>

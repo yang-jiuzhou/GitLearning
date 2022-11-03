@@ -29,9 +29,6 @@ namespace HBBio.Communication
             int sigVal = 0;
             double[] abs = new double[4];
 
-            int index = -30;
-            Random rd = new Random();
-
             long uvNum = 0;
             while (true)
             {
@@ -53,110 +50,6 @@ namespace HBBio.Communication
                         m_state = UVState.Free;
                         break;
                     case UVState.Read:
-                        index++;
-                        if(index>0)
-                        {
-                            //if (index < 30)
-                            //{
-                            //    abs[0] = index;
-                            //}
-                            //else if (index < 45)
-                            //{
-                            //    abs[0] = 30;
-                            //}
-                            //else if (index < 50)
-                            //{
-                            //    abs[0] = index;
-                            //}
-                            //else if (index < 70)
-                            //{
-                            //    abs[0] = 100 - index;
-                            //}
-                            //else if (index < 85)
-                            //{
-                            //    abs[0] = 30;
-                            //}
-                            //else if (index < 100)
-                            //{
-                            //    abs[0] = 100 - index;
-                            //}
-                            //else if (index < 150)
-                            //{
-                            //    abs[0] = index - 100 + 10;
-                            //}
-                            //else if (index < 200)
-                            //{
-                            //    abs[0] = 60 + rd.Next(-5, 5);
-                            //}
-                            //else if (index < 250)
-                            //{
-                            //    abs[0] = 250 - index;
-                            //}
-                            //else if (index < 300)
-                            //{
-                            //    abs[0] = index - 250;
-                            //}
-                            //else if (index < 320)
-                            //{
-                            //    abs[0] = 50 - (index - 300);
-                            //}
-                            //else if (index < 350)
-                            //{
-                            //    abs[0] = 50 + rd.Next(-5, 5);
-                            //}
-                            //else if (index < 400)
-                            //{
-                            //    abs[0] = 400 - index;
-                            //}
-                            //else if (index < 450)
-                            //{
-                            //    abs[0] = index - 400;
-                            //}
-
-                            if (index < 50)
-                            {
-                                abs[0] = index;
-                            }
-                            else if (index < 100)
-                            {
-                                abs[0] = 100 - index;
-                            }
-                            else if (index < 150)
-                            {
-                                abs[0] = index - 100 + 10;
-                            }
-                            else if (index < 200)
-                            {
-                                abs[0] = 60 + rd.Next(-5, 5);
-                            }
-                            else if (index < 250)
-                            {
-                                abs[0] = 250 - index;
-                            }
-                            else if (index < 300)
-                            {
-                                abs[0] = index - 250;
-                            }
-                            else if (index < 320)
-                            {
-                                abs[0] = 50 - (index - 300);
-                            }
-                            else if (index < 350)
-                            {
-                                abs[0] = 50 + rd.Next(-5, 5);
-                            }
-                            else if (index < 400)
-                            {
-                                abs[0] = 400 - index;
-                            }
-                            else if (index < 450)
-                            {
-                                abs[0] = index - 400;
-                            }
-                        }
-                        m_item.UpdateAbs(abs);
-                        Thread.Sleep(DlyBase.c_sleep5);
-                        continue;
                         if (Connect() && ReadAu(m_item.MLamp, ref abs[0], ref abs[1]))
                         {
                             m_communState = ENUMCommunicationState.Success;
@@ -249,8 +142,6 @@ namespace HBBio.Communication
                         }
                         break;
                     case UVState.ReadFirst:
-                        m_state = UVState.Read;
-                        continue;
                         if (Connect() && SetSendF(false))
                         {
                             m_communState = ENUMCommunicationState.Success;

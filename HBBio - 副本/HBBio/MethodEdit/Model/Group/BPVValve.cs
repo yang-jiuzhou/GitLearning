@@ -17,5 +17,11 @@ namespace HBBio.MethodEdit
 
             MBPV = 0;
         }
+
+        public override bool Compare(BaseGroup baseItem)
+        {
+            BPVValve item = (BPVValve)baseItem;
+            return MBPV == item.MBPV;
+        }
     }
 }

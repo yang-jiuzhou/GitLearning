@@ -45,5 +45,22 @@ namespace HBBio.MethodEdit
             MType = type;
             MValveName = name;
         }
+
+        public bool Compare(CIPItem item)
+        {
+            if (null == item)
+            {
+                return false;
+            }
+
+            if (MIsSelected != item.MIsSelected
+                || MType != item.MType
+                || !MValveName.Equals(item.MValveName))
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

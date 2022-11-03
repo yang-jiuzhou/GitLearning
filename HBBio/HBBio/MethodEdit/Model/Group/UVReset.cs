@@ -17,5 +17,11 @@ namespace HBBio.MethodEdit
 
             MEnableResetUV = true;
         }
+
+        public override bool Compare(BaseGroup baseItem)
+        {
+            UVReset item = (UVReset)baseItem;
+            return MEnableResetUV == item.MEnableResetUV;
+        }
     }
 }

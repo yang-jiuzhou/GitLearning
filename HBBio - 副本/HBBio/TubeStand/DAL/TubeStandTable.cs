@@ -52,15 +52,46 @@ namespace HBBio.TubeStand
         protected override string CreateTable()
         {
             return SqlCreateTable(@"[ID] [int] PRIMARY KEY IDENTITY(1,1),
-                [Name] [nvarchar](128) NOT NULL,
-                [CollVolume] [float] NOT NULL,
-                [Volume] [float] NOT NULL,
-                [Count] [int] NOT NULL,
-                [Diameter] [float] NOT NULL,
-                [Height] [float] NOT NULL,
-                [Row] [int] NOT NULL,
-                [Col] [int] NOT NULL,
+                [Name] [nvarchar](128),
+                [CollVolume] [float],
+                [Volume] [float],
+                [Count] [int],
+                [Diameter] [float],
+                [Height] [float],
+                [Row] [int],
+                [Col] [int],
                 CONSTRAINT Volume_Count UNIQUE (Volume,Count)");
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("ID");
+                    listName.Add("Name");
+                    listName.Add("CollVolume");
+                    listName.Add("Volume");
+                    listName.Add("Count");
+                    listName.Add("Diameter");
+                    listName.Add("Height");
+                    listName.Add("Row");
+                    listName.Add("Col");
+
+                    error = CreateNewTable(listName, listType, true);
+                }
+            }
+
+            return error;
         }
 
         /// <summary>

@@ -41,5 +41,27 @@ namespace HBBio.MethodEdit
             MFillSystem = 0;
             MBaseTVCV = new BaseTVCV();
         }
+
+        public bool Compare(FlowRatePerItem item)
+        {
+            if (null == item)
+            {
+                return false;
+            }
+
+            if (MPerBS != item.MPerBS
+                || MPerBE != item.MPerBE
+                || MPerCS != item.MPerCS
+                || MPerCE != item.MPerCE
+                || MPerDS != item.MPerDS
+                || MPerDE != item.MPerDE
+                || MFillSystem != item.MFillSystem
+                || !MBaseTVCV.Compare(item.MBaseTVCV))
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

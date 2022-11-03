@@ -38,5 +38,21 @@ namespace HBBio.MethodEdit
             MFillLoopWith = 0;
             MEmptyLoopWith = 0;
         }
+
+        public override bool Compare(BaseGroup baseItem)
+        {
+            SampleApplicationTech item = (SampleApplicationTech)baseItem;
+
+            if (MEnumSAT != item.MEnumSAT
+                || MInS != item.MInS
+                || !MSampleTVCV.Compare(item.MSampleTVCV)
+                || MFillLoopWith != item.MFillLoopWith
+                || MEmptyLoopWith != item.MEmptyLoopWith)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

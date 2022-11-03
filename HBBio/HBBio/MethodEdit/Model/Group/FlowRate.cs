@@ -32,5 +32,20 @@ namespace HBBio.MethodEdit
             MEnableSameMS = false;
             MFlowVolLen = new FlowVolLen();
         }
+
+        public override bool Compare(BaseGroup baseItem)
+        {
+            FlowRate item = (FlowRate)baseItem;
+
+            if (MEnableSameMS != item.MEnableSameMS
+                || !MFlowVolLen.Compare(item.MFlowVolLen))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

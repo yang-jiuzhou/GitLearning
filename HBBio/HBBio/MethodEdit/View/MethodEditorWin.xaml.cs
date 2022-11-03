@@ -747,10 +747,10 @@ namespace HBBio.MethodEdit
         /// <param name="e"></param>
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
+            AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Send"), MMethod.MItem.MName);
+
             RoutedEventArgs args = new RoutedEventArgs(MSelectEvent, new MethodType(MMethod.MItem.MID, MMethod.MItem.MName, MMethod.MItem.MType));
             RaiseEvent(args);
-
-            AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Send"), MMethod.MItem.MName);
         }
 
         /// <summary>

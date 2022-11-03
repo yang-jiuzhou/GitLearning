@@ -650,6 +650,15 @@ namespace HBBio.SystemControl
             }
             else
             {
+                switch (((MethodType)e.OriginalSource).MType)
+                {
+                    case EnumMethodType.Method:
+                        AuditTrails.AuditTrailsStatic.Instance().InsertRowError(Share.ReadXaml.GetResources("ME_Desc_Send"), error);
+                        break;
+                    case EnumMethodType.MethodQueue:
+                        AuditTrails.AuditTrailsStatic.Instance().InsertRowError(Share.ReadXaml.GetResources("ME_Desc_Queue_Send"), error);
+                        break;
+                }
                 Share.MessageBoxWin.Show(error);
             }
         }

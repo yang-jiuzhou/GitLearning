@@ -48,6 +48,7 @@ namespace HBBio.Communication
 
                 switch (m_id)
                 {
+                    case ENUMValveID.HB_Coll2:
                     case ENUMValveID.HB_Coll6:
                     case ENUMValveID.HB_Coll8:
                     case ENUMValveID.HB_Coll10:
@@ -57,7 +58,7 @@ namespace HBBio.Communication
                             int tempCount = Convert.ToInt32(m_id.ToString().Replace("HB_Coll", ""));
                             switch ((ENUMValveName)Enum.Parse(typeof(ENUMValveName), m_scInfo.MList[0].MConstName))
                             {
-                                case ENUMValveName.Out: EnumOutInfo.Init(tempCount); m_item.m_enumNames = EnumOutInfo.NameList; m_changeBeginEnd = true; break;
+                                case ENUMValveName.Out: EnumOutInfo.Init2(tempCount); m_item.m_enumNames = EnumOutInfo.NameList; m_changeBeginEnd = true; break;
                             }
                         }              
                         break;

@@ -797,6 +797,7 @@
     <Compile Include="Share\Common\TextBoxDoubleEx.cs" />
     <Compile Include="Share\Common\TextBoxInt.cs" />
     <Compile Include="Share\Common\TextLegal.cs" />
+    <Compile Include="Share\Common\XmlSerialize.cs" />
     <Compile Include="Share\Static\ConstStatic.cs" />
     <Compile Include="Share\Static\ReadXaml.cs" />
     <Compile Include="Share\View\UC\LoadingWaitUC.xaml.cs">

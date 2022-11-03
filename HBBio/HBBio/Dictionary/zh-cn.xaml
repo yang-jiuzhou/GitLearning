@@ -1367,6 +1367,8 @@
     <s:String x:Key="ME_Msg_ColumnWashUntil">冲洗至</s:String>
     <s:String x:Key="ME_Msg_EquilibrationUntil">平衡至</s:String>
 
+    <s:String x:Key="ME_Desc_ReplaceMethod">替换方法</s:String>
+
 
 
     <!--PassDog 加密狗-->

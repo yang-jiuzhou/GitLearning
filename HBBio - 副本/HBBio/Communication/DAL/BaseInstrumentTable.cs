@@ -54,6 +54,15 @@ namespace HBBio.Communication
         }
 
         /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            return "";
+        }
+
+        /// <summary>
         /// 获取完整表
         /// </summary>
         /// <returns></returns>

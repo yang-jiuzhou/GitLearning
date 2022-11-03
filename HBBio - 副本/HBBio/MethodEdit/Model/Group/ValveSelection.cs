@@ -60,5 +60,28 @@ namespace HBBio.MethodEdit
             MVisibWash = true;
             MEnableWash = false;
         }
+
+        public override bool Compare(BaseGroup baseItem)
+        {
+            ValveSelection item = (ValveSelection)baseItem;
+
+            if (MEnableSameMS != item.MEnableSameMS
+                || MInA != item.MInA
+                || MInB != item.MInB
+                || MInC != item.MInC
+                || MInD != item.MInD
+                || MBPV != item.MBPV
+                || MVisibPer != item.MVisibPer
+                || MPerB != item.MPerB
+                || MPerC != item.MPerC
+                || MPerD != item.MPerD
+                || MVisibWash != item.MVisibWash
+                || MEnableWash != item.MEnableWash)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

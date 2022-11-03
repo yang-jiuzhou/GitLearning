@@ -38,19 +38,57 @@ namespace HBBio.Chromatogram
             int columnCount = Enum.GetNames(typeof(EnumBackground)).GetLength(0);
             for (int i = 0; i < columnCount; i++)
             {
-                sb.Append("[" + ((EnumBackground)i).ToString() + "_C] [varchar](32) NOT NULL,");
+                sb.Append("[" + ((EnumBackground)i).ToString() + "_C] [varchar](32),");
             }
             for (int i = 0; i < columnCount; i++)
             {
-                sb.Append("[" + ((EnumBackground)i).ToString() + "_V] [bit] NOT NULL,");
+                sb.Append("[" + ((EnumBackground)i).ToString() + "_V] [bit],");
             }
             for (int i = 0; i < columnCount; i++)
             {
-                sb.Append("[" + ((EnumBackground)i).ToString() + "_D] [bit] NOT NULL,");
+                sb.Append("[" + ((EnumBackground)i).ToString() + "_D] [bit],");
             }
             sb.Remove(sb.Length - 1, 1);
 
             return SqlCreateTable(sb.ToString());
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    int columnCount = Enum.GetNames(typeof(EnumBackground)).GetLength(0);
+                    for (int i = 0; i < columnCount; i++)
+                    {
+                        listName.Add(((EnumBackground)i).ToString() + "_C");
+                        listType.Add("[varchar](32)");
+                    }
+                    for (int i = 0; i < columnCount; i++)
+                    {
+                        listName.Add(((EnumBackground)i).ToString() + "_V");
+                        listType.Add("bit");
+                    }
+                    for (int i = 0; i < columnCount; i++)
+                    {
+                        listName.Add(((EnumBackground)i).ToString() + "_D");
+                        listType.Add("bit");
+                    }
+
+                    error = CreateNewTable(listName, listType, false);
+                }
+            }
+
+            return error;
         }
 
         /// <summary>

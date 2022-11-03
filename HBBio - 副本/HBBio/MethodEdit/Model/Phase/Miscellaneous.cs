@@ -64,5 +64,25 @@ namespace HBBio.MethodEdit
 
             return null;
         }
+
+        public override bool Compare(BasePhase baseItem)
+        {
+            Miscellaneous item = (Miscellaneous)baseItem;
+
+            if (MEnableSetMark != item.MEnableSetMark
+                || !MSetMark.Equals(item.MSetMark)
+                || MEnableMethodDelay != item.MEnableMethodDelay
+                || !MMethodDelay.Compare(item.MMethodDelay)
+                || MEnableMessage != item.MEnableMessage
+                || !MMessage.Equals(item.MMessage)
+                || MEnablePauseAfterMessage != item.MEnablePauseAfterMessage
+                || MEnablePauseTimer != item.MEnablePauseTimer
+                || MPauseTimer != item.MPauseTimer)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

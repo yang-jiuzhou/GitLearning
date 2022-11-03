@@ -251,6 +251,16 @@ namespace HBBio.ProjectManager
             RoutedEventArgs args = new RoutedEventArgs(MSelectEvent, (MethodType)e.OriginalSource);
             RaiseEvent(args);
         }
+        private void AddMethod(object sender, RoutedEventArgs e)
+        {
+            UpdateListMethod(txtFilterMethod.Text, true);
+            projectTreeUC.UpdateCountMethod(true);
+        }
+        private void AddMethodQueue(object sender, RoutedEventArgs e)
+        {
+            UpdateListMethod(txtFilterMethod.Text, true);
+            projectTreeUC.UpdateCountMethod(true);
+        }
 
         /****方法编辑模块 ****/
 
@@ -284,13 +294,8 @@ namespace HBBio.ProjectManager
             {
                 MethodEditorWin win = new MethodEditorWin(this, winNewMethod.MMethod);
                 win.MSelectItem += SendMethod;
-                win.ShowDialog();
-
-                UpdateListMethod(txtFilterMethod.Text, true);
-                if (win.MClickSave)
-                {
-                    projectTreeUC.UpdateCountMethod(true);
-                }
+                win.MAddMethod += AddMethod;
+                win.Show();
             }
         }
 
@@ -312,12 +317,8 @@ namespace HBBio.ProjectManager
             if (null == error)
             {
                 MethodQueueWin win = new MethodQueueWin(this, m_communicationSetsID, m_projectID, list);
-                if (true == win.ShowDialog())
-                {
-                    UpdateListMethod(txtFilterMethod.Text, true);
-
-                    projectTreeUC.UpdateCountMethod(true);
-                }
+                win.MAddMethod += AddMethodQueue;
+                win.Show();
             }
             else
             {
@@ -461,11 +462,7 @@ namespace HBBio.ProjectManager
                                     win.SaveSend(false, false);
                                 }
                                 win.MSelectItem += SendMethod;
-                                win.ShowDialog();
-
-                                int temp = listMethod.SelectedIndex;
-                                UpdateListMethod(txtFilterMethod.Text);
-                                listMethod.SelectedIndex = temp;
+                                win.Show();
                             }
                             else
                             {
@@ -480,12 +477,7 @@ namespace HBBio.ProjectManager
                             if (null == error)
                             {
                                 MethodQueueWin win = new MethodQueueWin(curr.MID, list, m_self);
-                                if (true == win.ShowDialog())
-                                {
-                                    int temp = listMethod.SelectedIndex;
-                                    UpdateListMethod(txtFilterMethod.Text);
-                                    listMethod.SelectedIndex = temp;
-                                }
+                                win.Show();
                             }
                             else
                             {
@@ -517,29 +509,70 @@ namespace HBBio.ProjectManager
                 }
 
                 MethodManager manager = new MethodManager();
-                string error = manager.DelMethod(((MethodType)listMethod.SelectedItem).MID);
-                if (null == error)
+                List<MethodType> listSelect = new List<MethodType>();
+                foreach (MethodType it in listMethod.SelectedItems)
                 {
-                    switch(((MethodType)listMethod.SelectedItem).MType)
+                    listSelect.Add(it);
+                }
+                bool update = false;
+                StringBuilderSplit infoShow = new StringBuilderSplit();
+                foreach (MethodType it in listSelect)
+                {
+                    string error = manager.DelMethod(it.MID);
+                    if (null == error)
                     {
-                        case EnumMethodType.Method:
-                            AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Delete"), projectTreeUC.MSelectPath + " : " + ((MethodType)listMethod.SelectedItem).MName);
-                            Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_DeleteYes"));
-                            break;
-                        case EnumMethodType.MethodQueue:
-                            AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Queue_Delete"), projectTreeUC.MSelectPath + " : " + ((MethodType)listMethod.SelectedItem).MName);
-                            Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_Queue_DeleteYes"));
-                            break;
+                        switch (it.MType)
+                        {
+                            case EnumMethodType.Method:
+                                AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Delete"), projectTreeUC.MSelectPath + " : " + it.MName);
+                                infoShow.Append(it.MName + " " + Share.ReadXaml.GetResources("ME_Msg_DeleteYes"));
+                                break;
+                            case EnumMethodType.MethodQueue:
+                                AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Queue_Delete"), projectTreeUC.MSelectPath + " : " + it.MName);
+                                infoShow.Append(it.MName + " " + Share.ReadXaml.GetResources("ME_Msg_Queue_DeleteYes"));
+                                break;
+                        }
+                        update = true;
                     }
-                    
+                    else
+                    {
+                        infoShow.Append(error);
+                    }
+                }
+
+                Share.MessageBoxWin.Show(infoShow.ToString());
+
+                if (update)
+                {
                     UpdateListMethod(txtFilterMethod.Text);
 
                     projectTreeUC.UpdateCountMethod(false);
                 }
-                else
-                {
-                    Share.MessageBoxWin.Show(error);
-                }
+
+                //MethodManager manager = new MethodManager();
+                //string error = manager.DelMethod(((MethodType)listMethod.SelectedItem).MID);
+                //if (null == error)
+                //{
+                //    switch(((MethodType)listMethod.SelectedItem).MType)
+                //    {
+                //        case EnumMethodType.Method:
+                //            AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Delete"), projectTreeUC.MSelectPath + " : " + ((MethodType)listMethod.SelectedItem).MName);
+                //            Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_DeleteYes"));
+                //            break;
+                //        case EnumMethodType.MethodQueue:
+                //            AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Queue_Delete"), projectTreeUC.MSelectPath + " : " + ((MethodType)listMethod.SelectedItem).MName);
+                //            Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_Queue_DeleteYes"));
+                //            break;
+                //    }
+
+                //    UpdateListMethod(txtFilterMethod.Text);
+
+                //    projectTreeUC.UpdateCountMethod(false);
+                //}
+                //else
+                //{
+                //    Share.MessageBoxWin.Show(error);
+                //}
             }
         }
 
@@ -677,9 +710,6 @@ namespace HBBio.ProjectManager
 
             if (-1 != listMethod.SelectedIndex)
             {
-                RoutedEventArgs args = new RoutedEventArgs(MSelectEvent, (MethodType)listMethod.SelectedItem);
-                RaiseEvent(args);
-
                 switch (((MethodType)listMethod.SelectedItem).MType)
                 {
                     case EnumMethodType.Method:
@@ -689,6 +719,9 @@ namespace HBBio.ProjectManager
                         AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Queue_Send"), projectTreeUC.MSelectPath + " : " + ((MethodType)listMethod.SelectedItem).MName);
                         break;
                 }
+
+                RoutedEventArgs args = new RoutedEventArgs(MSelectEvent, (MethodType)listMethod.SelectedItem);
+                RaiseEvent(args);
             }
         }
 

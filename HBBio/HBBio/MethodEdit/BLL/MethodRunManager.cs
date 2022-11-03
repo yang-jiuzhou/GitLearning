@@ -225,29 +225,108 @@ namespace HBBio.MethodEdit
         /// <returns></returns>
         public string SendMethodOrQueue(MethodType type)
         {
-            if (MethodState.Free != m_state)
+            if (MethodState.Free == m_state)
             {
-                return ReadXaml.GetResources("ME_Desc_Run");
+                m_methodType = type;
+
+                MethodManager manager = new MethodManager();
+                switch (m_methodType.MType)
+                {
+                    case EnumMethodType.MethodQueue:
+                        string error = manager.GetMethodQueue(m_methodType.MID, out m_methodQueue);
+                        if (null == error)
+                        {
+                            return manager.GetMethod(m_methodQueue.MMethodList[0], out m_method);
+                        }
+                        else
+                        {
+                            return error;
+                        }
+                    default:
+                        return manager.GetMethod(m_methodType.MID, out m_method);
+                }
+            }
+            else
+            {
+                if (m_methodType.MID == type.MID)
+                {
+                    //同一个方法或序列
+                    switch (type.MType)
+                    {
+                        case EnumMethodType.MethodQueue:
+                            return ReadXamlMethod.S_Run;
+                        default:
+                            if (MessageBoxResult.Yes == Share.MessageBoxWin.Show(Share.ReadXaml.S_Continue, ReadXamlMethod.S_ReplaceMethod, MessageBoxButton.YesNo, MessageBoxImage.Question))
+                            {
+                                MethodManager manager = new MethodManager();
+                                Method method = null;
+                                string error = manager.GetMethod(m_methodType.MID, out method);
+                                if (null != error)
+                                {
+                                    return error;
+                                }
+                                else
+                                {
+                                    if (ReplaceMethod(method))
+                                    {
+                                        MAuditTrailsHandler?.Invoke(ReadXamlMethod.S_ReplaceMethod, type.MName);
+                                        return null;
+                                    }
+                                    else
+                                    {
+                                        return ReadXamlMethod.S_Run;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                return ReadXamlMethod.S_Run;
+                            }
+                    }
+                }
+                else
+                {
+                    return ReadXamlMethod.S_Run;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 检查是否可以替换方法
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        public bool ReplaceMethod(Method method)
+        {
+            if (method.MMethodSetting.MLoop < m_indexCurrLoop + 1)
+            {
+                return false;
             }
 
-            m_methodType = type;
-
-            MethodManager manager = new MethodManager();
-            switch (m_methodType.MType)
+            if (method.MPhaseList.Count <= m_indexCurrPhase + 1)
             {
-                case EnumMethodType.MethodQueue:
-                    string error = manager.GetMethodQueue(m_methodType.MID, out m_methodQueue);
-                    if (null == error)
-                    {
-                        return manager.GetMethod(MMethodQueue.MMethodList[0], out m_method);
-                    }
-                    else
-                    {
-                        return error;
-                    }
-                default:
-                    return manager.GetMethod(m_methodType.MID, out m_method);
+                return false;
             }
+
+            if (!method.MPhaseList[m_indexCurrPhase].Compare(m_method.MPhaseList[m_indexCurrPhase]))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < m_indexCurrPhase; i++)
+            {
+                m_method.MPhaseList[i] = method.MPhaseList[i];
+            }
+            while (m_method.MPhaseList.Count > m_indexCurrPhase + 1)
+            {
+                m_method.MPhaseList.RemoveAt(m_method.MPhaseList.Count - 1);
+            }
+            for (int i = m_indexCurrPhase + 1; i < method.MPhaseList.Count; i++)
+            {
+                m_method.MPhaseList.Add(method.MPhaseList[i]);
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -1270,7 +1349,7 @@ namespace HBBio.MethodEdit
                         {
                             case 1:
                             case 2:
-                            MWashHandler?.Invoke(item.MFillSystem);
+                                MWashHandler?.Invoke(item.MFillSystem);
                                 break;
                         }
                     }

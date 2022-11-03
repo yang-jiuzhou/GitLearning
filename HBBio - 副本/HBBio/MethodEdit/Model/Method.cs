@@ -30,6 +30,14 @@ namespace HBBio.MethodEdit
 
 
         /// <summary>
+        /// 无参构造函数
+        /// </summary>
+        public Method()
+        {
+
+        }
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="id"></param>

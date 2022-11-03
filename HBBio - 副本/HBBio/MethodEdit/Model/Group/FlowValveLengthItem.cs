@@ -59,5 +59,36 @@ namespace HBBio.MethodEdit
             MVOut = 0;
             MIncubation = 0;
         }
+
+        public bool Compare(FlowValveLengthItem item)
+        {
+            if (null == item)
+            {
+                return false;
+            }
+
+            if (!MNote.Equals(item.MNote)
+                || MInA != item.MInA
+                || MInB != item.MInB
+                || MInC != item.MInC
+                || MInD != item.MInD
+                || MPerBS != item.MPerBS
+                || MPerBE != item.MPerBE
+                || MPerCS != item.MPerCS
+                || MPerCE != item.MPerCE
+                || MPerDS != item.MPerDS
+                || MPerDE != item.MPerDE
+                || MFillSystem != item.MFillSystem
+                || !MBaseTVCV.Compare(item.MBaseTVCV)
+                || !MFlowVolLen.Compare(item.MFlowVolLen)
+                || MBPV != item.MBPV
+                || MVOut != item.MVOut
+                || MIncubation != item.MIncubation)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

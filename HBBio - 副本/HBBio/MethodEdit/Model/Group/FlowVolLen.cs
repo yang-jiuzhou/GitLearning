@@ -72,6 +72,24 @@ namespace HBBio.MethodEdit
             MFlowLen = 1;
         }
 
+        public bool Compare(FlowVolLen item)
+        {
+            if (null == item)
+            {
+                return false;
+            }
+
+            if (MEnumFlowRate != item.MEnumFlowRate
+                || MFlowVol != item.MFlowVol
+                || MFlowLen != item.MFlowLen
+                || MFlowRate != item.MFlowRate)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public void Init(EnumFlowRate enumFlowRate, double columnArea)
         {
             MEnumFlowRate = enumFlowRate;

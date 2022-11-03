@@ -645,7 +645,6 @@ namespace HBBio.Collection
                         valMax = val;
                     }
 
-                    System.Diagnostics.Trace.WriteLine(k +"\t"+k_last);
                     if (val < te && k < 0 || (k > 0 && k_last < 0 && val < valMax - (valMax - valMin) / 5))
                     {
                         //1.当前值小于结束值；2.斜率由负变正且当前值小于逢高的1/5

@@ -141,5 +141,26 @@ namespace HBBio.MethodEdit
 
             return error;
         }
+
+        public override bool Compare(BasePhase baseItem)
+        {
+            DlyPhase item = (DlyPhase)baseItem;
+            if (MListGroup.Count != item.MListGroup.Count)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < MListGroup.Count; i++)
+                {
+                    if (!MListGroup[i].Compare(item.MListGroup[i]))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
     }
 }

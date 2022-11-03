@@ -47,16 +47,51 @@ namespace HBBio.Administration
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[ID] [int] PRIMARY KEY IDENTITY(1,1),");
-            sb.Append("[DeleteID] [int] NOT NULL,");
-            sb.Append("[Name] [nvarchar](64) NOT NULL,");
-            sb.Append("[Note] [nvarchar](max) NOT NULL,");
+            sb.Append("[DeleteID] [int],");
+            sb.Append("[Name] [nvarchar](64),");
+            sb.Append("[Note] [nvarchar](max),");
             for (int i = 0; i < Enum.GetNames(typeof(EnumPermission)).GetLength(0); i++)
             {
-                sb.Append("[" + ((EnumPermission)i).ToString() + "] [bit] NOT NULL,");
+                sb.Append("[" + ((EnumPermission)i).ToString() + "] [bit],");
             }
             sb.Append("CONSTRAINT DeleteID_Name UNIQUE (DeleteID,Name)");
 
             return SqlCreateTable(sb.ToString());
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("ID");
+                    listType.Add("int");
+                    listName.Add("DeleteID");
+                    listType.Add("int");
+                    listName.Add("Name");
+                    listType.Add("nvarchar");
+                    listName.Add("Note");
+                    listType.Add("nvarchar");
+                    for (int i = 0; i < Enum.GetNames(typeof(EnumPermission)).GetLength(0); i++)
+                    {
+                        listName.Add(((EnumPermission)i).ToString());
+                        listType.Add("bit");
+                    }
+
+                    error = CreateNewTable(listName, listType, true);
+                }
+            }
+            
+            return error;
         }
 
         /// <summary>

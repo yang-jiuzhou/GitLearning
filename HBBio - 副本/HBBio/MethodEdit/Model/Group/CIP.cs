@@ -124,5 +124,77 @@ namespace HBBio.MethodEdit
 
             MVolumeTotal = 10;
         }
+
+        public override bool Compare(BaseGroup baseItem)
+        {
+            CIP item = (CIP)baseItem;
+
+            if (!MNote.Equals(item.MNote)
+                || MPause != item.MPause
+                || !MFlowRate.Compare(item.MFlowRate)
+                || MVolumePerPosition != item.MVolumePerPosition
+                || MFlowRate != item.MFlowRate)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < MListInA.Count; i++)
+            {
+                if (!MListInA[i].Compare(item.MListInA[i]))
+                {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < MListInB.Count; i++)
+            {
+                if (!MListInB[i].Compare(item.MListInB[i]))
+                {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < MListInC.Count; i++)
+            {
+                if (!MListInC[i].Compare(item.MListInC[i]))
+                {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < MListInD.Count; i++)
+            {
+                if (!MListInD[i].Compare(item.MListInD[i]))
+                {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < MListInS.Count; i++)
+            {
+                if (!MListInS[i].Compare(item.MListInS[i]))
+                {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < MListCPV.Count; i++)
+            {
+                if (!MListCPV[i].Compare(item.MListCPV[i]))
+                {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < MListOut.Count; i++)
+            {
+                if (!MListOut[i].Compare(item.MListOut[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

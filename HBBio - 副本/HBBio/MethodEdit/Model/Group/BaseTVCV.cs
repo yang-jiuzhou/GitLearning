@@ -85,6 +85,22 @@ namespace HBBio.MethodEdit
             MCV = 1;
         }
 
+        public override bool Compare(BaseGroup baseItem)
+        {
+            BaseTVCV item = (BaseTVCV)baseItem;
+
+            if (!MHeaderText.Equals(item.MHeaderText)
+                || MEnumBase != item.MEnumBase
+                || MT != item.MT
+                || MV != item.MV
+                || MCV != item.MCV)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public void Init(EnumBase enumBase, double flowVol, double columnVol)
         {
             MEnumBase = enumBase;

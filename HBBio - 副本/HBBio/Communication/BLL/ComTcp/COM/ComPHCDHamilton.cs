@@ -166,67 +166,59 @@ namespace HBBio.Communication
                         result = true;
                         if (Connect())
                         {
-                            if (result && m_pHItem1.MVisible)
+                            if (m_pHItem1.MVisible)
                             {
-                                result = ReadPHValue1(ref m_pHItem1.m_pHGet);
+                                result &= ReadPHValue1(ref m_pHItem1.m_pHGet);
+                                if (0 == phcdNum % 10)
+                                {
+                                    ReadPHTempeture1(ref m_ttpHItem1.m_tempGet);
+                                    if (0 == phcdNum % 60)
+                                    {
+                                        ReadPHTime1(ref m_pHItem1.m_timeGet);
+                                    }
+                                }
                             }
-                            if (result && m_pHItem2.MVisible)
+                            if (m_pHItem2.MVisible)
                             {
-                                result = ReadPHValue2(ref m_pHItem2.m_pHGet);
+                                result &= ReadPHValue2(ref m_pHItem2.m_pHGet);
+                                if (0 == phcdNum % 10)
+                                {
+                                    ReadPHTempeture2(ref m_ttpHItem2.m_tempGet);
+                                    if (0 == phcdNum % 60)
+                                    {
+                                        ReadPHTime2(ref m_pHItem2.m_timeGet);
+                                    }
+                                }
                             }
-                            if (result && m_CdItem1.MVisible)
+                            if (m_CdItem1.MVisible)
                             {
-                                result = ReadCDValue1(ref cdVal1);
+                                result &= ReadCDValue1(ref cdVal1);
                                 m_CdItem1.UpdateValue(cdVal1);
+                                if (0 == phcdNum % 10)
+                                {
+                                    ReadCDTempeture1(ref m_ttCdItem1.m_tempGet);
+                                    if (0 == phcdNum % 60)
+                                    {
+                                        ReadCDTime1(ref m_CdItem1.m_timeGet);
+                                    }
+                                }
                             }
-                            if (result && m_CdItem2.MVisible)
+                            if (m_CdItem2.MVisible)
                             {
-                                result = ReadCDValue2(ref cdVal2);
+                                result &= ReadCDValue2(ref cdVal2);
                                 m_CdItem2.UpdateValue(cdVal2);
+                                if (0 == phcdNum % 10)
+                                {
+                                    ReadCDTempeture2(ref m_ttCdItem2.m_tempGet);
+                                    if (0 == phcdNum % 60)
+                                    {
+                                        ReadCDTime2(ref m_CdItem2.m_timeGet);
+                                    }
+                                }
                             }
                             if (result)
                             {
 								m_communState = ENUMCommunicationState.Success;
-								
-                                if (0 == phcdNum % 10)
-                                {
-                                    if (m_pHItem1.MVisible)
-                                    {
-                                        ReadPHTempeture1(ref m_ttpHItem1.m_tempGet);
-                                    }
-                                    if (m_pHItem2.MVisible)
-                                    {
-                                        ReadPHTempeture2(ref m_ttpHItem2.m_tempGet);
-                                    }
-                                    if (m_CdItem1.MVisible)
-                                    {
-                                        ReadCDTempeture1(ref m_ttCdItem1.m_tempGet);
-                                    }
-                                    if (m_CdItem2.MVisible)
-                                    {
-                                        ReadCDTempeture2(ref m_ttCdItem2.m_tempGet);
-                                    }
-                                    if (0 == phcdNum % 60)
-                                    {
-                                        if (m_pHItem1.MVisible)
-                                        {
-                                            ReadPHTime1(ref m_pHItem1.m_timeGet);
-                                        }
-                                        if (m_pHItem2.MVisible)
-                                        {
-                                            ReadPHTime2(ref m_pHItem2.m_timeGet);
-                                        }
-                                        if (m_CdItem1.MVisible)
-                                        {
-                                            ReadCDTime1(ref m_CdItem1.m_timeGet);
-                                        }
-                                        if (m_CdItem2.MVisible)
-                                        {
-                                            ReadCDTime2(ref m_CdItem2.m_timeGet);
-                                        }
-                                    }
-                                }
-
                                 Thread.Sleep(DlyBase.c_sleep5);
                             }
                             
@@ -283,7 +275,7 @@ namespace HBBio.Communication
             try
             {
                 double val = 0;
-                if(ReadPHValue2(ref val) || ReadCDValue1(ref val) || ReadCDValue2(ref val))
+                if (ReadPHValue2(ref val) || ReadCDValue1(ref val) || ReadCDValue2(ref val))
                 {
                     model = ENUMDetectorID.pHCdHamilton.ToString();
                     return true;

@@ -1150,3 +1150,4 @@ D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.application
 D:\GitLearning\HBBio\HBBio\obj\Release\HBBio.csproj.CopyComplete
 D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.exe
 D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.pdb
+D:\GitLearning\HBBio\HBBio\obj\Release\HBBio.csproj.AssemblyReference.cache

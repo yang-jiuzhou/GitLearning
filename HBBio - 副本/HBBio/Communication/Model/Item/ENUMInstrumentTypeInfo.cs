@@ -43,6 +43,7 @@ namespace HBBio.Communication
         QBH_Coll6,
         QBH_Coll8,
         QBH_Coll12,
+        HB_Coll2,
         HB_Coll6,
         HB_Coll8,
         HB_Coll10,

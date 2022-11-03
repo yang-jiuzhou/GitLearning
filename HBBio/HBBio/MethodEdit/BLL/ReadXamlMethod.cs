@@ -12,6 +12,8 @@ namespace HBBio.MethodEdit
         public const string C_PhaseName = "ME_PhaseTitle";              //阶段名称
         public const string C_MethodSettings = "ME_MethodSettings";     //方法设置
         public const string C_UVSettings = "ME_UVSettings";             //紫外检测器设置
+        public const string C_ReplaceMethod = "ME_Desc_ReplaceMethod";  //替换方法
+        public const string C_Run = "ME_Desc_Run";                      //方法或队列正在运行中
 
 
         /// <summary>
@@ -44,6 +46,28 @@ namespace HBBio.MethodEdit
             get
             {
                 return (string)Application.Current.Resources[C_UVSettings];
+            }
+        }
+
+        /// <summary>
+        /// 字符串-替换方法
+        /// </summary>
+        public static string S_ReplaceMethod
+        {
+            get
+            {
+                return (string)Application.Current.Resources[C_ReplaceMethod];
+            }
+        }
+
+        /// <summary>
+        /// 字符串-方法或队列正在运行中
+        /// </summary>
+        public static string S_Run
+        {
+            get
+            {
+                return (string)Application.Current.Resources[C_Run];
             }
         }
     }

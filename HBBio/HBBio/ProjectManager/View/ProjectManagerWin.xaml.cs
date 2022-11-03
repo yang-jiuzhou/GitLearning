@@ -710,9 +710,6 @@ namespace HBBio.ProjectManager
 
             if (-1 != listMethod.SelectedIndex)
             {
-                RoutedEventArgs args = new RoutedEventArgs(MSelectEvent, (MethodType)listMethod.SelectedItem);
-                RaiseEvent(args);
-
                 switch (((MethodType)listMethod.SelectedItem).MType)
                 {
                     case EnumMethodType.Method:
@@ -722,6 +719,9 @@ namespace HBBio.ProjectManager
                         AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Queue_Send"), projectTreeUC.MSelectPath + " : " + ((MethodType)listMethod.SelectedItem).MName);
                         break;
                 }
+
+                RoutedEventArgs args = new RoutedEventArgs(MSelectEvent, (MethodType)listMethod.SelectedItem);
+                RaiseEvent(args);
             }
         }
 

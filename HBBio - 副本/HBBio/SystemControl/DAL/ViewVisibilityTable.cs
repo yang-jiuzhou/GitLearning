@@ -43,22 +43,60 @@ namespace HBBio.SystemControl
         /// <returns></returns>
         protected override string CreateTable()
         {
-            return SqlCreateTable(@"[ToolBar] [bit] NOT NULL,
-                                    [Communication] [bit] NOT NULL,
-                                    [InstrumentParameters] [bit] NOT NULL,
-                                    [Administration] [bit] NOT NULL,
-                                    [ColumnHandling] [bit] NOT NULL,
-                                    [TubeStand] [bit] NOT NULL,
-                                    [Manual] [bit] NOT NULL,
-                                    [Project] [bit] NOT NULL,
-                                    [AuditTrails] [bit] NOT NULL,
-                                    [SystemMonitor] [bit] NOT NULL,
-                                    [DB] [bit] NOT NULL,
-                                    [RunData] [bit] NOT NULL,
-                                    [Chromatogram] [bit] NOT NULL,
-                                    [ProcessPicture] [bit] NOT NULL,
-                                    [Monitor] [bit] NOT NULL,
-                                    [StatusBar] [bit] NOT NULL");
+            return SqlCreateTable(@"[ToolBar] [bit],
+                                    [Communication] [bit],
+                                    [InstrumentParameters] [bit],
+                                    [Administration] [bit],
+                                    [ColumnHandling] [bit],
+                                    [TubeStand] [bit],
+                                    [Manual] [bit],
+                                    [Project] [bit],
+                                    [AuditTrails] [bit],
+                                    [SystemMonitor] [bit],
+                                    [DB] [bit],
+                                    [RunData] [bit],
+                                    [Chromatogram] [bit],
+                                    [ProcessPicture] [bit],
+                                    [Monitor] [bit],
+                                    [StatusBar] [bit]");
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("ToolBar");
+                    listName.Add("Communication");
+                    listName.Add("InstrumentParameters");
+                    listName.Add("Administration");
+                    listName.Add("ColumnHandling");
+                    listName.Add("TubeStand");
+                    listName.Add("Manual");
+                    listName.Add("Project");
+                    listName.Add("AuditTrails");
+                    listName.Add("SystemMonitor");
+                    listName.Add("DB");
+                    listName.Add("RunData");
+                    listName.Add("Chromatogram");
+                    listName.Add("ProcessPicture");
+                    listName.Add("Monitor");
+                    listName.Add("StatusBar");
+
+                    error = CreateNewTable(listName, listType, false);
+                }
+            }
+
+            return error;
         }
 
         /// <summary>
@@ -80,22 +118,29 @@ namespace HBBio.SystemControl
                     if (reader.Read())//匹配
                     {
                         int index = 0;
-                        item.MToolBar = reader.GetBoolean(index++);
-                        item.MCommunication = reader.GetBoolean(index++);
-                        item.MInstrumentParameters = reader.GetBoolean(index++);
-                        item.MAdministration = reader.GetBoolean(index++);
-                        item.MColumnHandling = reader.GetBoolean(index++);
-                        item.MTubeStand = reader.GetBoolean(index++);
-                        item.MManual = reader.GetBoolean(index++);
-                        item.MProject = reader.GetBoolean(index++);
-                        item.MAuditTrails = reader.GetBoolean(index++);
-                        item.MSystemMonitor = reader.GetBoolean(index++);
-                        item.MDB = reader.GetBoolean(index++);
-                        item.MRunData = reader.GetBoolean(index++);
-                        item.MChromatogram = reader.GetBoolean(index++);
-                        item.MProcessPicture = reader.GetBoolean(index++);
-                        item.MMonitor = reader.GetBoolean(index++);
-                        item.MStatusBar = reader.GetBoolean(index++);
+                        try
+                        {
+                            item.MToolBar = reader.GetBoolean(index++);
+                            item.MCommunication = reader.GetBoolean(index++);
+                            item.MInstrumentParameters = reader.GetBoolean(index++);
+                            item.MAdministration = reader.GetBoolean(index++);
+                            item.MColumnHandling = reader.GetBoolean(index++);
+                            item.MTubeStand = reader.GetBoolean(index++);
+                            item.MManual = reader.GetBoolean(index++);
+                            item.MProject = reader.GetBoolean(index++);
+                            item.MAuditTrails = reader.GetBoolean(index++);
+                            item.MSystemMonitor = reader.GetBoolean(index++);
+                            item.MDB = reader.GetBoolean(index++);
+                            item.MRunData = reader.GetBoolean(index++);
+                            item.MChromatogram = reader.GetBoolean(index++);
+                            item.MProcessPicture = reader.GetBoolean(index++);
+                            item.MMonitor = reader.GetBoolean(index++);
+                            item.MStatusBar = reader.GetBoolean(index++);
+                        }
+                        catch (Exception msg)
+                        {
+                            error = msg.Message;
+                        }
                     }
                     else
                     {

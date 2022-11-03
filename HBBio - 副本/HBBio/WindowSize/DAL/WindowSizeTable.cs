@@ -43,11 +43,39 @@ namespace HBBio.WindowSize
         protected override string CreateTable()
         {
             return SqlCreateTable(@"[ID] [int] PRIMARY KEY IDENTITY(1,1),
-	            [WindowName] [nvarchar](64) NOT NULL UNIQUE,
-                [WindowX] [float] NOT NULL,
-                [WindowY] [float] NOT NULL,
-                [WindowHeight] [float] NOT NULL,
-                [WindowWidth] [float] NOT NULL");
+	            [WindowName] [nvarchar](64) UNIQUE,
+                [WindowX] [float],
+                [WindowY] [float],
+                [WindowHeight] [float],
+                [WindowWidth] [float]");
+        }
+
+        /// <summary>
+        /// 检查表
+        /// </summary>
+        /// <returns></returns>
+        public override string CheckTable()
+        {
+            bool exist = false;
+            string error = ExistTable(ref exist);
+            if (null == error)
+            {
+                if (exist)
+                {
+                    List<string> listName = new List<string>();
+                    List<string> listType = new List<string>();
+                    listName.Add("ID");
+                    listName.Add("WindowName");
+                    listName.Add("WindowX");
+                    listName.Add("WindowY");
+                    listName.Add("WindowHeight");
+                    listName.Add("WindowWidth");
+
+                    error = CreateNewTable(listName, listType, true);
+                }
+            }
+
+            return error;
         }
 
         /// <summary>

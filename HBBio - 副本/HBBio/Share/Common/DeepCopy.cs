@@ -17,7 +17,7 @@ namespace HBBio.Share
      * Author:  yangjiuzhou
      * Company: jshanbon
      **/
-    class DeepCopy
+    public class DeepCopy
     {
         public static T DeepCopyByXml<T>(T obj)
         {

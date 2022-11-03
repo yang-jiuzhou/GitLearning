@@ -37,7 +37,7 @@ namespace HBBio.MethodEdit
         /// 自定义事件，添加方法或者方法序列时触发
         /// </summary>
         public static readonly RoutedEvent MAddMethodEvent =
-             EventManager.RegisterRoutedEvent("MAddMethod", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MethodEditorWin));
+             EventManager.RegisterRoutedEvent("MAddMethod", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MethodQueueWin));
         public event RoutedEventHandler MAddMethod
         {
             add { AddHandler(MAddMethodEvent, value); }

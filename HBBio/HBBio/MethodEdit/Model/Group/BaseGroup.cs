@@ -41,5 +41,7 @@ namespace HBBio.MethodEdit
             MType = EnumGroupType.FlowValveLength;
             MIndex = 0;
         }
+
+        public abstract bool Compare(BaseGroup baseItem);
     }
 }

@@ -32,5 +32,26 @@ namespace HBBio.MethodEdit
 
             MList = new ObservableCollection<FlowRatePerItem>();
         }
+
+        public override bool Compare(BaseGroup baseItem)
+        {
+            FlowRatePer item = (FlowRatePer)baseItem;
+            if (MList.Count != item.MList.Count)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < MList.Count; i++)
+                {
+                    if (!MList[i].Compare(item.MList[i]))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
     }
 }
