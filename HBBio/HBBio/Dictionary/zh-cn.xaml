@@ -129,10 +129,14 @@
     <s:String x:Key="labOut1" xml:space="preserve">出口阀 : </s:String>
     <s:String x:Key="labMixer">动态混合器</s:String>
     <s:String x:Key="labMixer1" xml:space="preserve">动态混合器 : </s:String>
-    <s:String x:Key="labAS01" xml:space="preserve">AS01</s:String>
-    <s:String x:Key="labAS02" xml:space="preserve">AS02</s:String>
-    <s:String x:Key="labAS011" xml:space="preserve">AS01 : </s:String>
-    <s:String x:Key="labAS021" xml:space="preserve">AS02 : </s:String>
+    <s:String x:Key="labAS01">气泡传感器01</s:String>
+    <s:String x:Key="labAS02">气泡传感器02</s:String>
+    <s:String x:Key="labAS03">气泡传感器03</s:String>
+    <s:String x:Key="labAS04">气泡传感器04</s:String>
+    <s:String x:Key="labAS011" xml:space="preserve">气泡传感器01 : </s:String>
+    <s:String x:Key="labAS021" xml:space="preserve">气泡传感器02 : </s:String>
+    <s:String x:Key="labAS031" xml:space="preserve">气泡传感器03 : </s:String>
+    <s:String x:Key="labAS041" xml:space="preserve">气泡传感器04 : </s:String>
     <s:String x:Key="LabLength1" xml:space="preserve">持续值 : </s:String>
     <s:String x:Key="LabUnit1" xml:space="preserve">单位 : </s:String>
     <s:String x:Key="LabPer">百分比</s:String>
@@ -153,8 +157,11 @@
     <s:String x:Key="LabDS1" xml:space="preserve">%D起始(0-100) : </s:String>
     <s:String x:Key="LabDE1" xml:space="preserve">%D终止(0-100) : </s:String>
     <s:String x:Key="labFillSystem">冲洗系统</s:String>
+    <s:String x:Key="labFillSystem1" xml:space="preserve">冲洗系统 : </s:String>
     <s:String x:Key="labFlowRate">流速</s:String>
     <s:String x:Key="labFlowRate1" xml:space="preserve">流速 : </s:String>
+    <s:String x:Key="labSampleFlowRate">上样流速</s:String>
+    <s:String x:Key="labSystemFlowRate">系统流速</s:String>
     <s:String x:Key="labUV">紫外检测器</s:String>
     <s:String x:Key="labUVLamp1" xml:space="preserve">灯状态 : </s:String>
     <s:String x:Key="labUVTime1" xml:space="preserve">亮灯时间(h) : </s:String>
@@ -163,6 +170,7 @@
     <s:String x:Key="labUVOn">开灯</s:String>
     <s:String x:Key="labUVOff">关灯</s:String>
     <s:String x:Key="labUVReset">清零</s:String>
+    <s:String x:Key="labUVReset1" xml:space="preserve">清零 : </s:String>
     <s:String x:Key="labUVWaveLength1" xml:space="preserve">波长(nm) : </s:String>
     <s:String x:Key="labUV11" xml:space="preserve">UV1 : </s:String>
     <s:String x:Key="labUV21" xml:space="preserve">UV2 : </s:String>
@@ -191,7 +199,7 @@
     <s:String x:Key="labDirectionH">水平</s:String>
     <s:String x:Key="labDirectionV">垂直</s:String>
     <s:String x:Key="labCatalog">目录</s:String>
-    <s:String x:Key="labFilePath1">文件路径 : </s:String>
+    <s:String x:Key="labFilePath1" xml:space="preserve">文件路径 : </s:String>
     <s:String x:Key="labVisibility">显示</s:String>
     <s:String x:Key="labShow">显示</s:String>
     <s:String x:Key="labHide">隐藏</s:String>
@@ -834,10 +842,10 @@
     <s:String x:Key="Com_CalPH">实时pH值</s:String>
 
     <s:String x:Key="Com_CollectorQBHModeWin">组分收集器模式设置</s:String>
-    <s:String x:Key="Com_TrayLeftCount1">左托盘试管数量 : </s:String>
-    <s:String x:Key="Com_TrayRightCount1">右托盘试管数量 : </s:String>
-    <s:String x:Key="Com_TrayLeftMode1">左托盘模式 :</s:String>
-    <s:String x:Key="Com_TrayRightMode1">右托盘模式 :</s:String>
+    <s:String x:Key="Com_TrayLeftCount1" xml:space="preserve">左托盘试管数量 : </s:String>
+    <s:String x:Key="Com_TrayRightCount1" xml:space="preserve">右托盘试管数量 : </s:String>
+    <s:String x:Key="Com_TrayLeftMode1" xml:space="preserve">左托盘模式 : </s:String>
+    <s:String x:Key="Com_TrayRightMode1" xml:space="preserve">右托盘模式 : </s:String>
 
     <s:String x:Key="Com_CollectorHBModeWin">组分收集器模式设置</s:String>
     <s:String x:Key="Com_FindMode">模式搜索</s:String>
@@ -855,9 +863,9 @@
     <s:String x:Key="Com_EditCommunWin">编辑通信</s:String>
     <s:String x:Key="Com_SystemName1" xml:space="preserve">系统名称 : </s:String>
     <s:String x:Key="Com_SystemNote1" xml:space="preserve">系统备注 : </s:String>
-    <s:String x:Key="Com_CommunList1" xml:space="preserve">配置列表:</s:String>
+    <s:String x:Key="Com_CommunList1" xml:space="preserve">配置列表 : </s:String>
     <s:String x:Key="Com_Check">检测</s:String>
-    <s:String x:Key="Com_ComconfList1" xml:space="preserve">仪器列表:</s:String>
+    <s:String x:Key="Com_ComconfList1" xml:space="preserve">仪器列表 : </s:String>
     <s:String x:Key="Com_Name">名称</s:String>
     <s:String x:Key="Com_Model">型号</s:String>
     <s:String x:Key="Com_PortName">串口号</s:String>
@@ -917,12 +925,12 @@
     <s:String x:Key="Com_Wash">冲洗参数</s:String>
     <s:String x:Key="Com_WashTime1" xml:space="preserve">冲洗时间(min) : </s:String>
     <s:String x:Key="Com_WashFlowPer1" xml:space="preserve">冲洗流速比(%) : </s:String>
-    <s:String x:Key="Com_ASJudge1" xml:space="preserve">逻辑判断:</s:String>
+    <s:String x:Key="Com_ASJudge1" xml:space="preserve">逻辑判断 : </s:String>
     <s:String x:Key="Com_ASMin1" xml:space="preserve">最小设定[0~100] : </s:String>
     <s:String x:Key="Com_ASDelayLength1" xml:space="preserve">延迟长度 : </s:String>
     <s:String x:Key="Com_ASDelayUnit1" xml:space="preserve">延迟单位 : </s:String>
     <s:String x:Key="Com_pHCdUVDelayVol">检测器延迟体积</s:String>
-    <s:String x:Key="Com_DefaultDelayVol1">默认延迟体积 : </s:String>
+    <s:String x:Key="Com_DefaultDelayVol1" xml:space="preserve">默认延迟体积 : </s:String>
     <s:String x:Key="Com_AlarmWarning">警报警告参数</s:String>
     <s:String x:Key="Com_Coll">组分收集器</s:String>
     <s:String x:Key="Com_CollBottleVol">管路体积</s:String>
@@ -959,10 +967,10 @@
 
     <s:String x:Key="DB_DBAutoBackupWin">数据库自动备份设置</s:String>
     <s:String x:Key="DB_Parameter">参数</s:String>
-    <s:String x:Key="DB_AutoBackup1">自动备份 : </s:String>
-    <s:String x:Key="DB_Frequency1">备份频率(天) : </s:String>
-    <s:String x:Key="DB_MaxCount1">最大保留 : </s:String>
-    <s:String x:Key="DB_PathSelect1">位置选择 : </s:String>
+    <s:String x:Key="DB_AutoBackup1" xml:space="preserve">自动备份 : </s:String>
+    <s:String x:Key="DB_Frequency1" xml:space="preserve">备份频率(天) : </s:String>
+    <s:String x:Key="DB_MaxCount1" xml:space="preserve">最大保留 : </s:String>
+    <s:String x:Key="DB_PathSelect1" xml:space="preserve">位置选择 : </s:String>
 
     <s:String x:Key="DB_AutoBackupSuccess">自动备份操作执行成功</s:String>
     <s:String x:Key="DB_AutoBackupFail">自动备份作执行失败</s:String>
@@ -1120,8 +1128,8 @@
     <s:String x:Key="M_OutWin">出口阀设置</s:String>
     <s:String x:Key="M_OutWin_SingleSelect">阀位切换</s:String>
     <s:String x:Key="M_OutWin_MultipleSelect">阀位循环</s:String>
-    <s:String x:Key="M_OutWin_Start1">起始阀位 : </s:String>
-    <s:String x:Key="M_OutWin_Vol1">切换体积(ml) :</s:String>
+    <s:String x:Key="M_OutWin_Start1" xml:space="preserve">起始阀位 : </s:String>
+    <s:String x:Key="M_OutWin_Vol1" xml:space="preserve">切换体积(ml) : </s:String>
 
     <s:String x:Key="M_ValveSwitch">阀切换</s:String>
     
@@ -1148,6 +1156,7 @@
     <s:String x:Key="ME_EnumGroupType_PHCDUVUntil">信号监视</s:String>
     <s:String x:Key="ME_EnumGroupType_CollValveCollector">组分收集</s:String>
     <s:String x:Key="ME_EnumGroupType_CIP">管路清洗</s:String>
+    <s:String x:Key="ME_EnumGroupType_MixtureGrid">混合设备列表</s:String>
     <!--enum-EnumMethodMaintenance-->
     <s:String x:Key="ME_EnumMethodMaintenance_ColumnCIP">柱清洗</s:String>
     <s:String x:Key="ME_EnumMethodMaintenance_ColumnPerformanceTest">柱效测试</s:String>
@@ -1170,6 +1179,7 @@
     <s:String x:Key="ME_EnumPhaseType_Equilibration">平衡</s:String>
     <s:String x:Key="ME_EnumPhaseType_Miscellaneous">其它</s:String>
     <s:String x:Key="ME_EnumPhaseType_SystemCIP">系统清洗</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Mixture">混合</s:String>
     <s:String x:Key="ME_EnumPhaseType_Personal">用户自定义</s:String>
     <!--enum-EnumPHCDUVUntil-->
     <s:String x:Key="ME_EnumPHCDUVUntil_Total">总共</s:String>
@@ -1199,6 +1209,7 @@
     <s:String x:Key="ME_SameMSFlowRate">使用与方法设置相同的流速</s:String>
     <!--UC-Group-FlowValveLengthUC-->
     <s:String x:Key="ME_IncubationTime">培养时间(min)</s:String>
+    <s:String x:Key="ME_IncubationTime1" xml:space="preserve">培养时间(min) : </s:String>
     <!--UC-Group-PHCDUVUntilUC-->
     <s:String x:Key="ME_TheTotalIs1" xml:space="preserve">总共 : </s:String>
     <s:String x:Key="ME_TFCIM1" xml:space="preserve">满足以下条件 : </s:String>
@@ -1243,7 +1254,7 @@
     <s:String x:Key="ME_CreateTime1" xml:space="preserve">创建日期 : </s:String>
     <s:String x:Key="ME_ModifyTime1" xml:space="preserve">修改日期 : </s:String>
     <!--MethodEditorWin-Method Settings-Loop settings-->
-    <s:String x:Key="ME_LoopSettings" xml:space="preserve">循环设置</s:String>
+    <s:String x:Key="ME_LoopSettings">循环设置</s:String>
     <s:String x:Key="ME_LoopSet1" xml:space="preserve">循环次数 : </s:String>
     <!--MethodEditorWin-Method Settings-Column selection-->
     <s:String x:Key="ME_ColumnSelection">色谱柱选择</s:String>
@@ -1278,6 +1289,13 @@
 
     <!--MethodQueueWin-->
     <s:String x:Key="ME_MethodQueueWin">方法队列</s:String>
+
+    <!--MixtureGridItemWin-->
+    <s:String x:Key="ME_MixtureGridItemWin">混合列表单元行设置</s:String>
+    <s:String x:Key="ME_MGI_Base">基本参数</s:String>
+    <s:String x:Key="ME_MGI_Flow">流速参数</s:String>
+    <s:String x:Key="ME_MGI_Valve">阀组参数</s:String>
+    <s:String x:Key="ME_MGI_Other">其它参数</s:String>
 
     <!--NewMethodWin-->
     <s:String x:Key="ME_NewMethodWin">新建方法</s:String>
@@ -1410,8 +1428,8 @@
     <s:String x:Key="PM_RunResultWin">运行结果名称</s:String>
 
     <s:String x:Key="PM_TreeNodeInformationWin">属性信息</s:String>
-    <s:String x:Key="PM_CountMethod1">方法总数 : </s:String>
-    <s:String x:Key="PM_CountResult1">结果总数 : </s:String>
+    <s:String x:Key="PM_CountMethod1" xml:space="preserve">方法总数 : </s:String>
+    <s:String x:Key="PM_CountResult1" xml:space="preserve">结果总数 : </s:String>
 
     <s:String x:Key="PM_ResultInformationWin">属性信息</s:String>
 
@@ -1431,12 +1449,12 @@
     <s:String x:Key="TS_Col">列</s:String>
 
     <s:String x:Key="TS_TubeStandItemWin">试管架属性</s:String>
-    <s:String x:Key="TS_Name1">名称 :</s:String>
-    <s:String x:Key="TS_CollVolume1">收集体积 :</s:String>
-    <s:String x:Key="TS_Volume1">试管体积 :</s:String>
-    <s:String x:Key="TS_Count1">试管数量 :</s:String>
-    <s:String x:Key="TS_Diameter1">直径 :</s:String>
-    <s:String x:Key="TS_Height1">高度 :</s:String>
-    <s:String x:Key="TS_Row1">行 :</s:String>
-    <s:String x:Key="TS_Col1">列 :</s:String>
+    <s:String x:Key="TS_Name1" xml:space="preserve">名称 : </s:String>
+    <s:String x:Key="TS_CollVolume1" xml:space="preserve">收集体积 : </s:String>
+    <s:String x:Key="TS_Volume1" xml:space="preserve">试管体积 : </s:String>
+    <s:String x:Key="TS_Count1" xml:space="preserve">试管数量 : </s:String>
+    <s:String x:Key="TS_Diameter1" xml:space="preserve">直径 : </s:String>
+    <s:String x:Key="TS_Height1" xml:space="preserve">高度 : </s:String>
+    <s:String x:Key="TS_Row1" xml:space="preserve">行 : </s:String>
+    <s:String x:Key="TS_Col1" xml:space="preserve">列 : </s:String>
 </ResourceDictionary>

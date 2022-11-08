@@ -22,6 +22,7 @@ namespace HBBio.MethodEdit
         FlowRatePer,
         PHCDUVUntil,
         CollValveCollector,
-        CIP
+        CIP,
+        MixtureGrid
     }
 }

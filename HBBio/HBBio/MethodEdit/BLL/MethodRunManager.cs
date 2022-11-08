@@ -174,6 +174,8 @@ namespace HBBio.MethodEdit
         private List<bool> m_listRun = new List<bool>();
         private double m_listDis = 0;
 
+        private bool m_hasDoAS = false;
+
 
         //创建一个自定义委托，用于审计跟踪
         public delegate void MAuditTrailsDdelegate(object sender1, object sender2);
@@ -762,11 +764,13 @@ namespace HBBio.MethodEdit
                     m_comconfStatic.SetPumpSystem(m_methodTempValue.MFlow, m_methodTempValue.MPerB, m_methodTempValue.MPerC, m_methodTempValue.MPerD);
                 }
 
+                m_hasDoAS = false;
+
                 //执行详细的阶段内容
                 RefreshPhaseCase();
 
                 //监控-AS
-                JudgeAS();
+                JudgeAS(MMethod.MMethodSetting.MASParaList);
 
                 if (MRUN.Done == m_run)
                 {
@@ -816,11 +820,17 @@ namespace HBBio.MethodEdit
         /// <summary>
         /// 执行气泡传感器的判断
         /// </summary>
-        private void JudgeAS()
+        private void JudgeAS(List<ASMethodPara> asParaList)
         {
+            if (m_hasDoAS)
+            {
+                return;
+            }
+            m_hasDoAS = true;
+
             int index = 0;
             int indexBPV = m_comconfStatic.GetValveSet(ENUMValveName.BPV);
-            foreach (var it in MMethod.MMethodSetting.MASParaList)
+            foreach (var it in asParaList)
             {
                 if (it.m_update)
                 {
@@ -855,6 +865,8 @@ namespace HBBio.MethodEdit
                             case EnumMonitorActionMethod.Next:
                                 MAuditTrailsHandler?.Invoke(((ENUMASName)index).ToString() + Share.ReadXaml.S_InfoASYes, Share.ReadXaml.GetEnum(it.MAction, "EnumMonitorAction_"));
                                 m_run = MRUN.Done;
+                                m_phaseStopT = m_phaseStartT + MHoldRunTime;
+                                m_phaseStopV = m_phaseStartV + MHoldRunV;
                                 break;
                             case EnumMonitorActionMethod.Pause:
                                 m_state = MethodState.RunToPause;
@@ -1047,6 +1059,9 @@ namespace HBBio.MethodEdit
                         case EnumGroupType.CIP:
                             RefreshNoCIP(phase, it);
                             break;
+                        case EnumGroupType.MixtureGrid:
+                            RefreshNoMixtureGrid(phase, it);
+                            break;
                     }
                 }
 
@@ -1114,6 +1129,9 @@ namespace HBBio.MethodEdit
                                 break;
                             case EnumGroupType.CIP:
                                 RefreshIngCIP(phase, it, ref m_run);
+                                break;
+                            case EnumGroupType.MixtureGrid:
+                                RefreshIngMixtureGrid(phase, it, ref m_run);
                                 break;
                         }
                     }
@@ -1697,6 +1715,111 @@ namespace HBBio.MethodEdit
             }
         }
 
+        private void RefreshNoMixtureGrid(DlyPhase phase, BaseGroup baseGroup)
+        {
+            MixtureGrid tmp = (MixtureGrid)baseGroup;
+            if (null == phase.MArrIsRun || phase.MArrIsRun.Length != tmp.MList.Count)
+            {
+                phase.MArrIsRun = new bool[tmp.MList.Count];
+                phase.MArrIsIncubation = new bool[tmp.MList.Count];
+            }
+            for (int i = 0; i < phase.MArrIsRun.Length; i++)
+            {
+                phase.MArrIsRun[i] = false;
+                phase.MArrIsIncubation[i] = false;
+            }
+
+            for (int i = 0; i < tmp.MList.Count; i++)
+            {
+                foreach (var it in tmp.MList[i].MASParaList)
+                {
+                    if (EnumMonitorActionMethod.Ignore != it.MAction)
+                    {
+                        it.m_update = true;
+                    }
+                }
+            }
+        }
+        private void RefreshIngMixtureGrid(DlyPhase phase, BaseGroup baseGroup, ref MRUN run)
+        {
+            MixtureGrid tmp = (MixtureGrid)baseGroup;
+            double total = 0;
+            bool ing = false;//列表是否还在执行
+            for (int i = 0; i < tmp.MList.Count; i++)
+            {
+                if (m_phaseRunT >= total && m_phaseRunT < Math.Round(total + tmp.MList[i].MBaseTVCV.MT, 2))
+                {
+                    ing = true;
+
+                    MixtureGridItem item = tmp.MList[i];
+                    if (!phase.MArrIsRun[i])
+                    {
+                        phase.MArrIsRun[i] = true;
+
+                        SwitchValve(ENUMValveName.InS, item.MInS);
+                        RefreshShareIn(item.MInA, item.MInB, item.MInC, item.MInD, item.MBPV);
+                        SwitchValve(ENUMValveName.IJV, item.MIJV);
+                        SwitchValve(ENUMValveName.CPV_1, item.MCPV);
+                        SwitchValve(ENUMValveName.Out, item.MVOut);
+
+                        m_comconfStatic.SetMixer(ENUMMixerName.Mixer01, item.MMixer);
+                        if (item.MUVClear)
+                        {
+                            m_comconfStatic.SetUVClear(ENUMUVName.UV01);
+                            MAuditTrailsHandler?.Invoke(phase.MNamePhase, ReadXaml.GetResources("ME_ResetUVMonitor"));
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(item.MNote))
+                        {
+                            MAuditTrailsHandler?.Invoke(phase.MNamePhase, item.MNote);
+                        }
+
+                        switch (item.MFillSystem)
+                        {
+                            case 1:
+                            case 2:
+                                MWashHandler?.Invoke(item.MFillSystem);
+                                break;
+                        }
+                    }
+
+                    if (0 != item.MBaseTVCV.MT)
+                    {
+                        RefreshShareSampleFlowVol(item.MFlowVolLenSample.MFlowVol);
+                        RefreshShareSystemFlowVol(item.MFlowVolLenSystem.MFlowVol,
+                            (m_phaseRunT - total) / item.MBaseTVCV.MT * (item.MPerBE - item.MPerBS) + item.MPerBS,
+                            (m_phaseRunT - total) / item.MBaseTVCV.MT * (item.MPerCE - item.MPerCS) + item.MPerCS,
+                            (m_phaseRunT - total) / item.MBaseTVCV.MT * (item.MPerDE - item.MPerDS) + item.MPerDS);
+                    }
+
+                    JudgeAS(item.MASParaList);
+
+                    break;
+                }
+                total = Math.Round(total + tmp.MList[i].MBaseTVCV.MT, 2);
+
+                if (m_phaseRunT >= total && m_phaseRunT < Math.Round(total + tmp.MList[i].MIncubation, 2))
+                {
+                    ing = true;
+
+                    if (!phase.MArrIsIncubation[i])
+                    {
+                        phase.MArrIsIncubation[i] = true;
+
+                        RefreshStopSABCD();
+                    }
+
+                    break;
+                }
+                total = Math.Round(total + tmp.MList[i].MIncubation, 2);
+            }
+
+            if (!ing)
+            {
+                run = MRUN.Done;
+            }
+        }
+
         /// <summary>
         /// 恢复方法阶段-其它
         /// </summary>
@@ -1745,6 +1868,9 @@ namespace HBBio.MethodEdit
                         break;
                     case EnumGroupType.CIP:
                         RefreshBreakCIP(phase, it);
+                        break;
+                    case EnumGroupType.MixtureGrid:
+                        RefreshBreakMixtureGrid(phase, it);
                         break;
                 }
             }
@@ -1844,6 +1970,20 @@ namespace HBBio.MethodEdit
             if (tmp.MPause)
             {
                 m_state = MethodState.RunToPause;
+            }
+        }
+        private void RefreshBreakMixtureGrid(DlyPhase phase, BaseGroup baseGroup)
+        {
+            MixtureGrid tmp = (MixtureGrid)baseGroup;
+            if (null == phase.MArrIsRun || phase.MArrIsRun.Length != tmp.MList.Count)
+            {
+                phase.MArrIsRun = new bool[tmp.MList.Count];
+                phase.MArrIsIncubation = new bool[tmp.MList.Count];
+            }
+            for (int i = 0; i < phase.MArrIsRun.Length; i++)
+            {
+                phase.MArrIsRun[i] = false;
+                phase.MArrIsIncubation[i] = false;
             }
         }
 

@@ -1,0 +1,152 @@
+﻿<Window x:Class="HBBio.MethodEdit.MixtureGridItemWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:HBBio.MethodEdit"
+        xmlns:comm="clr-namespace:HBBio.Communication"
+        mc:Ignorable="d"
+        Title="{StaticResource ME_MixtureGridItemWin}" Width="750" Height="750" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0" Header="{StaticResource ME_MGI_Base}">
+                    <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel Width="{Binding Width,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Control}}}">
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labNote1}"/>
+                                <TextBox Text="{Binding MNote}"/>
+                            </StackPanel>
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labFillSystem1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumWashInfo.NameList}" SelectedIndex="{Binding Path=MFillSystem,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource ME_IncubationTime1}"/>
+                                <xctk:DoubleUpDown Value="{Binding MIncubation}"/>
+                            </StackPanel>
+                        </WrapPanel>
+                    </ScrollViewer>
+                </GroupBox>
+                <GroupBox Grid.Row="2" Header="{StaticResource ME_MGI_Flow}">
+                    <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel Width="{Binding Width,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Control}}}">
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock x:Name="labTVCV"/>
+                                <xctk:DoubleUpDown Value="{Binding MBaseTVCV}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colSampleFlowRate" Margin="10" Orientation="Horizontal">
+                                <TextBlock x:Name="labSampleFlowRate"/>
+                                <xctk:DoubleUpDown Value="{Binding MFlowVolLenSample}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colSystemFlowRate" Margin="10" Orientation="Horizontal">
+                                <TextBlock x:Name="labSystemFlowRate"/>
+                                <xctk:DoubleUpDown Value="{Binding MFlowVolLenSystem}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colB" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource LabBS1}"/>
+                                <xctk:DoubleUpDown Value="{Binding MPerBS}"/>
+                                <TextBlock Margin="20,0,0,0" Text="{StaticResource LabBE1}"/>
+                                <xctk:DoubleUpDown Value="{Binding MPerBE}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colC" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource LabCS1}"/>
+                                <xctk:DoubleUpDown Value="{Binding MPerCS}"/>
+                                <TextBlock Margin="20,0,0,0" Text="{StaticResource LabCE1}"/>
+                                <xctk:DoubleUpDown Value="{Binding MPerCE}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colD" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource LabDS1}"/>
+                                <xctk:DoubleUpDown Value="{Binding MPerDS}"/>
+                                <TextBlock Margin="20,0,0,0" Text="{StaticResource LabDE1}"/>
+                                <xctk:DoubleUpDown Value="{Binding MPerDE}"/>
+                            </StackPanel>
+                        </WrapPanel>
+                    </ScrollViewer>
+                </GroupBox>
+                <GroupBox Grid.Row="4" Header="{StaticResource ME_MGI_Valve}">
+                    <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel Width="{Binding Width,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Control}}}">
+                            <StackPanel x:Name="colInS" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labInS1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumInSInfo.NameList}" SelectedIndex="{Binding Path=MInS,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colInA" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labInA1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumInAInfo.NameList}" SelectedIndex="{Binding Path=MInA,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colInB" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labInB1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumInBInfo.NameList}" SelectedIndex="{Binding Path=MInB,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colInC" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labInC1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumInCInfo.NameList}" SelectedIndex="{Binding Path=MInC,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colInD" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labInD1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumInDInfo.NameList}" SelectedIndex="{Binding Path=MInD,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colIJY" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labIJV1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumIJVInfo.NameList}" SelectedIndex="{Binding Path=MIJV,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colBPV" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labBPV1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumBPVInfo.NameList}" SelectedIndex="{Binding Path=MBPV,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colCPV" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labCPV1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumCPVInfo.NameList}" SelectedIndex="{Binding Path=MCPV,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colOut" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labOut1}"/>
+                                <ComboBox ItemsSource="{x:Static comm:EnumOutInfo.NameList}" SelectedIndex="{Binding Path=MVOut,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </StackPanel>
+                        </WrapPanel>
+                    </ScrollViewer>
+                </GroupBox>
+                <GroupBox Grid.Row="6" Header="{StaticResource ME_MGI_Other}">
+                    <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel x:Name="otherWPanel" Width="{Binding Width,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Control}}}">
+                            <StackPanel x:Name="colMixer" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labMixer1}"/>
+                                <CheckBox IsChecked="{Binding MMixer}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="colUVClear" Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{StaticResource labUV}"/>
+                                <TextBlock Text="{StaticResource labUVReset1}"/>
+                                <CheckBox IsChecked="{Binding MUVClear}"/>
+                            </StackPanel>
+                        </WrapPanel>
+                    </ScrollViewer>
+                </GroupBox>
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnOK" Grid.Column="1" Content="{DynamicResource btnOK}" Click="btnOK_Click"/>
+            <Button x:Name="btnCancel" Grid.Column="3" Content="{DynamicResource btnCancel}" Click="btnCancel_Click"/>
+        </Grid>
+    </Grid>
+</Window>

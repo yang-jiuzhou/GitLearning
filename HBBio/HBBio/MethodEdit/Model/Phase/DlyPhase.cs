@@ -136,6 +136,18 @@ namespace HBBio.MethodEdit
                             }
                         }
                         break;
+                    case EnumGroupType.MixtureGrid:
+                        {
+                            MixtureGrid tmp = (MixtureGrid)it;
+                            for (int i = 0; i < tmp.MList.Count; i++)
+                            {
+                                AddStep(Share.ReadXaml.GetEnum(it.MType, "ME_EnumGroupType_") + tmp.MList.Count + "-" + (i + 1) + ""
+                                    , tmp.MList[i].MBaseTVCV
+                                    , tmp.MList[i].MPerBS, tmp.MList[i].MPerCS, tmp.MList[i].MPerDS
+                                    , tmp.MList[i].MPerBE, tmp.MList[i].MPerCE, tmp.MList[i].MPerDE);
+                            }
+                        }
+                        break;
                 }
             }
 

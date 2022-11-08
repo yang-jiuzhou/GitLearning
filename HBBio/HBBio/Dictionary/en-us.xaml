@@ -110,29 +110,33 @@
     <s:String x:Key="labPumpC">Pump C</s:String>
     <s:String x:Key="labPumpD">Pump D</s:String>
     <s:String x:Key="labInS">Loading Valve</s:String>
-    <s:String x:Key="labInS1" xml:space="preserve">Loading Valve :</s:String>
+    <s:String x:Key="labInS1" xml:space="preserve">Loading Valve : </s:String>
     <s:String x:Key="labInA">Inlet ValveA</s:String>
-    <s:String x:Key="labInA1" xml:space="preserve">Inlet ValveA :</s:String>
+    <s:String x:Key="labInA1" xml:space="preserve">Inlet ValveA : </s:String>
     <s:String x:Key="labInB">Inlet ValveB</s:String>
-    <s:String x:Key="labInB1" xml:space="preserve">Inlet ValveB :</s:String>
+    <s:String x:Key="labInB1" xml:space="preserve">Inlet ValveB : </s:String>
     <s:String x:Key="labInC">Inlet ValveC</s:String>
-    <s:String x:Key="labInC1" xml:space="preserve">Inlet ValveC :</s:String>
+    <s:String x:Key="labInC1" xml:space="preserve">Inlet ValveC : </s:String>
     <s:String x:Key="labInD">Inlet ValveD</s:String>
-    <s:String x:Key="labInD1" xml:space="preserve">Inlet ValveD :</s:String>
+    <s:String x:Key="labInD1" xml:space="preserve">Inlet ValveD : </s:String>
     <s:String x:Key="labIJV">Injection Valve</s:String>
-    <s:String x:Key="labIJV1" xml:space="preserve">Injection Valve :</s:String>
+    <s:String x:Key="labIJV1" xml:space="preserve">Injection Valve : </s:String>
     <s:String x:Key="labBPV">Bypass Valve</s:String>
-    <s:String x:Key="labBPV1" xml:space="preserve">Bypass Valve :</s:String>
+    <s:String x:Key="labBPV1" xml:space="preserve">Bypass Valve : </s:String>
     <s:String x:Key="labCPV">Column Position Valve</s:String>
-    <s:String x:Key="labCPV1" xml:space="preserve">Column Position Valve:</s:String>
+    <s:String x:Key="labCPV1" xml:space="preserve">Column Position Valve : </s:String>
     <s:String x:Key="labOut">Outlet Valve</s:String>
-    <s:String x:Key="labOut1" xml:space="preserve">Outlet Valve :</s:String>
+    <s:String x:Key="labOut1" xml:space="preserve">Outlet Valve : </s:String>
     <s:String x:Key="labMixer">Mixer</s:String>
-    <s:String x:Key="labMixer1" xml:space="preserve">Mixer: </s:String>
+    <s:String x:Key="labMixer1" xml:space="preserve">Mixer : </s:String>
     <s:String x:Key="labAS01" xml:space="preserve">AS01</s:String>
     <s:String x:Key="labAS02" xml:space="preserve">AS02</s:String>
+    <s:String x:Key="labAS03" xml:space="preserve">AS03</s:String>
+    <s:String x:Key="labAS04" xml:space="preserve">AS04</s:String>
     <s:String x:Key="labAS011" xml:space="preserve">AS01 : </s:String>
     <s:String x:Key="labAS021" xml:space="preserve">AS02 : </s:String>
+    <s:String x:Key="labAS031" xml:space="preserve">AS03 : </s:String>
+    <s:String x:Key="labAS041" xml:space="preserve">AS04 : </s:String>
     <s:String x:Key="LabLength1" xml:space="preserve">Duration Value : </s:String>
     <s:String x:Key="LabUnit1" xml:space="preserve">Unit : </s:String>
     <s:String x:Key="LabPer">Percent</s:String>
@@ -153,8 +157,11 @@
     <s:String x:Key="LabDS1" xml:space="preserve">%D_S(0-100) : </s:String>
     <s:String x:Key="LabDE1" xml:space="preserve">%D_E(0-100) : </s:String>
     <s:String x:Key="labFillSystem">Flush System</s:String>
+    <s:String x:Key="labFillSystem1">Flush System :</s:String>
     <s:String x:Key="labFlowRate">Flow Rate</s:String>
     <s:String x:Key="labFlowRate1">Flow Rate :</s:String>
+    <s:String x:Key="labSampleFlowRate">Sample Flow Rate</s:String>
+    <s:String x:Key="labSystemFlowRate">System Flow Rate</s:String>
     <s:String x:Key="labUV">UV Detector</s:String>
     <s:String x:Key="labUVLamp1">UV Lamp :</s:String>
     <s:String x:Key="labUVTime1" xml:space="preserve">UV Time(h) : </s:String>
@@ -163,7 +170,8 @@
     <s:String x:Key="labUVOn">UV On</s:String>
     <s:String x:Key="labUVOff">UV off</s:String>
     <s:String x:Key="labUVReset">Reset</s:String>
-    <s:String x:Key="labUVWaveLength1">UV Wave Length:</s:String>
+    <s:String x:Key="labUVReset1" xml:space="preserve">Reset : </s:String>
+    <s:String x:Key="labUVWaveLength1" xml:space="preserve">UV Wave Length : </s:String>
     <s:String x:Key="labUV11" xml:space="preserve">UV1 : </s:String>
     <s:String x:Key="labUV21" xml:space="preserve">UV2 : </s:String>
     <s:String x:Key="labUV31" xml:space="preserve">UV3 : </s:String>
@@ -178,12 +186,12 @@
     <s:String x:Key="labLL">Low-Low Alarm</s:String>
     <s:String x:Key="labH">High Warning</s:String>
     <s:String x:Key="labL">Low Warning</s:String>
-    <s:String x:Key="labHH1">Hight-High Alarm :</s:String>
-    <s:String x:Key="labLL1">Low-Low Alarm :</s:String>
-    <s:String x:Key="labH1">High Warning :</s:String>
-    <s:String x:Key="labL1">Low Warning :</s:String>
-    <s:String x:Key="labASAction1">Trigger Action :</s:String>
-    <s:String x:Key="labASDelay1">Trigger Delay Setting :</s:String>
+    <s:String x:Key="labHH1" xml:space="preserve">Hight-High Alarm : </s:String>
+    <s:String x:Key="labLL1" xml:space="preserve">Low-Low Alarm : </s:String>
+    <s:String x:Key="labH1" xml:space="preserve">High Warning : </s:String>
+    <s:String x:Key="labL1" xml:space="preserve">Low Warning : </s:String>
+    <s:String x:Key="labASAction1" xml:space="preserve">Trigger Action : </s:String>
+    <s:String x:Key="labASDelay1" xml:space="preserve">Trigger Delay Setting : </s:String>
     <s:String x:Key="labMsgAlarm">Alarm Pop-ups</s:String>
     <s:String x:Key="labMsgWarning">Warning Pop-ups</s:String>
     <s:String x:Key="labColor">Color</s:String>
@@ -191,7 +199,7 @@
     <s:String x:Key="labDirectionH">Horizontal</s:String>
     <s:String x:Key="labDirectionV">Vertical</s:String>
     <s:String x:Key="labCatalog">Catalog</s:String>
-    <s:String x:Key="labFilePath1">File Path : </s:String>
+    <s:String x:Key="labFilePath1" xml:space="preserve">File Path : </s:String>
     <s:String x:Key="labVisibility">Visibility</s:String>
     <s:String x:Key="labShow">Show</s:String>
     <s:String x:Key="labHide">Hide</s:String>
@@ -419,10 +427,10 @@
     <s:String x:Key="SC_Value">Value</s:String>
 
     <!--状态栏-->
-    <s:String x:Key="SC_SystemRunTime1">System Running Time :</s:String>
-    <s:String x:Key="SC_UserName1">User Name :</s:String>
-    <s:String x:Key="SC_ChromatogramTime1">Chromatogram Running Time :</s:String>
-    <s:String x:Key="SC_SystemTime1">System Time :</s:String>
+    <s:String x:Key="SC_SystemRunTime1" xml:space="preserve">System Running Time : </s:String>
+    <s:String x:Key="SC_UserName1" xml:space="preserve">User Name : </s:String>
+    <s:String x:Key="SC_ChromatogramTime1" xml:space="preserve">Chromatogram Running Time : </s:String>
+    <s:String x:Key="SC_SystemTime1" xml:space="preserve">System Time : </s:String>
 
     <!--关于-->
     <s:String x:Key="SC_AboutWin">About</s:String>
@@ -445,9 +453,9 @@
     <s:String x:Key="A_Tactics">Security Policy</s:String>
     <s:String x:Key="A_SignerReviewer">Signature Review</s:String>
     <s:String x:Key="A_UserName">User Name</s:String>
-    <s:String x:Key="A_UserName1">User Name :</s:String>
+    <s:String x:Key="A_UserName1" xml:space="preserve">User Name : </s:String>
     <s:String x:Key="A_PermissionName">Permission Name</s:String>
-    <s:String x:Key="A_PermissionName1">Permission Name :</s:String>
+    <s:String x:Key="A_PermissionName1" xml:space="preserve">Permission Name : </s:String>
     <s:String x:Key="A_Validity">Validity(day)</s:String>
     <s:String x:Key="A_Status">Status</s:String>
     <s:String x:Key="A_TacticsName">Security Policy Name</s:String>
@@ -648,8 +656,8 @@
     <s:String x:Key="AT_Out">Export</s:String>
     <s:String x:Key="AT_BeginTime">Start Time :</s:String>
     <s:String x:Key="AT_EndTime">End Time :</s:String>
-    <s:String x:Key="AT_Type1">Type :</s:String>
-    <s:String x:Key="AT_UserName1">User Name :</s:String>
+    <s:String x:Key="AT_Type1" xml:space="preserve">Type : </s:String>
+    <s:String x:Key="AT_UserName1" xml:space="preserve">User Name : </s:String>
 
     <s:String x:Key="AT_OutputWin">Export Edit</s:String>
 
@@ -1148,6 +1156,7 @@
     <s:String x:Key="ME_EnumGroupType_PHCDUVUntil">Signal monitoring</s:String>
     <s:String x:Key="ME_EnumGroupType_CollValveCollector">Collection</s:String>
     <s:String x:Key="ME_EnumGroupType_CIP">CIP</s:String>
+    <s:String x:Key="ME_EnumGroupType_MixtureGrid">Mixture grid list</s:String>
     <!--enum-EnumMethodMaintenance-->
     <s:String x:Key="ME_EnumMethodMaintenance_ColumnCIP">Column CIP</s:String>
     <s:String x:Key="ME_EnumMethodMaintenance_ColumnPerformanceTest">Column Performance Test</s:String>
@@ -1170,6 +1179,7 @@
     <s:String x:Key="ME_EnumPhaseType_Equilibration">Equilibration</s:String>
     <s:String x:Key="ME_EnumPhaseType_Miscellaneous">Miscellaneous</s:String>
     <s:String x:Key="ME_EnumPhaseType_SystemCIP">System CIP</s:String>
+    <s:String x:Key="ME_EnumPhaseType_Mixture">Mixture</s:String>
     <s:String x:Key="ME_EnumPhaseType_Personal">Personal</s:String>
     <!--enum-EnumPHCDUVUntil-->
     <s:String x:Key="ME_EnumPHCDUVUntil_Total">Total</s:String>
@@ -1199,6 +1209,7 @@
     <s:String x:Key="ME_SameMSFlowRate">Use the same flow rate as in Method Settings</s:String>
     <!--UC-Group-FlowValveLengthUC-->
     <s:String x:Key="ME_IncubationTime">Incubation Time(min)</s:String>
+    <s:String x:Key="ME_IncubationTime1">Incubation Time(min) :</s:String>
     <!--UC-Group-PHCDUVUntilUC-->
     <s:String x:Key="ME_TheTotalIs1" xml:space="preserve">The total is :</s:String>
     <s:String x:Key="ME_TFCIM1" xml:space="preserve">The following condition is met :</s:String>
@@ -1278,6 +1289,13 @@
 
     <!--MethodQueueWin-->
     <s:String x:Key="ME_MethodQueueWin">Method Queue</s:String>
+
+    <!--MixtureGridItemWin-->
+    <s:String x:Key="ME_MixtureGridItemWin">MixtureGrid</s:String>
+    <s:String x:Key="ME_MGI_Base">Base</s:String>
+    <s:String x:Key="ME_MGI_Flow">Flow</s:String>
+    <s:String x:Key="ME_MGI_Valve">Valve</s:String>
+    <s:String x:Key="ME_MGI_Other">Other</s:String>
 
     <!--NewMethodWin-->
     <s:String x:Key="ME_NewMethodWin">New Method</s:String>

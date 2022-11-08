@@ -1675,6 +1675,8 @@ namespace HBBio.SystemControl
         private void menuRemember_Click(object sender, RoutedEventArgs e)
         {
             WindowSize.WindowSizeManager.s_RememberSize = SystemControlManager.s_confCheckable.MRememberSize;
+
+            AuditTrailsStatic.Instance().InsertRowSystem(menuRemember.Header.ToString(), WindowSize.WindowSizeManager.s_RememberSize ? ReadXaml.S_Yes : ReadXaml.S_No);
         }
 
         /// <summary>

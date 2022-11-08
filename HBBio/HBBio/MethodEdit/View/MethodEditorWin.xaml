@@ -78,6 +78,7 @@
                             <Label Style="{StaticResource labCopyPhase}" Template="{StaticResource btnPhase}" Content="{DynamicResource ME_EnumPhaseType_Equilibration}"/>
                             <Label Style="{StaticResource labCopyPhase}" Template="{StaticResource btnPhase}" Content="{DynamicResource ME_EnumPhaseType_Miscellaneous}"/>
                             <Label Style="{StaticResource labCopyPhase}" Template="{StaticResource btnPhase}" Content="{DynamicResource ME_EnumPhaseType_SystemCIP}"/>
+                            <Label Style="{StaticResource labCopyPhase}" Template="{StaticResource btnPhase}" Content="{DynamicResource ME_EnumPhaseType_Mixture}"/>
                         </StackPanel>
                     </ScrollViewer.Content>
                 </ScrollViewer>
@@ -246,6 +247,7 @@
                             <local:UVResetUC x:Name="uvResetUC" Visibility="{Binding MVisible}"/>
                             <local:SampleApplicationTechUC x:Name="sampleApplicationTechUC" Visibility="{Binding MVisible}"/>
                             <local:TVCVUC x:Name="tvcvUC" Visibility="{Binding MVisible}"/>
+                            <local:MixtureGridUC x:Name="mixtureGridUC" Visibility="{Binding MVisible}"/>
                             <local:FlowValveLengthUC x:Name="flowValveLengthUC" Visibility="{Binding MVisible}"/>
                             <local:FlowRatePerUC x:Name="flowRatePerUC" Visibility="{Binding MVisible}"/>
                             <local:PHCDUVUntilUC x:Name="pHCdUVUnitUC" Visibility="{Binding MVisible}"/>
