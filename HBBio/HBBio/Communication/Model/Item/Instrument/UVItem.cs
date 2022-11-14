@@ -75,6 +75,11 @@ namespace HBBio.Communication
         public volatile bool m_lampOn = false;           //开灯
         public volatile bool m_lampOff = false;          //关灯
 
+        //创建一个自定义委托，用于自定义的信号
+        public delegate void MHandlerDdelegateIJV(object val);
+        //声明一个手动进样阀事件
+        public MHandlerDdelegateIJV MIJVHandler;
+
 
         /// <summary>
         /// 构造函数

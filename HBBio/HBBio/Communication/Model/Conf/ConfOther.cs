@@ -23,6 +23,24 @@ namespace HBBio.Communication
         /// </summary>
         public bool MOpenMixer { get; set; }
 
+        /// <summary>
+        /// PID参数的P
+        /// </summary>
+        public double MPIDP { get; set; }
+        /// <summary>
+        /// PID参数的P
+        /// </summary>
+        public double MPIDI { get; set; }
+        /// <summary>
+        /// PID参数的P
+        /// </summary>
+        public double MPIDD { get; set; }
+
+        /// <summary>
+        /// 清博华紫外检测器连着手动进样阀
+        /// </summary>
+        public bool MUVIJV { get; set; }
+
 
         /// <summary>
         /// 构造函数
@@ -32,6 +50,12 @@ namespace HBBio.Communication
             MResetValve = false;
             MCloseUV = false;
             MOpenMixer = false;
+
+            MPIDP = 12;
+            MPIDI = 8;
+            MPIDD = 2;
+
+            MUVIJV = false;
         }
 
         /// <summary>
@@ -45,6 +69,10 @@ namespace HBBio.Communication
             sb.Append(MResetValve);
             sb.Append(MCloseUV);
             sb.Append(MOpenMixer);
+            sb.Append(MPIDP);
+            sb.Append(MPIDI);
+            sb.Append(MPIDD);
+            sb.Append(MUVIJV);
             return sb.ToString();
         }
 
@@ -62,6 +90,10 @@ namespace HBBio.Communication
                 MResetValve = Convert.ToBoolean(info[index++]);
                 MCloseUV = Convert.ToBoolean(info[index++]);
                 MOpenMixer = Convert.ToBoolean(info[index++]);
+                MPIDP = Convert.ToDouble(info[index++]);
+                MPIDI = Convert.ToDouble(info[index++]);
+                MPIDD = Convert.ToDouble(info[index++]);
+                MUVIJV = Convert.ToBoolean(info[index++]);
             }
             catch { }
         }

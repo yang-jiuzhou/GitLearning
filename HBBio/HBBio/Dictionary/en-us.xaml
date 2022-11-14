@@ -156,6 +156,8 @@
     <s:String x:Key="LabCE1" xml:space="preserve">%C_E(0-100) : </s:String>
     <s:String x:Key="LabDS1" xml:space="preserve">%D_S(0-100) : </s:String>
     <s:String x:Key="LabDE1" xml:space="preserve">%D_E(0-100) : </s:String>
+    <s:String x:Key="LabControlPT">Control PT</s:String>
+    <s:String x:Key="LabControlPT1" xml:space="preserve">Control PT : </s:String>
     <s:String x:Key="labFillSystem">Flush System</s:String>
     <s:String x:Key="labFillSystem1">Flush System :</s:String>
     <s:String x:Key="labFlowRate">Flow Rate</s:String>
@@ -937,10 +939,12 @@
     <s:String x:Key="Com_CollPallet">Pallet</s:String>
     <s:String x:Key="Com_AS">Air Sensor parameters</s:String>
     <s:String x:Key="Com_Cal">Calibration Settings</s:String>
+    <s:String x:Key="Com_PID">PID Settings</s:String>
     <s:String x:Key="Com_OtherSet">Other</s:String>
     <s:String x:Key="Com_ResetValve">Reset valve</s:String>
     <s:String x:Key="Com_CloseUV">Close UV</s:String>
     <s:String x:Key="Com_OpenMixer">Open Mixer</s:String>
+    <s:String x:Key="Com_UVIJV">IJV Signal</s:String>
 
     <s:String x:Key="Com_DelComError">Configure has exist, can not delete!</s:String>
     <s:String x:Key="Com_ComError">Communication error</s:String>

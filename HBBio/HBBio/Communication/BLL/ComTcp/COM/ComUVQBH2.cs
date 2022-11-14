@@ -11,6 +11,8 @@ namespace HBBio.Communication
 {
     class ComUVQBH2 : ComUV
     {
+        private bool m_manualFlag = false;      //手动进样阀信号
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -54,6 +56,12 @@ namespace HBBio.Communication
                         if (Connect() && ReadAu(m_item.MLamp, ref abs[0], ref abs[1]))
                         {
                             m_communState = ENUMCommunicationState.Success;
+
+                            if (m_manualFlag)
+                            {
+                                m_manualFlag = false;
+                                m_item.MIJVHandler?.Invoke(null);
+                            }
 
                             m_item.UpdateAbs(abs);
                             bool sendF = true;
@@ -432,6 +440,8 @@ namespace HBBio.Communication
                     }
                 }
 
+                JudgeIJV();
+
                 bool readAbs2 = false;
                 string[] list = Encoding.ASCII.GetString(m_ReadByte).Split('\n');
                 for (int i = list.Length - 2; i > list.Length - 4 && i > -1; i--)
@@ -558,6 +568,12 @@ namespace HBBio.Communication
                 {
                     time = Convert.ToInt32(Encoding.ASCII.GetString(m_ReadByte,6,6));
                 }
+                else if (21 < m_ReadLen && 0x37 == m_ReadByte[4] && 0x30 == m_ReadByte[5])
+                {
+                    time = Convert.ToInt32(Encoding.ASCII.GetString(m_ReadByte, 6, 6));
+                }
+
+                JudgeIJV();
             }
             catch
             { }
@@ -600,6 +616,12 @@ namespace HBBio.Communication
                 {
                     on = 0x31 == m_ReadByte[7];
                 }
+                else if (21 < m_ReadLen && 0x30 == m_ReadByte[4] && 0x34 == m_ReadByte[5])
+                {
+                    on = 0x31 == m_ReadByte[7];
+                }
+
+                JudgeIJV();
             }
             catch
             { }
@@ -642,6 +664,12 @@ namespace HBBio.Communication
                 {
                     refVal = Convert.ToInt32(Encoding.ASCII.GetString(m_ReadByte, 6, 6));
                 }
+                else if (21 < m_ReadLen && 0x30 == m_ReadByte[4] && 0x37 == m_ReadByte[5])
+                {
+                    refVal = Convert.ToInt32(Encoding.ASCII.GetString(m_ReadByte, 6, 6));
+                }
+
+                JudgeIJV();
             }
             catch
             { }
@@ -685,6 +713,12 @@ namespace HBBio.Communication
                 {
                     sigVal = Convert.ToInt32(Encoding.ASCII.GetString(m_ReadByte, 6, 6));
                 }
+                else if (21 < m_ReadLen && 0x30 == m_ReadByte[4] && 0x38 == m_ReadByte[5])
+                {
+                    sigVal = Convert.ToInt32(Encoding.ASCII.GetString(m_ReadByte, 6, 6));
+                }
+
+                JudgeIJV();
             }
             catch
             { }
@@ -879,6 +913,7 @@ namespace HBBio.Communication
                 int index = 0;
                 while (read() && index++ < 10)
                 {
+                    JudgeIJV();
                     string str = System.Text.Encoding.ASCII.GetString(m_ReadByte);
                     if (str.Contains('#') || str.Contains('$'))
                     {
@@ -903,6 +938,19 @@ namespace HBBio.Communication
         private int MByteToInt(byte b1, byte b2, byte b3)
         {
             return (b1 - 48) * 100 + (b2 - 48) * 10 + (b3 - 48);
+        }
+
+        private void JudgeIJV()
+        {
+            string[] list = Encoding.ASCII.GetString(m_ReadByte).Split('\n');
+            for (int i = 0; i < list.Length; i++)
+            {
+                if (6 <= list[i].Length && '9' == list[i][4] && '1' == list[i][5])
+                {
+                    m_manualFlag = true;
+                    break;
+                }
+            }
         }
     }
 }

@@ -223,7 +223,7 @@ namespace HBBio.Communication
                             if (m_pumpItem2.MVisible)
                             {
                                 WriteFlow("B", m_pumpItem2.m_pause ? 0 : flowB, m_pumpItem2.m_flowGet);
-                            }
+                            }    
                         }
                         else
                         {

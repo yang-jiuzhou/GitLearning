@@ -11,7 +11,7 @@ namespace HBBio.Manual
      * Description: 手动临时状态信息存储
      * Version: 1.0
      * Create:  2020/08/31
-     * Author:  wangkai
+     * Author:  yangjiuzhou
      * Company: jshanbon
      **/
     class ManualManager

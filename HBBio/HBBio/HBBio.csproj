@@ -789,11 +789,13 @@
     <Compile Include="Share\Common\DeepCopy.cs" />
     <Compile Include="Share\Common\DelegateCommand.cs" />
     <Compile Include="Share\Common\Descsp.cs" />
+    <Compile Include="Share\Common\Dispensing.cs" />
     <Compile Include="Share\Common\DlyNotifyPropertyChanged.cs" />
     <Compile Include="Share\Common\EnumString.cs" />
     <Compile Include="Share\Common\IconButton.cs" />
     <Compile Include="Share\Common\IconToggleButton.cs" />
     <Compile Include="Share\Common\IDBSetGet.cs" />
+    <Compile Include="Share\Common\Incremental.cs" />
     <Compile Include="Share\Common\MApp.cs" />
     <Compile Include="Share\Common\MConverter.cs" />
     <Compile Include="Share\Common\MDouble.cs" />

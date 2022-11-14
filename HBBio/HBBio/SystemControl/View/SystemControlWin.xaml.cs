@@ -118,6 +118,7 @@ namespace HBBio.SystemControl
             SystemControlManager.m_manualRun.MAuditTrailsHandler += DlyManualRunAuditTrails;
             SystemControlManager.m_methodRun.MAuditTrailsHandler += DlyMethodRunAuditTrails;
             SystemControlManager.m_methodRun.MShowMessageHandler += DlyMethodRunShowMessage;
+            SystemControlManager.s_comconfStatic.GetItem(ENUMUVName.UV01).MIJVHandler += DlyUVIJV;
 
             m_screenLockWin.MScreenLock += DlyScreenLock;
 
@@ -646,7 +647,7 @@ namespace HBBio.SystemControl
             string error = SystemControlManager.m_methodRun.SendMethodOrQueue((MethodType)e.OriginalSource);
             if (null == error)
             {
-                Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_SendYes"));
+                Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_SendYes"), Share.DlyBase.c_sleep10);
             }
             else
             {
@@ -1093,9 +1094,29 @@ namespace HBBio.SystemControl
             //跨线程调用
             this.Dispatcher.Invoke(new Action(delegate ()
             {
-                MessageBoxWin message = new MessageBoxWin((string)sender);
-                message.Show();
+                MessageBoxWin.Show((string)sender);
             }));
+        }
+
+        /// <summary>
+        /// 添加手动进样阀
+        /// </summary>
+        /// <param name="sender"></param>
+        private void DlyUVIJV(object sender)
+        {
+            if (StaticSystemConfig.SSystemConfig.MConfOther.MUVIJV)
+            {
+                if (SystemState.Method == SystemControlManager.MSystemState)
+                {
+                    SystemControlManager.SetSystemStateRunToNext();
+                }
+            }
+
+            //跨线程调用
+            this.Dispatcher.Invoke(new Action(delegate ()
+            {
+                AuditTrailsStatic.Instance().InsertRowManual(Share.ReadXaml.GetResources("labIJV"));
+            }));    
         }
 
         /// <summary>
@@ -2134,8 +2155,7 @@ namespace HBBio.SystemControl
         {
             if (0 != m_listAlarm.Count)
             {
-                MessageBoxWin win = new MessageBoxWin(Share.ReadXaml.GetResources("labCannot"));
-                win.Show();
+                MessageBoxWin.Show(Share.ReadXaml.GetResources("labCannot"));
                 return;
             }
 

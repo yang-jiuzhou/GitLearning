@@ -516,7 +516,7 @@ namespace HBBio.MethodEdit
         }
 
         /// <summary>
-        /// 跳行
+        /// 下一阶段
         /// </summary>
         public void RunToNext()
         {

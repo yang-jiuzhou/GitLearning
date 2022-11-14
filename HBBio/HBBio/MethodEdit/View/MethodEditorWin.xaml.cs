@@ -744,7 +744,7 @@ namespace HBBio.MethodEdit
                     RaiseEvent(args);
 
                     AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_New"), MMethod.MItem.MName);
-                    Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_SaveYes"));
+                    Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_SaveYes"), Share.DlyBase.c_sleep10);
                 }
                 else
                 {
@@ -758,7 +758,7 @@ namespace HBBio.MethodEdit
                 if (null == error)
                 {
                     AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Update"), MMethod.MItem.MName);
-                    Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_UpdateYes"));
+                    Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_UpdateYes"), Share.DlyBase.c_sleep10);
                 }
                 else
                 {

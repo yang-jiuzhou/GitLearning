@@ -156,6 +156,8 @@
     <s:String x:Key="LabCE1" xml:space="preserve">%C终止(0-100) : </s:String>
     <s:String x:Key="LabDS1" xml:space="preserve">%D起始(0-100) : </s:String>
     <s:String x:Key="LabDE1" xml:space="preserve">%D终止(0-100) : </s:String>
+    <s:String x:Key="LabControlPT">控制压力</s:String>
+    <s:String x:Key="LabControlPT1" xml:space="preserve">控制压力 : </s:String>
     <s:String x:Key="labFillSystem">冲洗系统</s:String>
     <s:String x:Key="labFillSystem1" xml:space="preserve">冲洗系统 : </s:String>
     <s:String x:Key="labFlowRate">流速</s:String>
@@ -265,7 +267,7 @@
     <s:String x:Key="LessThan">小于</s:String>
     <s:String x:Key="EnumMonitorAction_Ignore">忽略</s:String>
     <s:String x:Key="EnumMonitorAction_Bypass">柱位旁通</s:String>
-    <s:String x:Key="EnumMonitorAction_Next">跳行</s:String>
+    <s:String x:Key="EnumMonitorAction_Next">下一阶段</s:String>
     <s:String x:Key="EnumMonitorAction_Pause">暂停</s:String>
     <s:String x:Key="EnumMonitorAction_Stop">停止</s:String>
 
@@ -937,10 +939,12 @@
     <s:String x:Key="Com_CollPallet">托盘设置</s:String>
     <s:String x:Key="Com_AS">气泡传感器参数</s:String>
     <s:String x:Key="Com_Cal">校准设置</s:String>
+    <s:String x:Key="Com_PID">PID控制设置</s:String>
     <s:String x:Key="Com_OtherSet">其它</s:String>
     <s:String x:Key="Com_ResetValve">运行结束阀归位</s:String>
     <s:String x:Key="Com_CloseUV">运行结束紫外灯关闭</s:String>
     <s:String x:Key="Com_OpenMixer">双泵开启动态混合器</s:String>
+    <s:String x:Key="Com_UVIJV">手动进样阀触发</s:String>
 
     <s:String x:Key="Com_DelComError">该配置存在数据,不可删除!</s:String>
     <s:String x:Key="Com_ComError">通讯故障</s:String>

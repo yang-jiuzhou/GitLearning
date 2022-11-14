@@ -12,7 +12,14 @@ namespace HBBio.Communication
     {
         private int m_valveSet = 0;
         private int m_valveGet = 1;
-        public string[] m_enumNames = new string[] { "null" };       //阀枚举列表
+        /// <summary>
+        /// 阀枚举列表
+        /// </summary>
+        public string[] m_enumNames = new string[] { "null" };
+        /// <summary>
+        /// 切法是否需要暂停
+        /// </summary>
+        public bool MPause { get; set; }
 
         public int MValveSet
         {
@@ -95,6 +102,8 @@ namespace HBBio.Communication
         {
             MConstNameList = Enum.GetNames(typeof(ENUMValveName));
             MConstName = MConstNameList[0];
+
+            MPause = false;
         }
     }
 }

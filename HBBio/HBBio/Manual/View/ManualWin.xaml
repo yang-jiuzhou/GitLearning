@@ -63,6 +63,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -97,11 +99,15 @@
                         <xctk:DoubleUpDown x:Name="doubleDS" Grid.Row="8" Grid.Column="2" Maximum="100" Value="{Binding MDS}"/>
                         <TextBlock x:Name="labDE" Grid.Row="8" Grid.Column="4" Text="{DynamicResource LabDE1}"/>
                         <xctk:DoubleUpDown x:Name="doubleDE" Grid.Row="8" Grid.Column="6" Maximum="100" Value="{Binding MDE}"/>
+                        <CheckBox x:Name="chboxPT" Grid.Row="10" Grid.Column="0" Content="{DynamicResource LabControlPT}" IsChecked="{Binding MEnablePT}"/>
+                        <xctk:DoubleUpDown x:Name="doublePT" Grid.Row="10" Grid.Column="2" Value="{Binding MControlPT}" IsEnabled="{Binding ElementName=chboxPT,Path=IsChecked}"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tabPumpSample" Header="{DynamicResource M_PumpSample}">
                     <Grid x:Name="gridPumpSample" Margin="5">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="Auto"/>
@@ -127,6 +133,8 @@
                         <xctk:DoubleUpDown x:Name="doubleSampleFlow" Grid.Row="2" Grid.Column="2" Value="{Binding MFlow}"/>
                         <TextBlock x:Name="labSampleFlowUnit" Grid.Row="2" Grid.Column="4" Text="{DynamicResource ME_FlowRateUnit1}"/>
                         <ComboBox x:Name="cboxSampleFlowUnit" Grid.Row="2" Grid.Column="6" DisplayMemberPath="MName" SelectedValuePath="MMode" SelectedValue="{Binding MFlowUnit}" SelectionChanged="cboxSampleFlowUnit_SelectionChanged"/>
+                        <CheckBox x:Name="chboxPTS" Grid.Row="4" Grid.Column="0" Content="{DynamicResource LabControlPT}" IsChecked="{Binding MEnablePT}"/>
+                        <xctk:DoubleUpDown x:Name="doublePTS" Grid.Row="4" Grid.Column="2" Value="{Binding MControlPT}" IsEnabled="{Binding ElementName=chboxPTS,Path=IsChecked}"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tabValve" Header="{DynamicResource M_Valve}">

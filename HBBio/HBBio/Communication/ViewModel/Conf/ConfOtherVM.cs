@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HBBio.Communication
 {
-    public class ConfOtherVM : DlyNotifyPropertyChanged
+    public class ConfOtherVM
     {
         #region 属性
         public ConfOther MItem { get; set; }
@@ -20,13 +20,7 @@ namespace HBBio.Communication
             }
             set
             {
-                if (MItem.MResetValve == value)
-                {
-                    return;
-                }
-
                 MItem.MResetValve = value;
-                OnPropertyChanged("MResetValve");
             }
         }
         public bool MCloseUV
@@ -37,13 +31,7 @@ namespace HBBio.Communication
             }
             set
             {
-                if (MItem.MCloseUV == value)
-                {
-                    return;
-                }
-
                 MItem.MCloseUV = value;
-                OnPropertyChanged("MCloseUV");
             }
         }
         public bool MOpenMixer 
@@ -54,13 +42,60 @@ namespace HBBio.Communication
             }
             set
             {
-                if (MItem.MOpenMixer == value)
-                {
-                    return;
-                }
-
                 MItem.MOpenMixer = value;
-                OnPropertyChanged("MOpenMixer");
+            }
+        }
+        /// <summary>
+        /// PID参数的P
+        /// </summary>
+        public double MPIDP
+        {
+            get
+            {
+                return MItem.MPIDP;
+            }
+            set
+            {
+                MItem.MPIDP = value;
+            }
+        }
+        /// <summary>
+        /// PID参数的P
+        /// </summary>
+        public double MPIDI
+        {
+            get
+            {
+                return MItem.MPIDI;
+            }
+            set
+            {
+                MItem.MPIDI = value;
+            }
+        }
+        /// <summary>
+        /// PID参数的P
+        /// </summary>
+        public double MPIDD
+        {
+            get
+            {
+                return MItem.MPIDD;
+            }
+            set
+            {
+                MItem.MPIDD = value;
+            }
+        }
+        public bool MUVIJV
+        {
+            get
+            {
+                return MItem.MUVIJV;
+            }
+            set
+            {
+                MItem.MUVIJV = value;
             }
         }
         #endregion

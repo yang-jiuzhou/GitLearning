@@ -53,6 +53,7 @@ namespace HBBio.Communication
                     case ENUMValveName.InC: EnumInCInfo.Init(tempCount); m_item.m_enumNames = EnumInCInfo.NameList; break;
                     case ENUMValveName.InD: EnumInDInfo.Init(tempCount); m_item.m_enumNames = EnumInDInfo.NameList; break;
                 }
+                m_item.MPause = true;
             }
         }
 

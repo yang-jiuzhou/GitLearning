@@ -991,9 +991,52 @@ namespace HBBio.Communication
                     break;
                 case ENUMValveName.CPV_2:
                     break;
+                case ENUMValveName.InS:
+                    ValvePump(ENUMValveName.InS, index, ENUMPumpName.FITS);
+                    break;
+                case ENUMValveName.InA:
+                    ValvePump(ENUMValveName.InA, index, ENUMPumpName.FITA);
+                    break;
+                case ENUMValveName.InB:
+                    ValvePump(ENUMValveName.InB, index, ENUMPumpName.FITB);
+                    break;
+                case ENUMValveName.InC:
+                    ValvePump(ENUMValveName.InC, index, ENUMPumpName.FITC);
+                    break;
+                case ENUMValveName.InD:
+                    ValvePump(ENUMValveName.InD, index, ENUMPumpName.FITD);
+                    break;
                 default:
                     m_dictValve[name].MValveSet = index;
                     break;
+            }
+        }
+        private void ValvePump(ENUMValveName valve, int index, ENUMPumpName pump)
+        {
+            if (m_dictValve[valve].MPause)
+            {
+                Task task = new Task(() =>
+                {
+                    if (!m_dictPump[pump].m_pause)
+                    {
+                        m_dictPump[pump].m_pause = true;
+                        while (0 < m_dictPump[pump].m_flowGet)
+                        {
+                            Thread.Sleep(DlyBase.c_sleep1);
+                        }
+                        m_dictValve[valve].MValveSet = index;
+                        m_dictPump[pump].m_pause = false;
+                    }
+                    else
+                    {
+                        m_dictValve[valve].MValveSet = index;
+                    }
+                });
+                task.Start();
+            }
+            else
+            {
+                m_dictValve[valve].MValveSet = index;
             }
         }
         public int GetValveGet(ENUMValveName name)
@@ -1023,7 +1066,7 @@ namespace HBBio.Communication
             m_dictPump[ENUMPumpName.FITC].m_flowSet = flowVol * perC / 100;
             m_dictPump[ENUMPumpName.FITD].m_flowSet = flowVol * perD / 100;
 
-            if (StaticSystemConfig.SSystemConfig.MConfOther.MOpenMixer && !m_dictMixer[ENUMMixerName.Mixer01].m_onoffGet)
+            if (StaticSystemConfig.SSystemConfig.MConfOther.MOpenMixer)
             {
                 if (0 < flowVol)
                 {
@@ -1044,9 +1087,80 @@ namespace HBBio.Communication
                     {
                         count++;
                     }
-                    if (1 < count)
+
+                    if (m_dictMixer[ENUMMixerName.Mixer01].m_onoffGet)
                     {
-                        m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = true;
+                        if (1 >= count)
+                        {
+                            m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = false;
+                        }
+                    }
+                    else
+                    {
+                        if (1 < count)
+                        {
+                            m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = true;
+                        }
+                    } 
+                }
+                else
+                {
+                    if (m_dictMixer[ENUMMixerName.Mixer01].m_onoffGet)
+                    {
+                        m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = false;
+                    }
+                }
+            }
+        }
+        public void SetPumpSystem(double flowVol, double perA, double perB, double perC, double perD)
+        {
+            m_dictPump[ENUMPumpName.FITA].m_flowSet = flowVol * perA / 100;
+            m_dictPump[ENUMPumpName.FITB].m_flowSet = flowVol * perB / 100;
+            m_dictPump[ENUMPumpName.FITC].m_flowSet = flowVol * perC / 100;
+            m_dictPump[ENUMPumpName.FITD].m_flowSet = flowVol * perD / 100;
+
+            if (StaticSystemConfig.SSystemConfig.MConfOther.MOpenMixer)
+            {
+                if (0 < flowVol)
+                {
+                    int count = 0;
+                    if (0 < m_dictPump[ENUMPumpName.FITA].m_flowSet)
+                    {
+                        count++;
+                    }
+                    if (0 < m_dictPump[ENUMPumpName.FITB].m_flowSet)
+                    {
+                        count++;
+                    }
+                    if (0 < m_dictPump[ENUMPumpName.FITC].m_flowSet)
+                    {
+                        count++;
+                    }
+                    if (0 < m_dictPump[ENUMPumpName.FITD].m_flowSet)
+                    {
+                        count++;
+                    }
+
+                    if (m_dictMixer[ENUMMixerName.Mixer01].m_onoffGet)
+                    {
+                        if (1 >= count)
+                        {
+                            m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = false;
+                        }
+                    }
+                    else
+                    {
+                        if (1 < count)
+                        {
+                            m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (m_dictMixer[ENUMMixerName.Mixer01].m_onoffGet)
+                    {
+                        m_dictMixer[ENUMMixerName.Mixer01].m_onoffSet = false;
                     }
                 }
             }
@@ -1074,6 +1188,11 @@ namespace HBBio.Communication
         public double GetPumpSet(ENUMPumpName name)
         {
             return m_dictPump[name].m_flowSet;
+        }
+
+        public double GetPTGet(ENUMPTName name)
+        {
+            return m_dictPT[name].m_pressGet;
         }
 
         public double GetPHGet(ENUMPHName name)
