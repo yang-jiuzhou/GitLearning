@@ -1150,4 +1150,7 @@ D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.application
 D:\GitLearning\HBBio\HBBio\obj\Release\HBBio.csproj.CopyComplete
 D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.exe
 D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.pdb
-D:\GitLearning\HBBio\HBBio\obj\Release\HBBio.csproj.AssemblyReference.cache
+D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\MixtureGridItemWin.g.cs
+D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\UC\Group\MixtureGridUC.g.cs
+D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\MixtureGridItemWin.baml
+D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\UC\Group\MixtureGridUC.baml

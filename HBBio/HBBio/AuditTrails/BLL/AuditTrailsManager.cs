@@ -168,5 +168,19 @@ namespace HBBio.AuditTrails
             LogColumnVisibilityTable table = new LogColumnVisibilityTable();
             return table.UpdateRow(item);
         }
+
+        /// <summary>
+        /// 获取审计跟踪列表信息
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public LogColumnVisibility GetColumnVisibility()
+        {
+            LogColumnVisibilityTable table = new LogColumnVisibilityTable();
+            LogColumnVisibility item;
+            table.SelectRow(out item);
+
+            return item;
+        }
     }
 }

@@ -537,14 +537,33 @@ namespace HBBio.Communication
             }
         }
 
-        public static void Init(int count, bool off = false)
+        public static void Init2(bool off = false)
         {
+            int count = 2;
             s_Count = count;
             s_NameList = new string[count];
             if (0 < count)
             {
                 s_NameList[0] = "Load";
                 s_NameList[1] = "Inject";
+                if (off)
+                {
+                    s_NameList[count - 1] = "Off";
+                }
+            }
+        }
+
+        public static void Init4(bool off = false)
+        {
+            int count = 4;
+            s_Count = count;
+            s_NameList = new string[count];
+            if (0 < count)
+            {
+                s_NameList[0] = "Load";
+                s_NameList[1] = "Inject";
+                s_NameList[2] = "Purge";
+                s_NameList[3] = "SpLoadLoop";
                 if (off)
                 {
                     s_NameList[count - 1] = "Off";
@@ -623,6 +642,14 @@ namespace HBBio.Communication
                 }
             }
         }
+
+        public static void ChangeFirst()
+        {
+            if (s_NameList[0].Equals("Bypass"))
+            {
+                s_NameList[0] = "Pos1";
+            }
+        }
     }
 
     public static class EnumWashInfo
@@ -645,20 +672,7 @@ namespace HBBio.Communication
             }
         }
 
-        public static void Init()
-        {
-            switch (ItemVisibility.s_listValve[ENUMValveName.CPV_1])
-            {
-                case Visibility.Visible:
-                    Init(3);
-                    break;
-                default:
-                    Init(2);
-                    break;
-            }
-        }
-
-        private static void Init(int count)
+        public static void Init(int count)
         {
             s_Count = count;
             s_NameList = new string[count];

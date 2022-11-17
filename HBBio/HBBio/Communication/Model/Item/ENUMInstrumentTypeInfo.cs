@@ -62,7 +62,8 @@ namespace HBBio.Communication
         VICI_T4,
         VICI_T6,
         VICI_T8,
-        VICI_T10
+        VICI_T10,
+        IMI_IJV
     }
 
     /// <summary>

@@ -84,6 +84,10 @@ namespace HBBio.Chromatogram
         /// </summary>
         public bool MVisiblePeakStart
         {
+            get
+            {
+                return Visibility.Visible == linePeakStart.Visibility ? true : false;
+            }
             set
             {
                 linePeakStart.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
@@ -95,6 +99,10 @@ namespace HBBio.Chromatogram
         /// </summary>
         public bool MVisiblePeakEnd
         {
+            get
+            {
+                return Visibility.Visible == linePeakEnd.Visibility ? true : false;
+            }
             set
             {
                 linePeakEnd.Visibility = value ? Visibility.Visible : Visibility.Collapsed;

@@ -591,6 +591,12 @@
     <Compile Include="Communication\View\UC\MixerUC.xaml.cs">
       <DependentUpon>MixerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MethodEdit\View\MixtureGridItemWin.xaml.cs">
+      <DependentUpon>MixtureGridItemWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MethodEdit\View\UC\Group\MixtureGridUC.xaml.cs">
+      <DependentUpon>MixtureGridUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MethodEdit\Model\Enum\EnumAnswerType.cs" />
     <Compile Include="MethodEdit\Model\Enum\EnumGroupType.cs" />
     <Compile Include="MethodEdit\Model\Enum\EnumMethodMaintenance.cs" />
@@ -599,7 +605,11 @@
     <Compile Include="MethodEdit\Model\Enum\EnumPhaseType.cs" />
     <Compile Include="MethodEdit\Model\Enum\EnumResultType.cs" />
     <Compile Include="Communication\Model\Control\ASMethodPara.cs" />
+    <Compile Include="MethodEdit\Model\Group\MixtureGrid.cs" />
     <Compile Include="MethodEdit\Model\Group\Mixer.cs" />
+    <Compile Include="MethodEdit\Model\Group\MixtureGridItem.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\MixtureGridItemVM.cs" />
+    <Compile Include="MethodEdit\ViewModel\Group\MixtureGridVM.cs" />
     <Compile Include="MethodEdit\View\Intervene\ASWin.xaml.cs">
       <DependentUpon>ASWin.xaml</DependentUpon>
     </Compile>
@@ -779,11 +789,13 @@
     <Compile Include="Share\Common\DeepCopy.cs" />
     <Compile Include="Share\Common\DelegateCommand.cs" />
     <Compile Include="Share\Common\Descsp.cs" />
+    <Compile Include="Share\Common\Dispensing.cs" />
     <Compile Include="Share\Common\DlyNotifyPropertyChanged.cs" />
     <Compile Include="Share\Common\EnumString.cs" />
     <Compile Include="Share\Common\IconButton.cs" />
     <Compile Include="Share\Common\IconToggleButton.cs" />
     <Compile Include="Share\Common\IDBSetGet.cs" />
+    <Compile Include="Share\Common\Incremental.cs" />
     <Compile Include="Share\Common\MApp.cs" />
     <Compile Include="Share\Common\MConverter.cs" />
     <Compile Include="Share\Common\MDouble.cs" />
@@ -1244,6 +1256,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Communication\View\UC\MixerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MethodEdit\View\MixtureGridItemWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MethodEdit\View\UC\Group\MixtureGridUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

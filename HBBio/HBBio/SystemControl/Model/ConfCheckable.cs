@@ -17,11 +17,25 @@ namespace HBBio.SystemControl
         public EnumLanguage MEnumLanguage { get; set; }
         public bool MRememberSize { get; set; }
 
+        private static class ConfCheckableInner
+        {
+            public static ConfCheckable _stance = new ConfCheckable();
+        }
+
+        /// <summary>
+        /// 单例引用
+        /// </summary>
+        /// <returns></returns>
+        public static ConfCheckable GetInstance()
+        {
+            return ConfCheckableInner._stance;
+        }
+
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ConfCheckable()
+        private ConfCheckable()
         {
 
         }

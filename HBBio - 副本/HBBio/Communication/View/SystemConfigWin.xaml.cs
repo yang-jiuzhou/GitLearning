@@ -120,6 +120,25 @@ namespace HBBio.Communication
                 sb.Append(((ConfASUC)it).GetCompareInfo());
             }
 
+            //PID参数
+            if (MSystemConfig.MConfOther.MPIDP != MSystemConfigShow.MConfOtherVM.MPIDP)
+            {
+                sb.Append(labPIDP.Text + MSystemConfig.MConfOther.MPIDP + " -> " + MSystemConfigShow.MConfOtherVM.MPIDP);
+                MSystemConfig.MConfOther.MPIDP = MSystemConfigShow.MConfOtherVM.MPIDP;
+            }
+
+            if (MSystemConfig.MConfOther.MPIDI != MSystemConfigShow.MConfOtherVM.MPIDI)
+            {
+                sb.Append(labPIDI.Text + MSystemConfig.MConfOther.MPIDI + " -> " + MSystemConfigShow.MConfOtherVM.MPIDI);
+                MSystemConfig.MConfOther.MPIDI = MSystemConfigShow.MConfOtherVM.MPIDI;
+            }
+
+            if (MSystemConfig.MConfOther.MPIDD != MSystemConfigShow.MConfOtherVM.MPIDD)
+            {
+                sb.Append(labPIDD.Text + MSystemConfig.MConfOther.MPIDD + " -> " + MSystemConfigShow.MConfOtherVM.MPIDD);
+                MSystemConfig.MConfOther.MPIDD = MSystemConfigShow.MConfOtherVM.MPIDD;
+            }
+
             //其它
             if (MSystemConfig.MConfOther.MResetValve != MSystemConfigShow.MConfOtherVM.MResetValve)
             {
@@ -137,6 +156,12 @@ namespace HBBio.Communication
             {
                 sb.Append(chboxOpenMixer.Content.ToString() + " : " + (MSystemConfig.MConfOther.MOpenMixer ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off) + " -> " + (MSystemConfigShow.MConfOtherVM.MOpenMixer ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off));
                 MSystemConfig.MConfOther.MOpenMixer = MSystemConfigShow.MConfOtherVM.MOpenMixer;
+            }
+
+            if (MSystemConfig.MConfOther.MUVIJV != MSystemConfigShow.MConfOtherVM.MUVIJV)
+            {
+                sb.Append(chboxUVIJV.Content.ToString() + " : " + (MSystemConfig.MConfOther.MUVIJV ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off) + " -> " + (MSystemConfigShow.MConfOtherVM.MUVIJV ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off));
+                MSystemConfig.MConfOther.MUVIJV = MSystemConfigShow.MConfOtherVM.MUVIJV;
             }
 
             return sb.ToString();
@@ -270,6 +295,15 @@ namespace HBBio.Communication
                 {
                     groupCal.Visibility = Visibility.Collapsed;
                 }
+            }
+
+            foreach (FrameworkElement it in gridPID.Children)
+            {
+                if (it is TextBlock)
+                {
+                    continue;
+                }
+                it.DataContext = MSystemConfigShow.MConfOtherVM;
             }
 
             chboxResetValve.Visibility = Visibility.Collapsed;

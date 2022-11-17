@@ -117,8 +117,8 @@ namespace HBBio.Communication
                         case ENUMValveName.InB: EnumInBInfo.Init(2); valveItem.m_enumNames = EnumInBInfo.NameList; break;
                         case ENUMValveName.InC: EnumInCInfo.Init(2); valveItem.m_enumNames = EnumInCInfo.NameList; break;
                         case ENUMValveName.InD: EnumInDInfo.Init(2); valveItem.m_enumNames = EnumInDInfo.NameList; break;
-                        case ENUMValveName.CPV_1:
-                        case ENUMValveName.CPV_2: EnumCPVInfo.Init(2); valveItem.m_enumNames = EnumCPVInfo.NameList; break;
+                        case ENUMValveName.CPV_1: EnumCPVInfo.Init(2); valveItem.m_enumNames = EnumCPVInfo.NameList; break;
+                        case ENUMValveName.CPV_2: valveItem.m_enumNames = EnumCPVInfo.NameList; break;
                         case ENUMValveName.Out: EnumOutInfo.Init(2); valveItem.m_enumNames = EnumOutInfo.NameList; break;
                     }
                 }
@@ -133,8 +133,8 @@ namespace HBBio.Communication
                         case ENUMValveName.InB: EnumInBInfo.Init(2); valveItem.m_enumNames = EnumInBInfo.NameList; break;
                         case ENUMValveName.InC: EnumInCInfo.Init(2); valveItem.m_enumNames = EnumInCInfo.NameList; break;
                         case ENUMValveName.InD: EnumInDInfo.Init(2); valveItem.m_enumNames = EnumInDInfo.NameList; break;
-                        case ENUMValveName.CPV_1:
-                        case ENUMValveName.CPV_2: EnumCPVInfo.Init(2); valveItem.m_enumNames = EnumCPVInfo.NameList; break;
+                        case ENUMValveName.CPV_1: EnumCPVInfo.Init(2); valveItem.m_enumNames = EnumCPVInfo.NameList; break;
+                        case ENUMValveName.CPV_2: valveItem.m_enumNames = EnumCPVInfo.NameList; break;
                         case ENUMValveName.Out: EnumOutInfo.Init(2); valveItem.m_enumNames = EnumOutInfo.NameList; break;
                     }
                 }
@@ -149,8 +149,8 @@ namespace HBBio.Communication
                         case ENUMValveName.InB: EnumInBInfo.Init(2); valveItem.m_enumNames = EnumInBInfo.NameList; break;
                         case ENUMValveName.InC: EnumInCInfo.Init(2); valveItem.m_enumNames = EnumInCInfo.NameList; break;
                         case ENUMValveName.InD: EnumInDInfo.Init(2); valveItem.m_enumNames = EnumInDInfo.NameList; break;
-                        case ENUMValveName.CPV_1:
-                        case ENUMValveName.CPV_2: EnumCPVInfo.Init(2); valveItem.m_enumNames = EnumCPVInfo.NameList; break;
+                        case ENUMValveName.CPV_1: EnumCPVInfo.Init(2); valveItem.m_enumNames = EnumCPVInfo.NameList; break;
+                        case ENUMValveName.CPV_2: valveItem.m_enumNames = EnumCPVInfo.NameList; break;
                         case ENUMValveName.Out: EnumOutInfo.Init(2); valveItem.m_enumNames = EnumOutInfo.NameList; break;
                     }
                 }

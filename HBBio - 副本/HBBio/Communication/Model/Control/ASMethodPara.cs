@@ -44,6 +44,24 @@ namespace HBBio.Communication
             MUnit = EnumBase.T;
         }
 
+        public bool Compare(ASMethodPara item)
+        {
+            if (null == item)
+            {
+                return false;
+            }
+
+            if (MName != item.MName
+                || MAction != item.MAction
+                || MLength != item.MLength
+                || MUnit != item.MUnit)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// 深度拷贝
         /// </summary>
@@ -77,6 +95,7 @@ namespace HBBio.Communication
         public void Init()
         {
             m_signal = true;
+            m_last = -1;
         }
 
         /// <summary>
@@ -148,8 +167,6 @@ namespace HBBio.Communication
         /// </summary>
         public void Clear()
         {
-            MAction = EnumMonitorActionMethod.Ignore;
-
             m_signal = false;
             m_last = -1;
         }

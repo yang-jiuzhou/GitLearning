@@ -16,7 +16,7 @@ namespace HBBio.MethodEdit
         Pause,          //暂停
         Stop,           //停止
         FreeToRun,      //空闲->运行 
-        RunToNext,      //运行->跳行
+        RunToNext,      //运行->下一阶段
         RunToPause,     //运行->暂停
         PauseToRun,     //暂停->运行
         BreakToPause    //中断->暂停

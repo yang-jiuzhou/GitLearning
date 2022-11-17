@@ -85,9 +85,6 @@ namespace HBBio.MethodEdit
             TabItemVisibility();
             ItemsSourceMethodSettings();
             DataContextMethodSettings(MMethod.MMethodSetting);
-
-
-            
         }
 
         /// <summary>
@@ -188,6 +185,28 @@ namespace HBBio.MethodEdit
             groupMonitorSettings.Visibility = ItemVisibility.s_listUV[ENUMUVName.UV01];
 
             groupAirSensorAlarm.Visibility = ItemVisibility.s_listAS[ENUMASName.AS01];
+
+            mixtureGridUC.SetVisibility(ItemVisibility.s_listPump[ENUMPumpName.FITS]
+                , ItemVisibility.s_listPump[ENUMPumpName.FITA]
+                , ItemVisibility.s_listPump[ENUMPumpName.FITB]
+                , ItemVisibility.s_listPump[ENUMPumpName.FITC]
+                , ItemVisibility.s_listPump[ENUMPumpName.FITD]
+                , ItemVisibility.s_listValve[ENUMValveName.InS]
+                , ItemVisibility.s_listValve[ENUMValveName.InA]
+                , ItemVisibility.s_listValve[ENUMValveName.InB]
+                , ItemVisibility.s_listValve[ENUMValveName.InC]
+                , ItemVisibility.s_listValve[ENUMValveName.InD]
+                , ItemVisibility.s_listValve[ENUMValveName.IJV]
+                , ItemVisibility.s_listValve[ENUMValveName.BPV]
+                , ItemVisibility.s_listValve[ENUMValveName.CPV_1]
+                , ItemVisibility.s_listValve[ENUMValveName.Out]
+                , ItemVisibility.s_listAS[ENUMASName.AS01]
+                , ItemVisibility.s_listAS[ENUMASName.AS02]
+                , ItemVisibility.s_listAS[ENUMASName.AS03]
+                , ItemVisibility.s_listAS[ENUMASName.AS04]
+                , ItemVisibility.s_listMixer[ENUMMixerName.Mixer01]
+                , ItemVisibility.s_listUV[ENUMUVName.UV01]
+                );
 
             flowValveLengthUC.SetVisibility(ItemVisibility.s_listValve[ENUMValveName.InA]
                                                         , ItemVisibility.s_listValve[ENUMValveName.InB]
@@ -346,6 +365,7 @@ namespace HBBio.MethodEdit
                         collUC.DataContext = null;
                         uvResetUC.DataContext = null;
                         cipUC.DataContext = null;
+                        mixtureGridUC.DataContext = null;
 
                         foreach (var it in MMethod.MPhaseList[index].MListGroup)
                         {
@@ -400,6 +420,9 @@ namespace HBBio.MethodEdit
                                     break;
                                 case EnumGroupType.CIP:
                                     cipUC.DataContext = (CIPVM)it;
+                                    break;
+                                case EnumGroupType.MixtureGrid:
+                                    mixtureGridUC.DataContext = (MixtureGridVM)it;
                                     break;
                             }
                         }
@@ -457,6 +480,10 @@ namespace HBBio.MethodEdit
                                 case EnumGroupType.CIP:
                                     if (null == cipUC.DataContext)
                                         cipUC.DataContext = groupFactory.GetGroupVM(it, methodBaseValue);
+                                    break;
+                                case EnumGroupType.MixtureGrid:
+                                    if (null == mixtureGridUC.DataContext)
+                                        mixtureGridUC.DataContext = groupFactory.GetGroupVM(it, methodBaseValue);
                                     break;
                             }
                         }
@@ -627,7 +654,7 @@ namespace HBBio.MethodEdit
 
             MMethod.PastePhase();
 
-            btnPhase_MouseDown(newBtn, null);
+            btnPhase_MouseUp(newBtn, null);
         }
 
         /// <summary>
@@ -717,7 +744,7 @@ namespace HBBio.MethodEdit
                     RaiseEvent(args);
 
                     AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_New"), MMethod.MItem.MName);
-                    Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_SaveYes"));
+                    Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_SaveYes"), Share.DlyBase.c_sleep10);
                 }
                 else
                 {
@@ -731,7 +758,7 @@ namespace HBBio.MethodEdit
                 if (null == error)
                 {
                     AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(Share.ReadXaml.GetResources("ME_Desc_Update"), MMethod.MItem.MName);
-                    Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_UpdateYes"));
+                    Share.MessageBoxWin.Show(ReadXaml.GetResources("ME_Msg_UpdateYes"), Share.DlyBase.c_sleep10);
                 }
                 else
                 {
@@ -847,9 +874,9 @@ namespace HBBio.MethodEdit
                 m_clickPtMove = e.GetPosition(stackPanelPhaseList);
             }
 
-            SetDataContext(stackPanelPhaseList.Children.IndexOf((UIElement)sender));
+            //SetDataContext(stackPanelPhaseList.Children.IndexOf((UIElement)sender));
 
-            UpdateButtonBorder((Label)sender);
+            //UpdateButtonBorder((Label)sender);
         }
 
         /// <summary>
@@ -876,6 +903,10 @@ namespace HBBio.MethodEdit
         {
             m_isPressMove = false;
             m_labMove = null;
+
+            SetDataContext(stackPanelPhaseList.Children.IndexOf((UIElement)sender));
+
+            UpdateButtonBorder((Label)sender);
 
             if (m_doubleClick)
             {
@@ -1018,7 +1049,7 @@ namespace HBBio.MethodEdit
                         }
                         stackPanelPhaseList.Children.Insert(i, obj);
                         MMethod.InsertPhase(i, curr, (string)e.Data.GetData(DataFormats.Text));
-                        btnPhase_MouseDown(obj, null);
+                        btnPhase_MouseUp(obj, null);
                         m_isPressCopy = false;
                         m_labCopy = null;
                         return;
@@ -1027,7 +1058,7 @@ namespace HBBio.MethodEdit
 
                 stackPanelPhaseList.Children.Add(obj);
                 MMethod.AddPhase(curr, (string)e.Data.GetData(DataFormats.Text));
-                btnPhase_MouseDown(obj, null);
+                btnPhase_MouseUp(obj, null);
                 m_isPressCopy = false;
                 m_labCopy = null;
             }
@@ -1182,7 +1213,7 @@ namespace HBBio.MethodEdit
         {
             if (-1 != methodCanvas.MCurrClickIndex && methodCanvas.MCurrClickIndex != stackPanelPhaseList.Children.IndexOf(m_lastBtn))
             {
-                btnPhase_MouseDown((Label)stackPanelPhaseList.Children[methodCanvas.MCurrClickIndex], null);
+                btnPhase_MouseUp((Label)stackPanelPhaseList.Children[methodCanvas.MCurrClickIndex], null);
             }
         }
     }

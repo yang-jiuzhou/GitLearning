@@ -499,6 +499,18 @@ namespace HBBio.Communication
                         if (id.ToString().Contains("VICI"))
                         {
                             item = new ComValveVICI(cc);
+                        } 
+                        else if (id.ToString().Contains("HB_T"))
+                        {
+                            item = new ComValveHB2(cc);
+                        }
+                        else if (id.ToString().Contains("HB_GS4"))
+                        {
+                            item = new ComValveHBGS4(cc);
+                        }
+                        else if (id.ToString().Contains("IMI_"))
+                        {
+                            item = new ComValveIMI(cc);
                         }
                         else if (id.ToString().Contains("HB_Coll"))
                         {
@@ -507,14 +519,6 @@ namespace HBBio.Communication
                         else if (id.ToString().Contains("QBH_Coll"))
                         {
                             item = new ComValveQBHColl(cc);
-                        }
-                        else if (id.ToString().Contains("HB_T"))
-                        {
-                            item = new ComValveHB2(cc);
-                        }
-                        else if (id.ToString().Contains("HB_GS4"))
-                        {
-                            item = new ComValveHBGS4(cc);
                         }
                         else
                         {
@@ -637,6 +641,18 @@ namespace HBBio.Communication
                         else if (id.ToString().Contains("HB_GS4"))
                         {
                             item = new TCPValveHBGS4(cc);
+                        }
+                        else if (id.ToString().Contains("IMI_"))
+                        {
+                            item = new TCPValveIMI(cc);
+                        }
+                        else if (id.ToString().Contains("HB_Coll"))
+                        {
+                            item = new TCPValveHBColl(cc);
+                        }
+                        else if (id.ToString().Contains("QBH_Coll"))
+                        {
+                            item = new TCPValveQBHColl(cc);
                         }
                         else
                         {

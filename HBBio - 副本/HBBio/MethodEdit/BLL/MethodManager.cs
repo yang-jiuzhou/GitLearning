@@ -350,6 +350,27 @@ namespace HBBio.MethodEdit
                                 }
                             }
                             break;
+                        case EnumGroupType.MixtureGrid:
+                            {
+                                MixtureGrid flowValveLength = (MixtureGrid)baseGroup;
+                                for (int i = 0; i < flowValveLength.MList.Count; i++)
+                                {
+                                    string error = StaticValue.CheckData(EnumFlowRate.MLMIN, flowValveLength.MList[i].MFlowVolLenSystem.MFlowVol
+                                        , flowValveLength.MList[i].MPerBS, flowValveLength.MList[i].MPerBE
+                                        , flowValveLength.MList[i].MPerCS, flowValveLength.MList[i].MPerCE
+                                        , flowValveLength.MList[i].MPerDS, flowValveLength.MList[i].MPerDE);
+                                    if (!string.IsNullOrEmpty(error))
+                                    {
+                                        StringBuilderSplit sb = new StringBuilderSplit();
+                                        sb.Append(basePhase.MNamePhase);
+                                        sb.Append(ReadXaml.GetEnum(baseGroup.MType, "ME_EnumGroupType_"));
+                                        sb.Append(flowValveLength.MList.Count + " - " + (i + 1));
+                                        sb.Append(error);
+                                        return sb.ToString();
+                                    }
+                                }
+                            }
+                            break;
                     }
                 }
             }

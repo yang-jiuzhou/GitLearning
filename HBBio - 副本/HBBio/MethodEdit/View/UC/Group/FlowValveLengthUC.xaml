@@ -10,25 +10,25 @@
              Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <DataTemplate x:Key="ColumnInA">
-            <ComboBox ItemsSource="{x:Static comm:EnumInAInfo.NameList}" SelectedIndex="{Binding Path=MInA,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+            <ComboBox ItemsSource="{x:Static comm:EnumInAInfo.NameList}" SelectedIndex="{Binding Path=MInA,UpdateSourceTrigger=LostFocus}"/>
         </DataTemplate>
         <DataTemplate x:Key="ColumnInB">
-            <ComboBox ItemsSource="{x:Static comm:EnumInBInfo.NameList}" SelectedIndex="{Binding Path=MInB,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+            <ComboBox ItemsSource="{x:Static comm:EnumInBInfo.NameList}" SelectedIndex="{Binding Path=MInB,UpdateSourceTrigger=LostFocus}"/>
         </DataTemplate>
         <DataTemplate x:Key="ColumnInC">
-            <ComboBox ItemsSource="{x:Static comm:EnumInCInfo.NameList}" SelectedIndex="{Binding Path=MInC,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+            <ComboBox ItemsSource="{x:Static comm:EnumInCInfo.NameList}" SelectedIndex="{Binding Path=MInC,UpdateSourceTrigger=LostFocus}"/>
         </DataTemplate>
         <DataTemplate x:Key="ColumnInD">
-            <ComboBox ItemsSource="{x:Static comm:EnumInDInfo.NameList}" SelectedIndex="{Binding Path=MInD,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+            <ComboBox ItemsSource="{x:Static comm:EnumInDInfo.NameList}" SelectedIndex="{Binding Path=MInD,UpdateSourceTrigger=LostFocus}"/>
         </DataTemplate>
         <DataTemplate x:Key="ColumnOut">
-            <ComboBox ItemsSource="{x:Static comm:EnumOutInfo.NameList}" SelectedIndex="{Binding Path=MVOut,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+            <ComboBox ItemsSource="{x:Static comm:EnumOutInfo.NameList}" SelectedIndex="{Binding Path=MVOut,UpdateSourceTrigger=LostFocus}"/>
         </DataTemplate>
         <DataTemplate x:Key="ColumnBPV">
-            <ComboBox ItemsSource="{x:Static comm:EnumBPVInfo.NameList}" SelectedIndex ="{Binding Path=MBPV,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+            <ComboBox ItemsSource="{x:Static comm:EnumBPVInfo.NameList}" SelectedIndex ="{Binding Path=MBPV,UpdateSourceTrigger=LostFocus}"/>
         </DataTemplate>
         <DataTemplate x:Key="ColumnWash">
-            <ComboBox ItemsSource="{x:Static comm:EnumWashInfo.NameList}" SelectedIndex="{Binding Path=MFillSystem,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+            <ComboBox ItemsSource="{x:Static comm:EnumWashInfo.NameList}" SelectedIndex="{Binding Path=MFillSystem,UpdateSourceTrigger=LostFocus}"/>
         </DataTemplate>
     </UserControl.Resources>
     <GroupBox Header="{DynamicResource ME_EnumGroupType_FlowValveLength}">

@@ -203,7 +203,16 @@ namespace HBBio.Communication
                 //初始化警报警告
                 StaticAlarmWarning.Init(GetAlarmWarning());
                 StaticSystemConfig.Init(GetSystemConfig());
-                EnumWashInfo.Init();
+                //初始化清洗选项
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.CPV_1] || 4 == EnumIJVInfo.Count)
+                {
+                    EnumWashInfo.Init(3);
+                    EnumCPVInfo.ChangeFirst();
+                }
+                else
+                {
+                    EnumWashInfo.Init(2);
+                }
                 double maxFlowS = 0;
                 double maxFlowA = 0;
                 double maxFlowB = 0;

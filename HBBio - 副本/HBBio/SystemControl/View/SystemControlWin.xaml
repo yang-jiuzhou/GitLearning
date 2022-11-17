@@ -9,7 +9,7 @@
         xmlns:AT ="clr-namespace:HBBio.AuditTrails"
         xmlns:chromatogram="clr-namespace:HBBio.Chromatogram"
         mc:Ignorable="d"
-        Title="{DynamicResource SC_SystemControlWin}" TextOptions.TextFormattingMode="Display" Height="463" Width="750" MinHeight="309" MinWidth="500" WindowState="Maximized" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="{DynamicResource SC_SystemControlWin}" TextOptions.TextFormattingMode="Display" Height="600" Width="800" MinHeight="309" MinWidth="500" WindowState="Maximized" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closing="Window_Closing">
     <Window.Resources>
         <share:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <share:EnumBoolConverter x:Key="EnumBoolConverter"/>
@@ -48,7 +48,6 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="menuView" Header="{DynamicResource menuView}">
-                    <!--<MenuItem x:Name="menuToolBar" Header="{DynamicResource menuToolBar}" IsCheckable="True" IsChecked="{Binding MToolBar}">-->
                     <MenuItem x:Name="menuToolBar" Header="{DynamicResource menuToolBar}">
                         <MenuItem x:Name="menuShowCommunication" Header="{DynamicResource menuCommunication}" IsCheckable="True" IsChecked="{Binding MCommunication}"/>
                         <MenuItem x:Name="menuShowInstrumentParameters" Header="{DynamicResource menuInstrumentParameters}" IsCheckable="True" IsChecked="{Binding MInstrumentParameters}"/>

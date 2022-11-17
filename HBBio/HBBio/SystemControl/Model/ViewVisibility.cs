@@ -25,11 +25,24 @@ namespace HBBio.SystemControl
         public bool MMonitor { get; set; }
         public bool MStatusBar { get; set; }
 
+        private static class ViewVisibilityInner
+        {
+            public static ViewVisibility _stance = new ViewVisibility();
+        }
+
+        /// <summary>
+        /// 单例引用
+        /// </summary>
+        /// <returns></returns>
+        public static ViewVisibility GetInstance()
+        {
+            return ViewVisibilityInner._stance;
+        }
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ViewVisibility()
+        private ViewVisibility()
         {
             MToolBar = true;
             MCommunication = true;

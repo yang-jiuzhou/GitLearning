@@ -79,6 +79,9 @@ namespace HBBio.MethodEdit
                                 case EnumGroupType.CIP:
                                     AddGroupCIP(doc, itt, method.MMethodSetting.MFlowRateUnitStr);
                                     break;
+                                case EnumGroupType.MixtureGrid:
+                                    AddGroupMixtureGrid(doc, itt, method.MMethodSetting.MBaseStr, method.MMethodSetting.MBaseUnitStr, method.MMethodSetting.MFlowRateUnitStr);
+                                    break;
                             }
                         }
                         break;
@@ -697,6 +700,101 @@ namespace HBBio.MethodEdit
             }
 
             AddBlock(doc, ReadXaml.GetResources("ME_ESVUITP1") + item.MVolumeTotal + DlyBase.SC_VUNITML, 2);
+        }
+
+        private void AddGroupMixtureGrid(FlowDocument doc, BaseGroup baseGroup, string baseStr, string baseUnitStr, string flowrateUnitStr)
+        {
+            MixtureGrid item = (MixtureGrid)baseGroup;
+
+            List list = new List();
+            foreach (var it in item.MList)
+            {
+                StringBuilderSplit sb = new StringBuilderSplit(";");
+                sb.Append(ReadXaml.GetResources("labNote") + ":" + it.MNote);
+                sb.Append(ReadXaml.GetResources("labFillSystem") + ":" + EnumWashInfo.NameList[it.MFillSystem]);
+                sb.Append(ReadXaml.GetResources("ME_IncubationTime") + ":" + it.MIncubation);
+                sb.Append(baseStr + "(" + baseUnitStr + ")" + ":" + it.MBaseTVCV.MTVCV);
+                if (Visibility.Visible == ItemVisibility.s_listPump[ENUMPumpName.FITS])
+                {
+                    sb.Append(ReadXaml.GetResources("labFlowRate") + "(" + flowrateUnitStr + ")" + ":" + it.MFlowVolLenSample.MFlowRate);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listPump[ENUMPumpName.FITA])
+                {
+                    sb.Append(ReadXaml.GetResources("labFlowRate") + "(" + flowrateUnitStr + ")" + ":" + it.MFlowVolLenSystem.MFlowRate);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listPump[ENUMPumpName.FITB])
+                {
+                    sb.Append(ReadXaml.GetResources("LabBS") + ":" + it.MPerBS);
+                    sb.Append(ReadXaml.GetResources("LabBE") + ":" + it.MPerBE);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listPump[ENUMPumpName.FITC])
+                {
+                    sb.Append(ReadXaml.GetResources("LabCS") + ":" + it.MPerCS);
+                    sb.Append(ReadXaml.GetResources("LabCE") + ":" + it.MPerCE);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listPump[ENUMPumpName.FITD])
+                {
+                    sb.Append(ReadXaml.GetResources("LabDS") + ":" + it.MPerDS);
+                    sb.Append(ReadXaml.GetResources("LabDE") + ":" + it.MPerDE);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.InS])
+                {
+                    sb.Append(ReadXaml.GetResources("labInS") + ":" + EnumInAInfo.NameList[it.MInS]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.InA])
+                {
+                    sb.Append(ReadXaml.GetResources("labInA") + ":" + EnumInAInfo.NameList[it.MInA]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.InB])
+                {
+                    sb.Append(ReadXaml.GetResources("labInB") + ":" + EnumInBInfo.NameList[it.MInB]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.InC])
+                {
+                    sb.Append(ReadXaml.GetResources("labInC") + ":" + EnumInCInfo.NameList[it.MInC]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.InD])
+                {
+                    sb.Append(ReadXaml.GetResources("labInD") + ":" + EnumInDInfo.NameList[it.MInD]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.IJV])
+                {
+                    sb.Append(ReadXaml.GetResources("labIJV") + ":" + EnumBPVInfo.NameList[it.MIJV]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.BPV])
+                {
+                    sb.Append(ReadXaml.GetResources("labBPV") + ":" + EnumBPVInfo.NameList[it.MBPV]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.CPV_1])
+                {
+                    sb.Append(ReadXaml.GetResources("labCPV") + ":" + EnumBPVInfo.NameList[it.MCPV]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listValve[ENUMValveName.Out])
+                {
+                    sb.Append(ReadXaml.GetResources("labOut") + ":" + EnumOutInfo.NameList[it.MVOut]);
+                }
+                if (Visibility.Visible == ItemVisibility.s_listAS[ENUMASName.AS01])
+                {
+                    for (int i = 0; i < it.MASParaList.Count; i++)
+                    {
+                        if (Visibility.Visible == ItemVisibility.s_listAS[(ENUMASName)i])
+                        {
+                            sb.Append("AS0" + (i + 1) + ":" + ReadXaml.GetEnum(it.MASParaList[i].MAction, "EnumMonitorAction_"));
+                        }
+                    }
+                }
+                if (Visibility.Visible == ItemVisibility.s_listMixer[ENUMMixerName.Mixer01])
+                {
+                    sb.Append(ReadXaml.GetResources("labMixer1") + (it.MMixer ? Share.ReadXaml.S_On : Share.ReadXaml.S_Off));
+                }
+                if (Visibility.Visible == ItemVisibility.s_listUV[ENUMUVName.UV01])
+                {
+                    sb.Append(ReadXaml.GetResources("labUV") + ReadXaml.GetResources("labUVReset1") + (it.MMixer ? Share.ReadXaml.S_Yes : Share.ReadXaml.S_No));
+                }
+                list.ListItems.Add(AddListItem(sb.ToString(), 2));
+            }
+
+            doc.Blocks.Add(list);
         }
 
         private void AddBlock(FlowDocument doc, string text, int space)

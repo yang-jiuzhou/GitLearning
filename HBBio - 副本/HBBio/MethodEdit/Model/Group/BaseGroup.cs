@@ -20,6 +20,7 @@ namespace HBBio.MethodEdit
     [XmlInclude(typeof(SampleApplicationTech))]
     [XmlInclude(typeof(UVReset))]
     [XmlInclude(typeof(ValveSelection))]
+    [XmlInclude(typeof(MixtureGrid))]
     [Serializable]
     public abstract class BaseGroup
     {

@@ -239,19 +239,44 @@ namespace HBBio.Manual
                     ischange = true;
 
                     m_manualValue.m_pumpSystemValue.Init(MTheoryT, MTheoryV, MTheoryCV);
+                    if (m_manualValue.m_pumpSystemValue.MEnablePT)
+                    {
+                        m_manualValue.m_pumpSystemValue.SetIncremental(StaticSystemConfig.SSystemConfig.MConfOther.MPIDP, StaticSystemConfig.SSystemConfig.MConfOther.MPIDI, StaticSystemConfig.SSystemConfig.MConfOther.MPIDD);
+                    }
                 }
                 if (run)
                 {
-                    switch (m_manualValue.m_pumpSystemValue.UpdateFlow(MTheoryT, MTheoryV, MTheoryCV))
+                    if (m_manualValue.m_pumpSystemValue.MEnablePT)
                     {
-                        case EnumStatus.Ing:
-                            m_comconfStatic.SetPumpSystem(m_manualValue.m_pumpSystemValue.MFlowVol, m_manualValue.m_pumpSystemValue.MB, m_manualValue.m_pumpSystemValue.MC, m_manualValue.m_pumpSystemValue.MD);
-                            break;
-                        case EnumStatus.Over:
-                            m_comconfStatic.SetPumpSystem(m_manualValue.m_pumpSystemValue.MFlowVol, m_manualValue.m_pumpSystemValue.MB, m_manualValue.m_pumpSystemValue.MC, m_manualValue.m_pumpSystemValue.MD);
-                            ischange = true;
-                            break;
+                        switch (m_manualValue.m_pumpSystemValue.UpdateFlow(
+                            m_comconfStatic.GetPTGet(ENUMPTName.PTA)
+                            , m_comconfStatic.GetPTGet(ENUMPTName.PTB)
+                            , m_comconfStatic.GetPTGet(ENUMPTName.PTC)
+                            , m_comconfStatic.GetPTGet(ENUMPTName.PTD)
+                            , m_comconfStatic.GetPTGet(ENUMPTName.PTTotal)
+                            , m_comconfStatic.GetPumpSet(ENUMPumpName.FITA)
+                            , m_comconfStatic.GetPumpSet(ENUMPumpName.FITB)
+                            , m_comconfStatic.GetPumpSet(ENUMPumpName.FITC)
+                            , m_comconfStatic.GetPumpSet(ENUMPumpName.FITD)))
+                        {
+                            case EnumStatus.Ing:
+                                m_comconfStatic.SetPumpSystem(m_manualValue.m_pumpSystemValue.MFlowVol, m_manualValue.m_pumpSystemValue.MA, m_manualValue.m_pumpSystemValue.MB, m_manualValue.m_pumpSystemValue.MC, m_manualValue.m_pumpSystemValue.MD);
+                                break;
+                        }
                     }
+                    else
+                    {
+                        switch (m_manualValue.m_pumpSystemValue.UpdateFlow(MTheoryT, MTheoryV, MTheoryCV))
+                        {
+                            case EnumStatus.Ing:
+                                m_comconfStatic.SetPumpSystem(m_manualValue.m_pumpSystemValue.MFlowVol, m_manualValue.m_pumpSystemValue.MB, m_manualValue.m_pumpSystemValue.MC, m_manualValue.m_pumpSystemValue.MD);
+                                break;
+                            case EnumStatus.Over:
+                                m_comconfStatic.SetPumpSystem(m_manualValue.m_pumpSystemValue.MFlowVol, m_manualValue.m_pumpSystemValue.MB, m_manualValue.m_pumpSystemValue.MC, m_manualValue.m_pumpSystemValue.MD);
+                                ischange = true;
+                                break;
+                        }
+                    } 
                 }
 
                 //泵-上样
@@ -261,19 +286,35 @@ namespace HBBio.Manual
                     ischange = true;
 
                     m_manualValue.m_pumpSampleValue.Init(MTheoryT, MTheoryV, MTheoryCV);
+                    if (m_manualValue.m_pumpSampleValue.MEnablePT)
+                    {
+                        m_manualValue.m_pumpSampleValue.SetIncremental(StaticSystemConfig.SSystemConfig.MConfOther.MPIDP, StaticSystemConfig.SSystemConfig.MConfOther.MPIDI, StaticSystemConfig.SSystemConfig.MConfOther.MPIDD);
+                    }
                 }
                 if (run)
                 {
-                    switch (m_manualValue.m_pumpSampleValue.UpdateFlow(MTheoryT, MTheoryV, MTheoryCV))
+                    if (m_manualValue.m_pumpSampleValue.MEnablePT)
                     {
-                        case EnumStatus.Ing:
-                            m_comconfStatic.SetPumpSample(m_manualValue.m_pumpSampleValue.MFlowVol);
-                            break;
-                        case EnumStatus.Over:
-                            m_comconfStatic.SetPumpSample(0);
-                            ischange = true;
-                            break;
+                        switch (m_manualValue.m_pumpSampleValue.UpdateFlow(m_comconfStatic.GetPTGet(ENUMPTName.PTS), m_comconfStatic.GetPumpSet(ENUMPumpName.FITS)))
+                        {
+                            case EnumStatus.Ing:
+                                m_comconfStatic.SetPumpSample(m_manualValue.m_pumpSampleValue.MFlowRun);
+                                break;
+                        }
                     }
+                    else
+                    {
+                        switch (m_manualValue.m_pumpSampleValue.UpdateFlow(MTheoryT, MTheoryV, MTheoryCV))
+                        {
+                            case EnumStatus.Ing:
+                                m_comconfStatic.SetPumpSample(m_manualValue.m_pumpSampleValue.MFlowRun);
+                                break;
+                            case EnumStatus.Over:
+                                m_comconfStatic.SetPumpSample(0);
+                                ischange = true;
+                                break;
+                        }
+                    }   
                 }
 
                 //阀-普通阀
@@ -652,6 +693,10 @@ namespace HBBio.Manual
                     m_manualValue = item;
                     m_manualValue.m_valveValue.m_update = true;
                     m_manualValue.m_pumpSystemValue.m_signal = true;
+                    if (m_manualValue.m_pumpSystemValue.MEnablePT)
+                    {
+                        m_manualValue.m_pumpSystemValue.SetIncremental(StaticSystemConfig.SSystemConfig.MConfOther.MPIDP, StaticSystemConfig.SSystemConfig.MConfOther.MPIDI, StaticSystemConfig.SSystemConfig.MConfOther.MPIDD);
+                    }
                     m_manualValue.m_pumpSampleValue.m_signal = true;
                     StaticAlarmWarning.SAlarmWarning = m_manualValue.m_alarmWarningValue.m_alarmWarning;
                     m_isBreak = true;

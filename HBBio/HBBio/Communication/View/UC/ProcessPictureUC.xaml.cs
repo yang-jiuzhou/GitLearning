@@ -125,6 +125,7 @@ namespace HBBio.Communication
         public bool MRunB { get; set; }
         public bool MRunC { get; set; }
         public bool MRunD { get; set; }
+        public int MIJV { get; set; }
         public int MBPV { get; set; }
 
 
@@ -307,7 +308,7 @@ namespace HBBio.Communication
         /// <param name="runC"></param>
         /// <param name="runD"></param>
         /// <param name="bpv"></param>
-        public void UpdateLines(bool runS, bool runA, bool runB, bool runC, bool runD, int bpv)
+        public void UpdateLines(bool runS, bool runA, bool runB, bool runC, bool runD, int bpv, int ijv)
         {
             if (null != m_listIP && (MRunS != runS || MRunA != runA || MRunB != runB || MRunC != runC || MRunD != runD || MBPV != bpv))
             {
@@ -317,6 +318,7 @@ namespace HBBio.Communication
                 MRunC = runC;
                 MRunD = runD;
                 MBPV = bpv;
+                MIJV = ijv;
                 foreach (var it in m_listIP)
                 {
                     AddPath(it.MName, it.MPt1, it.MPt2, it.MIsHV, it.MType, runS || runA || runB || runC || runD);
@@ -645,6 +647,10 @@ namespace HBBio.Communication
             switch (type)
             {
                 case EnumLineType.All:
+                    if (running)
+                    {
+                        running = (MRunS & 2 == MIJV) | ((MRunA | MRunB | MRunC | MRunD) & 2 != MIJV);
+                    }
                     if (pt2.X == pt1.X)
                     {
                         DrawLineItem(key + "1", pt1, pt2, running ? "#00FF00" : "#ECECEC", 5);
@@ -698,7 +704,7 @@ namespace HBBio.Communication
                         case EnumLineType.C: running = MRunC; break;
                         case EnumLineType.D: running = MRunD; break;
                         case EnumLineType.BPV: 
-                            running = (MRunA | MRunB | MRunC | MRunD) & (0 < MBPV);
+                            running = (MRunA | MRunB | MRunC | MRunD) & 2 != MIJV & (0 < MBPV);
                             BrushConverter brushConverter = new BrushConverter();
                             if (running)
                             {

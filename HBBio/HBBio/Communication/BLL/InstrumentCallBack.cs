@@ -155,6 +155,14 @@ namespace HBBio.Communication
                             }
                             m_comConfList[index].MList.Clear();
                         }
+                        {
+                            m_comConfList[index].MModel = ENUMValveID.IMI_IJV.ToString();
+                            if (csManager.FindConn(m_comConfList[index]))
+                            {
+                                return;
+                            }
+                            m_comConfList[index].MList.Clear();
+                        }
                         break;
                     case ENUMInstrumentType.Pump:
                         m_comConfList[index].MType = (ENUMInstrumentType)curr;

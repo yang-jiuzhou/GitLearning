@@ -21,6 +21,9 @@ namespace HBBio.Manual
     /// </summary>
     public partial class PumpSampleWin : Window
     {
+        public ComConfStatic MComconfStatic { get; set; }
+        public WashSystem MWashSystem { get; set; }
+
         /// <summary>
         /// 属性，旧值
         /// </summary>
@@ -40,26 +43,7 @@ namespace HBBio.Manual
             }
         }
 
-        /// <summary>
-        /// 自定义事件，开始清洗时触发
-        /// </summary>
-        public static readonly RoutedEvent MWashStartEvent =
-             EventManager.RegisterRoutedEvent("MWashStartClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PumpSampleWin));
-        public event RoutedEventHandler MWashStartClick
-        {
-            add { AddHandler(MWashStartEvent, value); }
-            remove { RemoveHandler(MWashStartEvent, value); }
-        }
-        /// <summary>
-        /// 自定义事件，结束清洗时触发
-        /// </summary>
-        public static readonly RoutedEvent MWashStopEvent =
-             EventManager.RegisterRoutedEvent("MWashStopClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PumpSampleWin));
-        public event RoutedEventHandler MWashStopClick
-        {
-            add { AddHandler(MWashStopEvent, value); }
-            remove { RemoveHandler(MWashStopEvent, value); }
-        }
+        private System.Windows.Threading.DispatcherTimer m_timer = new System.Windows.Threading.DispatcherTimer();
 
 
         /// <summary>
@@ -126,7 +110,31 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            m_timer.Stop();
+
             this.Close();
+        }
+
+        /// <summary>
+        /// 定时器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (null != MWashSystem)
+            {
+                btnStart.IsEnabled = EnumWashStatus.No == MWashSystem.MListStatus[(int)ENUMPumpName.FITS]
+                    && EnumWashStatus.No == MWashSystem.MListStatus[(int)ENUMPumpName.FITA]
+                    && EnumWashStatus.No == MWashSystem.MListStatus[(int)ENUMPumpName.FITB]
+                    && EnumWashStatus.No == MWashSystem.MListStatus[(int)ENUMPumpName.FITC]
+                    && EnumWashStatus.No == MWashSystem.MListStatus[(int)ENUMPumpName.FITD];
+
+                cbox.IsEnabled = btnStart.IsEnabled;
+                cboxWash.IsEnabled = btnStart.IsEnabled;
+
+                btnStop.IsEnabled = EnumWashStatus.Ing == MWashSystem.MListStatus[(int)ENUMPumpName.FITS];
+            }
         }
 
         /// <summary>
@@ -157,8 +165,9 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            RoutedEventArgs args = new RoutedEventArgs(MWashStartEvent, new WashPara(ENUMPumpName.FITS, ENUMValveName.InS, cbox.SelectedIndex, cboxWash.SelectedIndex));
-            RaiseEvent(args);
+            AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, btnStart.Content.ToString());
+
+            WashStart(ENUMPumpName.FITS, ENUMValveName.InS, cbox.SelectedIndex, cboxWash.SelectedIndex);
         }
 
         /// <summary>
@@ -168,8 +177,9 @@ namespace HBBio.Manual
         /// <param name="e"></param>
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            RoutedEventArgs args = new RoutedEventArgs(MWashStopEvent, ENUMPumpName.FITS);
-            RaiseEvent(args);
+            AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, btnStop.Content.ToString());
+
+            WashStop(ENUMPumpName.FITS);
         }
 
         /// <summary>
@@ -183,6 +193,36 @@ namespace HBBio.Manual
             {
                 cboxWash.SelectedIndex = 1;
             }
+        }
+
+        /// <summary>
+        /// 开始清洗
+        /// </summary>
+        /// <param name="pump"></param>
+        /// <param name="valve"></param>
+        /// <param name="index"></param>
+        /// <param name="wash"></param>
+        private void WashStart(ENUMPumpName pump, ENUMValveName valve, int index, int wash)
+        {
+            MComconfStatic.SetValve(valve, index);
+            MWashSystem.Start(MComconfStatic, pump, wash);
+        }
+
+        /// <summary>
+        /// 结束清洗
+        /// </summary>
+        /// <param name="pump"></param>
+        private void WashStop(ENUMPumpName pump)
+        {
+            MWashSystem.Stop(MComconfStatic, pump);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            timer1_Tick(null, null);
+            m_timer.Interval = TimeSpan.FromMilliseconds(DlyBase.c_sleep5);
+            m_timer.Tick += timer1_Tick;
+            m_timer.Start();
         }
     }
 }

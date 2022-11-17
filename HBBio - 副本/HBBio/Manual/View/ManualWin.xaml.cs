@@ -300,6 +300,8 @@ namespace HBBio.Manual
             doubleCE.DataContext = temp;
             doubleDS.DataContext = temp;
             doubleDE.DataContext = temp;
+            chboxPT.DataContext = temp;
+            doublePT.DataContext = temp;
         }
 
         private void ShowTabPumpSample(int index)
@@ -320,6 +322,8 @@ namespace HBBio.Manual
             cboxSampleLengthUnit.DataContext = temp;
             doubleSampleFlow.DataContext = temp;
             cboxSampleFlowUnit.DataContext = temp;
+            chboxPTS.DataContext = temp;
+            doublePTS.DataContext = temp;
         }
 
         private void ShowTabValve(int index, string header, string name)

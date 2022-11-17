@@ -18,14 +18,16 @@ namespace HBBio.Manual
         private double m_start = 0;
         private double m_flowVol = 0;
         private double m_hold = 0;
+        private double m_flowRun = 0;
+        private Dispensing m_dispensing = null;
         #endregion
 
         #region 属性 控制
-        public double MFlowVol
+        public double MFlowRun
         {
             get
             {
-                return m_flowVol;
+                return m_flowRun;
             }
         }
         #endregion
@@ -35,6 +37,8 @@ namespace HBBio.Manual
         public EnumBase MLengthUnit { get; set; }
         public double MFlow { get; set; }
         public EnumFlowRate MFlowUnit { get; set; }
+        public bool MEnablePT { get; set; }
+        public double MControlPT { get; set; }
         #endregion
 
 
@@ -71,8 +75,14 @@ namespace HBBio.Manual
                     m_flowVol = MFlow * StaticValue.SLenToVol;
                     break;
             }
+            m_flowRun = m_flowVol;
 
             m_signal = true;
+        }
+
+        public void SetIncremental(double p, double i, double d)
+        {
+            m_dispensing = new Dispensing(p, i, d);
         }
 
         /// <summary>
@@ -102,6 +112,27 @@ namespace HBBio.Manual
                     m_signal = false;
                     return EnumStatus.Over;
                 }
+            }
+
+            return EnumStatus.Null;
+        }
+
+        /// <summary>
+        /// 更新流速
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="v"></param>
+        /// <param name="cv"></param>
+        /// <returns></returns>
+        public EnumStatus UpdateFlow(double pt, double flow)
+        {
+            if (m_signal)
+            {
+                m_dispensing.PTControlFlow(MControlPT, pt, ref flow, m_flowVol);
+
+                m_flowRun = flow;
+
+                return EnumStatus.Ing;
             }
 
             return EnumStatus.Null;

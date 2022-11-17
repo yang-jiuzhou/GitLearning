@@ -34,7 +34,7 @@ namespace HBBio.SystemControl
         /// <returns></returns>
         protected override string AddDefaultValue()
         {
-            return InsertRow(new ConfCheckable());
+            return InsertRow(ConfCheckable.GetInstance());
         }
 
         /// <summary>

@@ -33,6 +33,7 @@ namespace HBBio.MethodEdit
                 case EnumGroupType.PHCDUVUntil: item = new PHCDUVUntil(); break;
                 case EnumGroupType.CollValveCollector: item = new CollValveCollector(); break;
                 case EnumGroupType.CIP: item = new CIP(); break;
+                case EnumGroupType.MixtureGrid: item = new MixtureGrid(); break;
             }
 
             return item;
@@ -97,6 +98,10 @@ namespace HBBio.MethodEdit
                     item = new CIPVM(methodBaseValue);
                     ((CIPVM)item).MItem = (CIP)baseGroup;
                     break;
+                case EnumGroupType.MixtureGrid:
+                    item = new MixtureGridVM(methodBaseValue);
+                    ((MixtureGridVM)item).MItem = (MixtureGrid)baseGroup;
+                    break;
             }
 
             return item;
@@ -160,6 +165,10 @@ namespace HBBio.MethodEdit
                 case EnumGroupType.CIP:
                     item = new CIPVM(methodBaseValue);
                     ((CIPVM)item).MItem = (CIP)GetGroup(type);
+                    break;
+                case EnumGroupType.MixtureGrid:
+                    item = new MixtureGridVM(methodBaseValue);
+                    ((MixtureGridVM)item).MItem = (MixtureGrid)GetGroup(type);
                     break;
             }
 

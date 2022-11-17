@@ -184,8 +184,6 @@ namespace HBBio.MethodEdit
 
         //创建一个自定义委托，用于自定义的信号
         public delegate void MHandlerDdelegate(object sender);
-        //声明一个新建标记事件
-        public MHandlerDdelegate MMarkerHandler;
         //声明一个暂停事件
         public MHandlerDdelegate MPauseHandler;
         //声明一个弹窗事件
@@ -194,6 +192,11 @@ namespace HBBio.MethodEdit
         public MHandlerDdelegate MMethodBeginHandler;
         //声明一个泵洗事件
         public MHandlerDdelegate MWashHandler;
+
+        //创建一个自定义委托，用于自定义的信号
+        public delegate void MHandlerDdelegate2(object sender, object sender2);
+        //声明一个新建标记事件
+        public MHandlerDdelegate2 MMarkerHandler;
 
 
         /// <summary>
@@ -932,7 +935,7 @@ namespace HBBio.MethodEdit
                 if (phase.MEnableSetMark)
                 {
                     //添加标记事件
-                    MMarkerHandler?.Invoke(phase.MSetMark);
+                    MMarkerHandler?.Invoke(phase.MSetMark, -1);
                 }
             }
             else if (MRUN.Ing == m_run)//正在运行该序列行

@@ -51,7 +51,7 @@ namespace HBBio.Communication
                         m_item.m_enumNames = EnumBPVInfo.NameList;
                         break;
                     case ENUMValveID.VICI6_AB:
-                        EnumIJVInfo.Init(2);
+                        EnumIJVInfo.Init2();
                         m_item.m_enumNames = EnumIJVInfo.NameList;
                         break;
                     default:
@@ -65,10 +65,10 @@ namespace HBBio.Communication
                                 case ENUMValveName.InB: EnumInBInfo.Init(tempCount); m_item.m_enumNames = EnumInBInfo.NameList; break;
                                 case ENUMValveName.InC: EnumInCInfo.Init(tempCount); m_item.m_enumNames = EnumInCInfo.NameList; break;
                                 case ENUMValveName.InD: EnumInDInfo.Init(tempCount); m_item.m_enumNames = EnumInDInfo.NameList; break;
-                                case ENUMValveName.IJV: EnumIJVInfo.Init(2); m_item.m_enumNames = EnumIJVInfo.NameList; break;
+                                case ENUMValveName.IJV: EnumIJVInfo.Init2(); m_item.m_enumNames = EnumIJVInfo.NameList; break;
                                 case ENUMValveName.BPV: EnumBPVInfo.Init(3); m_item.m_enumNames = EnumBPVInfo.NameList; break;
-                                case ENUMValveName.CPV_1:
-                                case ENUMValveName.CPV_2: EnumCPVInfo.Init(tempCount); m_item.m_enumNames = EnumCPVInfo.NameList; break;
+                                case ENUMValveName.CPV_1: EnumCPVInfo.Init(tempCount); m_item.m_enumNames = EnumCPVInfo.NameList; break;
+                                case ENUMValveName.CPV_2: m_item.m_enumNames = EnumCPVInfo.NameList; break;
                                 case ENUMValveName.Out: EnumOutInfo.Init(tempCount); m_item.m_enumNames = EnumOutInfo.NameList; break;
                             }
                         }              

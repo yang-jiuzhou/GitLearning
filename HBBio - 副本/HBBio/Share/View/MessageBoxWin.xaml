@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HBBio.Share"
         mc:Ignorable="d"
-        Title="{DynamicResource labTips}" Window.SizeToContent="WidthAndHeight" MinWidth="250" Topmost="True" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Closed="Window_Closed">
+        Title="{DynamicResource labTips}" Window.SizeToContent="WidthAndHeight" MinWidth="250" Topmost="True" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closing="Window_Closing" Closed="Window_Closed">
     <Grid x:Name="grid" Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

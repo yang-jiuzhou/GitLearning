@@ -540,7 +540,7 @@ namespace HBBio.ProjectManager
                     }
                 }
 
-                Share.MessageBoxWin.Show(infoShow.ToString());
+                Share.MessageBoxWin.Show(infoShow.ToString(), DlyBase.c_sleep10);
 
                 if (update)
                 {
@@ -604,7 +604,7 @@ namespace HBBio.ProjectManager
                             {
                                 btnPasteMethod.IsEnabled = true;
                                 AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(btnCopyMethod.ToolTip.ToString(), curr.MName);
-                                Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_CopyYes"));
+                                Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_CopyYes"), DlyBase.c_sleep10);
                             }
                             else
                             {
@@ -623,7 +623,7 @@ namespace HBBio.ProjectManager
                             {
                                 btnPasteMethod.IsEnabled = true;
                                 AuditTrails.AuditTrailsStatic.Instance().InsertRowMethod(btnCopyMethod.ToolTip.ToString(), curr.MName);
-                                Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_Queue_CopyYes"));
+                                Share.MessageBoxWin.Show(Share.ReadXaml.GetResources("ME_Msg_Queue_CopyYes"), DlyBase.c_sleep10);
                             }
                             else
                             {

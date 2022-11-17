@@ -18,6 +18,7 @@ namespace HBBio.MethodEdit
         Equilibration,
         Miscellaneous,
         SystemCIP,
+        Mixture,
         Personal
     }
 }

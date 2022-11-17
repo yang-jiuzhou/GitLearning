@@ -328,6 +328,7 @@
     <Compile Include="Communication\BLL\ComTcp\COM\ComValveQBHColl.cs" />
     <Compile Include="Communication\BLL\ComTcp\COM\ComValveVICI.cs" />
     <Compile Include="Communication\BLL\ComTcp\COM\ComValveVICI2.cs" />
+    <Compile Include="Communication\BLL\ComTcp\COM\ComValveIMI.cs" />
     <Compile Include="Communication\BLL\ComTcp\Enum\ASState.cs" />
     <Compile Include="Communication\BLL\ComTcp\Enum\CollectorState.cs" />
     <Compile Include="Communication\BLL\ComTcp\Enum\EnumValveMixerState.cs" />
@@ -362,6 +363,7 @@
     <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveHB2.cs" />
     <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveHBColl.cs" />
     <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveHBGS4.cs" />
+    <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveIMI.cs" />
     <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveMixerHB.cs" />
     <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveQBHColl.cs" />
     <Compile Include="Communication\BLL\ComTcp\TCP\TCPValveVICI.cs" />
@@ -371,6 +373,7 @@
     <Compile Include="Communication\BLL\ComTcp\COM\ComValveHB2.cs" />
     <Compile Include="Communication\BLL\ComTcp\COM\ComValveMixerHB.cs" />
     <Compile Include="Communication\BLL\ReadXamlCommunication.cs" />
+    <Compile Include="Communication\BLL\WashSystem.cs" />
     <Compile Include="Communication\DAL\BaseInstrumentTable.cs" />
     <Compile Include="Communication\DAL\CirclePointTable.cs" />
     <Compile Include="Communication\DAL\ColumnPointTable.cs" />
@@ -381,6 +384,7 @@
     <Compile Include="Communication\DAL\SignalTable.cs" />
     <Compile Include="Communication\DAL\SystemConfigTable.cs" />
     <Compile Include="Communication\DAL\TimeSetTable.cs" />
+    <Compile Include="Communication\Enum\SystemState.cs" />
     <Compile Include="Communication\Model\AddressPort.cs" />
     <Compile Include="Communication\Model\Conf\AlarmWarning.cs" />
     <Compile Include="Communication\Model\Conf\AlarmWarningItem.cs" />
@@ -394,7 +398,6 @@
     <Compile Include="Communication\Model\Conf\SystemConfig.cs" />
     <Compile Include="Communication\Model\Control\MonitroPara.cs" />
     <Compile Include="Communication\Model\Control\UVValue.cs" />
-    <Compile Include="Communication\Model\Control\WashItem.cs" />
     <Compile Include="Communication\Model\InstrumentPoint.cs" />
     <Compile Include="Communication\Model\InstrumentSize.cs" />
     <Compile Include="Communication\Model\Item\BaseInstrument.cs" />
@@ -481,6 +484,7 @@
     <Compile Include="Communication\View\UC\UVUC.xaml.cs">
       <DependentUpon>UVUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Database\BLL\DBAutoBackupManager.cs" />
     <Compile Include="Database\BLL\DBManager.cs" />
     <Compile Include="Database\BLL\ReadXamlDatabase.cs" />
     <Compile Include="Database\DAL\BaseDB.cs" />
@@ -840,7 +844,7 @@
     <Compile Include="SystemControl\DAL\LanguageHelper.cs" />
     <Compile Include="SystemControl\DAL\ViewVisibilityTable.cs" />
     <Compile Include="SystemControl\Model\RunData.cs" />
-    <Compile Include="SystemControl\Model\WashItem.cs" />
+    <Compile Include="Communication\BLL\WashItem.cs" />
     <Compile Include="SystemControl\View\AboutWin.xaml.cs">
       <DependentUpon>AboutWin.xaml</DependentUpon>
     </Compile>

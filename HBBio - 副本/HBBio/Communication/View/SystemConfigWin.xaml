@@ -99,9 +99,33 @@
             <GroupBox x:Name="groupCal" Margin="10" Header="{DynamicResource Com_Cal}">
                 <Grid x:Name="gridCal" Margin="5"/>
             </GroupBox>
+            <GroupBox Margin="10" Header="{DynamicResource Com_PID}">
+                <Grid x:Name="gridPID" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="labPIDP" Grid.Row="0" Grid.Column="0" Text="P : "/>
+                    <xctk:DoubleUpDown Grid.Row="0" Grid.Column="2" Value="{Binding MPIDP}"/>
+                    <TextBlock x:Name="labPIDI" Grid.Row="2" Grid.Column="0" Text="I : "/>
+                    <xctk:DoubleUpDown Grid.Row="2" Grid.Column="2" Value="{Binding MPIDI}"/>
+                    <TextBlock x:Name="labPIDD" Grid.Row="4" Grid.Column="0" Text="D : "/>
+                    <xctk:DoubleUpDown Grid.Row="4" Grid.Column="2" Value="{Binding MPIDD}"/>
+                </Grid>
+            </GroupBox>
             <GroupBox x:Name="groupOther" Margin="10" Header="{DynamicResource Com_Other}">
                 <Grid x:Name="gridOther" Margin="5">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height="Auto"/>
@@ -111,6 +135,7 @@
                     <CheckBox x:Name="chboxResetValve" Grid.Row="0" Content="{DynamicResource Com_ResetValve}" IsChecked="{Binding MResetValve}"/>
                     <CheckBox x:Name="chboxCloseUV" Grid.Row="2" Content="{DynamicResource Com_CloseUV}" IsChecked="{Binding MCloseUV}"/>
                     <CheckBox x:Name="chboxOpenMixer" Grid.Row="4" Content="{DynamicResource Com_OpenMixer}" IsChecked="{Binding MOpenMixer}"/>
+                    <CheckBox x:Name="chboxUVIJV" Grid.Row="6" Content="{DynamicResource Com_UVIJV}" IsChecked="{Binding MUVIJV}"/>
                 </Grid>
             </GroupBox>
         </WrapPanel>

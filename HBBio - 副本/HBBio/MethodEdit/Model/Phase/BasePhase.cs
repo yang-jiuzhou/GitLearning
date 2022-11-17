@@ -120,9 +120,15 @@ namespace HBBio.MethodEdit
                     ((PHCDUVUntil)MListGroup[3]).MHeaderText = Share.ReadXaml.GetResources("ME_Msg_EquilibrationUntil");
                     break;
                 case EnumPhaseType.Miscellaneous:
+                    MListGroup.Add(groupFactory.GetGroup(EnumGroupType.MixtureGrid));
+                    MListGroup.Add(groupFactory.GetGroup(EnumGroupType.CollValveCollector));
                     break;
                 case EnumPhaseType.SystemCIP:
                     MListGroup.Add(groupFactory.GetGroup(EnumGroupType.CIP));
+                    break;
+                case EnumPhaseType.Mixture:
+                    MListGroup.Add(groupFactory.GetGroup(EnumGroupType.MixtureGrid));
+                    MListGroup.Add(groupFactory.GetGroup(EnumGroupType.CollValveCollector));
                     break;
                 case EnumPhaseType.Personal:
                     {

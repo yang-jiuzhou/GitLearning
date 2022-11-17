@@ -25,7 +25,7 @@ namespace HBBio.Manual
         /// <param name="value"></param>
         public ManualItem(object value, string nameCurr, string headerCurr, string nameParent, string headerParent)
         {
-            MValue = value;
+            MValue = Share.DeepCopy.DeepCopyByXml(value);
             MNameCurr = nameCurr;
             MTextCurr = headerCurr;
             MNameParent = nameParent;
