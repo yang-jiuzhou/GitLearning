@@ -292,7 +292,7 @@ namespace HBBio.MethodEdit
             {
                 PrintPreviewWin previewWnd = new PrintPreviewWin(this, doc, m_data);
                 previewWnd.Owner = this;
-                previewWnd.ShowInTaskbar = false;
+                //previewWnd.ShowInTaskbar = false;
                 previewWnd.ShowDialog();
                 AuditTrails.AuditTrailsStatic.Instance().InsertRowOperate(this.Title);
             }

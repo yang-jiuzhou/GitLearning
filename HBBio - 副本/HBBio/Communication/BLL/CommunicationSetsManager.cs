@@ -499,6 +499,18 @@ namespace HBBio.Communication
                         if (id.ToString().Contains("VICI"))
                         {
                             item = new ComValveVICI(cc);
+                        } 
+                        else if (id.ToString().Contains("HB_T"))
+                        {
+                            item = new ComValveHB2(cc);
+                        }
+                        else if (id.ToString().Contains("HB_GS4"))
+                        {
+                            item = new ComValveHBGS4(cc);
+                        }
+                        else if (id.ToString().Contains("IMI_"))
+                        {
+                            item = new ComValveIMI(cc);
                         }
                         else if (id.ToString().Contains("HB_Coll"))
                         {
@@ -508,13 +520,9 @@ namespace HBBio.Communication
                         {
                             item = new ComValveQBHColl(cc);
                         }
-                        else if (id.ToString().Contains("HB_T"))
+                        else if (id.ToString().Contains("AICIS_231"))
                         {
-                            item = new ComValveHB2(cc);
-                        }
-                        else if (id.ToString().Contains("HB_GS4"))
-                        {
-                            item = new ComValveHBGS4(cc);
+                            item = new ComValveAICIS(cc);
                         }
                         else
                         {
@@ -527,6 +535,10 @@ namespace HBBio.Communication
                         if (((ENUMPumpID)Enum.Parse(typeof(ENUMPumpID), cc.MModel)).ToString().Contains("OEM"))
                         {
                             item = new ComPumpOEM(cc);
+                        }
+                        else if (((ENUMPumpID)Enum.Parse(typeof(ENUMPumpID), cc.MModel)).ToString().Contains("HB"))
+                        {
+                            item = new ComPumpHB(cc);
                         }
                         else
                         {
@@ -562,6 +574,9 @@ namespace HBBio.Communication
                                 break;
                             case ENUMDetectorID.UVECOM4:
                                 item = new ComUVECOM4(cc);
+                                break;
+                            case ENUMDetectorID.UVHT2:
+                                item = new ComUVHT2(cc);
                                 break;
                             case ENUMDetectorID.RIShodex:
                                 item = new ComRI(cc);
@@ -637,6 +652,18 @@ namespace HBBio.Communication
                         else if (id.ToString().Contains("HB_GS4"))
                         {
                             item = new TCPValveHBGS4(cc);
+                        }
+                        else if (id.ToString().Contains("IMI_"))
+                        {
+                            item = new TCPValveIMI(cc);
+                        }
+                        else if (id.ToString().Contains("HB_Coll"))
+                        {
+                            item = new TCPValveHBColl(cc);
+                        }
+                        else if (id.ToString().Contains("QBH_Coll"))
+                        {
+                            item = new TCPValveQBHColl(cc);
                         }
                         else
                         {

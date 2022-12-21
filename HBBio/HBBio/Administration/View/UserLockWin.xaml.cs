@@ -28,7 +28,7 @@ namespace HBBio.Administration
             InitializeComponent();
 
             this.Owner = parent;
-            this.ShowInTaskbar = false;
+            //this.ShowInTaskbar = false;
         }
 
         /// <summary>

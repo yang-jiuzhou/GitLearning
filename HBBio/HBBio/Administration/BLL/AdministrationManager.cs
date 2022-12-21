@@ -307,6 +307,16 @@ namespace HBBio.Administration
 
 
         /// <summary>
+        /// 添加默认权限
+        /// </summary>
+        /// <returns></returns>
+        public void AddDefault()
+        {
+            PermissionTable table = new PermissionTable();
+            table.AddDefault();
+        }
+
+        /// <summary>
         /// 创建权限树
         /// </summary>
         /// <param name="item">权限来源</param>

@@ -246,18 +246,33 @@ namespace HBBio.Communication
                         break;
                     case ENUMInstrumentType.Detector:
                     case ENUMInstrumentType.Other:
+                        switch (it.MConstName)
                         {
-                            thumb.Width = 50;
-                            thumb.Height = 36;
-                            thumb.Template = FindResource("ctRectangle") as ControlTemplate;
-                            if (System.Text.RegularExpressions.Regex.IsMatch(it.MConstName, "[0-9]+$"))
-                            {
-                                thumb.Name = it.MConstName.Remove(it.MConstName.Length - 2, 2);
-                            }
-                            else
-                            {
+                            case "InS":
+                            case "InA":
+                            case "InB":
+                            case "InC":
+                            case "InD":
+                                thumb.Width = 60;
+                                thumb.Height = 60;
+                                thumb.Template = FindResource("ctEllipse") as ControlTemplate;
                                 thumb.Name = it.MConstName;
-                            }
+                                thumb.SetBinding(Thumb.TagProperty, new Binding("MValveGetStr"));
+                                thumb.DataContext = (ValveItem)it;
+                                break;
+                            default:
+                                thumb.Width = 50;
+                                thumb.Height = 36;
+                                thumb.Template = FindResource("ctRectangle") as ControlTemplate;
+                                if (System.Text.RegularExpressions.Regex.IsMatch(it.MConstName, "[0-9]+$"))
+                                {
+                                    thumb.Name = it.MConstName.Remove(it.MConstName.Length - 2, 2);
+                                }
+                                else
+                                {
+                                    thumb.Name = it.MConstName;
+                                }
+                                break;
                         }
                         break;
                     case ENUMInstrumentType.Collector:
@@ -383,18 +398,31 @@ namespace HBBio.Communication
                         break;
                     case ENUMInstrumentType.Detector:
                     case ENUMInstrumentType.Other:
+                        switch (it.MConstName)
                         {
-                            thumb.Width = 50;
-                            thumb.Height = 36;
-                            thumb.Template = FindResource("ctRectangle") as ControlTemplate;
-                            if (System.Text.RegularExpressions.Regex.IsMatch(it.MConstName, "[0-9]+$"))
-                            {
-                                thumb.Name = it.MConstName.Remove(it.MConstName.Length - 2, 2);
-                            }
-                            else
-                            {
+                            case "InS":
+                            case "InA":
+                            case "InB":
+                            case "InC":
+                            case "InD":
+                                thumb.Width = 60;
+                                thumb.Height = 60;
+                                thumb.Template = FindResource("ctEllipse") as ControlTemplate;
                                 thumb.Name = it.MConstName;
-                            }
+                                break;
+                            default:
+                                thumb.Width = 50;
+                                thumb.Height = 36;
+                                thumb.Template = FindResource("ctRectangle") as ControlTemplate;
+                                if (System.Text.RegularExpressions.Regex.IsMatch(it.MConstName, "[0-9]+$"))
+                                {
+                                    thumb.Name = it.MConstName.Remove(it.MConstName.Length - 2, 2);
+                                }
+                                else
+                                {
+                                    thumb.Name = it.MConstName;
+                                }
+                                break;
                         }
                         break;
                     case ENUMInstrumentType.Collector:
@@ -496,8 +524,8 @@ namespace HBBio.Communication
         {
             Thumb thumb = new Thumb();
             thumb.ToolTip = index.ToString();
-            thumb.Width = 25;
-            thumb.Height = 25;
+            thumb.Width = 26;
+            thumb.Height = 26;
             thumb.Template = FindResource("ctCircle") as ControlTemplate;
             if (drag)
             {
@@ -649,7 +677,7 @@ namespace HBBio.Communication
                 case EnumLineType.All:
                     if (running)
                     {
-                        running = (MRunS & 2 == MIJV) | ((MRunA | MRunB | MRunC | MRunD) & 2 != MIJV);
+                        running = (MRunS & 2 == MIJV) | ((MRunS | MRunA | MRunB | MRunC | MRunD) & 2 != MIJV);
                     }
                     if (pt2.X == pt1.X)
                     {

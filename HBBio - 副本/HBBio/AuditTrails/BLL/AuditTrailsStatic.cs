@@ -133,7 +133,7 @@ namespace HBBio.AuditTrails
         /// <param name="desc"></param>
         /// <param name="oper"></param>
         /// <returns></returns>
-        private string InsertRow(EnumATType type, string desc, string oper = "N/A")
+        public string InsertRow(EnumATType type, string desc, string oper = "N/A")
         {
             LogInfo item = new LogInfo();
             item.MType = type.ToString();

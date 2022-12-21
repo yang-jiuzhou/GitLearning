@@ -54,14 +54,17 @@ namespace HBBio.AuditTrails
         /// <param name="item"></param>
         public void SetColumnVisible(LogColumnVisibility item)
         {
-            m_visible = item;
-
-            for (int i = 0; i < dgv.Columns.Count; i++)
+            if (null != item)
             {
-                dgv.Columns[i].Visibility = item.MArrVisib[i] ? Visibility.Visible : Visibility.Collapsed;
-            }
+                m_visible = item;
 
-            SetColumnAxisVisible(m_axis);
+                for (int i = 0; i < dgv.Columns.Count; i++)
+                {
+                    dgv.Columns[i].Visibility = item.MArrVisib[i] ? Visibility.Visible : Visibility.Collapsed;
+                }
+
+                SetColumnAxisVisible(m_axis);
+            }
         }
 
         /// <summary>

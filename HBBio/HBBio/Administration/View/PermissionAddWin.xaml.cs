@@ -33,7 +33,7 @@ namespace HBBio.Administration
             InitializeComponent();
 
             this.Owner = parent;
-            this.ShowInTaskbar = false;
+            //this.ShowInTaskbar = false;
 
             AdministrationManager manager = new AdministrationManager();
             m_tree = manager.CreatePermissionTree(permissionInfo, permissionInfo);

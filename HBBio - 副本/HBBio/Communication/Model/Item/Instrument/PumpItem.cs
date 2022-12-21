@@ -67,6 +67,7 @@ namespace HBBio.Communication
                 case ENUMPumpID.OEM0030: flowMax = 30; break;
                 case ENUMPumpID.OEM0100: flowMax = 100; break;
                 case ENUMPumpID.OEM0300: flowMax = 300; break;
+                case ENUMPumpID.HB0030: flowMax = 30; break;
             }
 
             return flowMax;

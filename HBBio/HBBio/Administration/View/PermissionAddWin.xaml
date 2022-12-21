@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HBBio.Administration"
         mc:Ignorable="d"
-        Title="{DynamicResource A_PermissionAddWin}" Window.SizeToContent="WidthAndHeight" MinWidth="400" WindowStartupLocation="CenterOwner">
+        Title="{DynamicResource A_PermissionAddWin}" Width="450" Height="650" WindowStartupLocation="CenterOwner">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -24,13 +24,12 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <TextBlock x:Name="labName" Grid.Column="0" Grid.Row="0" Text="{DynamicResource A_PermissionName1}"/>
             <TextBox x:Name="txtName" Grid.Column="2" Grid.Row="0" />
             <TextBlock x:Name="labNote" Grid.Column="0" Grid.Row="2" Text="{DynamicResource labNote1}"/>
             <TextBox x:Name="txtNote" Grid.Column="2" Grid.Row="2" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="80"/>
-            <TreeView x:Name="tree" Grid.Column="2" Grid.Row="4" ItemsSource="{Binding Path=MPermissionNodes}" MaxHeight="500">
+            <TreeView x:Name="tree" Grid.Column="2" Grid.Row="4" ItemsSource="{Binding Path=MPermissionNodes}">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type local:PermissionNode}" ItemsSource="{Binding Path=MChildList}">
                         <CheckBox Content="{Binding MName}" IsEnabled="{Binding MEnabled}" IsChecked="{Binding MYesNo}"/>

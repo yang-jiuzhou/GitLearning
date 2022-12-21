@@ -28,26 +28,34 @@ namespace HBBio.SystemControl
      **/
     public static class SystemControlManager
     {
+        //开机初始化
+        public static DBSelfCheck s_dbSelfCheck = DBSelfCheck.GetInstance();
+
+        //自动备份
+        public static DBAutoBackupManager s_dbAutoBackupManager = DBAutoBackupManager.GetInstance();
+
         //主界面内容配置
-        public static ConfCheckable s_confCheckable = new ConfCheckable();
+        public static ConfCheckable s_confCheckable = ConfCheckable.GetInstance();
 
         //主界面内容显隐
-        public static ViewVisibility s_viewVisibility = new ViewVisibility();
+        public static ViewVisibility s_viewVisibility = ViewVisibility.GetInstance();
 
         //系统配置
-        public static ComConfStatic s_comconfStatic = null;
+        public static ComConfStatic s_comconfStatic = ComConfStatic.Instance();
 
         //运行结果
-        public static ResultStatic m_curveStatic = null;
+        public static ResultStatic m_curveStatic = ResultStatic.Instance();
+
+        //清洗
+        public static WashSystem s_wash = WashSystem.GetInstance();
 
         //手动运行
-        public static ManualRunManager m_manualRun = null;
+        public static ManualRunManager m_manualRun = ManualRunManager.Instance(s_comconfStatic);
 
         //方法运行
-        public static MethodRunManager m_methodRun = null;
+        public static MethodRunManager m_methodRun = MethodRunManager.Instance(s_comconfStatic);
 
-        private static Thread m_systemThread = null;                        //系统运行线程
-        private static SystemState m_systemState = SystemState.Free;        //系统运行状态
+        //系统运行状态
         public static SystemState MSystemState
         {
             get
@@ -55,14 +63,16 @@ namespace HBBio.SystemControl
                 return m_systemState;
             }
         }
+        private static SystemState m_systemState = SystemState.Free;
         private static readonly DateTime m_systemStart = DateTime.Now;      //系统开始运行的时间点                    
+        //系统累计运行的时间
         public static double MSystemRunTime
         {
             get
             {
                 return ValueTrans.TimeSpanToMin(DateTime.Now, m_systemStart);
             }
-        }                               //系统累计运行的时间
+        }
 
         private static DateTime m_chromatogramStart = DateTime.Now;         //谱图开始运行的时间点
         private static double m_chromatogramPauseTime = 0;                  //谱图累计暂停的时间
@@ -79,44 +89,22 @@ namespace HBBio.SystemControl
         private static double s_pauseTime = 0;                              //自动暂停的时间
         private static DateTime s_pauseStart = DateTime.Now;                //自动暂停的开始时间点
 
-        private static WashSystem s_wash = new WashSystem();
-
-        private static Queue<string> s_queueAlarm = new Queue<string>();
-        private static Queue<string> s_queueWarning = new Queue<string>();
-
-        private static Thread m_dbAutoBackupThread = null;                  //系统自动备份线程
-        public static bool s_autoDBIng = false;                             //系统自动备份标志
-
         //创建一个自定义委托，用于发送谱图数据
         public delegate void ResultEventHandler(object sender);
         //声明一个谱图数据事件
         public static ResultEventHandler MResultEvent;
 
-        //创建一个自定义委托，用于自定义的信号
-        public delegate void MHandlerDdelegateMarker(object sender);
-        //声明一个新建标记事件
-        public static MHandlerDdelegateMarker MMarkerHandler;
-
 
         /// <summary>
-        /// 静态构造函数
+        /// 开始初始化所有数据
         /// </summary>
-        static SystemControlManager()
+        public static void Start()
         {
-            DBSelfCheck dbSelfCheck = new DBSelfCheck();
-            dbSelfCheck.InitFirst();
+            WindowSize.WindowSizeManager.s_RememberSize = s_confCheckable.MRememberSize;
 
-            GetConfCheckable(s_confCheckable);
             GetViewVisibility(s_viewVisibility);
 
-            s_comconfStatic = ComConfStatic.Instance();
-
-            m_curveStatic = ResultStatic.Instance();
-
-            m_manualRun = ManualRunManager.Instance(s_comconfStatic);
-            m_methodRun = MethodRunManager.Instance(s_comconfStatic);
-
-            if (m_methodRun.MIsBreak)
+            if (m_manualRun.MIsBreak || m_methodRun.MIsBreak)
             {
                 AuditTrailsStatic.Instance().ContinueTable();
             }
@@ -124,51 +112,15 @@ namespace HBBio.SystemControl
             {
                 AuditTrailsStatic.Instance().CreateTable();
             }
-
-            m_methodRun.MMarkerHandler += DlyMethodRunMarker;
+            
             m_methodRun.MPauseHandler += DlyMethodRunPause;
             m_methodRun.MMethodBeginHandler += DlyMethodBegin;
             m_methodRun.MWashHandler += DlyMethodRunWash;
-            m_manualRun.MMarkerHandler += DlyManualdRunMarker;
 
             //开启运行的线程，状态机跳转
-            m_systemThread = new Thread(ThreadSystemFun);
-            m_systemThread.IsBackground = true;
-            m_systemThread.Start();
-
-            //开启自动备份的线程
-            m_dbAutoBackupThread = new Thread(ThreadDBAutoBackupFun);
-            m_dbAutoBackupThread.IsBackground = true;
-            m_dbAutoBackupThread.Start();
-        }
-
-        public static void Start()
-        {
-            
-        }
-
-        /// <summary>
-        /// 检测数据
-        /// </summary>
-        public static void CheckAllData()
-        {
-            Thread thread = new Thread(ThreadDBSelfCheck);
-            thread.IsBackground = true;
-            thread.Start(); 
-        }
-
-        /// <summary>
-        /// 数据自检线程
-        /// </summary>
-        private static void ThreadDBSelfCheck()
-        {
-            try
-            {
-                DBSelfCheck dbSelfCheck = new DBSelfCheck();
-                dbSelfCheck.CreateAll();
-            }
-            catch
-            { }
+            Thread systemThread = new Thread(ThreadSystemFun);
+            systemThread.IsBackground = true;
+            systemThread.Start();
         }
 
         /// <summary>
@@ -273,6 +225,10 @@ namespace HBBio.SystemControl
             m_chromatogramRunTime = t;
             m_systemState = SystemState.FreeToManualBreak;
         }
+        /// <summary>
+        /// 系统由空闲到异常中止
+        /// </summary>
+        /// <param name="t"></param>
         public static void SetSystemFreeToMethodBreak(double t, double v, double cv)
         {
             List<string> nameList = s_comconfStatic.m_signalList.Select(x => x.MConstName).ToList();
@@ -367,17 +323,9 @@ namespace HBBio.SystemControl
             }
         }
 
-        /// <summary>
-        /// 添加谱图标记(自定义事件处理)
-        /// </summary>
-        /// <param name="sender"></param>
-        private static void DlyMethodRunMarker(object sender)
-        {
-            MMarkerHandler?.Invoke(new MarkerInfo((string)sender));
-        }
 
         /// <summary>
-        /// 添加谱图标记(自定义事件处理)
+        /// 方法开始(自定义事件处理)
         /// </summary>
         /// <param name="sender"></param>
         private static void DlyMethodBegin(object sender)
@@ -416,35 +364,6 @@ namespace HBBio.SystemControl
             m_chromatogramPauseTime = 0;
         }
 
-
-        /// <summary>
-        /// 添加谱图标记(自定义事件处理)
-        /// </summary>
-        /// <param name="sender"></param>
-        private static void DlyManualdRunMarker(object type, object val)
-        {
-            MMarkerHandler?.Invoke(new MarkerInfo((string)type, (double)val));
-        }
-
-        /// <summary>
-        /// 泵洗开始(自定义事件处理)
-        /// </summary>
-        /// <param name="sender"></param>
-        public static void DlyWashStart(object sender, RoutedEventArgs e)
-        {
-            s_comconfStatic.SetValve(((WashPara)e.OriginalSource).MValve, ((WashPara)e.OriginalSource).MValveIndex);
-            s_wash.Start(s_comconfStatic, ((WashPara)e.OriginalSource).MPump, ((WashPara)e.OriginalSource).MWashIndex);
-        }
-
-        /// <summary>
-        /// 泵洗结束(自定义事件处理)
-        /// </summary>
-        /// <param name="sender"></param>
-        public static void DlyWashStop(object sender, RoutedEventArgs e)
-        {
-            s_wash.Stop(s_comconfStatic, (ENUMPumpName)e.OriginalSource);
-        }
-
         /// <summary>
         /// 启用泵洗(自定义事件处理)
         /// </summary>
@@ -465,6 +384,7 @@ namespace HBBio.SystemControl
             s_pauseStart = DateTime.Now;
         }
 
+
         /// <summary>
         /// 系统运行的线程函数
         /// </summary>
@@ -475,14 +395,18 @@ namespace HBBio.SystemControl
                 try
                 {
                     s_comconfStatic.UpdateAllData();
-                    
-                    if (s_pauseFlag)//启用方法内的自动暂停
+
+                    //启用方法内的自动暂停
+                    if (s_pauseFlag)
                     {
                         if (ValueTrans.TimeSpanToMin(DateTime.Now, s_pauseStart) >= s_pauseTime)
                         {
                             m_methodRun.m_state = MethodState.PauseToRun;
                         }
                     }
+
+                    //更新自动备份的标志
+                    s_dbAutoBackupManager.MAutoEnable = SystemState.Free == m_systemState;
 
                     switch (m_systemState)
                     {
@@ -670,19 +594,6 @@ namespace HBBio.SystemControl
             }
         }
 
-
-        /// <summary>
-        /// 从数据库获取语言并设置
-        /// </summary>
-        private static void GetConfCheckable(ConfCheckable item)
-        {
-            ConfCheckableTable table = new ConfCheckableTable();
-            table.GetRow(item);
-
-            SetLanguage(item.MEnumLanguage);
-            WindowSize.WindowSizeManager.s_RememberSize = item.MRememberSize;
-        }
-
         /// <summary>
         /// 读各单元显隐
         /// </summary>
@@ -691,23 +602,6 @@ namespace HBBio.SystemControl
         {
             ViewVisibilityTable table = new ViewVisibilityTable();
             table.GetRow(item);
-        }
-
-        /// <summary>
-        /// 写语言并设置
-        /// </summary>
-        /// <param name="language"></param>
-        public static void SetLanguage(EnumLanguage language)
-        {
-            switch (language)
-            {
-                case EnumLanguage.Chinese:
-                    LanguageHelper.LoadLanguageFile("/Bio-LabChrom;component/Dictionary/zh-cn.xaml");
-                    break;
-                case EnumLanguage.English:
-                    LanguageHelper.LoadLanguageFile("/Bio-LabChrom;component/Dictionary/en-us.xaml");
-                    break;
-            }
         }
 
         /// <summary>
@@ -728,188 +622,5 @@ namespace HBBio.SystemControl
             ViewVisibilityTable table = new ViewVisibilityTable();
             table.UpdateRow(item);
         }
-
-
-        /// <summary>
-        /// 自动备份的线程函数
-        /// </summary>
-        private static void ThreadDBAutoBackupFun()
-        {
-            DBManager manager = new DBManager();
-            DBAutoBackupInfo info = null;
-            if (null == manager.GetDBAutoBackup(out info))
-            {
-                while (true)
-                {
-                    try
-                    {
-                        if (info.MEnabled)
-                        {
-                            #region 本地
-                            if (info.MLocal)
-                            {
-                                DirectoryInfo dir = new DirectoryInfo(info.MPathLocal);
-                                DirectoryInfo[] arrDir = dir.GetDirectories("*Auto");
-                                List<DateTime> listDate = new List<DateTime>();
-                                foreach (var it in arrDir)
-                                {
-                                    listDate.Add(DateTime.ParseExact(it.Name.Replace("Auto", ""), "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture));
-                                }
-                                if (0 == arrDir.Length)
-                                {
-                                    if (SystemState.Free == MSystemState)
-                                    {
-                                        DBBackupLocal(info.MPathLocal);
-                                    }
-                                }
-                                else
-                                {
-                                    while (listDate.Count > info.MCount)
-                                    {
-                                        Directory.Delete(info.MPathLocal + "/" + listDate.Min().ToString("yyyyMMddHHmmss") + "Auto", true);
-                                        listDate.Remove(listDate.Min());
-                                    }
-
-                                    DateTime max = listDate.Max();
-                                    if ((DateTime.Now - max).TotalDays > info.MFrequency)
-                                    {
-                                        if (SystemState.Free == MSystemState)
-                                        {
-                                            DBBackupLocal(info.MPathLocal);
-                                        }
-                                    }
-                                }
-                            }
-                            #endregion
-
-                            #region 远程
-                            if (info.MRemote)
-                            {
-                                DirectoryInfo dir = new DirectoryInfo("\\\\" + info.MIP + "\\" + info.MPathRemote);
-                                if (dir.Exists)
-                                {
-                                    DirectoryInfo[] arrDir = dir.GetDirectories("*Auto");
-                                    List<DateTime> listDate = new List<DateTime>();
-                                    foreach (var it in arrDir)
-                                    {
-                                        listDate.Add(DateTime.ParseExact(it.Name.Replace("Auto", ""), "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture));
-                                    }
-                                    if (0 == arrDir.Length)
-                                    {
-                                        if (SystemState.Free == MSystemState)
-                                        {
-                                            UpdateDBBackupServer(info.MIP, info.MUserName, info.MPwd, info.MPathRemote);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        BaseDB db = new BaseDB();
-                                        while (listDate.Count > info.MCount)
-                                        {
-                                            db.RemoveBackupDirectory(listDate.Min().ToString("yyyyMMddHHmmss"), info.MIP, info.MUserName, info.MPwd, info.MPathRemote);
-                                            listDate.Remove(listDate.Min());
-                                        }
-
-                                        DateTime max = listDate.Max();
-                                        if ((DateTime.Now - max).TotalDays > info.MFrequency)
-                                        {
-                                            if (SystemState.Free == MSystemState)
-                                            {
-                                                UpdateDBBackupServer(info.MIP, info.MUserName, info.MPwd, info.MPathRemote);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            #endregion
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        SystemLog.SystemLogManager.LogWrite(ex);
-                    }
-                    finally
-                    {
-                        Thread.Sleep(DlyBase.c_sleep600);
-                    }
-                }
-            }  
-        }
-
-        /// <summary>
-        /// 自动备份到本地
-        /// </summary>
-        /// <param name="localPath"></param>
-        private static void DBBackupLocal(string localPath)
-        {
-            s_autoDBIng = true;
-            string notime = DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            string path = localPath + "/" + notime + "Auto";
-            Directory.CreateDirectory(path);
-
-            BaseDB db = new BaseDB();
-            if (db.BackupLocal(notime, path))
-            {
-                AuditTrailsStatic.Instance().InsertRowOperate(ReadXamlDatabase.GetResources(ReadXamlDatabase.C_Local) + ReadXamlDatabase.GetResources(ReadXamlDatabase.C_AutoBackupSuccess), path);
-            }
-            else
-            {
-                AuditTrailsStatic.Instance().InsertRowError(ReadXamlDatabase.GetResources(ReadXamlDatabase.C_Local) + ReadXamlDatabase.GetResources(ReadXamlDatabase.C_AutoBackupFail), path);
-            }
-            s_autoDBIng = false;
-        }
-
-        /// <summary>
-        /// 自动备份到远程
-        /// </summary>
-        /// <param name="remoteIP"></param>
-        /// <param name="remoteName"></param>
-        /// <param name="remotePwd"></param>
-        /// <param name="remotePath"></param>
-        private static void UpdateDBBackupServer(string remoteIP, string remoteName, string remotePwd, string remotePath)
-        {
-            s_autoDBIng = true;
-            string notime = DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            string path = remotePath + "/" + notime + "Auto";
-            BaseDB db = new BaseDB();
-            db.CreateBackupDirectory(notime, remoteIP, remoteName, remotePwd, remotePath);
-
-            if (db.BackupServer(notime, remoteIP, remoteName, remotePwd, path))
-            {
-                AuditTrailsStatic.Instance().InsertRowOperate(ReadXamlDatabase.GetResources(ReadXamlDatabase.C_Remote) + ReadXamlDatabase.GetResources(ReadXamlDatabase.C_AutoBackupSuccess), path);
-            }
-            else
-            {
-                AuditTrailsStatic.Instance().InsertRowError(ReadXamlDatabase.GetResources(ReadXamlDatabase.C_Remote) + ReadXamlDatabase.GetResources(ReadXamlDatabase.C_AutoBackupFail), path);
-            }
-            s_autoDBIng = false;
-        }
-    }
-
-    /// <summary>
-    /// 系统运行状态
-    /// </summary>
-    public enum SystemState
-    {
-        Free,       	//空闲
-        Wash,           //清洗
-        Manual,         //手动
-        Method,         //自动
-        FreeToManual,
-        FreeToMethod,
-        FreeToManualBreak,
-        FreeToMethodBreak,
-        Stop
-    }
-
-    /// <summary>
-    /// 谱图状态枚举
-    /// </summary>
-    public enum PtState
-    {
-        Free,       	//空闲
-        Run             //运行
     }
 }

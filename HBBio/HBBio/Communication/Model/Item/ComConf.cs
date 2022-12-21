@@ -233,6 +233,13 @@ namespace HBBio.Communication
                                 MList.Add(new PTItem());
                                 MList.Add(new PTItem());
                             }
+                            else if (((ENUMPumpID)Enum.Parse(typeof(ENUMPumpID), MModel)).ToString().Contains("HB"))
+                            {
+                                MList.Add(new PumpItem());
+                                MList.Add(new PumpItem());
+                                MList.Add(new PTItem());
+                                MList.Add(new PTItem());
+                            }
                             else
                             {
                                 MList.Add(new PumpItem());
@@ -280,6 +287,9 @@ namespace HBBio.Communication
                                     break;
                                 case ENUMDetectorID.UVECOM4:
                                     MList.Add(new UVItem(4));
+                                    break;
+                                case ENUMDetectorID.UVHT2:
+                                    MList.Add(new UVItem(2));
                                     break;
                                 case ENUMDetectorID.RIShodex:
                                     MList.Add(new RIItem());

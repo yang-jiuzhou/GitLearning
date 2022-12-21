@@ -952,6 +952,8 @@ D:\GitLearning\HBBio\HBBio\obj\Release\Communication\View\UC\ASManualParaUC.g.cs
 D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\UVWin.g.cs
 D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\ValveWin.g.cs
 D:\GitLearning\HBBio\HBBio\obj\Release\Communication\View\UC\MixerUC.g.cs
+D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\MixtureGridItemWin.g.cs
+D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\UC\Group\MixtureGridUC.g.cs
 D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\Intervene\ASWin.g.cs
 D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\PersonalPhaseWin.g.cs
 D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\Intervene\PumpSampleWin.g.cs
@@ -1082,6 +1084,7 @@ D:\GitLearning\HBBio\HBBio\obj\Release\Evaluation\View\IntegrationSetWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Evaluation\View\OutputSelectSetWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Evaluation\View\OutputWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\HoldUntil\HoldUntilWin.baml
+D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\OutWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\ASWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\CollectorWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\ManualWin.baml
@@ -1093,6 +1096,8 @@ D:\GitLearning\HBBio\HBBio\obj\Release\Communication\View\UC\ASManualParaUC.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\UVWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\ValveWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Communication\View\UC\MixerUC.baml
+D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\MixtureGridItemWin.baml
+D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\UC\Group\MixtureGridUC.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\Intervene\ASWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\PersonalPhaseWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\Intervene\PumpSampleWin.baml
@@ -1140,7 +1145,6 @@ D:\GitLearning\HBBio\HBBio\obj\Release\SystemControl\View\UC\RunParametersUC.bam
 D:\GitLearning\HBBio\HBBio\obj\Release\SystemControl\View\UC\RunStatusUC.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\TubeStand\View\TubeStandItemWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\TubeStand\View\TubeStandWin.baml
-D:\GitLearning\HBBio\HBBio\obj\Release\Manual\View\OutWin.baml
 D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.g.resources
 D:\GitLearning\HBBio\HBBio\obj\Release\HBBio.Properties.Resources.resources
 D:\GitLearning\HBBio\HBBio\obj\Release\HBBio.csproj.GenerateResource.cache
@@ -1150,7 +1154,3 @@ D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.application
 D:\GitLearning\HBBio\HBBio\obj\Release\HBBio.csproj.CopyComplete
 D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.exe
 D:\GitLearning\HBBio\HBBio\obj\Release\Bio-LabChrom.pdb
-D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\MixtureGridItemWin.g.cs
-D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\UC\Group\MixtureGridUC.g.cs
-D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\MixtureGridItemWin.baml
-D:\GitLearning\HBBio\HBBio\obj\Release\MethodEdit\View\UC\Group\MixtureGridUC.baml

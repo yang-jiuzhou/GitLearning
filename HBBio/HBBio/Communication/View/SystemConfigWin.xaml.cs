@@ -334,16 +334,8 @@ namespace HBBio.Communication
                 if (item.MComConf.MModel.Equals(ENUMCollectorID.QBH_DLY.ToString()))
                 {
                     CollectorQBHModeWin win = new CollectorQBHModeWin();
-                    win.Owner = this;  
-                    switch (item.MComConf.MCommunMode)
-                    {
-                        case EnumCommunMode.Com:
-                            win.MItemCom = (ComCollectorQBH)item;
-                            break;
-                        case EnumCommunMode.TCP:
-                            win.MItemTCP = (TCPCollectorQBH)item;
-                            break;
-                    }
+                    win.Owner = this;
+                    win.MItem = (ComCollectorQBH)item;
                     win.DataContext = MSystemConfigShow.MConfCollector;
                     win.ShowDialog();
                     break;
@@ -353,15 +345,7 @@ namespace HBBio.Communication
                     CollectorHBModeWin win = new CollectorHBModeWin();
                     win.MMode = ENUMCollectorID.HB_DLY_W;
                     win.Owner = this;
-                    switch (item.MComConf.MCommunMode)
-                    {
-                        case EnumCommunMode.Com:
-                            win.MItemCom = (ComCollectorHB)item;
-                            break;
-                        case EnumCommunMode.TCP:
-                            win.MItemTCP = (TCPCollectorHB)item;
-                            break;
-                    }
+                    win.MItem = (ComCollectorHB)item;
                     win.DataContext = MSystemConfigShow.MConfCollector;
                     win.ShowDialog();
                     break;
@@ -371,15 +355,7 @@ namespace HBBio.Communication
                     CollectorHBModeWin win = new CollectorHBModeWin();
                     win.MMode = ENUMCollectorID.HB_DLY_B;
                     win.Owner = this;
-                    switch (item.MComConf.MCommunMode)
-                    {
-                        case EnumCommunMode.Com:
-                            win.MItemCom = (ComCollectorHB)item;
-                            break;
-                        case EnumCommunMode.TCP:
-                            win.MItemTCP = (TCPCollectorHB)item;
-                            break;
-                    }
+                    win.MItem = (ComCollectorHB)item;
                     win.DataContext = MSystemConfigShow.MConfCollector;
                     win.ShowDialog();
                     break;
@@ -413,34 +389,16 @@ namespace HBBio.Communication
                 {
                     if (item.MComConf.MModel.Equals(ENUMDetectorID.pHCdOEM.ToString()))
                     {
-                        switch (item.MComConf.MCommunMode)
+                        if (((ComPHCDOEM)item).MpHItem.MConstName.Equals(((Button)sender).Content.ToString()))
                         {
-                            case EnumCommunMode.Com:
-                                if (((ComPHCDOEM)item).MpHItem.MConstName.Equals(((Button)sender).Content.ToString()))
-                                {
-                                    CalOEMPHWin win = new CalOEMPHWin();
-                                    win.Owner = this;
-                                    win.MItemCom = (ComPHCDOEM)item;
-                                    if (true == win.ShowDialog())
-                                    {
-                                        AuditTrails.AuditTrailsStatic.Instance().InsertRowSystem(this.Title, win.Title);
-                                    }
-                                    break;
-                                }
-                                break;
-                            case EnumCommunMode.TCP:
-                                if (((TCPPHCDOEM)item).MpHItem.MConstName.Equals(((Button)sender).Content.ToString()))
-                                {
-                                    CalOEMPHWin win = new CalOEMPHWin();
-                                    win.Owner = this;
-                                    win.MItemTCP = (TCPPHCDOEM)item;
-                                    if (true == win.ShowDialog())
-                                    {
-                                        AuditTrails.AuditTrailsStatic.Instance().InsertRowSystem(this.Title, win.Title);
-                                    }
-                                    break;
-                                }
-                                break;
+                            CalOEMPHWin win = new CalOEMPHWin();
+                            win.Owner = this;
+                            win.MItem = (ComPHCDOEM)item;
+                            if (true == win.ShowDialog())
+                            {
+                                AuditTrails.AuditTrailsStatic.Instance().InsertRowSystem(this.Title, win.Title);
+                            }
+                            break;
                         }
                     }
                     else if (item.MComConf.MModel.Equals(ENUMDetectorID.pHHamilton.ToString()))
@@ -487,36 +445,17 @@ namespace HBBio.Communication
                 {
                     if (item.MComConf.MModel.Equals(ENUMDetectorID.pHCdOEM.ToString()))
                     {
-                        switch (item.MComConf.MCommunMode)
+                        if (((ComPHCDOEM)item).MCdItem.MConstName.Equals(((Button)sender).Content.ToString()))
                         {
-                            case EnumCommunMode.Com:
-                                if (((ComPHCDOEM)item).MCdItem.MConstName.Equals(((Button)sender).Content.ToString()))
-                                {
-                                    CalOEMCDWin win = new CalOEMCDWin();
-                                    win.Owner = this;
-                                    win.MItemCom = (ComPHCDOEM)item;
-                                    if (true == win.ShowDialog())
-                                    {
-                                        AuditTrails.AuditTrailsStatic.Instance().InsertRowSystem(this.Title, win.Title);
-                                    }
+                            CalOEMCDWin win = new CalOEMCDWin();
+                            win.Owner = this;
+                            win.MItem = (ComPHCDOEM)item;
+                            if (true == win.ShowDialog())
+                            {
+                                AuditTrails.AuditTrailsStatic.Instance().InsertRowSystem(this.Title, win.Title);
+                            }
 
-                                    break;
-                                }
-                                break;
-                            case EnumCommunMode.TCP:
-                                if (((TCPPHCDOEM)item).MCdItem.MConstName.Equals(((Button)sender).Content.ToString()))
-                                {
-                                    CalOEMCDWin win = new CalOEMCDWin();
-                                    win.Owner = this;
-                                    win.MItemTCP = (TCPPHCDOEM)item;
-                                    if (true == win.ShowDialog())
-                                    {
-                                        AuditTrails.AuditTrailsStatic.Instance().InsertRowSystem(this.Title, win.Title);
-                                    }
-
-                                    break;
-                                }
-                                break;
+                            break;
                         }
                     }
                     else if (item.MComConf.MModel.Equals(ENUMDetectorID.CdHamilton.ToString()))

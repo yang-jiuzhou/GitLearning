@@ -192,8 +192,9 @@ namespace HBBio.Manual
                 AuditTrails.AuditTrailsStatic.Instance().InsertRowManual(this.Title, labFlow.Text + ":" + MPumpValueOld.MFlow + " -> " + MPumpValueNew.MFlow);
 
                 MPumpValueOld.MFlow = MPumpValueNew.MFlow;
-                MPumpValueOld.m_update = true;
             }
+
+            MPumpValueOld.m_update = true;
         }
 
         /// <summary>

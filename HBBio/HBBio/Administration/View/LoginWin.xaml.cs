@@ -28,6 +28,8 @@ namespace HBBio.Administration
         /// </summary>
         private Random _random = new Random();
 
+        private int _length = 100;
+
         //布局宽490 高210 显示宽430 高180
         //阵距4行8列 点之间的距离 X轴Y轴都是70
         /// <summary>
@@ -66,14 +68,9 @@ namespace HBBio.Administration
         /// <summary>
         /// 构造函数
         /// </summary>
-        public LoginWin(Window parent)
+        public LoginWin()
         {
             InitializeComponent();
-
-            this.Owner = parent;
-
-            btnRegister.Visibility = Visibility.Hidden;
-            btnCheck.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -83,9 +80,6 @@ namespace HBBio.Administration
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _points = new PointInfo[(int)this.ActualWidth / 70 + 1, (int)this.ActualHeight / 70 + 1];
-            Init();
-
             //注册帧动画           
             _timer.Tick += new EventHandler(PolyAnimation);
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 45);//一秒钟刷新24次
@@ -293,13 +287,14 @@ namespace HBBio.Administration
             }
         }
 
-        
 
         /// <summary>
         /// 初始化阵距
         /// </summary>
         private void Init()
         {
+            _points = new PointInfo[(int)this.ActualWidth / _length + 2, (int)this.ActualHeight / _length + 2];
+
             //生成阵距的点
             for (int i = 0; i < _points.GetLength(0); i++)
             {
@@ -309,8 +304,8 @@ namespace HBBio.Administration
                     double y = _random.Next(-6, 6);
                     _points[i, j] = new PointInfo()
                     {
-                        X = i * 70,
-                        Y = j * 70,
+                        X = i * _length,
+                        Y = j * _length,
                         SpeedX = x / 24,
                         SpeedY = y / 24,
                         DistanceX = _random.Next(35, 106),
@@ -406,7 +401,7 @@ namespace HBBio.Administration
         /// <summary>
         /// 多边形变化动画
         /// </summary>
-        void PolyAnimation(object sender, EventArgs e)
+        private void PolyAnimation(object sender, EventArgs e)
         {
             //不改变阵距最外边一层的点
             for (int i = 1; i < _points.GetLength(0) - 1; i++)
@@ -435,6 +430,13 @@ namespace HBBio.Administration
                     }
                 }
             }
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _timer.Stop();
+            Init();
+            _timer.Start();
         }
     }
 

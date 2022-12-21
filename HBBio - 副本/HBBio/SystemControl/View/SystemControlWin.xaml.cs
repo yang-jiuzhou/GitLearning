@@ -33,6 +33,9 @@ namespace HBBio.SystemControl
     /// </summary>
     public partial class SystemControlWin : Window
     {
+        /// <summary>
+        /// 程序唯一运行的标识
+        /// </summary>
         public static bool s_new = true;
         private DateTime m_lastTime;            //鼠标上一次移动的时间点
         private POINT m_lastPt;                 //鼠标上一次所在的位置
@@ -44,7 +47,7 @@ namespace HBBio.SystemControl
         private ScreenLockWin m_screenLockWin = new ScreenLockWin();            //解锁窗口
 
         private bool m_threadFlagValveMulti = false;                            //出口阀阀位循环的标志
-        private bool m_threadFlagCollectorMulti = false;                         //收集器阀位循环的标志
+        private bool m_threadFlagCollectorMulti = false;                        //收集器阀位循环的标志
         
         public struct POINT
         {
@@ -56,7 +59,6 @@ namespace HBBio.SystemControl
                 this.Y = y;
             }
         }
-
         /// <summary>   
         /// 获取鼠标的坐标   
         /// </summary>   
@@ -79,9 +81,9 @@ namespace HBBio.SystemControl
             }
 
             SystemControlManager.Start();
-            AdministrationStatic.Instance().Init();
 
-            LoginWin win = new LoginWin(null);
+            //登录窗口
+            LoginWin win = new LoginWin();
             win.MAddUser += DlyAddProjectNode;
             win.MSelfCheck += DlySelfCheck;
             if (true == win.ShowDialog())
@@ -100,24 +102,23 @@ namespace HBBio.SystemControl
             chromatogramUC.MUpdateAxisScale += DlyUpdateAxisScale;
             chromatogramUC.MUpdateMarker += DlyUpdateMarker;
             chromatogramUC.MUpdateAxis += DlyUpdateAxis;
-            SystemControlManager.MResultEvent += ResultChanged;
-            SystemControlManager.MMarkerHandler += DlyMarker;
-
+            
             //流路图
             this.processPicture.MClick += ProcessPictureClick;
 
             //审计跟踪
             auditTrailsUC.ItemsSource = AuditTrailsStatic.Instance().MlogIngoList;
             AuditTrailsManager manager = new AuditTrailsManager();
-            LogColumnVisibility item = null;
-            string error = manager.GetColumnVisibility(out item);
-            if (null == error)
-            {
-                auditTrailsUC.SetColumnVisible(item);
-            }
+            auditTrailsUC.SetColumnVisible(manager.GetColumnVisibility());
+
+            //系统运行
+            SystemControlManager.MResultEvent += ResultChanged;
             SystemControlManager.m_manualRun.MAuditTrailsHandler += DlyManualRunAuditTrails;
             SystemControlManager.m_methodRun.MAuditTrailsHandler += DlyMethodRunAuditTrails;
             SystemControlManager.m_methodRun.MShowMessageHandler += DlyMethodRunShowMessage;
+            SystemControlManager.m_methodRun.MMarkerHandler += DlyMarker;
+            SystemControlManager.m_manualRun.MMarkerHandler += DlyMarker;
+            SystemControlManager.s_dbAutoBackupManager.MAuditTrailsEvent += DlyDBAutoBackup;
             SystemControlManager.s_comconfStatic.GetItem(ENUMUVName.UV01).MIJVHandler += DlyUVIJV;
 
             m_screenLockWin.MScreenLock += DlyScreenLock;
@@ -164,7 +165,7 @@ namespace HBBio.SystemControl
             timer.Start();
 
             m_winAW.Visibility = Visibility.Hidden;
-            m_winAW.ShowInTaskbar = false;
+            //m_winAW.ShowInTaskbar = false;
 
             m_screenLockWin.Owner = this;
         }
@@ -259,7 +260,7 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void DlySelfCheck(object sender, RoutedEventArgs e)
         {
-            SystemControlManager.CheckAllData();
+            DBSelfCheck.GetInstance().CheckAll();
         }
 
         /// <summary>
@@ -398,11 +399,9 @@ namespace HBBio.SystemControl
                             }
                             win.Left = pointThumb.X + thumb.ActualWidth;
                             win.Top = pointProcessPicture.Y;
-                            win.MWashStartClick += SystemControlManager.DlyWashStart;
-                            win.MWashStopClick += SystemControlManager.DlyWashStop;
+                            win.MComconfStatic = SystemControlManager.s_comconfStatic;
+                            win.MWashSystem = SystemControlManager.s_wash;
                             win.ShowDialog();
-                            win.MWashStartClick -= SystemControlManager.DlyWashStart;
-                            win.MWashStopClick -= SystemControlManager.DlyWashStop;
                         }
                         break;
                 }
@@ -429,11 +428,9 @@ namespace HBBio.SystemControl
                             }
                             win.Left = pointThumb.X + thumb.ActualWidth;
                             win.Top = pointProcessPicture.Y - 50;
-                            win.MWashStartClick += SystemControlManager.DlyWashStart;
-                            win.MWashStopClick += SystemControlManager.DlyWashStop;
+                            win.MComconfStatic = SystemControlManager.s_comconfStatic;
+                            win.MWashSystem = SystemControlManager.s_wash;
                             win.ShowDialog();
-                            win.MWashStartClick -= SystemControlManager.DlyWashStart;
-                            win.MWashStopClick -= SystemControlManager.DlyWashStop;
                         }
                         break;
 
@@ -694,7 +691,7 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void DlyUpdateManual(object sender, RoutedEventArgs e)
         {
-            if (SystemControlManager.s_autoDBIng)
+            if (SystemControlManager.s_dbAutoBackupManager.MAutoIng)
             {
                 Share.MessageBoxWin.Show(Database.ReadXamlDatabase.GetResources(Database.ReadXamlDatabase.C_AutoBackupIng));
                 return;
@@ -1001,12 +998,32 @@ namespace HBBio.SystemControl
         /// 添加标记数据(自定义事件处理)
         /// </summary>
         /// <param name="sender"></param>
-        private void DlyMarker(object sender)
+        private void DlyMarker(object type, object val)
         {
             //跨线程调用
             chromatogramUC.Dispatcher.Invoke(new Action(delegate ()
             {
-                chromatogramUC.AddMarker((MarkerInfo)sender);
+                chromatogramUC.AddMarker(new MarkerInfo((string)type, (double)val));
+            }));
+        }
+
+        /// <summary>
+        /// 添加画图数据(自定义事件处理)
+        /// </summary>
+        /// <param name="sender"></param>
+        private void DlyDBAutoBackup(object type, object desc, object oper)
+        {
+            //跨线程调用
+            this.Dispatcher.Invoke(new Action(delegate ()
+            {
+                if (Convert.ToBoolean(type))
+                {
+                    AuditTrailsStatic.Instance().InsertRow(EnumATType.System, (string)desc, (string)oper);
+                }
+                else
+                {
+                    AuditTrailsStatic.Instance().InsertRow(EnumATType.Error, (string)desc, (string)oper);
+                }
             }));
         }
 
@@ -1189,7 +1206,7 @@ namespace HBBio.SystemControl
                 return false;
             }
 
-            if (SystemControlManager.s_autoDBIng)
+            if (SystemControlManager.s_dbAutoBackupManager.MAutoIng)
             {
                 Share.MessageBoxWin.Show(Database.ReadXamlDatabase.GetResources(Database.ReadXamlDatabase.C_AutoBackupIng));
                 return false;
@@ -1232,7 +1249,7 @@ namespace HBBio.SystemControl
             switch (SystemControlManager.MSystemState)
             {
                 case SystemState.Free:
-                    btnRun.IsEnabled = !SystemControlManager.s_autoDBIng && null != SystemControlManager.m_methodRun.MMethodType;
+                    btnRun.IsEnabled = !SystemControlManager.s_dbAutoBackupManager.MAutoIng && null != SystemControlManager.m_methodRun.MMethodType;
                     btnHold.IsEnabled = false;
                     btnHoldUntil.IsEnabled = false;
                     btnNext.IsEnabled = false;
@@ -1516,7 +1533,8 @@ namespace HBBio.SystemControl
                 , SystemControlManager.s_comconfStatic.GetPumpGet(ENUMPumpName.FITB) > 0
                 , SystemControlManager.s_comconfStatic.GetPumpGet(ENUMPumpName.FITC) > 0
                 , SystemControlManager.s_comconfStatic.GetPumpGet(ENUMPumpName.FITD) > 0
-                , SystemControlManager.s_comconfStatic.GetValveGet(ENUMValveName.BPV));
+                , SystemControlManager.s_comconfStatic.GetValveGet(ENUMValveName.BPV)
+                , SystemControlManager.s_comconfStatic.GetValveGet(ENUMValveName.IJV));
 
             switch (SystemControlManager.MSystemState)
             {
@@ -1671,7 +1689,7 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void menuChinese_Click(object sender, RoutedEventArgs e)
         {
-            SystemControlManager.SetLanguage(EnumLanguage.Chinese);
+            SystemControlManager.s_confCheckable.SetLanguage(EnumLanguage.Chinese);
 
             AuditTrailsStatic.Instance().InsertRowSystem(menuLanguage.Header.ToString(), menuChinese.Header.ToString());
         }
@@ -1683,7 +1701,7 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void menuEnglish_Click(object sender, RoutedEventArgs e)
         {
-            SystemControlManager.SetLanguage(EnumLanguage.English);
+            SystemControlManager.s_confCheckable.SetLanguage(EnumLanguage.English);
 
             AuditTrailsStatic.Instance().InsertRowSystem(menuLanguage.Header.ToString(), menuEnglish.Header.ToString());
         }

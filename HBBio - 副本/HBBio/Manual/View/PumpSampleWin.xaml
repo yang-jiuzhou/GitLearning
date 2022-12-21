@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:HBBio.Manual"
         xmlns:share="clr-namespace:HBBio.Share"
         mc:Ignorable="d"
-        Title="{DynamicResource M_PumpSampleWin}" Window.SizeToContent="Height" Width="350" Background="#EEF5FD" Opacity="0.9" AllowsTransparency="True" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="{DynamicResource M_PumpSampleWin}" Window.SizeToContent="WidthAndHeight" MinWidth="350" Background="#EEF5FD" Opacity="0.9" AllowsTransparency="True" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded">
     <Border BorderBrush="#FF268DE4" BorderThickness="2" CornerRadius="5">
         <Grid x:Name="grid" Margin="2">
             <Grid.RowDefinitions>

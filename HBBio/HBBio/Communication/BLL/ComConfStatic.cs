@@ -378,7 +378,7 @@ namespace HBBio.Communication
                                 }
                                 else if (m_runDataList[index].MConstName.Contains("PT_Delta"))
                                 {
-                                    m_runDataShowList[index].MValue = deltaPT.ToString();
+                                    m_runDataShowList[index].MValue = deltaPT.ToString("f2");
                                 }
                                 else
                                 {
@@ -768,6 +768,32 @@ namespace HBBio.Communication
                                 m_dictPT[name] = (PTItem)cc.MList[4];
                             }
                         }
+                        else if (((ENUMPumpID)Enum.Parse(typeof(ENUMPumpID), cc.MModel)).ToString().Contains("HB"))
+                        {
+                            {
+                                ENUMPumpName name = (ENUMPumpName)Enum.Parse(typeof(ENUMPumpName), cc.MList[0].MConstName);
+                                ItemVisibility.s_listPump[name] = Visibility.Visible;
+                                m_dictPump[name] = (PumpItem)cc.MList[0];
+                            }
+                            if (cc.MList[1].MVisible)
+                            {
+                                ENUMPumpName name = (ENUMPumpName)Enum.Parse(typeof(ENUMPumpName), cc.MList[1].MConstName);
+                                ItemVisibility.s_listPump[name] = Visibility.Visible;
+                                m_dictPump[name] = (PumpItem)cc.MList[1];
+                            }
+                            if (cc.MList[2].MVisible)
+                            {
+                                ENUMPTName name = (ENUMPTName)Enum.Parse(typeof(ENUMPTName), cc.MList[2].MConstName);
+                                ItemVisibility.s_listPT[name] = Visibility.Visible;
+                                m_dictPT[name] = (PTItem)cc.MList[2];
+                            }
+                            if (cc.MList[3].MVisible)
+                            {
+                                ENUMPTName name = (ENUMPTName)Enum.Parse(typeof(ENUMPTName), cc.MList[3].MConstName);
+                                ItemVisibility.s_listPT[name] = Visibility.Visible;
+                                m_dictPT[name] = (PTItem)cc.MList[3];
+                            }
+                        }
                         else
                         {
                             {
@@ -914,6 +940,18 @@ namespace HBBio.Communication
                                     StaticValue.s_waveEnabledVisible2 = Visibility.Collapsed;
                                     StaticValue.s_waveVisible3 = Visibility.Visible;
                                     StaticValue.s_waveVisible4 = Visibility.Visible;
+                                    m_dictUV[name] = (UVItem)cc.MList[0];
+                                }
+                                break;
+                            case ENUMDetectorID.UVHT2:
+                                {
+                                    ENUMUVName name = (ENUMUVName)Enum.Parse(typeof(ENUMUVName), cc.MList[0].MConstName);
+                                    ItemVisibility.s_listUV[name] = Visibility.Visible;
+                                    StaticValue.s_minWaveLength = 190;
+                                    StaticValue.s_maxWaveLength = 700;
+                                    StaticValue.s_waveEnabledVisible2 = Visibility.Visible;
+                                    StaticValue.s_waveVisible3 = Visibility.Collapsed;
+                                    StaticValue.s_waveVisible4 = Visibility.Collapsed;
                                     m_dictUV[name] = (UVItem)cc.MList[0];
                                 }
                                 break;

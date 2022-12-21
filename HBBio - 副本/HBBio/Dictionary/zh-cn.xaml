@@ -438,7 +438,7 @@
     <s:String x:Key="SC_AboutWin">关于</s:String>
     <s:String x:Key="SC_ProductionInformation">产品信息</s:String>
     <s:String x:Key="SC_Production">产品 : 汉邦 Bio-LabChrom</s:String>
-    <s:String x:Key="SC_Version">版本 : 2.2.3</s:String>
+    <s:String x:Key="SC_Version">版本 : 2.2.4</s:String>
     <s:String x:Key="SC_Website">网址 : www.hanbon.com.cn</s:String>
 
     <!--倒计时-->
@@ -476,7 +476,7 @@
     <s:String x:Key="A_Reviewer">审核</s:String>
 
     <s:String x:Key="A_LoginWin">用户登录</s:String>
-    <s:String x:Key="A_Version">Bio-LabChrom系统V2.2.3版</s:String>
+    <s:String x:Key="A_Version">Bio-LabChrom系统V2.2.4版</s:String>
     <s:String x:Key="A_PwdLogin">登录密码</s:String>
     <s:String x:Key="A_PwdLogin1" xml:space="preserve">登录密码 : </s:String>
     <s:String x:Key="A_Register">注册</s:String>
@@ -488,6 +488,7 @@
     <s:String x:Key="A_PermissionOPER">操作员</s:String>
     <s:String x:Key="A_PermissionQA">分析员</s:String>
     <s:String x:Key="A_DefaultPermission">默认权限</s:String>
+    <s:String x:Key="A_AllPermission">拥有最高权限</s:String>
 
     <s:String x:Key="A_PermissionEditWin">编辑权限</s:String>
 
@@ -1400,6 +1401,11 @@
     <s:String x:Key="PassDog_CheckFail">SN对比失败!</s:String>
     <s:String x:Key="PassDog_UpdateSuccess">SN更新成功!</s:String>
     <s:String x:Key="PassDog_UpdateFail">SN更新失败!</s:String>
+    <s:String x:Key="PassDog_LoginFail">登录失败</s:String>
+    <s:String x:Key="PassDog_ReadFail">读信息失败</s:String>
+    <s:String x:Key="PassDog_ExitFail">退出失败</s:String>
+    <s:String x:Key="PassDog_MemoryFail">读内存失败</s:String>
+    <s:String x:Key="PassDog_SNFail">序列号对比失败</s:String>
     
     
     

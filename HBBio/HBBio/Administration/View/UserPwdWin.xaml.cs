@@ -32,7 +32,7 @@ namespace HBBio.Administration
             InitializeComponent();
 
             this.Owner = parent;
-            this.ShowInTaskbar = false;
+            //this.ShowInTaskbar = false;
 
             m_userInfo = userInfo;
             m_tacticsInfo = tacticsInfo;

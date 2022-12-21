@@ -34,7 +34,7 @@ namespace HBBio.Administration
             InitializeComponent();
 
             this.Owner = parent;
-            this.ShowInTaskbar = false;
+            //this.ShowInTaskbar = false;
 
             this.Title = this.Title + "-" + title;
             this.txtSigner.Text = signer;

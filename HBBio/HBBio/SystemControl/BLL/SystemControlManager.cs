@@ -100,7 +100,8 @@ namespace HBBio.SystemControl
         /// </summary>
         public static void Start()
         {
-            GetConfCheckable(s_confCheckable);
+            WindowSize.WindowSizeManager.s_RememberSize = s_confCheckable.MRememberSize;
+
             GetViewVisibility(s_viewVisibility);
 
             if (m_manualRun.MIsBreak || m_methodRun.MIsBreak)
@@ -593,19 +594,6 @@ namespace HBBio.SystemControl
             }
         }
 
-
-        /// <summary>
-        /// 从数据库获取语言并设置
-        /// </summary>
-        private static void GetConfCheckable(ConfCheckable item)
-        {
-            ConfCheckableTable table = new ConfCheckableTable();
-            table.GetRow(item);
-
-            SetLanguage(item.MEnumLanguage);
-            WindowSize.WindowSizeManager.s_RememberSize = item.MRememberSize;
-        }
-
         /// <summary>
         /// 读各单元显隐
         /// </summary>
@@ -614,23 +602,6 @@ namespace HBBio.SystemControl
         {
             ViewVisibilityTable table = new ViewVisibilityTable();
             table.GetRow(item);
-        }
-
-        /// <summary>
-        /// 写语言并设置
-        /// </summary>
-        /// <param name="language"></param>
-        public static void SetLanguage(EnumLanguage language)
-        {
-            switch (language)
-            {
-                case EnumLanguage.Chinese:
-                    LanguageHelper.LoadLanguageFile("/Bio-LabChrom;component/Dictionary/zh-cn.xaml");
-                    break;
-                case EnumLanguage.English:
-                    LanguageHelper.LoadLanguageFile("/Bio-LabChrom;component/Dictionary/en-us.xaml");
-                    break;
-            }
         }
 
         /// <summary>

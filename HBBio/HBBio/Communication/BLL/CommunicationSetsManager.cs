@@ -468,22 +468,6 @@ namespace HBBio.Communication
         /// <returns></returns>
         public BaseCommunication CreateItem(ComConf cc)
         {
-            switch (cc.MCommunMode)
-            {
-                case EnumCommunMode.TCP:
-                    return CreateItemTCP(cc);
-                default:
-                    return CreateItemCom(cc);
-            }
-        }
-
-        /// <summary>
-        /// 创建仪器对象
-        /// </summary>
-        /// <param name="cc"></param>
-        /// <returns></returns>
-        private BaseCom CreateItemCom(ComConf cc)
-        {
             BaseCom item = null;
 
             switch (cc.MType)
@@ -520,6 +504,10 @@ namespace HBBio.Communication
                         {
                             item = new ComValveQBHColl(cc);
                         }
+                        else if (id.ToString().Contains("AICIS_231"))
+                        {
+                            item = new ComValveAICIS(cc);
+                        }
                         else
                         {
                             item = new ComValveHB(cc);
@@ -531,6 +519,10 @@ namespace HBBio.Communication
                         if (((ENUMPumpID)Enum.Parse(typeof(ENUMPumpID), cc.MModel)).ToString().Contains("OEM"))
                         {
                             item = new ComPumpOEM(cc);
+                        }
+                        else if (((ENUMPumpID)Enum.Parse(typeof(ENUMPumpID), cc.MModel)).ToString().Contains("HB"))
+                        {
+                            item = new ComPumpHB(cc);
                         }
                         else
                         {
@@ -567,6 +559,9 @@ namespace HBBio.Communication
                             case ENUMDetectorID.UVECOM4:
                                 item = new ComUVECOM4(cc);
                                 break;
+                            case ENUMDetectorID.UVHT2:
+                                item = new ComUVHT2(cc);
+                                break;
                             case ENUMDetectorID.RIShodex:
                                 item = new ComRI(cc);
                                 break;
@@ -602,137 +597,6 @@ namespace HBBio.Communication
                                 break;
                             case ENUMOtherID.ValveMixer:
                                 item = new ComValveMixerHB(cc);
-                                break;
-                        }
-                    }
-                    break;
-            }
-
-            return item;
-        }
-
-        /// <summary>
-        /// 创建仪器对象
-        /// </summary>
-        /// <param name="cc"></param>
-        /// <returns></returns>
-        private BaseTCP CreateItemTCP(ComConf cc)
-        {
-            BaseTCP item = null;
-
-            switch (cc.MType)
-            {
-                case ENUMInstrumentType.Sampler:
-                    {
-
-                    }
-                    break;
-                case ENUMInstrumentType.Valve:
-                    {
-                        ENUMValveID id = (ENUMValveID)Enum.Parse(typeof(ENUMValveID), cc.MModel);
-                        if (id.ToString().Contains("VICI_T"))
-                        {
-                            item = new TCPValveVICI2(cc);
-                        }
-                        else if (id.ToString().Contains("VICI"))
-                        {
-                            item = new TCPValveVICI(cc);
-                        }
-                        else if (id.ToString().Contains("HB_GS4"))
-                        {
-                            item = new TCPValveHBGS4(cc);
-                        }
-                        else if (id.ToString().Contains("IMI_"))
-                        {
-                            item = new TCPValveIMI(cc);
-                        }
-                        else if (id.ToString().Contains("HB_Coll"))
-                        {
-                            item = new TCPValveHBColl(cc);
-                        }
-                        else if (id.ToString().Contains("QBH_Coll"))
-                        {
-                            item = new TCPValveQBHColl(cc);
-                        }
-                        else
-                        {
-                            //item = new TCPValveHB(cc);
-                        }
-                    }
-                    break;
-                case ENUMInstrumentType.Pump:
-                    {
-                        if (((ENUMPumpID)Enum.Parse(typeof(ENUMPumpID), cc.MModel)).ToString().Contains("OEM"))
-                        {
-                            item = new TCPPumpOEM(cc);
-                        }
-                        else
-                        {
-                            item = new TCPPumpQBH(cc);
-                        }
-                    }
-                    break;
-                case ENUMInstrumentType.Detector:
-                    {
-                        ENUMDetectorID id = (ENUMDetectorID)Enum.Parse(typeof(ENUMDetectorID), cc.MModel);
-                        switch (id)
-                        {
-                            case ENUMDetectorID.ASABD05:
-                                item = new TCPASABD05(cc);
-                                break;
-                            case ENUMDetectorID.ASABD06:
-                                item = new TCPASABD06(cc);
-                                break;
-                            case ENUMDetectorID.pHHamilton:
-                                item = new TCPPHHamilton(cc);
-                                break;
-                            case ENUMDetectorID.CdHamilton:
-                                item = new TCPCDHamilton(cc);
-                                break;
-                            case ENUMDetectorID.pHCdOEM:
-                                item = new TCPPHCDOEM(cc);
-                                break;
-                            case ENUMDetectorID.pHCdHamilton:
-                                item = new TCPPHCDHamilton(cc);
-                                break;
-                            case ENUMDetectorID.UVQBH2:
-                                item = new TCPUVQBH2(cc);
-                                break;
-                            case ENUMDetectorID.UVECOM4:
-                                item = new TCPUVECOM4(cc);
-                                break;
-                        }
-                    }
-                    break;
-                case ENUMInstrumentType.Collector:
-                    {
-                        ENUMCollectorID id = (ENUMCollectorID)Enum.Parse(typeof(ENUMCollectorID), cc.MModel);
-                        switch (id)
-                        {
-                            case ENUMCollectorID.QBH_DLY:
-                                item = new TCPCollectorQBH(cc);
-                                break;
-                            case ENUMCollectorID.HB_DLY_W:
-                                item = new TCPCollectorHB(cc);
-                                ((TCPCollectorHB)item).MHBMode = ENUMCollectorID.HB_DLY_W;
-                                break;
-                            case ENUMCollectorID.HB_DLY_B:
-                                item = new TCPCollectorHB(cc);
-                                ((TCPCollectorHB)item).MHBMode = ENUMCollectorID.HB_DLY_B;
-                                break;
-                        }
-                    }
-                    break;
-                case ENUMInstrumentType.Other:
-                    {
-                        ENUMOtherID id = (ENUMOtherID)Enum.Parse(typeof(ENUMOtherID), cc.MModel);
-                        switch (id)
-                        {
-                            case ENUMOtherID.Mixer:
-                                item = new TCPMixer(cc);
-                                break;
-                            case ENUMOtherID.ValveMixer:
-                                item = new TCPValveMixerHB(cc);
                                 break;
                         }
                     }

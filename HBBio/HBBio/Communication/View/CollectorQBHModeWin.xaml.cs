@@ -22,8 +22,7 @@ namespace HBBio.Communication
     /// </summary>
     public partial class CollectorQBHModeWin : Window
     {
-        public TCPCollectorQBH MItemTCP { get; set; }
-        public ComCollectorQBH MItemCom { get; set; }
+        public ComCollectorQBH MItem { get; set; }
 
 
         /// <summary>
@@ -47,65 +46,21 @@ namespace HBBio.Communication
         {
             ConfCollectorVM item = (ConfCollectorVM)this.DataContext;
 
-            if (null != MItemCom)
+            if (null != MItem)
             {
-                MItemCom.ThreadStatus(ENUMThreadStatus.Free);
+                MItem.ThreadStatus(ENUMThreadStatus.Free);
 
-                while (ENUMCommunicationState.Free != MItemCom.m_communState)
+                while (ENUMCommunicationState.Free != MItem.m_communState)
                 {
                     Thread.Sleep(DlyBase.c_sleep1);
                     DispatcherHelper.DoEvents();
                 }
 
-                if (MItemCom.Connect())
+                if (MItem.Connect())
                 {
-                    if (MItemCom.WriteIndex(EnumCollIndexText.L, 1))
+                    if (MItem.WriteIndex(EnumCollIndexText.L, 1))
                     {
-                        if (MItemCom.WriteStyle(cboxSetL.SelectedIndex, cboxSetR.SelectedIndex))
-                        {
-                            switch (item.MModeL)
-                            {
-                                case 0: item.MCountL = 60; item.MVolL = 15; break;
-                                case 1: item.MCountL = 60; item.MVolL = 15; break;
-                                case 2: item.MCountL = 21; item.MVolL = 50; break;
-                                case 3: item.MCountL = 21; item.MVolL = 50; break;
-                                case 4: item.MCountL = 60; item.MVolL = 5; break;
-                            }
-
-                            switch (item.MModeR)
-                            {
-                                case 0: item.MCountR = 60; item.MVolR = 15; break;
-                                case 1: item.MCountR = 60; item.MVolR = 15; break;
-                                case 2: item.MCountR = 21; item.MVolR = 50; break;
-                                case 3: item.MCountR = 21; item.MVolR = 50; break;
-                                case 4: item.MCountR = 60; item.MVolR = 15; break;
-                            }
-
-                            EnumCollectorInfo.Init(item.MCountL, item.MCountR);
-                            EnumCollectorInfo.SetBottleCollVol(item.MVolL, item.MVolR);
-                            EnumCollectorInfo.ReSetBottleCollVol();
-                        }
-                    }
-                    MItemCom.Close();
-                }
-
-                MItemCom.ThreadStatus(ENUMThreadStatus.WriteOrRead);
-            }
-            else if (null != MItemTCP)
-            {
-                MItemTCP.ThreadStatus(ENUMThreadStatus.Free);
-
-                while (ENUMCommunicationState.Free != MItemTCP.m_communState)
-                {
-                    Thread.Sleep(DlyBase.c_sleep1);
-                    DispatcherHelper.DoEvents();
-                }
-
-                if (MItemTCP.Connect())
-                {
-                    if (MItemTCP.WriteIndex(EnumCollIndexText.L, 1))
-                    {
-                        if (MItemTCP.WriteStyle(cboxSetL.SelectedIndex, cboxSetR.SelectedIndex))
+                        if (MItem.WriteStyle(cboxSetL.SelectedIndex, cboxSetR.SelectedIndex))
                         {
                             double volL = 0;
                             double volR = 0;
@@ -132,10 +87,10 @@ namespace HBBio.Communication
                             EnumCollectorInfo.ReSetBottleCollVol();
                         }
                     }
-                    MItemTCP.Close();
+                    MItem.Close();
                 }
 
-                MItemTCP.ThreadStatus(ENUMThreadStatus.WriteOrRead);
+                MItem.ThreadStatus(ENUMThreadStatus.WriteOrRead);
             }
 
             this.Close();

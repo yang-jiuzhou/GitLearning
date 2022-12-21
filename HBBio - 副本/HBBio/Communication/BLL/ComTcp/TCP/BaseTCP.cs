@@ -38,11 +38,18 @@ namespace HBBio.Communication
 
             if (null != info.MAddress && null != info.MPort)
             {
-                m_ipAdressPoint = new IPEndPoint(IPAddress.Parse(info.MAddress), Convert.ToInt32(info.MPort));
+                try
+                {
+                    m_ipAdressPoint = new IPEndPoint(IPAddress.Parse(info.MAddress), Convert.ToInt32(info.MPort));
+                }
+                catch
+                {
+                    m_ipAdressPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Convert.ToInt32(1038));
+                }  
             }
             else
             {
-                m_ipAdressPoint = new IPEndPoint(IPAddress.Parse("0,0,0,0"), Convert.ToInt32(0));
+                m_ipAdressPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Convert.ToInt32(1038));
             }
         }
 

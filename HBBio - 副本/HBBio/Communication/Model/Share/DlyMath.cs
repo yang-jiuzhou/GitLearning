@@ -61,5 +61,22 @@ namespace HBBio.Communication
 
             return new byte[] { 0, 0 };
         }
+
+        /// <summary>
+        /// 异或
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="index"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static byte GetXOR(byte[] cmd, int index, int length)
+        {
+            byte check = (byte)(cmd[index] ^ cmd[index + 1]);
+            for (int i = index + 2; i < index + length; i++)
+            {
+                check = (byte)(check ^ cmd[i]);
+            }
+            return check;
+        }
     }
 }

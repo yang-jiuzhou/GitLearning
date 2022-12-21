@@ -155,6 +155,22 @@ namespace HBBio.Communication
                             }
                             m_comConfList[index].MList.Clear();
                         }
+                        {
+                            m_comConfList[index].MModel = ENUMValveID.IMI_IJV.ToString();
+                            if (csManager.FindConn(m_comConfList[index]))
+                            {
+                                return;
+                            }
+                            m_comConfList[index].MList.Clear();
+                        }
+                        {
+                            m_comConfList[index].MModel = ENUMValveID.AICIS_231.ToString();
+                            if (csManager.FindConn(m_comConfList[index]))
+                            {
+                                return;
+                            }
+                            m_comConfList[index].MList.Clear();
+                        }
                         break;
                     case ENUMInstrumentType.Pump:
                         m_comConfList[index].MType = (ENUMInstrumentType)curr;
@@ -168,6 +184,14 @@ namespace HBBio.Communication
                         }
                         {
                             m_comConfList[index].MModel = ENUMPumpID.OEM0025.ToString();
+                            if (csManager.FindConn(m_comConfList[index]))
+                            {
+                                return;
+                            }
+                            m_comConfList[index].MList.Clear();
+                        }
+                        {
+                            m_comConfList[index].MModel = ENUMPumpID.HB0030.ToString();
                             if (csManager.FindConn(m_comConfList[index]))
                             {
                                 return;
@@ -235,6 +259,14 @@ namespace HBBio.Communication
                         }
                         {
                             m_comConfList[index].MModel = ENUMDetectorID.UVECOM4.ToString();
+                            if (csManager.FindConn(m_comConfList[index]))
+                            {
+                                return;
+                            }
+                            m_comConfList[index].MList.Clear();
+                        }
+                        {
+                            m_comConfList[index].MModel = ENUMDetectorID.UVHT2.ToString();
                             if (csManager.FindConn(m_comConfList[index]))
                             {
                                 return;

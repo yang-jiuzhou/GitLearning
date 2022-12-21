@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:HBBio.Manual"
         xmlns:share="clr-namespace:HBBio.Share"
         mc:Ignorable="d"
-        Title="{DynamicResource M_PumpSystemWin}" Window.SizeToContent="WidthAndHeight" MinWidth="500" Background="#EEF5FD" Opacity="0.9" AllowsTransparency="True" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="{DynamicResource M_PumpSystemWin}" Window.SizeToContent="WidthAndHeight" MinWidth="500" Background="#EEF5FD" Opacity="0.9" AllowsTransparency="True" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="Slider">
             <EventSetter Event="ValueChanged" Handler="slider_ValueChanged"/>

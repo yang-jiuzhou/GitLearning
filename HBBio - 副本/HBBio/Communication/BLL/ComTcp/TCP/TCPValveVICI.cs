@@ -51,7 +51,7 @@ namespace HBBio.Communication
                         m_item.m_enumNames = EnumBPVInfo.NameList;
                         break;
                     case ENUMValveID.VICI6_AB:
-                        EnumIJVInfo.Init(2);
+                        EnumIJVInfo.Init2();
                         m_item.m_enumNames = EnumIJVInfo.NameList;
                         break;
                     default:
@@ -65,10 +65,10 @@ namespace HBBio.Communication
                                 case ENUMValveName.InB: EnumInBInfo.Init(tempCount); m_item.m_enumNames = EnumInBInfo.NameList; break;
                                 case ENUMValveName.InC: EnumInCInfo.Init(tempCount); m_item.m_enumNames = EnumInCInfo.NameList; break;
                                 case ENUMValveName.InD: EnumInDInfo.Init(tempCount); m_item.m_enumNames = EnumInDInfo.NameList; break;
-                                case ENUMValveName.IJV: EnumIJVInfo.Init(2); m_item.m_enumNames = EnumIJVInfo.NameList; break;
+                                case ENUMValveName.IJV: EnumIJVInfo.Init2(); m_item.m_enumNames = EnumIJVInfo.NameList; break;
                                 case ENUMValveName.BPV: EnumBPVInfo.Init(3); m_item.m_enumNames = EnumBPVInfo.NameList; break;
-                                case ENUMValveName.CPV_1:
-                                case ENUMValveName.CPV_2: EnumCPVInfo.Init(tempCount); m_item.m_enumNames = EnumCPVInfo.NameList; break;
+                                case ENUMValveName.CPV_1: EnumCPVInfo.Init(tempCount); m_item.m_enumNames = EnumCPVInfo.NameList; break;
+                                case ENUMValveName.CPV_2: m_item.m_enumNames = EnumCPVInfo.NameList; break;
                                 case ENUMValveName.Out: EnumOutInfo.Init(tempCount); m_item.m_enumNames = EnumOutInfo.NameList; break;
                             }
                         }              
@@ -240,22 +240,36 @@ namespace HBBio.Communication
                     {
                         if (readStr.Contains("Two-stage"))
                         {
-                            id = ENUMValveID.VICI4_413;
+                            if (readStr.Contains("C52-3344IA"))
+                            {
+                                id = ENUMValveID.VICI4_413;
+                            }
+                            else
+                            {
+                                id = ENUMValveID.VICI8;
+                            }
                             result = true;
                         }
                         else if (readStr.Contains("Single-stage"))
                         {
-                            string str1 = "Single-stage, ";
-                            string str2 = "-port";
-                            int index1 = readStr.IndexOf(str1);
-                            int index2 = readStr.IndexOf(str2);
-                            int idNum = Convert.ToInt32(readStr.Substring(index1 + str1.Length, index2 - index1 - str1.Length));
-                            switch (idNum)
+                            if (readStr.Contains("C62-6154IA"))
                             {
-                                case 4: id = ENUMValveID.VICI4; break;
-                                case 6: id = ENUMValveID.VICI6; break;
-                                case 8: id = ENUMValveID.VICI8; break;
-                                case 10: id = ENUMValveID.VICI10; break;
+                                id = ENUMValveID.VICI4_342;
+                            }
+                            else
+                            {
+                                string str1 = "Single-stage, ";
+                                string str2 = "-port";
+                                int index1 = readStr.IndexOf(str1);
+                                int index2 = readStr.IndexOf(str2);
+                                int idNum = Convert.ToInt32(readStr.Substring(index1 + str1.Length, index2 - index1 - str1.Length));
+                                switch (idNum)
+                                {
+                                    case 4: id = ENUMValveID.VICI4; break;
+                                    case 6: id = ENUMValveID.VICI6; break;
+                                    case 8: id = ENUMValveID.VICI8; break;
+                                    case 10: id = ENUMValveID.VICI10; break;
+                                }
                             }
                             result = true;
                         }

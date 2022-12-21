@@ -31,7 +31,7 @@ namespace HBBio.TubeStand
             InitializeComponent();
 
             this.Owner = parent;
-            this.ShowInTaskbar = false;
+            //this.ShowInTaskbar = false;
         }
 
         /// <summary>

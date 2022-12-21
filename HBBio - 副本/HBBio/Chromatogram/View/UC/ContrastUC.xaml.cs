@@ -515,7 +515,7 @@ namespace HBBio.Chromatogram
         private void menuMarkerAdd_Click(object sender, RoutedEventArgs e)
         {
             MarkerAddWin win = new MarkerAddWin(m_chromatogram.MLines.MUnit);
-            win.ShowInTaskbar = false;
+            //win.ShowInTaskbar = false;
             if (true == win.ShowDialog())
             {
                 AddMarker(win.MMarkerInfo);
@@ -536,7 +536,7 @@ namespace HBBio.Chromatogram
             }
 
             MarkerDelWin win = new MarkerDelWin(markerList);
-            win.ShowInTaskbar = false;
+            //win.ShowInTaskbar = false;
             if (true == win.ShowDialog())
             {
                 for (int i = markerList.Count - 1; i >= 0; i--)

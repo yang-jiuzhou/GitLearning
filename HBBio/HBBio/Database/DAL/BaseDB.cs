@@ -20,7 +20,7 @@ namespace HBBio.Database
      **/
     class BaseDB
     {
-        private const string C_ID = "222";
+        private const string C_ID = "";
         private const string ConfDBName = "HB_LabChrom_ConfDB" + C_ID;
         private const string ComDBName = "HB_LabChrom_ComDB" + C_ID;
         private const string LogDBName = "HB_LabChrom_LogDB" + C_ID;
@@ -30,8 +30,8 @@ namespace HBBio.Database
         public readonly static string LogDB = @"server=" + Environment.MachineName + ";database=" + LogDBName + ";uid=sa;pwd=123;Connection Timeout=5;";
         public readonly static string CurveDB = @"server=" + Environment.MachineName + ";database=" + CurveDBName + ";uid=sa;pwd=123;Connection Timeout=5;";
         public readonly static string DB2 = @"server=" + Environment.MachineName + ";database=master;uid=sa;pwd=123;Connection Timeout=5;";
-        private const string m_path = @"D:\HBSQLDATA222\";             //数据存放路径
-        public const string m_pathError = @"D:\HBErrorDATA222\";       //错误日志存放路径
+        private const string m_path = @"D:\HBSQLDATA\";             //数据存放路径
+        public const string m_pathError = @"D:\HBErrorDATA\";       //错误日志存放路径
 
 
         /// <summary>

@@ -329,7 +329,7 @@ namespace HBBio.AuditTrails
 
                 PrintPreviewWin previewWnd = new PrintPreviewWin(this, doc, pdfSet);
                 previewWnd.Owner = this;
-                previewWnd.ShowInTaskbar = false;
+                //previewWnd.ShowInTaskbar = false;
                 previewWnd.ShowDialog();
                 AuditTrails.AuditTrailsStatic.Instance().InsertRowOperate(this.Title); 
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HBBio.Share;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,7 @@ namespace HBBio.Communication
     /// </summary>
     public partial class CalOEMCDWin : Window
     {
-        public TCPPHCDOEM MItemTCP { get; set; }
-        public ComPHCDOEM MItemCom { get; set; }
+        public ComPHCDOEM MItem { get; set; }
 
         private System.Windows.Threading.DispatcherTimer m_timer = new System.Windows.Threading.DispatcherTimer();
         private bool m_flag = false;
@@ -41,9 +41,9 @@ namespace HBBio.Communication
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (null != MItemTCP || null != MItemCom)
+            if (null != MItem)
             {
-                m_timer.Interval = TimeSpan.FromMilliseconds(500);
+                m_timer.Interval = TimeSpan.FromMilliseconds(DlyBase.c_sleep5);
                 m_timer.Tick += timer1_Tick;
                 m_timer.Start();
             }
@@ -66,16 +66,11 @@ namespace HBBio.Communication
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (null != MItemCom)
+            if (null != MItem)
             {
-                doubleCD.Value = MItemCom.MCdItem.m_CdGet;
-                doubleTT.Value = MItemCom.MTTItem.m_tempGet;
-            }
-            else if (null != MItemTCP)
-            {
-                doubleCD.Value = MItemTCP.MCdItem.m_CdGet;
-                doubleTT.Value = MItemTCP.MTTItem.m_tempGet;
-            }   
+                doubleCD.Value = MItem.MCdItem.m_CdGet;
+                doubleTT.Value = MItem.MTTItem.m_tempGet;
+            } 
         }
 
         /// <summary>
@@ -90,13 +85,9 @@ namespace HBBio.Communication
             btnS3.IsEnabled = false;
             btnS4.IsEnabled = false;
 
-            if (null != MItemCom)
+            if (null != MItem)
             {
-                MItemCom.MCDVal = (double)doubleSS1.Value;
-            }
-            else if (null != MItemTCP)
-            {
-                MItemTCP.MCDVal = (double)doubleSS1.Value;
+                MItem.MCDVal = (double)doubleSS1.Value;
             }
         }
 
@@ -112,13 +103,9 @@ namespace HBBio.Communication
             btnS3.IsEnabled = true;
             btnS4.IsEnabled = false;
 
-            if (null != MItemCom)
+            if (null != MItem)
             {
-                MItemCom.MCDVal = (double)doubleSS2.Value;
-            }
-            else if (null != MItemTCP)
-            {
-                MItemTCP.MCDVal = (double)doubleSS2.Value;
+                MItem.MCDVal = (double)doubleSS2.Value;
             }
         }
 
@@ -134,13 +121,9 @@ namespace HBBio.Communication
             btnS3.IsEnabled = false;
             btnS4.IsEnabled = true;
 
-            if (null != MItemCom)
+            if (null != MItem)
             {
-                MItemCom.MCDVal = (double)doubleSS3.Value;
-            }
-            else if (null != MItemTCP)
-            {
-                MItemTCP.MCDVal = (double)doubleSS3.Value;
+                MItem.MCDVal = (double)doubleSS3.Value;
             }
         }
 
@@ -156,13 +139,9 @@ namespace HBBio.Communication
             btnS3.IsEnabled = false;
             btnS4.IsEnabled = false;
 
-            if (null != MItemCom)
+            if (null != MItem)
             {
-                MItemCom.MCDVal = (double)doubleSS4.Value;
-            }
-            else if (null != MItemTCP)
-            {
-                MItemTCP.MCDVal = (double)doubleSS4.Value;
+                MItem.MCDVal = (double)doubleSS4.Value;
             }
         }
 

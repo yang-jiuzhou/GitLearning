@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HBBio.Communication
@@ -11,8 +12,27 @@ namespace HBBio.Communication
     {
         public double m_maxFlowVol = 0; //最大流速
         public bool m_pause = false;    //是否暂停
-        public double m_flowSet;        //流速(写)
+        public double m_flowSet
+        {
+            get
+            {
+                return _flowSetNew;
+            }
+            set
+            {
+                _flowSetNew = value;
+
+                if (_flowSetNew != _flowSetOld && 0 == _flowSetNew && null != MAre)
+                {
+                    MAre.Set();
+                }
+                _flowSetOld = _flowSetNew;
+            }
+        }
         public double m_flowGet;        //流速(读)
+        public AutoResetEvent MAre { get; set; }
+        private double _flowSetNew = 0;             //流速(写)
+        private double _flowSetOld = 0;             //流速(写)
 
 
         public PumpItem()
@@ -67,6 +87,7 @@ namespace HBBio.Communication
                 case ENUMPumpID.OEM0030: flowMax = 30; break;
                 case ENUMPumpID.OEM0100: flowMax = 100; break;
                 case ENUMPumpID.OEM0300: flowMax = 300; break;
+                case ENUMPumpID.HB0030: flowMax = 30; break;
             }
 
             return flowMax;

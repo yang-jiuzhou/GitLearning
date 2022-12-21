@@ -63,7 +63,8 @@ namespace HBBio.Communication
         VICI_T6,
         VICI_T8,
         VICI_T10,
-        IMI_IJV
+        IMI_IJV,
+        AICIS_231
     }
 
     /// <summary>
@@ -82,7 +83,8 @@ namespace HBBio.Communication
         OEM0030,
         OEM0100,
         OEM0300,
-        WatsonMarlow
+        WatsonMarlow,
+        HB0030
     }
 
     /// <summary>
@@ -98,6 +100,7 @@ namespace HBBio.Communication
         pHCdHamilton,
         UVQBH2,
         UVECOM4,
+        UVHT2,
         RIShodex
     }
 

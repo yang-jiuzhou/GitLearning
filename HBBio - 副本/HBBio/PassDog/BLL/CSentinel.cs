@@ -49,7 +49,7 @@ namespace HBBio.PassDog
             }
             else
             {
-                errorInfo = "登录失败," + status.ToString();
+                errorInfo = RealXmlPassDog.S_LoginFail + "," + status.ToString();
                 return false;
             }
             //2.读信息
@@ -62,7 +62,7 @@ namespace HBBio.PassDog
             }
             else
             {
-                errorInfo = "读信息失败," + status.ToString();
+                errorInfo = RealXmlPassDog.S_ReadFail + "," + status.ToString();
                 return false;
             }
             //3.退出
@@ -70,7 +70,7 @@ namespace HBBio.PassDog
             status = hasp.Logout();
             if (HaspStatus.StatusOk != status)
             {
-                errorInfo = "退出失败," + status.ToString();
+                errorInfo = RealXmlPassDog.S_ExitFail + "," + status.ToString();
                 return false;
             }
             else
@@ -97,7 +97,7 @@ namespace HBBio.PassDog
             }
             else
             {
-                errorInfo = "登录失败," + status.ToString();
+                errorInfo = RealXmlPassDog.S_LoginFail + "," + status.ToString();
                 return false;
             }
             //2.读内存字符串
@@ -111,7 +111,7 @@ namespace HBBio.PassDog
             }
             else
             {
-                errorInfo = "读内存失败," + status.ToString();
+                errorInfo = RealXmlPassDog.S_MemoryFail + "," + status.ToString();
                 return false;
             }
             //3.退出
@@ -119,7 +119,7 @@ namespace HBBio.PassDog
             status = hasp.Logout();
             if (HaspStatus.StatusOk != status)
             {
-                errorInfo = "退出失败," + status.ToString();
+                errorInfo = RealXmlPassDog.S_ExitFail + "," + status.ToString();
                 return false;
             }
             else
@@ -143,7 +143,7 @@ namespace HBBio.PassDog
             }
             else
             {
-                errorInfo = "序列号对比失败";
+                errorInfo = RealXmlPassDog.S_SNFail;
                 return false;
             }
             return true;

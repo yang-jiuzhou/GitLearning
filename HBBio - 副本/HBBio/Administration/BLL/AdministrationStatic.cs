@@ -109,7 +109,9 @@ namespace HBBio.Administration
         /// </summary>
         private AdministrationStatic()
         {
-            
+            AdministrationManager administrationManager = new AdministrationManager();
+            administrationManager.GetTactics(out m_tacticsInfo);
+            administrationManager.GetSignerReviewer(out m_signerReviewerInfo);
         }
 
         /// <summary>
@@ -127,16 +129,6 @@ namespace HBBio.Administration
         public static AdministrationStatic Instance()
         {
             return AdministrationStaticInstance.s_instance;
-        }
-
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        public void Init()
-        {
-            AdministrationManager administrationManager = new AdministrationManager();
-            administrationManager.GetTactics(out m_tacticsInfo);
-            administrationManager.GetSignerReviewer(out m_signerReviewerInfo);
         }
 
         /// <summary>

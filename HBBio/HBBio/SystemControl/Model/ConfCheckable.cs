@@ -37,7 +37,28 @@ namespace HBBio.SystemControl
         /// </summary>
         private ConfCheckable()
         {
+            GetConfCheckable(this);
+        }
 
+        public void GetConfCheckable(ConfCheckable item)
+        {
+            ConfCheckableTable table = new ConfCheckableTable();
+            table.GetRow(item);
+
+            SetLanguage(item.MEnumLanguage);
+        }
+
+        public void SetLanguage(EnumLanguage language)
+        {
+            switch (language)
+            {
+                case EnumLanguage.Chinese:
+                    LanguageHelper.LoadLanguageFile("/Bio-LabChrom;component/Dictionary/zh-cn.xaml");
+                    break;
+                case EnumLanguage.English:
+                    LanguageHelper.LoadLanguageFile("/Bio-LabChrom;component/Dictionary/en-us.xaml");
+                    break;
+            }
         }
     }
 }

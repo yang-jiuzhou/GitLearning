@@ -12,6 +12,8 @@ namespace HBBio.Communication
     {
         private PumpItem m_pumpItem = new PumpItem();
         private PTItem m_ptItem = new PTItem();
+        private bool m_run = false;                     //是否正在运行
+
         private int MID
         {
             get

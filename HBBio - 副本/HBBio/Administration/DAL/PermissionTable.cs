@@ -32,10 +32,6 @@ namespace HBBio.Administration
         /// <returns></returns>
         protected override string AddDefaultValue()
         {
-            InsertRow(PermissionInfo.GetDefault(EnumPermissionName.Admin));
-            InsertRow(PermissionInfo.GetDefault(EnumPermissionName.IT));
-            InsertRow(PermissionInfo.GetDefault(EnumPermissionName.OPER));
-            InsertRow(PermissionInfo.GetDefault(EnumPermissionName.QA));
             return null;
         }
 
@@ -294,6 +290,18 @@ namespace HBBio.Administration
             }
 
             return error;
+        }
+
+        /// <summary>
+        /// 添加默认权限
+        /// </summary>
+        /// <returns></returns>
+        public void AddDefault()
+        {
+            InsertRow(PermissionInfo.GetDefault(EnumPermissionName.Admin));
+            InsertRow(PermissionInfo.GetDefault(EnumPermissionName.IT));
+            InsertRow(PermissionInfo.GetDefault(EnumPermissionName.OPER));
+            InsertRow(PermissionInfo.GetDefault(EnumPermissionName.QA));
         }
     }
 }

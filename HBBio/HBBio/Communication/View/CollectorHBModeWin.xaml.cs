@@ -22,8 +22,7 @@ namespace HBBio.Communication
     /// </summary>
     public partial class CollectorHBModeWin : Window
     {
-        public TCPCollectorHB MItemTCP { get; set; }
-        public ComCollectorHB MItemCom { get; set; }
+        public ComCollectorHB MItem { get; set; }
         public ENUMCollectorID MMode { get; set; }
 
 
@@ -77,19 +76,19 @@ namespace HBBio.Communication
             double volR = 0;
             ConfCollectorVM item = (ConfCollectorVM)this.DataContext;
 
-            if (null != MItemCom)
+            if (null != MItem)
             {
-                MItemCom.ThreadStatus(ENUMThreadStatus.Free);
+                MItem.ThreadStatus(ENUMThreadStatus.Free);
 
-                while (ENUMCommunicationState.Free != MItemCom.m_communState)
+                while (ENUMCommunicationState.Free != MItem.m_communState)
                 {
                     Thread.Sleep(DlyBase.c_sleep1);
                     DispatcherHelper.DoEvents();
                 }
 
-                if (MItemCom.Connect())
+                if (MItem.Connect())
                 {
-                    if (MItemCom.ReadStatus(ref left, ref index, ref on, ref countL, ref countR, ref modeL, ref modeR, ref volL, ref volR))
+                    if (MItem.ReadStatus(ref left, ref index, ref on, ref countL, ref countR, ref modeL, ref modeR, ref volL, ref volR))
                     {
                         item.MCountL = countL;
                         item.MCountR = countR;
@@ -97,35 +96,10 @@ namespace HBBio.Communication
                         item.MModeR = modeR;
                         EnumCollectorInfo.Init(Convert.ToInt32(txtGetL.Text), Convert.ToInt32(txtGetR.Text));
                     }
-                    MItemCom.Close();
+                    MItem.Close();
                 }
 
-                MItemCom.ThreadStatus(ENUMThreadStatus.WriteOrRead);
-            }
-            else if (null != MItemTCP)
-            {
-                MItemTCP.ThreadStatus(ENUMThreadStatus.Free);
-
-                while (ENUMCommunicationState.Free != MItemTCP.m_communState)
-                {
-                    Thread.Sleep(DlyBase.c_sleep1);
-                    DispatcherHelper.DoEvents();
-                }
-
-                if (MItemTCP.Connect())
-                {
-                    if (MItemTCP.ReadStatus(ref left, ref index, ref on, ref countL, ref countR, ref modeL, ref modeR, ref volL, ref volR))
-                    {
-                        item.MCountL = countL;
-                        item.MCountR = countR;
-                        item.MModeL = modeL;
-                        item.MModeR = modeR;
-                        EnumCollectorInfo.Init(Convert.ToInt32(txtGetL.Text), Convert.ToInt32(txtGetR.Text));
-                    }
-                    MItemTCP.Close();
-                }
-
-                MItemTCP.ThreadStatus(ENUMThreadStatus.WriteOrRead);
+                MItem.ThreadStatus(ENUMThreadStatus.WriteOrRead);
             }
         }
 

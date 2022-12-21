@@ -83,7 +83,7 @@ namespace HBBio.SystemControl
             SystemControlManager.Start();
 
             //登录窗口
-            LoginWin win = new LoginWin(null);
+            LoginWin win = new LoginWin();
             win.MAddUser += DlyAddProjectNode;
             win.MSelfCheck += DlySelfCheck;
             if (true == win.ShowDialog())
@@ -165,7 +165,7 @@ namespace HBBio.SystemControl
             timer.Start();
 
             m_winAW.Visibility = Visibility.Hidden;
-            m_winAW.ShowInTaskbar = false;
+            //m_winAW.ShowInTaskbar = false;
 
             m_screenLockWin.Owner = this;
         }
@@ -1689,7 +1689,7 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void menuChinese_Click(object sender, RoutedEventArgs e)
         {
-            SystemControlManager.SetLanguage(EnumLanguage.Chinese);
+            SystemControlManager.s_confCheckable.SetLanguage(EnumLanguage.Chinese);
 
             AuditTrailsStatic.Instance().InsertRowSystem(menuLanguage.Header.ToString(), menuChinese.Header.ToString());
         }
@@ -1701,7 +1701,7 @@ namespace HBBio.SystemControl
         /// <param name="e"></param>
         private void menuEnglish_Click(object sender, RoutedEventArgs e)
         {
-            SystemControlManager.SetLanguage(EnumLanguage.English);
+            SystemControlManager.s_confCheckable.SetLanguage(EnumLanguage.English);
 
             AuditTrailsStatic.Instance().InsertRowSystem(menuLanguage.Header.ToString(), menuEnglish.Header.ToString());
         }

@@ -29,7 +29,7 @@ namespace HBBio.Administration
             InitializeComponent();
 
             this.Owner = parent;
-            this.ShowInTaskbar = false;
+            //this.ShowInTaskbar = false;
         }
 
         /// <summary>
@@ -106,6 +106,8 @@ namespace HBBio.Administration
             }
 
             AdministrationManager manager = new AdministrationManager();
+            manager.AddDefault();
+
             PermissionInfo permissionItem = null;
             string error = manager.GetPermission(txtPermission.Text, out permissionItem);
             if (null != error || null == permissionItem)

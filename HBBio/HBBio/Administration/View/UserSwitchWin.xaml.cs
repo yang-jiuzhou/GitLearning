@@ -39,7 +39,7 @@ namespace HBBio.Administration
             InitializeComponent();
 
             this.Owner = parent;
-            this.ShowInTaskbar = false;
+            //this.ShowInTaskbar = false;
 
             m_userName = userName;
             m_pwd = pwd;

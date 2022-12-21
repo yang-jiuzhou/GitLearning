@@ -438,7 +438,7 @@
     <s:String x:Key="SC_AboutWin">About</s:String>
     <s:String x:Key="SC_ProductionInformation">Product Information</s:String>
     <s:String x:Key="SC_Production">Product : Hanbon Bio-LabChrom</s:String>
-    <s:String x:Key="SC_Version">Version : 2.2.2</s:String>
+    <s:String x:Key="SC_Version">Version : 2.2.4</s:String>
     <s:String x:Key="SC_Website">Website : www.hanbon.com.cn</s:String>
 
     <!--倒计时-->
@@ -476,7 +476,7 @@
     <s:String x:Key="A_Reviewer">Review</s:String>
 
     <s:String x:Key="A_LoginWin">Login</s:String>
-    <s:String x:Key="A_Version">Bio-Lab system V2.2.2</s:String>
+    <s:String x:Key="A_Version">Bio-Lab system V2.2.4</s:String>
     <s:String x:Key="A_PwdLogin">Login Password</s:String>
     <s:String x:Key="A_PwdLogin1" xml:space="preserve">Login Password :</s:String>
     <s:String x:Key="A_Register">Register</s:String>
@@ -488,6 +488,7 @@
     <s:String x:Key="A_PermissionOPER">OPER</s:String>
     <s:String x:Key="A_PermissionQA">QA</s:String>
     <s:String x:Key="A_DefaultPermission">Default Permission</s:String>
+    <s:String x:Key="A_AllPermission">The highest authority</s:String>
 
     <s:String x:Key="A_PermissionEditWin">Edit Permission</s:String>
 
@@ -1399,7 +1400,12 @@
     <s:String x:Key="PassDog_CheckSuccess">SN Check Success!</s:String>
     <s:String x:Key="PassDog_CheckFail">SN Check Fail!</s:String>
     <s:String x:Key="PassDog_UpdateSuccess">SN Update Success!</s:String>
-    <s:String x:Key="PassDog_UpdateFail">SN Update Fai!</s:String>
+    <s:String x:Key="PassDog_UpdateFail">SN Update Fail!</s:String>
+    <s:String x:Key="PassDog_LoginFail">Login Fail</s:String>
+    <s:String x:Key="PassDog_ReadFail">Read Fail</s:String>
+    <s:String x:Key="PassDog_ExitFail">Exit Fail</s:String>
+    <s:String x:Key="PassDog_MemoryFail">Memory Fail</s:String>
+    <s:String x:Key="PassDog_SNFail">SN Fail</s:String>
     
     
     

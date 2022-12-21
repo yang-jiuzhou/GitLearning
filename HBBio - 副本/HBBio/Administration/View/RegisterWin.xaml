@@ -45,7 +45,7 @@
             <TextBlock x:Name="labPermissionName" Grid.Column="0" Grid.Row="4" Text="{DynamicResource A_PermissionName1}"/>
             <TextBox x:Name="txtPermission" Grid.Column="2" Grid.Row="4" IsReadOnly="True" Text="{DynamicResource A_PermissionAdmin}"/>
             <TextBlock x:Name="labPermissionNote" Grid.Column="0" Grid.Row="6" Text="{DynamicResource labNote1}"/>
-            <TextBox x:Name="txtPermissionNote" Grid.Column="2" Grid.Row="6" Text="拥有最高权限" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="80"/>
+            <TextBox x:Name="txtPermissionNote" Grid.Column="2" Grid.Row="6" Text="{DynamicResource A_AllPermission}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="80"/>
             <TextBlock Grid.Column="0" Grid.Row="8" Text="{DynamicResource A_PwdLogin1}"/>
             <PasswordBox x:Name="pwdPwd" Grid.Column="2" Grid.Row="8">
                 <PasswordBox.CommandBindings>

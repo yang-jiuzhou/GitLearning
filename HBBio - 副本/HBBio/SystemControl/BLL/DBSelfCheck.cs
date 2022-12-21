@@ -13,6 +13,7 @@ using HBBio.Manual;
 using HBBio.PassDog;
 using HBBio.TubeStand;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HBBio.SystemControl
 {
@@ -24,19 +25,39 @@ namespace HBBio.SystemControl
      * Author:  yangjiuzhou
      * Company: jshanbon
      **/
-    class DBSelfCheck
+    public class DBSelfCheck
     {
+        private static class DBSelfCheckInner
+        {
+            public static DBSelfCheck _stance = new DBSelfCheck();
+        }
+
+        /// <summary>
+        /// 单例引用
+        /// </summary>
+        /// <returns></returns>
+        public static DBSelfCheck GetInstance()
+        {
+            return DBSelfCheckInner._stance;
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        private DBSelfCheck()
+        {
+            InitFirst();
+        }
+
         /// <summary>
         /// 登录检查
         /// </summary>
-        public void InitFirst()
+        private void InitFirst()
         {
             BaseDB baseDB = new BaseDB();
             if (!baseDB.ExistFileFolder())
             {
-                baseDB.CreateAll();
-
-                CreateAllTable();
+                CreateAll();
             }
             else
             {
@@ -48,11 +69,24 @@ namespace HBBio.SystemControl
         /// <summary>
         /// 创建所有数据
         /// </summary>
-        public void CreateAll()
+        private void CreateAll()
         {
             CreateAllDB();
-            //CreateAllTable();
-            CheckAllTable();
+            CreateAllTable();
+        }
+
+        /// <summary>
+        /// 修复所有数据
+        /// </summary>
+        public void CheckAll()
+        {
+            Task task = new Task(() =>
+            {
+                CreateAllDB();
+                System.Threading.Thread.Sleep(10000);
+                CheckAllTable();
+            });
+            task.Start();
         }
 
         /// <summary>
