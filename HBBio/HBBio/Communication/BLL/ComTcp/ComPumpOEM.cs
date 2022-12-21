@@ -455,7 +455,7 @@ namespace HBBio.Communication
                     m_WriteByte = Encoding.ASCII.GetBytes("^Pump" + type + "RateMST0000000$");
                 }
 
-                write(m_WriteByte.Length);
+                write(m_WriteByte.Length, 0);
 
                 Thread.Sleep(DlyBase.c_sleep2);
             }
