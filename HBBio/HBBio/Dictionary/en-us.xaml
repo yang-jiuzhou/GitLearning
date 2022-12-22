@@ -339,6 +339,7 @@
         <s:String x:Key="menuLanguage">Language</s:String>
             <s:String x:Key="menuChinese">Chinese</s:String>
             <s:String x:Key="menuEnglish">English</s:String>
+            <s:String x:Key="menuRussian">Russian</s:String>
         <s:String x:Key="menuWindowSize">Window Size</s:String>
             <s:String x:Key="menuRemember">Remember</s:String>
         <s:String x:Key="menuUserSwitch">User Switch</s:String>

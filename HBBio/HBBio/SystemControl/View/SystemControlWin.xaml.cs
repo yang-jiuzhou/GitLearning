@@ -1707,6 +1707,18 @@ namespace HBBio.SystemControl
         }
 
         /// <summary>
+        /// 系统-语言-俄文
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuRussian_Click(object sender, RoutedEventArgs e)
+        {
+            SystemControlManager.s_confCheckable.SetLanguage(EnumLanguage.Russian);
+
+            AuditTrailsStatic.Instance().InsertRowSystem(menuLanguage.Header.ToString(), menuRussian.Header.ToString());
+        }
+
+        /// <summary>
         /// 系统-窗体尺寸-记忆
         /// </summary>
         /// <param name="sender"></param>

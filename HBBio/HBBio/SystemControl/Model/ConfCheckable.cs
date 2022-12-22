@@ -9,7 +9,8 @@ namespace HBBio.SystemControl
     public enum EnumLanguage
     {
         Chinese,
-        English
+        English,
+        Russian
     }
 
     public class ConfCheckable
@@ -57,6 +58,9 @@ namespace HBBio.SystemControl
                     break;
                 case EnumLanguage.English:
                     LanguageHelper.LoadLanguageFile("/Bio-LabChrom;component/Dictionary/en-us.xaml");
+                    break;
+                case EnumLanguage.Russian:
+                    LanguageHelper.LoadLanguageFile("/Bio-LabChrom;component/Dictionary/ru.xaml");
                     break;
             }
         }

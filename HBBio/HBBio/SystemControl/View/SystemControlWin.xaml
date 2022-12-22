@@ -24,6 +24,7 @@
                         </MenuItem.Icon>
                         <MenuItem x:Name="menuChinese" Header="{DynamicResource menuChinese}" IsCheckable="True" IsChecked="{Binding Path=MEnumLanguage,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static local:EnumLanguage.Chinese}}" Click="menuChinese_Click"/>
                         <MenuItem x:Name="menuEnglish" Header="{DynamicResource menuEnglish}" IsCheckable="True" IsChecked="{Binding Path=MEnumLanguage,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static local:EnumLanguage.English}}" Click="menuEnglish_Click"/>
+                        <MenuItem x:Name="menuRussian" Header="{DynamicResource menuRussian}" IsCheckable="True" IsChecked="{Binding Path=MEnumLanguage,Converter={StaticResource EnumBoolConverter},ConverterParameter={x:Static local:EnumLanguage.Russian}}" Click="menuRussian_Click"/>
                     </MenuItem>
                     <MenuItem Header="{DynamicResource menuWindowSize}">
                         <MenuItem.Icon>

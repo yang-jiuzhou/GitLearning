@@ -339,6 +339,7 @@
         <s:String x:Key="menuLanguage">语言</s:String>
             <s:String x:Key="menuChinese">中文</s:String>
             <s:String x:Key="menuEnglish">英文</s:String>
+            <s:String x:Key="menuRussian">俄文</s:String>
         <s:String x:Key="menuWindowSize">窗体尺寸</s:String>
             <s:String x:Key="menuRemember">记忆</s:String>
         <s:String x:Key="menuUserSwitch">用户切换</s:String>
