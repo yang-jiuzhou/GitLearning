@@ -52,56 +52,58 @@
             </TreeView>
             <TabControl x:Name="tabControl" Grid.Column="2">
                 <TabItem x:Name="tabPumpSystem" Header="{DynamicResource M_PumpSystem}">
-                    <Grid x:Name="gridPump" Margin="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="1"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="1"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="labLength" Grid.Row="0" Grid.Column="0" Text="{DynamicResource LabLength1}"/>
-                        <xctk:DoubleUpDown x:Name="doubleLength" Grid.Row="0" Grid.Column="2" Minimum="0.01" Value="{Binding MLength}"/>
-                        <TextBlock x:Name="labLengthUnit" Grid.Row="0" Grid.Column="4" Text="{DynamicResource LabUnit1}"/>
-                        <ComboBox x:Name="cboxLengthUnit" Grid.Row="0" Grid.Column="6" DisplayMemberPath="MName" SelectedValuePath="MMode" SelectedValue="{Binding MLengthUnit}"/>
-                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                            <TextBlock x:Name="labFlow" Text="{DynamicResource labFlowRate}"/>
-                            <TextBlock x:Name="labFlowMax"/>
-                            <TextBlock Text=" : "/>
-                        </StackPanel>
-                        <xctk:DoubleUpDown x:Name="doubleFlow" Grid.Row="2" Grid.Column="2" Value="{Binding MFlow}"/>
-                        <TextBlock x:Name="labFlowUnit" Grid.Row="2" Grid.Column="4" Text="{DynamicResource ME_FlowRateUnit1}"/>
-                        <ComboBox x:Name="cboxFlowUnit" Grid.Row="2" Grid.Column="6" DisplayMemberPath="MName" SelectedValuePath="MMode" SelectedValue="{Binding MFlowUnit}" SelectionChanged="cboxFlowUnit_SelectionChanged"/>
-                        <TextBlock x:Name="labBS" Grid.Row="4" Grid.Column="0" Text="{DynamicResource LabBS1}"/>
-                        <xctk:DoubleUpDown x:Name="doubleBS" Grid.Row="4" Grid.Column="2" Maximum="100" Value="{Binding MBS}"/>
-                        <TextBlock x:Name="labBE" Grid.Row="4" Grid.Column="4" Text="{DynamicResource LabBE1}"/>
-                        <xctk:DoubleUpDown x:Name="doubleBE" Grid.Row="4" Grid.Column="6" Maximum="100" Value="{Binding MBE}"/>
-                        <TextBlock x:Name="labCS" Grid.Row="6" Grid.Column="0" Text="{DynamicResource LabCS1}"/>
-                        <xctk:DoubleUpDown x:Name="doubleCS" Grid.Row="6" Grid.Column="2" Maximum="100" Value="{Binding MCS}"/>
-                        <TextBlock x:Name="labCE" Grid.Row="6" Grid.Column="4" Text="{DynamicResource LabCE1}"/>
-                        <xctk:DoubleUpDown x:Name="doubleCE" Grid.Row="6" Grid.Column="6" Maximum="100" Value="{Binding MCE}"/>
-                        <TextBlock x:Name="labDS" Grid.Row="8" Grid.Column="0" Text="{DynamicResource LabDS1}"/>
-                        <xctk:DoubleUpDown x:Name="doubleDS" Grid.Row="8" Grid.Column="2" Maximum="100" Value="{Binding MDS}"/>
-                        <TextBlock x:Name="labDE" Grid.Row="8" Grid.Column="4" Text="{DynamicResource LabDE1}"/>
-                        <xctk:DoubleUpDown x:Name="doubleDE" Grid.Row="8" Grid.Column="6" Maximum="100" Value="{Binding MDE}"/>
-                        <CheckBox x:Name="chboxPT" Grid.Row="10" Grid.Column="0" Content="{DynamicResource LabControlPT}" IsChecked="{Binding MEnablePT}"/>
-                        <xctk:DoubleUpDown x:Name="doublePT" Grid.Row="10" Grid.Column="2" Value="{Binding MControlPT}" IsEnabled="{Binding ElementName=chboxPT,Path=IsChecked}"/>
-                    </Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid x:Name="gridPump" Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="1"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="1"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="labLength" Grid.Row="0" Grid.Column="0" Text="{DynamicResource LabLength1}"/>
+                            <xctk:DoubleUpDown x:Name="doubleLength" Grid.Row="0" Grid.Column="2" Minimum="0.01" Value="{Binding MLength}"/>
+                            <TextBlock x:Name="labLengthUnit" Grid.Row="0" Grid.Column="4" Text="{DynamicResource LabUnit1}"/>
+                            <ComboBox x:Name="cboxLengthUnit" Grid.Row="0" Grid.Column="6" DisplayMemberPath="MName" SelectedValuePath="MMode" SelectedValue="{Binding MLengthUnit}"/>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                                <TextBlock x:Name="labFlow" Text="{DynamicResource labFlowRate}"/>
+                                <TextBlock x:Name="labFlowMax"/>
+                                <TextBlock Text=" : "/>
+                            </StackPanel>
+                            <xctk:DoubleUpDown x:Name="doubleFlow" Grid.Row="2" Grid.Column="2" Value="{Binding MFlow}"/>
+                            <TextBlock x:Name="labFlowUnit" Grid.Row="2" Grid.Column="4" Text="{DynamicResource ME_FlowRateUnit1}"/>
+                            <ComboBox x:Name="cboxFlowUnit" Grid.Row="2" Grid.Column="6" DisplayMemberPath="MName" SelectedValuePath="MMode" SelectedValue="{Binding MFlowUnit}" SelectionChanged="cboxFlowUnit_SelectionChanged"/>
+                            <TextBlock x:Name="labBS" Grid.Row="4" Grid.Column="0" Text="{DynamicResource LabBS1}"/>
+                            <xctk:DoubleUpDown x:Name="doubleBS" Grid.Row="4" Grid.Column="2" Maximum="100" Value="{Binding MBS}"/>
+                            <TextBlock x:Name="labBE" Grid.Row="4" Grid.Column="4" Text="{DynamicResource LabBE1}"/>
+                            <xctk:DoubleUpDown x:Name="doubleBE" Grid.Row="4" Grid.Column="6" Maximum="100" Value="{Binding MBE}"/>
+                            <TextBlock x:Name="labCS" Grid.Row="6" Grid.Column="0" Text="{DynamicResource LabCS1}"/>
+                            <xctk:DoubleUpDown x:Name="doubleCS" Grid.Row="6" Grid.Column="2" Maximum="100" Value="{Binding MCS}"/>
+                            <TextBlock x:Name="labCE" Grid.Row="6" Grid.Column="4" Text="{DynamicResource LabCE1}"/>
+                            <xctk:DoubleUpDown x:Name="doubleCE" Grid.Row="6" Grid.Column="6" Maximum="100" Value="{Binding MCE}"/>
+                            <TextBlock x:Name="labDS" Grid.Row="8" Grid.Column="0" Text="{DynamicResource LabDS1}"/>
+                            <xctk:DoubleUpDown x:Name="doubleDS" Grid.Row="8" Grid.Column="2" Maximum="100" Value="{Binding MDS}"/>
+                            <TextBlock x:Name="labDE" Grid.Row="8" Grid.Column="4" Text="{DynamicResource LabDE1}"/>
+                            <xctk:DoubleUpDown x:Name="doubleDE" Grid.Row="8" Grid.Column="6" Maximum="100" Value="{Binding MDE}"/>
+                            <CheckBox x:Name="chboxPT" Grid.Row="10" Grid.Column="0" Content="{DynamicResource LabControlPT}" IsChecked="{Binding MEnablePT}"/>
+                            <xctk:DoubleUpDown x:Name="doublePT" Grid.Row="10" Grid.Column="2" Value="{Binding MControlPT}" IsEnabled="{Binding ElementName=chboxPT,Path=IsChecked}"/>
+                        </Grid>
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem x:Name="tabPumpSample" Header="{DynamicResource M_PumpSample}">
                     <Grid x:Name="gridPumpSample" Margin="5">

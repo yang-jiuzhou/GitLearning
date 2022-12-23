@@ -28,14 +28,10 @@ namespace HBBio.Administration
         /// </summary>
         private Random _random = new Random();
 
-        private int _length = 100;
-
-        //布局宽490 高210 显示宽430 高180
-        //阵距4行8列 点之间的距离 X轴Y轴都是70
         /// <summary>
         /// 点信息阵距
         /// </summary>
-        private PointInfo[,] _points = new PointInfo[8, 4];
+        private PointInfo[,] _points = new PointInfo[11, 6];
 
         /// <summary>
         /// 计时器
@@ -71,19 +67,10 @@ namespace HBBio.Administration
         public LoginWin()
         {
             InitializeComponent();
-        }
 
-        /// <summary>
-        /// 加载界面
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //注册帧动画           
+            //注册帧动画
             _timer.Tick += new EventHandler(PolyAnimation);
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 45);//一秒钟刷新24次
-            _timer.Start();
         }
 
         /// <summary>
@@ -94,6 +81,18 @@ namespace HBBio.Administration
         private void Window_Closed(object sender, EventArgs e)
         {
             _timer.Stop();
+        }
+
+        /// <summary>
+        /// 窗体尺寸变化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _timer.Stop();
+            Init();
+            _timer.Start();
         }
 
         /// <summary>
@@ -293,7 +292,8 @@ namespace HBBio.Administration
         /// </summary>
         private void Init()
         {
-            _points = new PointInfo[(int)this.ActualWidth / _length + 2, (int)this.ActualHeight / _length + 2];
+            double lengthX = layout.ActualWidth / 10;
+            double lengthY = layout.ActualHeight / 5;
 
             //生成阵距的点
             for (int i = 0; i < _points.GetLength(0); i++)
@@ -304,8 +304,8 @@ namespace HBBio.Administration
                     double y = _random.Next(-6, 6);
                     _points[i, j] = new PointInfo()
                     {
-                        X = i * _length,
-                        Y = j * _length,
+                        X = i * lengthX,
+                        Y = j * lengthY,
                         SpeedX = x / 24,
                         SpeedY = y / 24,
                         DistanceX = _random.Next(35, 106),
@@ -430,13 +430,6 @@ namespace HBBio.Administration
                     }
                 }
             }
-        }
-
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            _timer.Stop();
-            Init();
-            _timer.Start();
         }
     }
 

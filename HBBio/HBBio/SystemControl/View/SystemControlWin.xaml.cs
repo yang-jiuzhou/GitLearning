@@ -134,6 +134,7 @@ namespace HBBio.SystemControl
             //设置配置
             menuChinese.DataContext = SystemControlManager.s_confCheckable;
             menuEnglish.DataContext = SystemControlManager.s_confCheckable;
+            menuRussian.DataContext = SystemControlManager.s_confCheckable;
             menuRemember.DataContext = SystemControlManager.s_confCheckable;
 
             //设置内容显隐

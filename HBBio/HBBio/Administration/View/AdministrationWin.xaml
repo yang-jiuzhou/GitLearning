@@ -16,11 +16,11 @@
                         <Button x:Name="btnEditUser" Margin="5,0" Content="{DynamicResource btnEdit}" Click="btnEditUser_Click"/>
                         <Button x:Name="btnDelUser" Margin="5,0" Content="{DynamicResource btnDel}" Click="btnDelUser_Click"/>
                     </StackPanel>
-                    <DataGrid x:Name="dgvUser" ColumnWidth="*" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" MouseDoubleClick="dgvUser_MouseDoubleClick">
+                    <DataGrid x:Name="dgvUser" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" MouseDoubleClick="dgvUser_MouseDoubleClick">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="{DynamicResource A_UserName}" Binding="{Binding MUserName}"/>
                             <DataGridTextColumn Header="{DynamicResource A_PermissionName}" Binding="{Binding MPermissionName}"/>
-                            <DataGridTextColumn Header="{DynamicResource labNote}" Binding="{Binding MNote}"/>
+                            <DataGridTextColumn Width="*" Header="{DynamicResource labNote}" Binding="{Binding MNote}"/>
                             <DataGridTextColumn Header="{DynamicResource A_Validity}" Binding="{Binding MDaysRemaining}"/>
                             <DataGridTextColumn Header="{DynamicResource labStatus}" Binding="{Binding MStatus}"/>
                         </DataGrid.Columns>
@@ -42,46 +42,69 @@
                 </DockPanel>
             </TabItem>
             <TabItem x:Name="tabItemTactics" Header="{DynamicResource A_Tactics}">
-                <DockPanel Margin="5" Visibility="{Binding ElementName=tabItemTactics,Path=Visibility}">
-                    <StackPanel DockPanel.Dock="Top" Margin="0,5" Orientation="Horizontal">
-                        <Button x:Name="btnEditTactics" Margin="5,0" Content="{DynamicResource btnEdit}" Click="btnEditTactics_Click"/>
-                    </StackPanel>
-                    <DataGrid x:Name="dgvTactics" ColumnWidth="*" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" MouseDoubleClick="dgvTactics_MouseDoubleClick">
+                <Grid Margin="5" Visibility="{Binding ElementName=tabItemTactics,Path=Visibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnEditTactics" Grid.Row="0" HorizontalAlignment="Left" Content="{DynamicResource btnEdit}" Click="btnEditTactics_Click"/>
+                    <DataGrid x:Name="dgvTactics" Grid.Row="2" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" MouseDoubleClick="dgvTactics_MouseDoubleClick">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="{DynamicResource A_TacticsName}" Binding="{Binding MColumnName}"/>
-                            <DataGridTextColumn Header="{DynamicResource labSet}" Binding="{Binding MColumnValue}"/>
+                            <DataGridTextColumn Width="2*" Header="{DynamicResource A_TacticsName}" Binding="{Binding MColumnName}"/>
+                            <DataGridTextColumn Width="*" Header="{DynamicResource labSet}" Binding="{Binding MColumnValue}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                </DockPanel>
+                </Grid>
             </TabItem>
             <TabItem x:Name="tabItemSignerReviewer" Header="{DynamicResource A_SignerReviewer}">
-                <DockPanel Margin="5" Visibility="{Binding ElementName=tabItemSignerReviewer,Path=Visibility}">
-                    <Grid DockPanel.Dock="Top" Margin="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <Button x:Name="btnEditSignerReviewer"  Content="{DynamicResource btnModify}" Click="btnEditSignerReviewer_Click"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <share:IconButton x:Name="btnSignatureClear" Margin="15,0" MinHeight="25" ImageHeight="25" Height="25" MinWidth="25" ImageWidth="25" Width="25" ToolTip="{DynamicResource btnClear}" Click="btnSignatureClear_Click" Image="/Bio-LabChrom;component/Image/selectNull.png"/>
-                            <share:IconButton x:Name="btnSignatureAll" Margin="15,0" MinHeight="25" ImageHeight="25" Height="25" MinWidth="25" ImageWidth="25" Width="25" ToolTip="{DynamicResource btnSelectAll}" Click="btnSignatureAll_Click" Image="/Bio-LabChrom;component/Image/selectAll.png"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Orientation="Horizontal">
-                            <share:IconButton x:Name="btnReviewerClear" Margin="15,0" MinHeight="25" ImageHeight="25" Height="25" MinWidth="25" ImageWidth="25" Width="25" ToolTip="{DynamicResource btnClear}" Click="btnReviewerClear_Click" Image="/Bio-LabChrom;component/Image/selectNull.png"/>
-                            <share:IconButton x:Name="btnReviewerAll" Margin="15,0" MinHeight="25" ImageHeight="25" Height="25" MinWidth="25" ImageWidth="25" Width="25" ToolTip="{DynamicResource btnSelectAll}" Click="btnReviewerAll_Click" Image="/Bio-LabChrom;component/Image/selectAll.png"/>
-                        </StackPanel>
-                    </Grid>
-                    <DataGrid x:Name="dgvSignerReviewer" ColumnWidth="*" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" MouseUp="dgvSignerReviewer_MouseUp">
+                <Grid Margin="5" Visibility="{Binding ElementName=tabItemSignerReviewer,Path=Visibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnEditSignerReviewer" Grid.Row="0" HorizontalAlignment="Left" Content="{DynamicResource btnModify}" Click="btnEditSignerReviewer_Click"/>
+                    <DataGrid x:Name="dgvSignerReviewer" Grid.Row="2" IsReadOnly="True" CanUserReorderColumns="False" CanUserSortColumns="False" MouseUp="dgvSignerReviewer_MouseUp">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="{DynamicResource A_SignerReviewerName}" Binding="{Binding MName}"/>
-                            <DataGridCheckBoxColumn Header="{DynamicResource A_Signature}" Binding="{Binding MSigner}"/>
-                            <DataGridCheckBoxColumn Header="{DynamicResource A_Reviewer}" Binding="{Binding MReviewer}"/>
+                            <DataGridTextColumn Width="*" Header="{DynamicResource A_SignerReviewerName}" Binding="{Binding MName}"/>
+                            <DataGridCheckBoxColumn Binding="{Binding MSigner}">
+                                <DataGridCheckBoxColumn.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="15"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="15"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{DynamicResource A_Signature}"/>
+                                        <share:IconButton Grid.Column="2" MinHeight="20" ImageHeight="20" Height="20" MinWidth="20" ImageWidth="20" Width="20" ToolTip="{DynamicResource btnClear}" Click="btnSignatureClear_Click" Image="/Bio-LabChrom;component/Image/selectNull.png"/>
+                                        <share:IconButton Grid.Column="4" MinHeight="20" ImageHeight="20" Height="20" MinWidth="20" ImageWidth="20" Width="20" ToolTip="{DynamicResource btnSelectAll}" Click="btnSignatureAll_Click" Image="/Bio-LabChrom;component/Image/selectAll.png"/>
+                                    </Grid>
+                                </DataGridCheckBoxColumn.Header>
+                            </DataGridCheckBoxColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding MReviewer}">
+                                <DataGridCheckBoxColumn.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="15"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="15"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{DynamicResource A_Reviewer}"/>
+                                        <share:IconButton Grid.Column="2" MinHeight="20" ImageHeight="20" Height="20" MinWidth="20" ImageWidth="20" Width="20" ToolTip="{DynamicResource btnClear}" Click="btnReviewerClear_Click" Image="/Bio-LabChrom;component/Image/selectNull.png"/>
+                                        <share:IconButton Grid.Column="4" MinHeight="20" ImageHeight="20" Height="20" MinWidth="20" ImageWidth="20" Width="20" ToolTip="{DynamicResource btnSelectAll}" Click="btnReviewerAll_Click" Image="/Bio-LabChrom;component/Image/selectAll.png"/>
+                                    </Grid>
+                                </DataGridCheckBoxColumn.Header>
+                            </DataGridCheckBoxColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                </DockPanel>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

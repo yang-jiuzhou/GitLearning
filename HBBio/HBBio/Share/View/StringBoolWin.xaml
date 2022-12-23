@@ -33,7 +33,7 @@
                 </DataGridTemplateColumn>
                 <DataGridCheckBoxColumn x:Name="colCheck" Binding="{Binding MCheck}" IsReadOnly="True">
                     <DataGridCheckBoxColumn.Header>
-                        <Grid x:Name="gridCheck" Width="{Binding ElementName=colCheck,Path=ActualWidth}">
+                        <Grid Width="{Binding ElementName=colCheck,Path=ActualWidth}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
